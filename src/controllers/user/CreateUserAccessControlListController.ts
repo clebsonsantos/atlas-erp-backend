@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { CreateUserAccessControlListService } from "../services/CreateUserAccessControlListService";
+import { CreateUserAccessControlListUseCase } from "../../usecases/user/CreateUserAccessControlListUseCase";
 
 export class CreateUserAccessControlListController {
   async handle(request: Request, response: Response) {
     const { permissions, roles } = request.body;
     const { userId } = request;
 
-    const createUserACLService = new CreateUserAccessControlListService();
+    const createUserACLService = new CreateUserAccessControlListUseCase();
 
     const result = await createUserACLService.execute({
       userId,

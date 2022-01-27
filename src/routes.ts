@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { CreatePermissionController } from "./controllers/CreatePermissionController";
-import { CreateProductController } from "./controllers/CreateProductController";
-import { CreateRoleController } from "./controllers/CreateRoleController";
-import { CreateRolePermissionController } from "./controllers/CreateRolePermissionController";
-import { CreateUserAccessControlListController } from "./controllers/CreateUserAccessControlListController";
-import { CreateUserController } from "./controllers/CreateUserController";
-import { GetAllProductsController } from "./controllers/GetAllProductsController";
-import { SessionController } from "./controllers/SessionController";
+import { CreatePermissionController } from "./controllers/permissions/CreatePermissionController";
+import { CreateProductController } from "./controllers/products/CreateProductController";
+import { CreateRoleController } from "./controllers/roles/CreateRoleController";
+import { CreateRolePermissionController } from "./controllers/roles/CreateRolePermissionController";
+import { CreateUserAccessControlListController } from "./controllers/user/CreateUserAccessControlListController";
+import { CreateUserController } from "./controllers/user/CreateUserController";
+import { GetAllProductsController } from "./controllers/products/GetAllProductsController";
+import { SessionController } from "./controllers/authentication/SessionController";
 import { ensuredAuthenticated } from "./middleware/ensuredAuthenticated";
 import { can, is } from "./middleware/permissions";
 
@@ -15,7 +15,11 @@ const routes = Router();
 routes.post("/users", new CreateUserController().handle);
 routes.post("/login", new SessionController().handle);
 
-routes.get("/products", new GetAllProductsController().handle);
+routes.get("/products",
+  ensuredAuthenticated(),
+  new GetAllProductsController().handle
+);
+
 routes.post(
   "/products",
   ensuredAuthenticated(),

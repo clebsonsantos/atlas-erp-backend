@@ -1,12 +1,12 @@
-import { Role } from "../entities/Role";
-import { RoleRepository } from "../repositories";
+import { Role } from "../../entities/Role";
+import { RoleRepository } from "../../repositories";
 
 type RoleRequest = {
   name: string;
   description: string;
 };
 
-export class CreateRoleService {
+export class CreateRoleUseCase {
   async execute({ name, description }: RoleRequest): Promise<Role | Error> {
     const repo = RoleRepository();
 

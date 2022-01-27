@@ -1,4 +1,4 @@
-import { ProductRepository } from "../repositories";
+import { ProductRepository } from "../../repositories";
 
 type ProductRequest = {
   name: string;
@@ -6,7 +6,7 @@ type ProductRequest = {
   price: number;
 };
 
-export class CreateProductsService {
+export class CreateProductsUseCase {
   async execute({ name, description, price }: ProductRequest) {
     const product = ProductRepository().create({
       name,

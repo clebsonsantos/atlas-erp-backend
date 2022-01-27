@@ -1,12 +1,12 @@
-import { Permission } from "../entities/Permission";
-import { PermissionRepository } from "../repositories";
+import { Permission } from "../../entities/Permission";
+import { PermissionRepository } from "../../repositories";
 
 type PermissionRequest = {
   name: string;
   description: string;
 };
 
-export class CreatePermissionService {
+export class CreatePermissionUseCase {
   async execute({
     name,
     description,

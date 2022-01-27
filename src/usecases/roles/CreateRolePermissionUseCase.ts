@@ -1,12 +1,12 @@
-import { Role } from "../entities/Role";
-import { PermissionRepository, RoleRepository } from "../repositories";
+import { Role } from "../../entities/Role";
+import { PermissionRepository, RoleRepository } from "../../repositories";
 
 type RolePermissionRequest = {
   roleId: string;
   permissions: string[];
 };
 
-export class CreateRolePermissionService {
+export class CreateRolePermissionUseCase {
   async execute({
     roleId,
     permissions,
