@@ -13,6 +13,7 @@ import { CreateExpensesController } from './controllers/expenses/CreateExpensesC
 import { CreateCategoryController } from './controllers/categories/CreateCategoryController';
 import { CreateCenterCostController } from './controllers/centercost/CreateCenterCostController';
 import { GetAllCategoryController } from './controllers/categories/GetAllCategoryController';
+import { GetAllExpensesController } from './controllers/expenses/GetAllExpensesController';
 
 const routes = Router();
 
@@ -52,8 +53,9 @@ routes.post(
 
 routes.post("/roles/:roleId", new CreateRolePermissionController().handle);
 
-// Criar despesas
+// Despesas
 routes.post("/expenses", ensuredAuthenticated(), new CreateExpensesController().handle)
+routes.get("/expenses", ensuredAuthenticated(), new GetAllExpensesController().handle)
 
 //Categorias
 routes.post("/category", ensuredAuthenticated(), new CreateCategoryController().handle)

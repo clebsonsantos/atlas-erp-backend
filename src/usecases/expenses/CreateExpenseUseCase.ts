@@ -28,12 +28,12 @@ export class CreateExpenseUseCase  {
       category_id
     });
 
-    if(!await CategoryRepository().findOne({id: category_id})){
-      return new Error ("Category does not exists!")
-    }
     if(!await CenterCostRepository().findOne({id: center_cost_id})){
       return new Error ("Center cost does not exists!")
 
+    }
+    if(!await CategoryRepository().findOne({id: category_id})){
+      return new Error ("Category does not exists!")
     }
 
     await ExpenseRepository().save(expense)
