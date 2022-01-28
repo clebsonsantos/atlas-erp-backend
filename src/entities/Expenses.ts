@@ -1,5 +1,5 @@
 // ENTIDADE PARA REGISTRO DE DESPESAS
-import { Entity, JoinTable, ManyToMany } from "typeorm";
+import { Column, Entity, JoinTable, ManyToOne } from "typeorm";
 import { BaseExpenses } from './BaseExpenses';
 import { Category } from './Category';
 import { CentersCost } from './CentersCost';
@@ -7,20 +7,27 @@ import { CentersCost } from './CentersCost';
 @Entity("expenses")
 export class Expenses extends BaseExpenses {
 
-  @ManyToMany(() => CentersCost)
+  @Column()
+  center_cost_id: string
+
+  @ManyToOne(() => CentersCost)
   @JoinTable({
     name: "centers_cost",
-    joinColumns: [{ name: "id" }],
+    joinColumns: [{ name: "center_cost_id" }],
   })
-  center_cost_id: CentersCost[];
+  center_cost: CentersCost;
+  
 
+  @Column()
+  category_id: string
 
-  @ManyToMany(() => Category)
+  @ManyToOne(() => Category)
   @JoinTable({
     name: "categories",
-    joinColumns: [{ name: "id" }],
+    joinColumns: [{ name: "category_id" }],
   })
-  category_id: Category[];
+  category: Category;
+
 
 
 }

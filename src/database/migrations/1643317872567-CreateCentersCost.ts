@@ -11,6 +11,7 @@ export class CreateCentersCost1643317872567 implements MigrationInterface {
               {
                 name: "name",
                 type: "varchar",
+                isUnique: true
               },
               {
                 name: "created_at",

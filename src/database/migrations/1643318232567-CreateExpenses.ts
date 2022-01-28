@@ -39,22 +39,23 @@ export class CreateExpenses1643318232567 implements MigrationInterface {
                 {
                   name: "date",
                   type: "timestamp",
+                  default: "now()"
                 },
               ],
               foreignKeys: [
                 {
-                  columnNames: ["center_cost_id"],
-                  referencedColumnNames: ["id"],
-                  referencedTableName: "centers_cost",
                   name: "fk_centers_cost",
+                  referencedTableName: "centers_cost",
+                  referencedColumnNames: ["id"],
+                  columnNames: ["center_cost_id"],
                   onDelete: "RESTRICT",
                   onUpdate: "CASCADE",
                 },
                 {
-                  columnNames: ["category_id"],
-                  referencedColumnNames: ["id"],
-                  referencedTableName: "categories",
                   name: "fk_categories",
+                  referencedTableName: "categories",
+                  referencedColumnNames: ["id"],
+                  columnNames: ["category_id"],
                   onDelete: "RESTRICT",
                   onUpdate: "CASCADE",
                 },
