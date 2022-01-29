@@ -16,6 +16,7 @@ import { GetAllCategoryController } from './controllers/categories/GetAllCategor
 import { GetAllExpensesController } from './controllers/expenses/GetAllExpensesController';
 import { GetAllCenterCostController } from './controllers/centercost/GetAllCenterCostController';
 import { UpdateExpensesController } from './controllers/expenses/UpdateExpensesController';
+import { DeleteExpenseController } from './controllers/expenses/DeleteExpenseController';
 
 const routes = Router();
 
@@ -59,6 +60,7 @@ routes.post("/roles/:roleId", new CreateRolePermissionController().handle);
 routes.post("/expenses", ensuredAuthenticated(), new CreateExpensesController().handle)
 routes.get("/expenses", ensuredAuthenticated(), new GetAllExpensesController().handle)
 routes.put("/expenses/:id", ensuredAuthenticated(), new UpdateExpensesController().handle)
+routes.delete("/expenses/:id", ensuredAuthenticated(), new DeleteExpenseController().handle)
 
 //Categorias
 routes.post("/category", ensuredAuthenticated(), new CreateCategoryController().handle)
