@@ -14,6 +14,7 @@ import { CreateCategoryController } from './controllers/categories/CreateCategor
 import { CreateCenterCostController } from './controllers/centercost/CreateCenterCostController';
 import { GetAllCategoryController } from './controllers/categories/GetAllCategoryController';
 import { GetAllExpensesController } from './controllers/expenses/GetAllExpensesController';
+import { GetAllCenterCostController } from './controllers/centercost/GetAllCenterCostController';
 
 const routes = Router();
 
@@ -63,5 +64,6 @@ routes.get("/categories", ensuredAuthenticated(), new GetAllCategoryController()
 
 // Criar Centro de custo
 routes.post("/center_cost", ensuredAuthenticated(), new CreateCenterCostController().handle)
+routes.get("/center_cost", ensuredAuthenticated(), new GetAllCenterCostController().handle)
 
 export { routes };
