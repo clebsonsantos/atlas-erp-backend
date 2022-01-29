@@ -15,6 +15,7 @@ import { CreateCenterCostController } from './controllers/centercost/CreateCente
 import { GetAllCategoryController } from './controllers/categories/GetAllCategoryController';
 import { GetAllExpensesController } from './controllers/expenses/GetAllExpensesController';
 import { GetAllCenterCostController } from './controllers/centercost/GetAllCenterCostController';
+import { UpdateExpensesController } from './controllers/expenses/UpdateExpensesController';
 
 const routes = Router();
 
@@ -57,6 +58,7 @@ routes.post("/roles/:roleId", new CreateRolePermissionController().handle);
 // Despesas
 routes.post("/expenses", ensuredAuthenticated(), new CreateExpensesController().handle)
 routes.get("/expenses", ensuredAuthenticated(), new GetAllExpensesController().handle)
+routes.put("/expenses/:id", ensuredAuthenticated(), new UpdateExpensesController().handle)
 
 //Categorias
 routes.post("/category", ensuredAuthenticated(), new CreateCategoryController().handle)
