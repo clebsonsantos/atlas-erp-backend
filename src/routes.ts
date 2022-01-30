@@ -17,6 +17,7 @@ import { GetAllExpensesController } from './controllers/expenses/GetAllExpensesC
 import { GetAllCenterCostController } from './controllers/centercost/GetAllCenterCostController';
 import { UpdateExpensesController } from './controllers/expenses/UpdateExpensesController';
 import { DeleteExpenseController } from './controllers/expenses/DeleteExpenseController';
+import { UpdateCategoryController } from './controllers/categories/UpdateCategoryController';
 
 const routes = Router();
 
@@ -65,6 +66,7 @@ routes.delete("/expenses/:id", ensuredAuthenticated(), new DeleteExpenseControll
 //Categorias
 routes.post("/category", ensuredAuthenticated(), new CreateCategoryController().handle)
 routes.get("/categories", ensuredAuthenticated(), new GetAllCategoryController().handle)
+routes.put("/categories/:id", ensuredAuthenticated(), new UpdateCategoryController().handle)
 
 // Criar Centro de custo
 routes.post("/center_cost", ensuredAuthenticated(), new CreateCenterCostController().handle)
