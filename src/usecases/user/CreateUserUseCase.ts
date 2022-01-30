@@ -13,7 +13,7 @@ export class CreateUserUseCase {
     const existUser = await UserRepository().findOne({ username });
 
     if (existUser) {
-      return new Error("User already exists");
+      return new Error("Usuário já existe!");
     }
 
     const passwordHash = await hash(password, 8);

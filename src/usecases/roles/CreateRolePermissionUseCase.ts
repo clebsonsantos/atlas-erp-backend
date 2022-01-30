@@ -16,7 +16,7 @@ export class CreateRolePermissionUseCase {
     const role = await repo.findOne(roleId);
 
     if (!role) {
-      return new Error("Role does not exists!");
+      return new Error("Função/cargo não existe!");
     }
 
     const permissionsExists = await PermissionRepository().findByIds(

@@ -22,7 +22,7 @@ export class CreateUserAccessControlListUseCase {
     const user = await repo.findOne(userId);
 
     if (!user) {
-      return new Error("User does not exists!");
+      return new Error("Usuário não existe!");
     }
 
     const permissionsExists = await PermissionRepository().findByIds(

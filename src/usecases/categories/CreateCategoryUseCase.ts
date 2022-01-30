@@ -14,7 +14,7 @@ export class CreateCategoryUseCase  {
       name
     })
     if(await CategoryRepository().findOne({name})){
-      return new Error("Category already exist!")
+      return new Error("Categoria já existe!")
     }
     await CategoryRepository().save(category)
 

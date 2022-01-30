@@ -14,7 +14,7 @@ export class CreatePermissionUseCase {
     const repo = PermissionRepository();
 
     if (await repo.findOne({ name })) {
-      return new Error("Permission already exists");
+      return new Error("Permissão já existe!");
     }
 
     const permission = repo.create({ name, description });

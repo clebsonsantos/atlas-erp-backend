@@ -10,7 +10,6 @@ export class UpdateCategoryUseCase  {
 
   async execute({id, name}: Type){
     const category = await CategoryRepository().findOne({id})
-    console.log(category)
 
     if(!category){
       return new Error("Categoria não existe.");

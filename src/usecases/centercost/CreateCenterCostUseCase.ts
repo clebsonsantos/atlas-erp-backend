@@ -14,7 +14,7 @@ export class CreateCenterCostUseCase  {
       name
     })
     if(await CenterCostRepository().findOne({name})){
-      return new Error("Center cost already exist!")
+      return new Error("Centro de custo já existe!")
     }
     await CenterCostRepository().save(category)
 

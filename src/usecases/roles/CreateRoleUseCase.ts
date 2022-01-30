@@ -11,7 +11,7 @@ export class CreateRoleUseCase {
     const repo = RoleRepository();
 
     if (await repo.findOne({ name })) {
-      return new Error("Role already exists");
+      return new Error("Função/cargo já existe!");
     }
 
     const role = repo.create({ name, description });

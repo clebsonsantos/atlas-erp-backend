@@ -29,11 +29,11 @@ export class CreateExpenseUseCase  {
     });
 
     if(!await CenterCostRepository().findOne({id: center_cost_id})){
-      return new Error ("Center cost does not exists!")
+      return new Error ("Centro de custo não existe!")
 
     }
     if(!await CategoryRepository().findOne({id: category_id})){
-      return new Error ("Category does not exists!")
+      return new Error ("Categoria não existe!")
     }
 
     await ExpenseRepository().save(expense)
