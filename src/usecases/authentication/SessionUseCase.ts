@@ -1,7 +1,5 @@
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
-import { User } from "../../entities/User";
-import { getRepository } from "typeorm";
 import { UserRepository } from "../../repositories";
 
 type UserRequest = {
@@ -16,13 +14,13 @@ export class SessionUseCase {
     const user = await repo.findOne({ username });
 
     if (!user) {
-      return new Error("User does not exists!");
+      return new Error("Usuário não existe.");
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      return new Error("User or Password incorrect");
+      return new Error("Usuário ou senha incorretos.");
     }
 
     const token = sign({}, process.env.SECRET_JWT, {
