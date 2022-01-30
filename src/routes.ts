@@ -20,6 +20,7 @@ import { DeleteExpenseController } from './controllers/expenses/DeleteExpenseCon
 import { UpdateCategoryController } from './controllers/categories/UpdateCategoryController';
 import { DeleteCategoryController } from './controllers/categories/DeleteCategoryController';
 import { UpdateCenterCostController } from './controllers/centercost/UpdateCenterCostController';
+import { DeleteCenterCostController } from './controllers/centercost/DeleteCenterCostController';
 
 const routes = Router();
 
@@ -66,7 +67,7 @@ routes.put("/expenses/:id", ensuredAuthenticated(), new UpdateExpensesController
 routes.delete("/expenses/:id", ensuredAuthenticated(), new DeleteExpenseController().handle)
 
 //Categorias
-routes.post("/category", ensuredAuthenticated(), new CreateCategoryController().handle)
+routes.post("/categories", ensuredAuthenticated(), new CreateCategoryController().handle)
 routes.get("/categories", ensuredAuthenticated(), new GetAllCategoryController().handle)
 routes.put("/categories/:id", ensuredAuthenticated(), new UpdateCategoryController().handle)
 routes.delete("/categories/:id", ensuredAuthenticated(), new DeleteCategoryController().handle)
@@ -75,5 +76,6 @@ routes.delete("/categories/:id", ensuredAuthenticated(), new DeleteCategoryContr
 routes.post("/center_cost", ensuredAuthenticated(), new CreateCenterCostController().handle)
 routes.get("/center_cost", ensuredAuthenticated(), new GetAllCenterCostController().handle)
 routes.put("/center_cost/:id", ensuredAuthenticated(), new UpdateCenterCostController().handle)
+routes.delete("/center_cost/:id", ensuredAuthenticated(), new DeleteCenterCostController().handle)
 
 export { routes };
