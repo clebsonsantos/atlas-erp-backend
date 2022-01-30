@@ -60,19 +60,19 @@ routes.post(
 
 routes.post("/roles/:roleId", new CreateRolePermissionController().handle);
 
-// Despesas
+// Despesas/ganhos
 routes.post("/expenses", ensuredAuthenticated(), new CreateExpensesController().handle)
 routes.get("/expenses", ensuredAuthenticated(), new GetAllExpensesController().handle)
 routes.put("/expenses/:id", ensuredAuthenticated(), new UpdateExpensesController().handle)
 routes.delete("/expenses/:id", ensuredAuthenticated(), new DeleteExpenseController().handle)
 
-//Categorias
+// Categorias
 routes.post("/categories", ensuredAuthenticated(), new CreateCategoryController().handle)
 routes.get("/categories", ensuredAuthenticated(), new GetAllCategoryController().handle)
 routes.put("/categories/:id", ensuredAuthenticated(), new UpdateCategoryController().handle)
 routes.delete("/categories/:id", ensuredAuthenticated(), new DeleteCategoryController().handle)
 
-// Criar Centro de custo
+// Centro de custo
 routes.post("/center_cost", ensuredAuthenticated(), new CreateCenterCostController().handle)
 routes.get("/center_cost", ensuredAuthenticated(), new GetAllCenterCostController().handle)
 routes.put("/center_cost/:id", ensuredAuthenticated(), new UpdateCenterCostController().handle)
