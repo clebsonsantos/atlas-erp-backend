@@ -25,6 +25,9 @@ export class BaseExpenses {
   @CreateDateColumn()
   date: Date;
 
+  @CreateDateColumn()
+  created_at: Date
+
 
   constructor() {
     if (!this.id) {
