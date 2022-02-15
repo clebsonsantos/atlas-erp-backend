@@ -21,6 +21,24 @@ import { UpdateCategoryController } from './controllers/categories/UpdateCategor
 import { DeleteCategoryController } from './controllers/categories/DeleteCategoryController';
 import { UpdateCenterCostController } from './controllers/centercost/UpdateCenterCostController';
 import { DeleteCenterCostController } from './controllers/centercost/DeleteCenterCostController';
+import { CreateAdministratorController } from './controllers/administrator/CreateAdministratorController';
+import { UpdateAdministratorController } from './controllers/administrator/UpdateAdministratorController';
+
+// Inserindo um arquivo de imagem
+import multer from 'multer'
+const storage = multer.diskStorage({
+  destination: function(res, file, cb){
+    cb(null, './uploads');
+
+  },
+  filename: function(req, file, cb) {
+    cb(null, "storage_image_"+file.originalname)
+    
+  }
+})
+const upload = multer({storage})
+// Fim
+
 
 const routes = Router();
 
@@ -29,7 +47,7 @@ routes.post("/login", new SessionController().handle);
 
 routes.get("/products",
   ensuredAuthenticated(),
-  new GetAllProductsController().handle
+  new GetAllProductsController().handle 
 );
 
 routes.post(
@@ -77,5 +95,9 @@ routes.post("/center_cost", ensuredAuthenticated(), new CreateCenterCostControll
 routes.get("/center_cost", ensuredAuthenticated(), new GetAllCenterCostController().handle)
 routes.put("/center_cost/:id", ensuredAuthenticated(), new UpdateCenterCostController().handle)
 routes.delete("/center_cost/:id", ensuredAuthenticated(), new DeleteCenterCostController().handle)
+
+//Administrador
+routes.post("/create_admin", ensuredAuthenticated(), upload.single('url_image'), new CreateAdministratorController().handle)
+routes.put("/update_admin/:id", ensuredAuthenticated(), new UpdateAdministratorController().handle)
 
 export { routes };

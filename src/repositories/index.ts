@@ -6,6 +6,7 @@ import { Permission } from "../entities/Permission";
 import { Expenses } from '../entities/Expenses';
 import { Category } from '../entities/Category';
 import { CentersCost } from '../entities/CentersCost';
+import { Administrator } from '../entities/Administrator';
 
 export const UserRepository = () => {
   return getRepository(User);
@@ -35,3 +36,6 @@ export const CenterCostRepository = () => {
   return getRepository(CentersCost);
 };
 
+export const AdministratorRepository = () => {
+  return getRepository(Administrator);
+};

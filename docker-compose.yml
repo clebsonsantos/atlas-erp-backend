@@ -1,0 +1,36 @@
+version: '3.6'
+
+services:
+  pg-pro:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5000:5432
+    # command: cat backup.sql | sudo docker exec -i 99d16ea99408 psql -U postgres -d expense_manager_software
+    environment:
+      POSTGRES_PASSWORD: s-cleb96
+      POSTGRES_DB: expense_manager_software
+    volumes:
+      - ./pg-producao/data:/var/lib/postgresql/data:rw
+
+  server:
+    image: server-expenses:1.0
+    restart: always
+    depends_on:
+      - pg-pro
+    # command: yarn typeorm migration:run 
+    # comentar a linha de cima após executada, para evitar que fique gerando as migrations
+    ports:
+      - 4000:4000
+    environment:
+      - POSTGRES=pg-pro
+      - POSTGRES_NAME=postgres
+      - POSTGRES_PASSWORD=s-cleb96
+    volumes:
+      - ./uploads:/app/uploads
+      - ./docker-ormconfig.js:/app/ormconfig.js
+      - .:/app
+  adminer: 
+    image: adminer
+    ports: 
+      - 5001:8080
