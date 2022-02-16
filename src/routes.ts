@@ -23,6 +23,7 @@ import { UpdateCenterCostController } from './controllers/centercost/UpdateCente
 import { DeleteCenterCostController } from './controllers/centercost/DeleteCenterCostController';
 import { CreateAdministratorController } from './controllers/administrator/CreateAdministratorController';
 import { UpdateAdministratorController } from './controllers/administrator/UpdateAdministratorController';
+import { GetAdministratorController } from './controllers/administrator/GetAdministratorController';
 
 // Inserindo um arquivo de imagem
 import multer from 'multer'
@@ -98,6 +99,7 @@ routes.delete("/center_cost/:id", ensuredAuthenticated(), new DeleteCenterCostCo
 
 //Administrador
 routes.post("/create_admin", ensuredAuthenticated(), upload.single('url_image'), new CreateAdministratorController().handle)
-routes.put("/update_admin/:id", ensuredAuthenticated(), new UpdateAdministratorController().handle)
+routes.put("/update_admin/:id", ensuredAuthenticated(), upload.single('url_image'), new UpdateAdministratorController().handle)
+routes.get("/get_admin", ensuredAuthenticated(), new GetAdministratorController().handle)
 
 export { routes };

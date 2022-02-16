@@ -24,5 +24,8 @@ CMD [ "yarn", "start" ]
 # docker ps container ls -a (lista todos os containers)
 # docker compose logs -f (ver quais processos estão rodando)
 # docker compose ps (lista os container startados)
+# 131.161.131.129
+# r3m1*#1!
+
 
 # Obs: em versões mais atigas do docker compose é preciso atribuir o ` - ` ex: (docker-compose)

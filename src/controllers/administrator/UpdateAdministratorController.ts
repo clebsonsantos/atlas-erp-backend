@@ -20,9 +20,11 @@ export class UpdateAdministratorController {
       uf,
       cep,
       telefone,
-      email,
-      url_image
+      email
     } = request.body;
+    
+    const {path} = request.file
+    const url_image = path
 
     const updateadmin = new UpdateAdministratorUseCase()
 
