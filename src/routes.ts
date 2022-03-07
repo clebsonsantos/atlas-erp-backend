@@ -29,6 +29,7 @@ import { GetAdministratorController } from './controllers/administrator/GetAdmin
 import multer from 'multer'
 import { GetAllUsersController } from './controllers/user/GetAllUsersController';
 import { UpdateInformationsUserController } from './controllers/user/UpdateInformationsUserController';
+import { DeleteUserController } from './controllers/user/DeleteUserController';
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');
@@ -49,7 +50,13 @@ const routes = Router();
 routes.post("/users", new CreateUserController().handle);
 routes.get("/users",  ensuredAuthenticated(), new GetAllUsersController().handle);
 routes.put("/users/:id",  ensuredAuthenticated(), new UpdateInformationsUserController().handle);
-routes.post("/login", new SessionController().handle);
+routes.delete("/users/:id",  
+  ensuredAuthenticated(), 
+  is(["admin"]),
+  new DeleteUserController().handle
+);
+
+routes.post("/login", new SessionController().handle);               
 
 routes.get("/products",
   ensuredAuthenticated(),
