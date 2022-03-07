@@ -19,6 +19,15 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
+  @Column()
+  email: string;
+
+  @Column()
+  phone: string;
+
+  @Column()
+  full_name: string;
+
   @ManyToMany(() => Role)
   @JoinTable({
     name: "users_roles",

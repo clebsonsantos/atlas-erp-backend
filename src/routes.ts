@@ -27,6 +27,7 @@ import { GetAdministratorController } from './controllers/administrator/GetAdmin
 
 // Inserindo um arquivo de imagem
 import multer from 'multer'
+import { GetAllUsersController } from './controllers/user/GetAllUsersController';
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');
@@ -44,6 +45,7 @@ const upload = multer({storage})
 const routes = Router();
 
 routes.post("/users", new CreateUserController().handle);
+routes.get("/users", new GetAllUsersController().handle);
 routes.post("/login", new SessionController().handle);
 
 routes.get("/products",
