@@ -28,6 +28,7 @@ import { GetAdministratorController } from './controllers/administrator/GetAdmin
 // Inserindo um arquivo de imagem
 import multer from 'multer'
 import { GetAllUsersController } from './controllers/user/GetAllUsersController';
+import { UpdateInformationsUserController } from './controllers/user/UpdateInformationsUserController';
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');
@@ -44,8 +45,10 @@ const upload = multer({storage})
 
 const routes = Router();
 
+// Usuários e Login
 routes.post("/users", new CreateUserController().handle);
-routes.get("/users", new GetAllUsersController().handle);
+routes.get("/users",  ensuredAuthenticated(), new GetAllUsersController().handle);
+routes.put("/users/:id",  ensuredAuthenticated(), new UpdateInformationsUserController().handle);
 routes.post("/login", new SessionController().handle);
 
 routes.get("/products",
