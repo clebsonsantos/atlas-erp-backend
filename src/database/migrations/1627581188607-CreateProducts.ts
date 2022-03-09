@@ -16,8 +16,12 @@ export class CreateProducts1627581188607 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "price",
+            name: "price_default",
             type: "numeric",
+          },
+          {
+            name: "center_cost_id",
+            type: "uuid",
           },
           {
             name: "created_at",
