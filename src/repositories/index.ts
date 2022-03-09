@@ -7,6 +7,7 @@ import { Expenses } from '../entities/Expenses';
 import { Category } from '../entities/Category';
 import { CentersCost } from '../entities/CentersCost';
 import { Administrator } from '../entities/Administrator';
+import { Customers } from '../entities/Customers';
 
 export const UserRepository = () => {
   return getRepository(User);
@@ -39,3 +40,8 @@ export const CenterCostRepository = () => {
 export const AdministratorRepository = () => {
   return getRepository(Administrator);
 };
+
+export const CustomerRepository = () => {
+  return getRepository(Customers);
+};
+
