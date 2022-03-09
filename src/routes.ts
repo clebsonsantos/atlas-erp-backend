@@ -33,6 +33,7 @@ import { DeleteUserController } from './controllers/user/DeleteUserController';
 import { CreateCustomerController } from './controllers/customers/CreateCustomerController';
 import { GetAllCustomersController } from './controllers/customers/GetAllCustomersController';
 import { UpdateCustomerController } from './controllers/customers/UpdateCustomerController';
+import { DeleteCustomerController } from './controllers/customers/DeleteCustomerController';
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');
@@ -121,5 +122,6 @@ routes.get("/get_admin", ensuredAuthenticated(), new GetAdministratorController(
 routes.post("/customers", ensuredAuthenticated(), new CreateCustomerController().handle)
 routes.get("/customers", ensuredAuthenticated(), new GetAllCustomersController().handle)
 routes.put("/customers/:id", ensuredAuthenticated(), new UpdateCustomerController().handle)
+routes.delete("/customers/:id", ensuredAuthenticated(), new DeleteCustomerController().handle)
 
 export { routes };
