@@ -1,5 +1,4 @@
-// ENTIDADE PARA REGISTRO DE DESPESAS
-import { Column, Entity, JoinColumn, JoinTable, ManyToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 import { BaseExpenses } from './BaseExpenses';
 import { Category } from './Category';
 import { CentersCost } from './CentersCost';

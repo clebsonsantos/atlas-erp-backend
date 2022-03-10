@@ -36,6 +36,7 @@ import { UpdateCustomerController } from './controllers/customers/UpdateCustomer
 import { DeleteCustomerController } from './controllers/customers/DeleteCustomerController';
 import { UpdateProductController } from './controllers/products/UpdateProductController';
 import { DeleteProductController } from './controllers/products/DeleteProductController';
+import { CreateSaleProductsSoldController } from './controllers/sales/CreateSaleProductsSoldController';
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');
@@ -64,21 +65,6 @@ routes.delete("/users/:id",
 
 routes.post("/login", new SessionController().handle);               
 
-
-// Produtos
-routes.get("/products",
-  ensuredAuthenticated(),
-  new GetAllProductsController().handle 
-);
-
-routes.post(
-  "/products",
-  ensuredAuthenticated(),
-  is(["admin"]), // can(["create_product", "list_product"]) ||
-  new CreateProductController().handle
-);
-routes.put("/products/:id", ensuredAuthenticated(), new UpdateProductController().handle);
-routes.delete("/products/:id", ensuredAuthenticated(), new DeleteProductController().handle);
 
 routes.post(
   "/roles",
@@ -129,5 +115,14 @@ routes.post("/customers", ensuredAuthenticated(), new CreateCustomerController()
 routes.get("/customers", ensuredAuthenticated(), new GetAllCustomersController().handle)
 routes.put("/customers/:id", ensuredAuthenticated(), new UpdateCustomerController().handle)
 routes.delete("/customers/:id", ensuredAuthenticated(), new DeleteCustomerController().handle)
+
+// Produtos
+routes.get("/products", ensuredAuthenticated(), new GetAllProductsController().handle);
+routes.post("/products",ensuredAuthenticated(), is(["admin"]), new CreateProductController().handle);
+routes.put("/products/:id", ensuredAuthenticated(), new UpdateProductController().handle);
+routes.delete("/products/:id", ensuredAuthenticated(), new DeleteProductController().handle);
+
+// Pedidos/Vendas 
+routes.post("/sales", ensuredAuthenticated(), new CreateSaleProductsSoldController().handle);
 
 export { routes };

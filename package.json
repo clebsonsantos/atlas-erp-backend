@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
-    "start": "ts-node-dev --no-warnings src/server.ts"
+    "start": "ts-node-dev src/server.ts"
   },
   "dependencies": {
     "@types/cors": "^2.8.12",
