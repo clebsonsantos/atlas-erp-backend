@@ -37,6 +37,7 @@ import { DeleteCustomerController } from './controllers/customers/DeleteCustomer
 import { UpdateProductController } from './controllers/products/UpdateProductController';
 import { DeleteProductController } from './controllers/products/DeleteProductController';
 import { CreateSaleProductsSoldController } from './controllers/sales/CreateSaleProductsSoldController';
+import { GettAllSaleProductsController } from './controllers/sales/GettAllSaleProductsController';
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');
@@ -124,5 +125,6 @@ routes.delete("/products/:id", ensuredAuthenticated(), new DeleteProductControll
 
 // Pedidos/Vendas 
 routes.post("/sales", ensuredAuthenticated(), new CreateSaleProductsSoldController().handle);
+routes.get("/sales", ensuredAuthenticated(), new GettAllSaleProductsController().handle);
 
 export { routes };

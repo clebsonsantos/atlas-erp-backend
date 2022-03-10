@@ -25,7 +25,7 @@ export class CreateSaleProductsSoldUseCase  {
     date, 
     customer_id, 
     products_sold
-  }: ISales): Promise< any | Error> {
+  }: ISales): Promise< Sales | Error> {
 
     if(!await CustomerRepository().findOne(customer_id)){
       return new Error("Este cliente não existe.");
