@@ -16,7 +16,7 @@ export class CreateRelationSalesProdcuts1646925804023 implements MigrationInterf
                   referencedColumnNames: ["id"],
                   referencedTableName: "sales",
                   name: "fk_sale_products",
-                  // onDelete: "RESTRICT",
+                  onDelete: "CASCADE",
                   onUpdate: "CASCADE",
                 },
                 {
@@ -24,7 +24,7 @@ export class CreateRelationSalesProdcuts1646925804023 implements MigrationInterf
                   referencedColumnNames: ["id"],
                   referencedTableName: "products_solds",
                   name: "fk_products_sale",
-                  // onDelete: "RESTRICT",
+                  onDelete: "CASCADE",
                   onUpdate: "CASCADE",
                 },
               ],
