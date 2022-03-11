@@ -1,3 +1,4 @@
+import { ProductSales } from '../../entities/ProductSales';
 import { Sales } from '../../entities/Sales';
 import { ProductsSoldsRepository, SalesRepository } from '../../repositories'
 
@@ -31,7 +32,7 @@ export class UpdatesaleProductsUseCase  {
     sale.customer_id = customer_id ? customer_id : sale.customer_id
     sale.date = date ? date : sale.date
 
-    const soldsEditProducts = new Array()
+    const soldsEditProducts = new Array<ProductSales>()
     sale.products_sold.forEach(async (item) => {
 
       products_sold.forEach(async(solds)=> {
@@ -45,14 +46,16 @@ export class UpdatesaleProductsUseCase  {
           productSold.price_unit = solds.price_unit ? solds.price_unit : productSold.price_unit
           productSold.total_price = solds.total_price ? solds.total_price : productSold.total_price
           productSold.quantity = solds.quantity ? solds.quantity : productSold.quantity
-          await ProductsSoldsRepository().save(productSold)
           soldsEditProducts.push(productSold)
+          await ProductsSoldsRepository().save(productSold)
+        }else{
+          await ProductsSoldsRepository().delete(item.id)
         }
       })
     })
     
+    sale.products_sold = soldsEditProducts ? soldsEditProducts : sale.products_sold
     await SalesRepository().save(sale)
-    sale.products_sold = soldsEditProducts
 
     return sale
 

@@ -31,7 +31,6 @@ export class CreateSaleProductsSoldUseCase  {
       return new Error("Este cliente não existe.");
     }
 
-    let id_products_sold = new Array()
     const sale = SalesRepository().create({
       date,
       customer_id,
@@ -39,7 +38,6 @@ export class CreateSaleProductsSoldUseCase  {
 
     products_sold.forEach(async (item)=> {
       const productsSold = ProductsSoldsRepository().create(item)
-      id_products_sold.push(productsSold.id)
       
       await ProductsSoldsRepository().save(productsSold)
       const relation = RelationsSaleProductsRepository().create({sale_id: sale.id, products_sold_id: productsSold.id})
@@ -47,11 +45,6 @@ export class CreateSaleProductsSoldUseCase  {
     })
 
 
-    const productsSoldExists = await ProductsSoldsRepository().findByIds(id_products_sold)
-
-    sale.products_sold = productsSoldExists
-
-    
     await SalesRepository().save(sale)
     
     return sale
