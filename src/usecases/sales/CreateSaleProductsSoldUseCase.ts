@@ -1,3 +1,4 @@
+import { ProductSales } from '../../entities/ProductSales';
 import { Sales } from '../../entities/Sales';
 import {
   CustomerRepository,
@@ -31,19 +32,22 @@ export class CreateSaleProductsSoldUseCase  {
       return new Error("Este cliente não existe.");
     }
 
+    
     const sale = SalesRepository().create({
       date,
       customer_id,
     })
-
-    products_sold.forEach(async (item)=> {
-      const productsSold = ProductsSoldsRepository().create(item)
-      
+    
+    const ids_products = new Array()
+    
+    for await (const product of products_sold){
+      const productsSold = ProductsSoldsRepository().create(product)
+      ids_products.push(productsSold.id)
       await ProductsSoldsRepository().save(productsSold)
-      const relation = RelationsSaleProductsRepository().create({sale_id: sale.id, products_sold_id: productsSold.id})
-      await RelationsSaleProductsRepository().save(relation)
-    })
+    }
 
+    const productsExists = await ProductsSoldsRepository().findByIds(ids_products)
+    sale.products_sold = productsExists
 
     await SalesRepository().save(sale)
     
