@@ -1,9 +1,9 @@
-import { ProductSales } from '../../entities/ProductSales';
 import { Sales } from '../../entities/Sales';
-import { ProductsSoldsRepository, SalesRepository } from '../../repositories'
+import { ProductsSoldsRepository, RelationsSaleProductsRepository, SalesRepository } from '../../repositories'
 
 type IproductsSolds = {
-  id: string;
+  id?: string;
+  delete?: boolean;
   id_product: string,
   quantity: number,
   price_unit: number,
@@ -32,35 +32,61 @@ export class UpdatesaleProductsUseCase  {
     sale.customer_id = customer_id ? customer_id : sale.customer_id
     sale.date = date ? date : sale.date
 
-    const soldsEditProducts = new Array<ProductSales>()
-    sale.products_sold.forEach(async (item) => {
+    const ids_soldsProducts = new Array()
 
-      products_sold.forEach(async(solds)=> {
-        if(solds.id === item.id){
-          const productSold = await ProductsSoldsRepository().findOne({id: solds.id})
-          if(!productSold){
-            return new Error("Esta transação de venda não existe.");
-          }
+    // Ao solicitar a edição é preciso enviar novamente todos os produtos que já estão cadastrados. 
+    // Caso o item que já está cadastrado não seja reenviado pela request ele será removido do relacionamento e ficará perdido no banco de dados.
+    // TODO: Verificar isso depois.
 
-          productSold.id_product = solds.id_product ? solds.id_product : productSold.id_product
-          productSold.price_unit = solds.price_unit ? solds.price_unit : productSold.price_unit
-          productSold.total_price = solds.total_price ? solds.total_price : productSold.total_price
-          productSold.quantity = solds.quantity ? solds.quantity : productSold.quantity
-          soldsEditProducts.push(productSold)
+    //Editar produto existente
+    for await (const item of sale.products_sold){
+
+      for await (const product of products_sold){
+        if(product.id === item.id){
+          const productSold = await ProductsSoldsRepository().findOne({id: product.id})
+          
+          productSold.id_product = product.id_product ? product.id_product : productSold.id_product
+          productSold.price_unit = product.price_unit ? product.price_unit : productSold.price_unit
+          productSold.total_price = product.total_price ? product.total_price : productSold.total_price
+          productSold.quantity = product.quantity ? product.quantity : productSold.quantity
           await ProductsSoldsRepository().save(productSold)
-        }else{
-          await ProductsSoldsRepository().delete(item.id)
+          ids_soldsProducts.push(productSold.id)
         }
-      })
-    })
-    
-    sale.products_sold = soldsEditProducts ? soldsEditProducts : sale.products_sold
+        
+      }
+      
+    }    
+    //Remover produto com tag [delete]
+    for await(const product of products_sold){
+      if(product.delete === true){
+        const productSold = await ProductsSoldsRepository().findOne({id: product.id})
+
+        if(!productSold){
+          return new Error("Este(s) lançamento(s) não existe(m).")
+        }
+        
+        await ProductsSoldsRepository().delete(productSold.id)
+        const index = ids_soldsProducts.indexOf(product.id)
+        ids_soldsProducts.splice(index, 1)
+
+      }
+
+    }
+
+    //Inserir um novo produto na venda
+    for await (const newProducts of products_sold){
+      if(!newProducts.id){
+        const productsSold = ProductsSoldsRepository().create(newProducts)
+        await ProductsSoldsRepository().save(productsSold)
+        ids_soldsProducts.push(productsSold.id)
+      }
+    }
+
+    const soldsExists = await ProductsSoldsRepository().findByIds(ids_soldsProducts)
+
+    sale.products_sold = soldsExists
     await SalesRepository().save(sale)
 
     return sale
-
-
-
-    
   }
 }
