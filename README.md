@@ -1,0 +1,1 @@
+## API for use in Desktop Application, Web or Mobile
