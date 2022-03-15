@@ -40,6 +40,7 @@ import { CreateSaleProductsSoldController } from './controllers/sales/CreateSale
 import { GettAllSaleProductsController } from './controllers/sales/GettAllSaleProductsController';
 import { DeleteSaleProductsController } from './controllers/sales/DeleteSaleProductsController';
 import { UpdateSaleProductsController } from './controllers/sales/UpdateSaleProductsController';
+import { FindOneUserController } from './controllers/user/FindOneUserController';
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');
@@ -59,6 +60,7 @@ const routes = Router();
 // Usuários e Login
 routes.post("/users", new CreateUserController().handle);
 routes.get("/users",  ensuredAuthenticated(), new GetAllUsersController().handle);
+routes.post("/find_user",  ensuredAuthenticated(), new FindOneUserController().handle);
 routes.put("/users/:id",  ensuredAuthenticated(), new UpdateInformationsUserController().handle);
 routes.delete("/users/:id",  
   ensuredAuthenticated(), 

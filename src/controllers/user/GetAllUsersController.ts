@@ -3,10 +3,9 @@ import { GetAllUsersUseCase } from "../../usecases/user/GetAllUsersUseCase";
 
 export class GetAllUsersController {
   async handle(request: Request, response: Response) {
-    const { id } = request.body
     const getAllUsersService = new GetAllUsersUseCase();
 
-    const users = await getAllUsersService.execute(id);
+    const users = await getAllUsersService.execute();
 
     if(users instanceof Array){
         users.forEach(item=> {
