@@ -5,7 +5,7 @@ type ICustomers = {
   id: string
   full_name: string;
   cpf_cnpj: string;
-  state_registration: string;
+  state_registration: number;
   phone: string;
   email: string;
   state: string;

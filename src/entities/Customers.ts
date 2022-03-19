@@ -3,8 +3,6 @@ import {
   Entity,
 } from "typeorm";
 import { BaseEntity } from "./BaseEntity";
-// import { Permission } from "./Permission";
-// import { Role } from "./Role";
 
 @Entity("customers")
 export class Customers extends BaseEntity {
@@ -15,7 +13,7 @@ export class Customers extends BaseEntity {
   cpf_cnpj: string;
 
   @Column()
-  state_registration: string;
+  state_registration: number;
 
   @Column()
   phone: string;

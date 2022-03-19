@@ -3,10 +3,10 @@ import { GetAllProductsUseCase } from "../../usecases/products/GetAllProductsUse
 
 export class GetAllProductsController {
   async handle(request: Request, response: Response) {
-    const { id } = request.body;
+    const { id, name } = request.body;
     const getAllProductsService = new GetAllProductsUseCase();
 
-    const products = await getAllProductsService.execute({id});
+    const products = await getAllProductsService.execute({id, name});
 
     return response.json(products);
   }

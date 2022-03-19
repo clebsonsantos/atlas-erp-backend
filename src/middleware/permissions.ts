@@ -36,7 +36,7 @@ export function is(rolesRoutes: string[]) {
     });
 
     if (!user) {
-      return response.status(400).json("User does not exists");
+      return response.status(400).json("Usuário não existe.");
     }
 
     const roleExists = user.roles
@@ -44,7 +44,7 @@ export function is(rolesRoutes: string[]) {
       .some((role) => rolesRoutes.includes(role));
 
     if (!roleExists) {
-      return response.status(401).end();
+      return response.status(401).json("Você precisa de permissões administrativas.").end()
     }
 
     return next();

@@ -2,15 +2,20 @@ import { Product } from "../../entities/Product";
 import { ProductRepository } from "../../repositories";
 
 type IProductSearch = {
-  id?: string
+  id?: string,
+  name?:string
 }
 
 export class GetAllProductsUseCase {
-  async execute({id}: IProductSearch): Promise<Product[] | Product> {
+  async execute({id, name }: IProductSearch): Promise<Product[] | Product> {
+    const findByParams = id ? await ProductRepository().findOne({ id }, {relations: ["center_cost"]}) : await ProductRepository().findOne({ name }, {relations: ["center_cost"]}) 
+    const paramsFind = id ? id : name
 
     const products = 
-        id ? await ProductRepository().findOne({ id }, {relations: ["center_cost"]}) : 
-        await ProductRepository().find({relations: ["center_cost"]})
+      paramsFind ? findByParams : 
+        await ProductRepository().find({relations: ["center_cost"], order: {
+          created_at: "DESC"
+        }})
     return products;
   }
 }

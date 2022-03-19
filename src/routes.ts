@@ -123,6 +123,7 @@ routes.delete("/customers/:id", ensuredAuthenticated(), new DeleteCustomerContro
 
 // Produtos
 routes.get("/products", ensuredAuthenticated(), new GetAllProductsController().handle);
+routes.post("/products/search", ensuredAuthenticated(), new GetAllProductsController().handle);
 routes.post("/products",ensuredAuthenticated(), is(["admin"]), new CreateProductController().handle);
 routes.put("/products/:id", ensuredAuthenticated(), new UpdateProductController().handle);
 routes.delete("/products/:id", ensuredAuthenticated(), new DeleteProductController().handle);
