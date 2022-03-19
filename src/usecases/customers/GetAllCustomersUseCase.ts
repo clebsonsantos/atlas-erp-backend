@@ -12,7 +12,7 @@ export class GetAllCustomersUseCase  {
       const findByParams = id ? await CustomerRepository().findOne({ id }) : await CustomerRepository().findOne({ full_name })
       const paramsFind = id ? id : full_name
 
-      const customers = paramsFind ? findByParams :  await CustomerRepository().find()
+      const customers = paramsFind ? findByParams :  await CustomerRepository().find({order: {full_name: "ASC"}})
       return customers
     }
     

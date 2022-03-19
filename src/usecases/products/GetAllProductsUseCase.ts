@@ -14,7 +14,7 @@ export class GetAllProductsUseCase {
     const products = 
       paramsFind ? findByParams : 
         await ProductRepository().find({relations: ["center_cost"], order: {
-          created_at: "DESC"
+          name: "ASC"
         }})
     return products;
   }
