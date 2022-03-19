@@ -118,6 +118,7 @@ routes.get("/get_admin", ensuredAuthenticated(), new GetAdministratorController(
 //Clientes
 routes.post("/customers", ensuredAuthenticated(), new CreateCustomerController().handle)
 routes.get("/customers", ensuredAuthenticated(), new GetAllCustomersController().handle)
+routes.post("/customers/search", ensuredAuthenticated(), new GetAllCustomersController().handle)
 routes.put("/customers/:id", ensuredAuthenticated(), new UpdateCustomerController().handle)
 routes.delete("/customers/:id", ensuredAuthenticated(), new DeleteCustomerController().handle)
 
