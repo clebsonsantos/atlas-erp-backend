@@ -13,8 +13,15 @@ export class DeleteCustomerUseCase  {
     if(!customer){
       return new Error("Cliente não encontrado.");
     }
+    let ErrorQuery;
+    await CustomerRepository().delete({id}).catch(error => {
+      ErrorQuery = error.message
+    })
 
-    CustomerRepository().delete({id})
+    if(ErrorQuery && ErrorQuery.includes("violates foreign key constraint")){
+      return new Error("Não é possível deletar esse registro. Existem relacionamentos que dependem dele.")
+    }
+    return "OK"
     
   }
 }
