@@ -15,17 +15,7 @@ import { UsersReports } from '../../usecases/reports/UsersReports';
 export class GetReportsController {
 
   async handle(request: Request, response: Response) {
-    // const {   
-    //   customers,  
-    //   sales,  
-    //   products,  
-    //   categories,  
-    //   centers_cost,  
-    //   expenses,  
-    //   users,  
-    //   initial_date,  
-    //   final_date
-    //   } = request.body;
+
       const { action, initial_date, final_date } = request.query
       const getReports = new GetReportsUseCase()
 
