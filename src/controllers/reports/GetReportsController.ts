@@ -15,31 +15,22 @@ import { UsersReports } from '../../usecases/reports/UsersReports';
 export class GetReportsController {
 
   async handle(request: Request, response: Response) {
-    const {   
-      customers,  
-      sales,  
-      products,  
-      categories,  
-      centers_cost,  
-      expenses,  
-      users,  
-      initial_date,  
-      final_date
-      } = request.body;
-
+    // const {   
+    //   customers,  
+    //   sales,  
+    //   products,  
+    //   categories,  
+    //   centers_cost,  
+    //   expenses,  
+    //   users,  
+    //   initial_date,  
+    //   final_date
+    //   } = request.body;
+      const { action, initial_date, final_date } = request.query
       const getReports = new GetReportsUseCase()
 
-      const reports = await getReports.execute({   
-        customers,  
-        sales,  
-        products,  
-        categories,  
-        centers_cost,  
-        expenses,  
-        users,  
-        initial_date,  
-        final_date
-        })
+      const reports = await getReports.execute({action, initial_date, final_date})
+
       if(reports instanceof Error){
         return response.status(400).json(reports.message)
       }
@@ -50,8 +41,7 @@ export class GetReportsController {
         return response.json(reports)
       }
       if(instaceType instanceof User ){
-        const user_report = await (new UsersReports()).execute(reports as User[])
-        return response.json(user_report)
+        await (new UsersReports()).execute(reports as User[], response)
       }
       if(instaceType instanceof Expenses ){
         return response.json(reports)

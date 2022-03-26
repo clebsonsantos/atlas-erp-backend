@@ -137,6 +137,6 @@ routes.delete("/sales/:id", ensuredAuthenticated(), new DeleteSaleProductsContro
 routes.put("/sales/:id", ensuredAuthenticated(), new UpdateSaleProductsController().handle);
 
 // Relatórios
-routes.post("/reports", ensuredAuthenticated(), new GetReportsController().handle);
+routes.get("/reports", ensuredAuthenticated(), new GetReportsController().handle);
 
 export { routes };

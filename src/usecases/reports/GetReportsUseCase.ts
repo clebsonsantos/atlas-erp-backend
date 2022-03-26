@@ -9,24 +9,26 @@ import { User } from '../../entities/User';
 import { CategoryRepository, CenterCostRepository, CustomerRepository, ExpenseRepository, ProductRepository, SalesRepository, UserRepository } from '../../repositories';
 
 type IReports = {
-  customers?: boolean;
-  sales?: boolean;
-  products?: boolean;
-  categories?: boolean;
-  centers_cost?: boolean;
-  expenses?: boolean;
-  users?: boolean;
-  initial_date?: Date;
-  final_date?: Date;
+  action?: string | any;
+  initial_date?: Date | any;
+  final_date?: Date | any;
 }
 
 
 export class GetReportsUseCase  {
 
-  async execute({customers, sales, products, categories, centers_cost, expenses, users, initial_date, final_date}: IReports): Promise< Customers[] | Sales[] | Product[] | Category[] | CentersCost[] | Expenses[] | User[] | Error> {
+  async execute({action ,initial_date, final_date}: IReports): Promise< Customers[] | Sales[] | Product[] | Category[] | CentersCost[] | Expenses[] | User[] | Error> {
 
-    const initial = new Date(initial_date)
-    const final = new Date(final_date)
+    let customers = action == 'customers' ? true : false
+    let sales = action == 'sales' ? true : false
+    let products = action == 'products' ? true : false
+    let categories = action == 'categories' ? true : false
+    let centers_cost = action == 'centers_cost' ? true : false
+    let expenses = action == 'expenses' ? true : false
+    let users = action == 'users' ? true : false
+
+    let initial = new Date(initial_date)
+    let final = new Date(final_date)
     initial.setDate(initial.getDate() -1)
     final.setDate(final.getDate() +1)
 
