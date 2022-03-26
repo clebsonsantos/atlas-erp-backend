@@ -34,10 +34,6 @@ export class UpdatesaleProductsUseCase  {
 
     const ids_soldsProducts = new Array()
 
-    // Ao solicitar a edição é preciso enviar novamente todos os produtos que já estão cadastrados. 
-    // Caso o item que já está cadastrado não seja reenviado pela request ele será removido do relacionamento e ficará perdido no banco de dados.
-    // TODO: Verificar isso depois.
-
     //Editar produto existente
     for await (const item of sale.products_sold){
 
@@ -56,9 +52,10 @@ export class UpdatesaleProductsUseCase  {
       }
       
     }    
+    
     //Remover produto com tag [delete]
     for await(const product of products_sold){
-      if(product.delete === true){
+      if(product.delete == true){
         const productSold = await ProductsSoldsRepository().findOne({id: product.id})
 
         if(!productSold){
