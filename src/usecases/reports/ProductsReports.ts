@@ -1,4 +1,5 @@
-import { User } from '../../entities/User';
+
+import { Product } from '../../entities/Product';
 import PdfPrinter from 'pdfmake';
 import { TableCell, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { Response } from 'express';
@@ -6,10 +7,9 @@ import { AdministratorRepository } from '../../repositories';
 import { Administrator } from '../../entities/Administrator';
 import LogoImage from './LogoImage';
 
+export class ProductsReports  {
 
-export class UsersReports  {
-
-  async execute( Users: User[], response: Response){
+  async execute( Products: Product[], response: Response){
     const fonts = {
       Helvetica: {
         normal: 'Helvetica',
@@ -22,17 +22,18 @@ export class UsersReports  {
     //CORPO DA TABELA
     const body = [ ];
     const columnsTitle: TableCell[] = [
-      {text: "Nome completo", style: "tableTitle"},
-      {text: "Usuário", style: "tableTitle"},
-      {text: "Telefone", style: "tableTitle"},
-      {text: "E-mail \n", style: "tableTitle"},
+      {text: "Descrição", style: "tableTitle"},
+      {text: "Centro de custo", style: "tableTitle"},
+      {text: "Preço padrão", style: "tableTitle"},
+      {text: "Data de criação\n", style: "tableTitle"},
     ]
-    for await (const user of Users){
+    for await (const product of Products){
       const rows = new Array()
-      rows.push(user.full_name)
-      rows.push(user.username)
-      rows.push(user.phone)
-      rows.push(user.email)
+      const center = product.center_cost
+      rows.push(product.name)
+      rows.push(center.name)
+      rows.push(product.price_default)
+      rows.push(product.created_at.toLocaleString())
       body.push(rows)
     }
 
@@ -72,7 +73,7 @@ export class UsersReports  {
       
       {
         columns: [
-          {text:  "\n\rUSUÁRIOS DO SISTEMA\n\r",  style: "titleContent"}
+          {text:  "\n\rPRODUCTOS CADASTRADOS\n\r",  style: "titleContent"}
         ]
       },
         {

@@ -45,7 +45,7 @@ export class GetReportsUseCase  {
       return sales
 
     }else if(products){
-      const products = await ProductRepository().find({order: {name: "ASC"}})
+      const products = await ProductRepository().find({order: {name: "ASC"}, relations: ['center_cost']})
       return products
 
     }else if(categories){

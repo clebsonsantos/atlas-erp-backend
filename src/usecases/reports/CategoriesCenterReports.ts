@@ -1,15 +1,15 @@
-import { User } from '../../entities/User';
+import { Category } from '../../entities/Category';
+import { CentersCost } from '../../entities/CentersCost';
+import { Administrator } from '../../entities/Administrator';
 import PdfPrinter from 'pdfmake';
 import { TableCell, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { Response } from 'express';
 import { AdministratorRepository } from '../../repositories';
-import { Administrator } from '../../entities/Administrator';
 import LogoImage from './LogoImage';
 
+export class CategoriesCenterReports  {
 
-export class UsersReports  {
-
-  async execute( Users: User[], response: Response){
+  async execute( Component: Category[] | CentersCost[], response: Response){
     const fonts = {
       Helvetica: {
         normal: 'Helvetica',
@@ -22,19 +22,17 @@ export class UsersReports  {
     //CORPO DA TABELA
     const body = [ ];
     const columnsTitle: TableCell[] = [
-      {text: "Nome completo", style: "tableTitle"},
-      {text: "Usuário", style: "tableTitle"},
-      {text: "Telefone", style: "tableTitle"},
-      {text: "E-mail \n", style: "tableTitle"},
+      {text: "Descrição", style: "tableTitle"},
+      {text: "Data de criação", style: "tableTitle"}
     ]
-    for await (const user of Users){
+    for await (const item of Component){
       const rows = new Array()
-      rows.push(user.full_name)
-      rows.push(user.username)
-      rows.push(user.phone)
-      rows.push(user.email)
+      rows.push(item.name)
+      rows.push(item.created_at.toLocaleString())
+
       body.push(rows)
     }
+    const titleReport = Component[0] instanceof Category ? 'Categorias registradas' : "Centros de Custo registrados"
 
     // GERANDO PDF
     const printer = new PdfPrinter(fonts)
@@ -72,15 +70,15 @@ export class UsersReports  {
       
       {
         columns: [
-          {text:  "\n\rUSUÁRIOS DO SISTEMA\n\r",  style: "titleContent"}
+          {text:  `\n\r${titleReport.toUpperCase()}\n\r`,  style: "titleContent"}
         ]
       },
         {
-          layout: 'lightHorizontalLines', // optional
+          layout: 'lightHorizontalLines', 
           table: {
             headerRows: 1,
-            widths: [ '*', 'auto', 100, '*' ],
-            heights: function (row){
+            widths: [ '*', 'auto' ],
+            heights: function (){
               return 15;
             },
             body: [
@@ -106,7 +104,7 @@ export class UsersReports  {
           fontSize: 13,
           bold: true,
           fillColor: "#ccc",
-          margin: 2
+          margin: [2, 2, 2, 5]
         },
         timestamp: {
           alignment: 'right',
@@ -134,3 +132,4 @@ export class UsersReports  {
     })
   }
 }
+

@@ -7,7 +7,9 @@ import { Expenses } from '../../entities/Expenses';
 import { Product } from '../../entities/Product';
 import { Sales } from '../../entities/Sales';
 import { User } from '../../entities/User';
+import { CategoriesCenterReports } from '../../usecases/reports/CategoriesCenterReports';
 import { GetReportsUseCase } from '../../usecases/reports/GetReportsUseCase';
+import { ProductsReports } from '../../usecases/reports/ProductsReports';
 import { UsersReports } from '../../usecases/reports/UsersReports';
 
 
@@ -40,13 +42,13 @@ export class GetReportsController {
         return response.json(reports)
       }
       if(instaceType instanceof Product ){
-        return response.json(reports)
+        await (new ProductsReports()).execute(reports as Product[], response)
       }
       if(instaceType instanceof CentersCost ){
-        return response.json(reports)
+        await (new CategoriesCenterReports()).execute(reports as CentersCost[], response)
       }
       if(instaceType instanceof Category ){
-        return response.json(reports)
+        await (new CategoriesCenterReports()).execute(reports as Category[], response)
       }
   }
 }
