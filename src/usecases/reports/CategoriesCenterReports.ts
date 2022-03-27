@@ -42,6 +42,7 @@ export class CategoriesCenterReports  {
     
 
     const docDefinitions: TDocumentDefinitions = {
+      pageSize: "A4",
       defaultStyle: {font: "Helvetica"},
       footer: function(currentPage, pageCount) { 
         return { text: "página " + currentPage.toString() + ' de ' + pageCount, alignment: 'right', margin: 6 }

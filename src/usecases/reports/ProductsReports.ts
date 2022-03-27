@@ -45,6 +45,7 @@ export class ProductsReports  {
     
 
     const docDefinitions: TDocumentDefinitions = {
+      pageSize: "A4",
       defaultStyle: {font: "Helvetica"},
       footer: function(currentPage, pageCount) { 
         return { text: "página " + currentPage.toString() + ' de ' + pageCount, alignment: 'right', margin: 6 }
@@ -73,14 +74,14 @@ export class ProductsReports  {
       
       {
         columns: [
-          {text:  "\n\rPRODUCTOS CADASTRADOS\n\r",  style: "titleContent"}
+          {text:  "\n\rPRODUTOS CADASTRADOS\n\r",  style: "titleContent"}
         ]
       },
         {
           layout: 'lightHorizontalLines', // optional
           table: {
             headerRows: 1,
-            widths: [ '*', 'auto', 100, '*' ],
+            // widths: [ '*', 'auto', 100, '*' ],
             heights: function (row){
               return 15;
             },

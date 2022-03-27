@@ -8,6 +8,7 @@ import { Product } from '../../entities/Product';
 import { Sales } from '../../entities/Sales';
 import { User } from '../../entities/User';
 import { CategoriesCenterReports } from '../../usecases/reports/CategoriesCenterReports';
+import { CustomersReports } from '../../usecases/reports/CustomersReports';
 import { GetReportsUseCase } from '../../usecases/reports/GetReportsUseCase';
 import { ProductsReports } from '../../usecases/reports/ProductsReports';
 import { UsersReports } from '../../usecases/reports/UsersReports';
@@ -30,7 +31,7 @@ export class GetReportsController {
       const instaceType = reports[0]
 
       if(instaceType instanceof Customers ){
-        return response.json(reports)
+        await (new CustomersReports()).execute(reports as Customers[], response)
       }
       if(instaceType instanceof User ){
         await (new UsersReports()).execute(reports as User[], response)

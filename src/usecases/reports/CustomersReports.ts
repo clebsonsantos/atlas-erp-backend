@@ -1,15 +1,14 @@
-import { User } from '../../entities/User';
+import { Customers } from '../../entities/Customers';
+import { Administrator } from '../../entities/Administrator';
 import PdfPrinter from 'pdfmake';
 import { TableCell, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { Response } from 'express';
 import { AdministratorRepository } from '../../repositories';
-import { Administrator } from '../../entities/Administrator';
 import LogoImage from './LogoImage';
 
+export class CustomersReports  {
 
-export class UsersReports  {
-
-  async execute( Users: User[], response: Response){
+  async execute( Customers: Customers[], response: Response){
     const fonts = {
       Helvetica: {
         normal: 'Helvetica',
@@ -23,18 +22,24 @@ export class UsersReports  {
     const body = [ ];
     const columnsTitle: TableCell[] = [
       {text: "Nome completo", style: "tableTitle"},
-      {text: "Usuário", style: "tableTitle"},
-      {text: "Telefone", style: "tableTitle"},
-      {text: "E-mail \n", style: "tableTitle"},
+      {text: "CPF/CNPJ", style: "tableTitle"},
+      // {text: "Insc.Estadual", style: "tableTitle"},
+      {text: "E-mail", style: "tableTitle"},
+      {text: "telefone", style: "tableTitle"},
+      {text: "Endereço", style: "tableTitle"},
     ]
-    for await (const user of Users){
+    for await (const item of Customers){
       const rows = new Array()
-      rows.push(user.full_name)
-      rows.push(user.username)
-      rows.push(user.phone)
-      rows.push(user.email)
+      rows.push(item.full_name)
+      rows.push(item.cpf_cnpj)
+      // rows.push(item.state_registration)
+      rows.push(item.email)
+      rows.push(item.phone)
+      rows.push(`${item.address}, ${item.city}, ${item.state}`)
+
       body.push(rows)
     }
+    const titleReport = "Cadastros de cliente"
 
     // GERANDO PDF
     const printer = new PdfPrinter(fonts)
@@ -45,6 +50,7 @@ export class UsersReports  {
 
     const docDefinitions: TDocumentDefinitions = {
       pageSize: "A4",
+      pageOrientation: 'landscape',
       defaultStyle: {font: "Helvetica"},
       footer: function(currentPage, pageCount) { 
         return { text: "página " + currentPage.toString() + ' de ' + pageCount, alignment: 'right', margin: 6 }
@@ -73,15 +79,15 @@ export class UsersReports  {
       
       {
         columns: [
-          {text:  "\n\rUSUÁRIOS DO SISTEMA\n\r",  style: "titleContent"}
+          {text:  `\n\r${titleReport.toUpperCase()}\n\r`,  style: "titleContent"}
         ]
       },
         {
-          layout: 'lightHorizontalLines', // optional
+          layout: 'lightHorizontalLines', 
           table: {
             headerRows: 1,
-            widths: [ '*', 'auto', 100, '*' ],
-            heights: function (row){
+            // widths: [ '*', 'auto', 100, "auto", "auto", "auto"  ],
+            heights: function (){
               return 15;
             },
             body: [
@@ -107,7 +113,7 @@ export class UsersReports  {
           fontSize: 13,
           bold: true,
           fillColor: "#ccc",
-          margin: 2
+          margin: [2, 2, 2, 5]
         },
         timestamp: {
           alignment: 'right',
@@ -135,3 +141,4 @@ export class UsersReports  {
     })
   }
 }
+
