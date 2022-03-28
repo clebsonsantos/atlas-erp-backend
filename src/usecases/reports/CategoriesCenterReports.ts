@@ -7,14 +7,6 @@ import { DefaultsConfigReport } from './DefaultsConfigReport';
 export class CategoriesCenterReports  {
 
   async execute( Component: Category[] | CentersCost[], response: Response){
-    const fonts = {
-      Helvetica: {
-        normal: 'Helvetica',
-        bold: 'Helvetica-Bold',
-        italics: 'Helvetica-Oblique',
-        bolditalics: 'Helvetica-BoldOblique'
-      }
-    }
 
     //CORPO DA TABELA
     const body = [ ];
