@@ -25,7 +25,7 @@ export class CustomersReports  {
       {text: "CPF/CNPJ", style: "tableTitle"},
       // {text: "Insc.Estadual", style: "tableTitle"},
       {text: "E-mail", style: "tableTitle"},
-      {text: "telefone", style: "tableTitle"},
+      {text: "Telefone", style: "tableTitle"},
       {text: "Endereço", style: "tableTitle"},
     ]
     for await (const item of Customers){

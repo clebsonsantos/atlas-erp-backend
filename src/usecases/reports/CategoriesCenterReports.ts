@@ -28,7 +28,7 @@ export class CategoriesCenterReports  {
     for await (const item of Component){
       const rows = new Array()
       rows.push(item.name)
-      rows.push(item.created_at.toLocaleString())
+      rows.push(item.created_at.toLocaleDateString())
 
       body.push(rows)
     }

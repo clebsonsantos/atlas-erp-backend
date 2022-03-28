@@ -33,7 +33,7 @@ export class ProductsReports  {
       rows.push(product.name)
       rows.push(center.name)
       rows.push(product.price_default)
-      rows.push(product.created_at.toLocaleString())
+      rows.push(product.created_at.toLocaleDateString())
       body.push(rows)
     }
 
