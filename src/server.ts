@@ -2,6 +2,8 @@ import "reflect-metadata";
 import express from "express";
 import { routes } from "./routes";
 import cors from 'cors';
+import * as dotenv from 'dotenv'
+dotenv.config({ path: `${__dirname}/../../.env`});
 
 import "./database";
 

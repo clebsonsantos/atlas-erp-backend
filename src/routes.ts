@@ -42,13 +42,14 @@ import { DeleteSaleProductsController } from './controllers/sales/DeleteSaleProd
 import { UpdateSaleProductsController } from './controllers/sales/UpdateSaleProductsController';
 import { FindOneUserController } from './controllers/user/FindOneUserController';
 import { GetReportsController } from './controllers/reports/GetReportsController';
+
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');
 
   },
   filename: function(req, file, cb) {
-    cb(null, "storage_image_"+file.originalname)
+    cb(null, "company_logo.png")
     
   }
 })
