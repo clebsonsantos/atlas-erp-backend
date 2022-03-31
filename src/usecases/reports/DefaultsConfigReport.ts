@@ -29,7 +29,8 @@ export class DefaultsConfigReport  {
     }
 
     //BUSCANDO INFORMAÇÕES DO PROVEDOR
-    const company:Administrator[] = await AdministratorRepository().find()
+    const findCompany:Administrator[] = await AdministratorRepository().find()
+    const company = findCompany[0]
     
 
     const docDefinitions: TDocumentDefinitions = {
@@ -48,12 +49,12 @@ export class DefaultsConfigReport  {
             { image: 'imageHeader',  width: 120},
             {
               ol: [
-              `Razão social:  ${company[0].razao}`,
-              `Fantasia: ${company[0].fantasia}`,
-              `CPF/CNPJ:  ${company[0].cpf_cnpj}` + "  " +`Insc. estadual:  ${company[0].insc_estadual}`,
-              `Endereço:  ${company[0].endereco}, ${company[0].numero}, ${company[0].bairro}`,
-              `Cidade/UF:  ${company[0].cidade}-${company[0].uf}`,
-              `Telefone:  ${company[0].telefone}` + "  " + `E-mail:  ${company[0].email}`,
+              `Razão social:  ${company.razao}`,
+              `Fantasia: ${company.fantasia}`,
+              `CPF/CNPJ:  ${company.cpf_cnpj}` + "  " +`Insc. estadual:  ${company.insc_estadual}`,
+              `Endereço:  ${company.endereco}, ${company.numero}, ${company.bairro}`,
+              `Cidade/UF:  ${company.cidade}-${company.uf}`,
+              `Telefone:  ${company.telefone}` + "  " + `E-mail:  ${company.email}`,
             ],
             type: 'none',
             style: "header"
