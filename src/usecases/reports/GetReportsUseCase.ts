@@ -29,8 +29,9 @@ export class GetReportsUseCase  {
 
     let initial = new Date(initial_date)
     let final = new Date(final_date)
-    initial.setDate(initial.getDate() -1)
-    final.setDate(final.getDate() +1)
+    // initial.setDate(initial.getDate() -1)
+    // final.setDate(final.getDate() +1)
+    // console.log(initial, final)
 
     if(customers){
       const customers = await CustomerRepository().find({order: {full_name: "ASC"}})

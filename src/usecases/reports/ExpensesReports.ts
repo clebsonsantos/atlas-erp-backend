@@ -1,19 +1,21 @@
 import { Expenses } from '../../entities/Expenses';
-import { Column, Size, TableCell } from 'pdfmake/interfaces';
+import { Column, TableCell } from 'pdfmake/interfaces';
 import { Response } from 'express';
 import { DefaultsConfigReport } from './DefaultsConfigReport';
 import { CategoryRepository } from '../../repositories';
 
 export class ExpensesReports  {
 
-  async execute( Expenses: Expenses[], response: Response){
+  async execute( Expenses: Expenses[], centerName: string | string[] | any, response: Response){
 
     const categories = await CategoryRepository().find({order: {name: "ASC"}})
-    const titleReport = "Relatório de Despesas"
-
+    const ExpensesFilter = centerName ? Expenses.filter(fill=> fill.center_cost_id == centerName) : Expenses
+    let center: string = centerName ? ExpensesFilter[0].center_cost.name : ""
+    
+    const titleReport = `Relatório de Despesas\n\n${center}`
     const ContentLayout = []
     for await(const categorie of categories){
-      const expensesFiltered = Expenses.filter(expense => expense.category_id == categorie.id)
+      const expensesFiltered = ExpensesFilter.filter(expense => expense.category_id == categorie.id)
       const category = this.handleCategoryName(categorie.name)
       const Body = await this.handleBodyContent(expensesFiltered)
       const tableContent = this.handleContextTable(Body)

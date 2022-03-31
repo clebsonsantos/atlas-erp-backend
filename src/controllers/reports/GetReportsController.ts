@@ -20,7 +20,7 @@ export class GetReportsController {
 
   async handle(request: Request, response: Response) {
 
-      const { action, initial_date, final_date } = request.query
+      const { action, initial_date, final_date, center_cost } = request.query
       const getReports = new GetReportsUseCase()
 
       const reports = await getReports.execute({action, initial_date, final_date})
@@ -38,7 +38,7 @@ export class GetReportsController {
         await (new UsersReports()).execute(reports as User[], response)
       }
       if(instaceType instanceof Expenses ){
-        await (new ExpensesReports()).execute(reports as Expenses[], response)
+        await (new ExpensesReports()).execute(reports as Expenses[], center_cost , response)
       }
       if(instaceType instanceof Sales ){
         return response.json(reports)
