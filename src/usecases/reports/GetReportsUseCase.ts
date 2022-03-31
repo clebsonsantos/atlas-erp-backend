@@ -32,7 +32,10 @@ export class GetReportsUseCase  {
     // initial.setDate(initial.getDate() -1)
     // final.setDate(final.getDate() +1)
     // console.log(initial, final)
-
+    if(initial > final){
+      return new Error("Infome um período válido.")
+    }
+    
     if(customers){
       const customers = await CustomerRepository().find({order: {full_name: "ASC"}})
       return customers
