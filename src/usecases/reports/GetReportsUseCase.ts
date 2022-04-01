@@ -45,7 +45,9 @@ export class GetReportsUseCase  {
         await SalesRepository().find({order: {date: "ASC"}, where: {date: Between(initial, final)}, relations: ["products_sold", "customer"] })
         : 
         await SalesRepository().find({order: {date: "ASC"}, relations: ["products_sold", "customer"] })
-
+      if(sales.length == 0 && (initial && final_date)){
+        return new Error("Não existem vendas registradas no período informado")
+      }
       return sales
 
     }else if(products){
@@ -65,7 +67,9 @@ export class GetReportsUseCase  {
       await ExpenseRepository().find({order: {date: "ASC"}, where: {date: Between(initial, final)}, relations: ["category", "center_cost"] })
       :
       await ExpenseRepository().find({order: {date: "ASC"}, relations: ["category", "center_cost"] })
-
+      if(expenses.length == 0 && (initial && final_date)){
+        return new Error("Não existem despesas registradas no período informado")
+      }
       return expenses
 
     }else if(users){
