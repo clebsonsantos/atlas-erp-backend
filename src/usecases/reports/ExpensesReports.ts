@@ -3,16 +3,17 @@ import { Column, TableCell } from 'pdfmake/interfaces';
 import { Response } from 'express';
 import { DefaultsConfigReport } from './DefaultsConfigReport';
 import { CategoryRepository } from '../../repositories';
+import formatCurrency from '../../utils/formatCurrency';
 
 export class ExpensesReports  {
 
-  async execute( Expenses: Expenses[], centerName: string | string[] | any, response: Response){
+  async execute( Expenses: Expenses[], centerName: string | string[] | any, time_course:string, response: Response){
 
     const categories = await CategoryRepository().find({order: {name: "ASC"}})
     const ExpensesFilter = centerName ? Expenses.filter(fill=> fill.center_cost_id == centerName) : Expenses
     let center: string = centerName ? ExpensesFilter[0].center_cost.name : ""
     
-    const titleReport = `Relatório de Despesas\n\n${center}`
+    const titleReport = `Relatório de Despesas\n\n${center}\n\n${time_course}`
     const ContentLayout = []
     for await(const categorie of categories){
       const expensesFiltered = ExpensesFilter.filter(expense => expense.category_id == categorie.id)
@@ -72,8 +73,8 @@ export class ExpensesReports  {
       rows.push(item.date.toLocaleDateString())
       rows.push(item.description)
       rows.push(item.quantity)
-      rows.push(item.amount)
-      rows.push(item.quantity * item.amount)
+      rows.push(formatCurrency(Number(item.amount)))
+      rows.push(formatCurrency(item.quantity * item.amount))
 
       body.push(rows)
     }

@@ -38,7 +38,11 @@ export class GetReportsController {
         await (new UsersReports()).execute(reports as User[], response)
       }
       if(instaceType instanceof Expenses ){
-        await (new ExpensesReports()).execute(reports as Expenses[], center_cost , response)
+        const time_course: string = (initial_date && final_date) 
+          ? `Período: ${new Date(initial_date.toString()).toLocaleDateString()} até ${new Date(final_date.toString()).toLocaleDateString()}`
+          : ""
+
+        await (new ExpensesReports()).execute(reports as Expenses[], center_cost, time_course, response)
       }
       if(instaceType instanceof Sales ){
         return response.json(reports)

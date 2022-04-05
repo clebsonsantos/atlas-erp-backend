@@ -3,6 +3,7 @@ import { Product } from '../../entities/Product';
 import { TableCell } from 'pdfmake/interfaces';
 import { Response } from 'express';
 import { DefaultsConfigReport } from './DefaultsConfigReport';
+import formatCurrency from '../../utils/formatCurrency';
 
 export class ProductsReports  {
 
@@ -21,7 +22,7 @@ export class ProductsReports  {
       const center = product.center_cost
       rows.push(product.name)
       rows.push(center.name)
-      rows.push(product.price_default)
+      rows.push(formatCurrency(Number(product.price_default)))
       rows.push(product.created_at.toLocaleDateString())
       body.push(rows)
     }
