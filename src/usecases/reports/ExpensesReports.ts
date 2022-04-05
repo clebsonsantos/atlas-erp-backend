@@ -43,9 +43,10 @@ export class ExpensesReports  {
   handleContextTable = (body:any[]) => {  
     return {
           layout: 'lightHorizontalLines', 
+          margin: [-15, 0, 0, 0],
           table: {
             headerRows: 1,
-            widths: ["*", 200, '*', '*', '*'],
+            widths: [70, 200, 48, 80, 80],
             heights: function (){
               return 15;
             },
