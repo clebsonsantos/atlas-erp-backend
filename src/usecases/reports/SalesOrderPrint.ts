@@ -35,8 +35,7 @@ export class SalesOrderPrint  {
 
       body.push(rows)
     }
-    
-    const titleReport = "Pedido Nº 40545"
+    const titleReport = `Pedido Nº ${Sales.sale_number}`
     const client = Sales.customer
     const ProductsSolds = Sales.products_sold
     let totalSale = ProductsSolds.reduce((total, current)=> Number(total) + Number(current.total_price), 0)

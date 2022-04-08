@@ -10,7 +10,6 @@ export class GetSalesOrderController {
     const { id  } = request.params
 
     const Sales: Sales = await SalesRepository().findOne({id: id}, {relations:  ["products_sold", "customer"]})
-
     await (new SalesOrderPrint()).execute({Sales, response})
   }
 }

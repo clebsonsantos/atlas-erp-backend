@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, Generated } from "typeorm";
 import { BaseEntity } from './BaseEntity';
 import { Customers } from './Customers';
 import { ProductSales } from './ProductSales';
@@ -16,6 +16,8 @@ export class Sales extends BaseEntity {
   @JoinColumn({name: "customer_id"})
   customer: Customers;
 
+  @Column()
+  sale_number: number;
 
   @ManyToMany(() => ProductSales)
   @JoinTable({

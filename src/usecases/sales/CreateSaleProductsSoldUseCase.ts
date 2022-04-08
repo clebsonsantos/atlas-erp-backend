@@ -1,9 +1,9 @@
-import { ProductSales } from '../../entities/ProductSales';
+// import { ProductSales } from '../../entities/ProductSales';
 import { Sales } from '../../entities/Sales';
 import {
   CustomerRepository,
   ProductsSoldsRepository,
-  RelationsSaleProductsRepository,
+  // RelationsSaleProductsRepository,
   SalesRepository } from '../../repositories';
 
 
@@ -32,10 +32,13 @@ export class CreateSaleProductsSoldUseCase  {
       return new Error("Este cliente não existe.");
     }
 
+    const sales = await SalesRepository().find()
+    const sale_number = sales.length + 1
     
     const sale = SalesRepository().create({
       date,
       customer_id,
+      sale_number
     })
     
     const ids_products = new Array()
@@ -45,12 +48,13 @@ export class CreateSaleProductsSoldUseCase  {
       ids_products.push(productsSold.id)
       await ProductsSoldsRepository().save(productsSold)
     }
-
+    
     const productsExists = await ProductsSoldsRepository().findByIds(ids_products)
     sale.products_sold = productsExists
-
+    
     await SalesRepository().save(sale)
     
+    console.log(sale)
     return sale
 
   }
