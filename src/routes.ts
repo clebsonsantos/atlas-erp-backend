@@ -1,3 +1,4 @@
+import { GetSalesOrderController } from './controllers/reports/GetSalesOrderController';
 import { Router } from "express";
 import { CreatePermissionController } from "./controllers/permissions/CreatePermissionController";
 import { CreateProductController } from "./controllers/products/CreateProductController";
@@ -140,5 +141,6 @@ routes.put("/sales/:id", ensuredAuthenticated(), new UpdateSaleProductsControlle
 
 // Relatórios
 routes.get("/reports", ensuredAuthReports(), new GetReportsController().handle);
+routes.get("/salesorder/:id", ensuredAuthenticated(), new GetSalesOrderController().handle);
 
 export { routes };
