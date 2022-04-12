@@ -20,14 +20,15 @@ export class ExpensesReports  {
       const category = this.handleCategoryName(categorie.name)
       const Body = await this.handleBodyContent(expensesFiltered)
       const tableContent = this.handleContextTable(Body)
-      
+
       if(expensesFiltered.length > 0){
         ContentLayout.push(category)
         ContentLayout.push(tableContent)
       }
     }
+    let totalExpenses = ExpensesFilter.reduce((total, current)=> Number(total) + (Number(current.quantity) * Number(current.amount)), 0)
 
-    await (new DefaultsConfigReport()).execute({titleReport, body: ContentLayout, response, orientationPage: 'portrait', CategoryTitleGroup: true})
+    await (new DefaultsConfigReport()).execute({titleReport, body: ContentLayout, response, orientationPage: 'portrait', CategoryTitleGroup: true, totalExpenses})
     
   }
   handleCategoryName = (category:string): Column[] =>{
@@ -44,6 +45,7 @@ export class ExpensesReports  {
     return {
           layout: 'lightHorizontalLines', 
           margin: [-15, 0, 0, 0],
+          fontSize: 11.5,
           table: {
             headerRows: 1,
             widths: [70, 200, 48, 80, 80],

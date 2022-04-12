@@ -35,6 +35,7 @@ const defaultLayout  = ({orientationPage, company, titleReport, widthsColumns, c
     },
       {
         layout: 'lightHorizontalLines', 
+        fontSize: 11.5,
         table: {
           headerRows: 1,
           widths: widthsColumns,
@@ -61,7 +62,7 @@ const defaultLayout  = ({orientationPage, company, titleReport, widthsColumns, c
         alignment: 'center'
       },
       tableTitle: {
-        fontSize: 13,
+        fontSize: 12,
         bold: true,
         fillColor: "#ccc",
         margin: [2, 2, 2, 5]

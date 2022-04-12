@@ -14,7 +14,7 @@ services:
       - ./pg-producao/data:/var/lib/postgresql/data:rw
 
   server:
-    image: server-expenses:1.0
+    image: atlas-server:1.0
     restart: always
     depends_on:
       - pg-pro

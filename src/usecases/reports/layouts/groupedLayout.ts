@@ -1,5 +1,6 @@
 import { PageOrientation, Size, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { Administrator } from '../../../entities/Administrator';
+import formatCurrency from '../../../utils/formatCurrency';
 import HeadersReport from './header';
 
 
@@ -8,10 +9,11 @@ type GroupedConfig = {
     titleReport: string;
     contentTable?: any;
     orientationPage: PageOrientation;
-    LogoImage: void | any
+    LogoImage: void | any;
+    totalExpenses?: number
   }
 
-const groupedLayout = ({orientationPage, company, contentTable, titleReport, LogoImage}:GroupedConfig): TDocumentDefinitions => {
+const groupedLayout = ({orientationPage, company, contentTable, titleReport, LogoImage, totalExpenses}:GroupedConfig): TDocumentDefinitions => {
 
     return {
       pageSize: "A4",
@@ -32,7 +34,9 @@ const groupedLayout = ({orientationPage, company, contentTable, titleReport, Log
           {text:  `\n\r${titleReport.toUpperCase()}\n\r`,  style: "titleContent"}
         ]
       },
-      ...contentTable
+      ...contentTable,
+      {text: `\n\n \n\nTotal: ${formatCurrency(totalExpenses)}`, alignment: "right", bold: true},
+      {text: `____________________________________________________________________________\n\n`, alignment: "center"},
       ],
       styles: {
         header: {
@@ -47,7 +51,7 @@ const groupedLayout = ({orientationPage, company, contentTable, titleReport, Log
           alignment: 'center'
         },
         tableTitle: {
-          fontSize: 13,
+          fontSize: 12,
           bold: true,
           fillColor: "#ccc",
           margin: [2, 2, 2, 5]

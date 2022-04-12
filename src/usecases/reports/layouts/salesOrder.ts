@@ -38,9 +38,18 @@ const salesOrdes  = ({orientationPage, company, titleReport, widthsColumns, colu
       columns: [
         {text:  `\n\r${titleReport.toUpperCase()}\n\r`,  style: "titleContent"}
       ]
+    },{
+    columns: [
+      {text: `Cliente: ${client.full_name}\n\n`, alignment: 'left'},
+      {text: `CPF/CNPJ: ${cnpjClient}\n\n`, alignment: 'left'},
+      {text: `E-mail: ${client.email}\n\n`, alignment: 'left'},
+    ]},
+    {
+      columns: [
+        {text: `Endereço: ${client.address}, ${client.city}, ${client.state}\n\n`, alignment: 'left'},
+        {text: `Telefone: ${client.phone}\n\n`, alignment: 'left'},
+      ]
     },
-    {text: `Cliente: ` + client.full_name + `\n\n`, alignment: 'left', bold: true},
-    {text: `CPF/CNPJ: ` + cnpjClient + `\n\n`, alignment: 'left', bold: true},
       {
         layout: 'lightHorizontalLines', 
         table: {
@@ -71,7 +80,7 @@ const salesOrdes  = ({orientationPage, company, titleReport, widthsColumns, colu
         alignment: 'center'
       },
       tableTitle: {
-        fontSize: 13,
+        fontSize: 12,
         bold: true,
         fillColor: "#ccc",
         margin: [2, 2, 2, 5]

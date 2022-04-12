@@ -24,7 +24,6 @@ export class CreateSales1646877326314 implements MigrationInterface {
                 {
                   name: "sale_number",
                   type: "numeric",
-                  isGenerated: true
                 },
               ],
               foreignKeys: [
