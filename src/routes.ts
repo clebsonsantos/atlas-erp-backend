@@ -141,6 +141,6 @@ routes.put("/sales/:id", ensuredAuthenticated(), new UpdateSaleProductsControlle
 
 // Relatórios
 routes.get("/reports", ensuredAuthReports(), new GetReportsController().handle);
-routes.get("/salesorder/:id", ensuredAuthenticated(), new GetSalesOrderController().handle);
+routes.get("/salesorder/:id", ensuredAuthReports(), new GetSalesOrderController().handle);
 
 export { routes };
