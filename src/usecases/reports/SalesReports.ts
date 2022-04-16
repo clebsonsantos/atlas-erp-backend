@@ -1,19 +1,23 @@
-import { ProductRepository } from './../../repositories/index';
+import { CustomerRepository, ProductRepository } from './../../repositories/index';
 import { TableCell } from 'pdfmake/interfaces';
 import { Sales } from '../../entities/Sales';
 import { Response } from 'express';
 import { DefaultsConfigReport } from './DefaultsConfigReport';
 import formatCurrency from '../../utils/formatCurrency';
+import { Customers } from '../../entities/Customers';
 
 
 export class SalesReports  {
 
-  async execute( Sales: Sales[], time_course: string,response: Response){
-
-    const {body, valuetotal} = await this.handleBodyContent(Sales)
+  async execute( Sales: Sales[], time_course: string, customer_id: string | any, response: Response){
+    const ondisplay = customer_id === '' ? false : true
+    const {body, valuetotal} = await this.handleBodyContent(Sales, ondisplay)
     const ContentTable = this.handleContextTable(body)
+    if(ondisplay){
+      var customer:Customers = await CustomerRepository().findOne({id: customer_id}) 
+    }
 
-    const titleReport = `Vendas\n\n${time_course}`
+    const titleReport = `Vendas\n\n${ondisplay ? customer.full_name : ''}\n\n${time_course}`
     
     await (new DefaultsConfigReport()).execute({titleReport, body: [ContentTable], response, orientationPage: 'portrait', CategoryTitleGroup: true, widthsColumns: [100, 'auto', '*'], totalExpenses: valuetotal})
   }
@@ -33,7 +37,7 @@ export class SalesReports  {
           }
         }
   }
-  async handleBodyContent(Sales: Sales[]){
+  async handleBodyContent(Sales: Sales[], ondisplayName?: boolean){
     //CORPO DA TABELA
     const body = [ ];
     var addLine = false
@@ -42,10 +46,11 @@ export class SalesReports  {
 
     const totalSolds = sale.products_sold.reduce((total, current)=> Number(total) + Number(current.total_price), 0)
     valuetotal += totalSolds
+    const notDisplayName = ondisplayName ? 'Valor unitário' : `Cliente: ${sale.customer.full_name}`
     const columnsTitle: TableCell[] = [
       {text: `Data: ${sale.date.toLocaleDateString()}`, style: "tableTitle"},
       {text: `Nº: ${sale.sale_number}`, style: `tableTitle`},
-      {text: `Cliente: ${sale.customer.full_name}`, style: `tableTitle`},
+      {text: `${notDisplayName}`, style: `tableTitle`},
       {text: `Subtotal`, style: `tableTitle`},
     ]
 

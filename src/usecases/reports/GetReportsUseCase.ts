@@ -12,12 +12,13 @@ type IReports = {
   action?: string | any;
   initial_date?: Date | any;
   final_date?: Date | any;
+  customer_id?: string | any
 }
 
 
 export class GetReportsUseCase  {
 
-  async execute({action ,initial_date, final_date}: IReports): Promise< Customers[] | Sales[] | Product[] | Category[] | CentersCost[] | Expenses[] | User[] | Error> {
+  async execute({action ,initial_date, final_date, customer_id}: IReports): Promise< Customers[] | Sales[] | Product[] | Category[] | CentersCost[] | Expenses[] | User[] | Error> {
 
     let customers = action == 'customers' ? true : false
     let sales = action == 'sales' ? true : false
@@ -44,9 +45,20 @@ export class GetReportsUseCase  {
         await SalesRepository().find({order: {date: "ASC"}, where: {date: Between(initial, final)}, relations: ["products_sold", "customer"] })
         : 
         await SalesRepository().find({order: {date: "ASC"}, relations: ["products_sold", "customer"] })
+
       if(sales.length == 0 && (initial && final_date)){
         return new Error("Não existem vendas registradas no período informado")
       }
+      if(customer_id){
+        const onNewSales = sales.filter(sale => sale.customer_id == customer_id)
+        if(onNewSales.length == 0 && (initial_date && final_date)){
+          return new Error("Não existem vendas registradas para este cliente no período selecionado")
+        }
+        else if(onNewSales.length == 0){
+          return new Error("Não existem vendas registradas para este cliente")
+        }
+        return onNewSales
+      }      
       return sales
 
     }else if(products){
