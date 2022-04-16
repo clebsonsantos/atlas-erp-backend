@@ -1,4 +1,3 @@
-
 import { Request, Response } from "express";
 import { Category } from '../../entities/Category';
 import { CentersCost } from '../../entities/CentersCost';
@@ -13,6 +12,7 @@ import { ExpensesReports } from '../../usecases/reports/ExpensesReports';
 import { GetReportsUseCase } from '../../usecases/reports/GetReportsUseCase';
 import { ProductsReports } from '../../usecases/reports/ProductsReports';
 import { UsersReports } from '../../usecases/reports/UsersReports';
+import { SalesReports } from './../../usecases/reports/SalesReports';
 
 
 
@@ -20,8 +20,12 @@ export class GetReportsController {
 
   async handle(request: Request, response: Response) {
 
-      const { action, initial_date, final_date, center_cost } = request.query
-      const getReports = new GetReportsUseCase()
+    const { action, initial_date, final_date, center_cost } = request.query
+    const getReports = new GetReportsUseCase()
+
+    const time_course: string = (initial_date && final_date) 
+      ? `Período: ${new Date(initial_date.toString()).toLocaleDateString()} até ${new Date(final_date.toString()).toLocaleDateString()}`
+      : ""
 
       const reports = await getReports.execute({action, initial_date, final_date})
 
@@ -38,14 +42,11 @@ export class GetReportsController {
         await (new UsersReports()).execute(reports as User[], response)
       }
       if(instaceType instanceof Expenses ){
-        const time_course: string = (initial_date && final_date) 
-          ? `Período: ${new Date(initial_date.toString()).toLocaleDateString()} até ${new Date(final_date.toString()).toLocaleDateString()}`
-          : ""
 
         await (new ExpensesReports()).execute(reports as Expenses[], center_cost, time_course, response)
       }
       if(instaceType instanceof Sales ){
-        return response.json(reports)
+        await (new SalesReports()).execute(reports as Sales[], time_course ,response)
       }
       if(instaceType instanceof Product ){
         await (new ProductsReports()).execute(reports as Product[], response)

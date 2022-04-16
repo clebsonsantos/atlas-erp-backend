@@ -29,9 +29,8 @@ export class GetReportsUseCase  {
 
     let initial = new Date(initial_date)
     let final = new Date(final_date)
-    // initial.setDate(initial.getDate() -1)
-    // final.setDate(final.getDate() +1)
-    // console.log(initial, final)
+    final.setDate(final.getDate() + 1)
+
     if(initial > final){
       return new Error("Infome um período válido.")
     }
