@@ -54,7 +54,6 @@ export class CreateSaleProductsSoldUseCase  {
     
     await SalesRepository().save(sale)
     
-    console.log(sale)
     return sale
 
   }

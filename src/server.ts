@@ -4,7 +4,7 @@ import { routes } from "./routes";
 import cors from 'cors';
 import * as dotenv from 'dotenv'
 dotenv.config({ path: `${__dirname}/../../.env`});
-
+const PORT = process.env.PORT || 4000
 import "./database";
 
 const app = express();
@@ -18,4 +18,4 @@ app.use(express.json());
 
 app.use(routes);
 
-app.listen(4000, () => console.log("Server is running in port 4000"));
+app.listen(PORT, () => console.log(`Server is running in port ${PORT}`));
