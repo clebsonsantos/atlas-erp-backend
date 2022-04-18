@@ -1,3 +1,4 @@
+import { cnpj, cpf } from 'cpf-cnpj-validator';
 import { Customers } from '../../entities/Customers';
 import { CustomerRepository } from '../../repositories';
 
@@ -28,14 +29,19 @@ export class CreateCustomerUseCase  {
       address,
       zip_code 
     })
-    if(!cpf_cnpj || !full_name){
-      return new Error ("full_name e cpf_cnpj são campos obrigatórios.")
+    if(!full_name || !phone){
+      return new Error ("Nome completo e telefone são campos obrigatórios.")
 
     }
-
-    if(await CustomerRepository().findOne({cpf_cnpj: cpf_cnpj})){
-      return new Error ("Este Cliente já existe.")
-
+    if(cpf_cnpj.length > 1){
+      const isValid = cpf.isValid(cpf_cnpj) ? cpf.isValid(cpf_cnpj) : cnpj.isValid(cpf_cnpj) 
+      if(isValid){
+        if(await CustomerRepository().findOne({cpf_cnpj: cpf_cnpj})){
+          return new Error ("Este Cliente já existe.")
+        }
+      }else{
+       return new Error("Insira um cpf/cnpj válido.")
+      }
     }
     await CustomerRepository().save(customer)
 
