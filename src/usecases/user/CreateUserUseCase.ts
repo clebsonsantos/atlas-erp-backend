@@ -1,5 +1,4 @@
 import { hash } from "bcryptjs";
-import { getRepository } from "typeorm";
 import { User } from "../../entities/User";
 import { UserRepository } from "../../repositories";
 

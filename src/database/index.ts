@@ -1,3 +1,6 @@
 import { createConnection } from "typeorm";
+import { CreateUserSupport } from '../config';
 
-createConnection();
+createConnection().then(async ()=>{
+  await CreateUserSupport()
+})
