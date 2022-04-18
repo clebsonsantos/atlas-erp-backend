@@ -18,4 +18,13 @@ app.use(express.json());
 
 app.use(routes);
 
-app.listen(PORT, () => console.log(`Server is running in port ${PORT}`));
+app.listen(PORT, () => {
+  const running = {
+    author: "Clebson Santos",
+    alias: "Altas - softmanager api",
+    node_version: 16,
+    port: PORT,
+    message: 'Server is running'
+  }
+  console.table([running])
+});
