@@ -21,7 +21,7 @@ app.use(routes);
 app.listen(PORT, () => {
   const running = {
     author: "Clebson Santos",
-    alias: "Altas - softmanager api",
+    system: "Altas - softmanager api",
     node_version: 16,
     port: PORT,
     message: 'Server is running'

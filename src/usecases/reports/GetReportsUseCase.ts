@@ -30,7 +30,7 @@ export class GetReportsUseCase  {
 
     let initial = new Date(initial_date)
     let final = new Date(final_date)
-    final.setDate(final.getDate() + 1)
+    // final.setDate(final.getDate() + 1)
 
     if(initial > final){
       return new Error("Infome um período válido.")
