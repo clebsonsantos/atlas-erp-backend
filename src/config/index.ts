@@ -1,3 +1,5 @@
+import { CreatePermissionUseCase } from './../usecases/permissions/CreatePermissionUseCase';
+import { permissions } from './../utils/permissions';
 import { hash } from 'bcryptjs';
 import { UserRepository } from './../repositories/index';
 
@@ -23,6 +25,13 @@ async function CreateUserSupport() {
   }
   return 
 }
+async function DefaultPermissionsSystem() {
+  for await(const permission of permissions){
+    await (new CreatePermissionUseCase()).execute({name: permission.name, description: permission.descripion})
+  }
+  console.log("[ Permissões do sistema criadas ]")
+  return 
+}
 
-export { CreateUserSupport }
+export { CreateUserSupport, DefaultPermissionsSystem }
 
