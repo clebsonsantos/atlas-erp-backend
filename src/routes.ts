@@ -62,15 +62,11 @@ const upload = multer({storage})
 const routes = Router();
 
 // Usuários e Login
-routes.post("/users", new CreateUserController().handle);
-routes.get("/users",  ensuredAuthenticated(), new GetAllUsersController().handle);
-routes.post("/find_user",  ensuredAuthenticated(), new FindOneUserController().handle);
-routes.put("/users/:id",  ensuredAuthenticated(), new UpdateInformationsUserController().handle);
-routes.delete("/users/:id",  
-  ensuredAuthenticated(), 
-  is(["admin"]),
-  new DeleteUserController().handle
-);
+routes.post("/users", is(["admin"]), ensuredAuthenticated(), new CreateUserController().handle);
+routes.get("/users",  is(["admin"]), ensuredAuthenticated(), new GetAllUsersController().handle);
+routes.post("/find_user",  is(["admin"]), ensuredAuthenticated(), new FindOneUserController().handle);
+routes.put("/users/:id", ensuredAuthenticated(), new UpdateInformationsUserController().handle);
+routes.delete("/users/:id", is(["admin"]), ensuredAuthenticated(), new DeleteUserController().handle);
 
 routes.post("/login", new SessionController().handle);               
 
@@ -85,16 +81,22 @@ routes.post(
 routes.post(
   "/permissions",
   ensuredAuthenticated(),
+  is(["admin"]),
   new CreatePermissionController().handle
 );
 
 routes.post(
-  "/users/acl",
+  "/users/acl/:userId",
   ensuredAuthenticated(),
+  is(["admin"]),
   new CreateUserAccessControlListController().handle
 );
 
-routes.post("/roles/:roleId", new CreateRolePermissionController().handle);
+routes.post("/roles/:roleId",   
+  ensuredAuthenticated(),
+  is(["admin"]),
+  new CreateRolePermissionController().handle
+);
 
 // Despesas/ganhos
 routes.post("/expenses", ensuredAuthenticated(), new CreateExpensesController().handle)

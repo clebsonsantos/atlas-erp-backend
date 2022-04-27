@@ -29,7 +29,6 @@ async function DefaultPermissionsSystem() {
   for await(const permission of permissions){
     await (new CreatePermissionUseCase()).execute({name: permission.name, description: permission.descripion})
   }
-  console.log("[ Permissões do sistema criadas ]")
   return 
 }
 

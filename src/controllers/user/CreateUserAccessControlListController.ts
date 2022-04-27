@@ -4,7 +4,7 @@ import { CreateUserAccessControlListUseCase } from "../../usecases/user/CreateUs
 export class CreateUserAccessControlListController {
   async handle(request: Request, response: Response) {
     const { permissions, roles } = request.body;
-    const { userId } = request;
+    const { userId } = request.params;
 
     const createUserACLService = new CreateUserAccessControlListUseCase();
 

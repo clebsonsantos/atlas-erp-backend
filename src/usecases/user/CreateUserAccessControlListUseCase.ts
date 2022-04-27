@@ -28,11 +28,13 @@ export class CreateUserAccessControlListUseCase {
     const permissionsExists = await PermissionRepository().findByIds(
       permissions
     );
-
-    const rolesExists = await RoleRepository().findByIds(roles);
+    
+    if(roles && roles.length >= 1){
+      const rolesExists = await RoleRepository().findByIds(roles);
+      user.roles = rolesExists;
+    }
 
     user.permissions = permissionsExists;
-    user.roles = rolesExists;
 
     repo.save(user);
 
