@@ -12,6 +12,9 @@ export class Sales extends BaseEntity {
   @Column()
   customer_id: string;
 
+  @Column()
+  salesman: string;
+
   @ManyToOne(() => Customers)
   @JoinColumn({name: "customer_id"})
   customer: Customers;

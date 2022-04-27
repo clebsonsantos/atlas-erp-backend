@@ -17,6 +17,10 @@ export class CreateSales1646877326314 implements MigrationInterface {
                     type: "uuid",
                 },
                 {
+                  name: "salesman",
+                  type: "uuid",
+                },
+                {
                   name: "created_at",
                   type: "timestamp",
                   default: "now()"

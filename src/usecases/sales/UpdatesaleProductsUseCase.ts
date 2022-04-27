@@ -14,13 +14,14 @@ type ISales = {
   id: string
   date: Date,
   customer_id: string,
+  salesman: string,
   products_sold: IproductsSolds[]
 }
 
 
 export class UpdatesaleProductsUseCase  {
 
-  async execute({ id, date, customer_id, products_sold }: ISales): Promise< Sales | Error> {
+  async execute({ id, date, customer_id, products_sold, salesman }: ISales): Promise< Sales | Error> {
 
     
     const sale = await SalesRepository().findOne({id}, {relations: ["products_sold"]})
@@ -31,6 +32,7 @@ export class UpdatesaleProductsUseCase  {
 
     sale.customer_id = customer_id ? customer_id : sale.customer_id
     sale.date = date ? date : sale.date
+    sale.salesman = salesman ? salesman : sale.salesman
 
     const ids_soldsProducts = new Array()
 

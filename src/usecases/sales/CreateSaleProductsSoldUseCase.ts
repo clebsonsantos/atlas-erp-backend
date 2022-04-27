@@ -16,6 +16,8 @@ type IproductsSolds = {
 type ISales = {
   date: Date,
   customer_id: string,
+  salesman: string,
+  userId?: string, // logged user
   products_sold: IproductsSolds[]
 }
 
@@ -25,6 +27,8 @@ export class CreateSaleProductsSoldUseCase  {
   async execute({
     date, 
     customer_id, 
+    salesman,
+    userId,
     products_sold
   }: ISales): Promise< Sales | Error> {
 
@@ -34,10 +38,11 @@ export class CreateSaleProductsSoldUseCase  {
 
     const sales = await SalesRepository().find()
     const sale_number = sales.length + 1
-    
+    const salesman_id = salesman ? salesman : userId
     const sale = SalesRepository().create({
       date,
       customer_id,
+      salesman: salesman_id,
       sale_number
     })
     
