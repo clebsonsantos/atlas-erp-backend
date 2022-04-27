@@ -9,7 +9,7 @@ ATLAS - SOFTMANAGER API
 
 ## `Features`
 
-- C.R.U.D. for options:
+- `C.R.U.D. for options`:
   - Customers
   - Products
   - Expenses
@@ -17,6 +17,16 @@ ATLAS - SOFTMANAGER API
   - Categories
   - Sales
   - Users
+
+- `Associate the permissions below with users`:
+  - admin
+  - sales
+  - expenses
+  - products
+  - customers
+  - center_cost
+  - categories
+  - reports
 
 ## `Relations`
 
