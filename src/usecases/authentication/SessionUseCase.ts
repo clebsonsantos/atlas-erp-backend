@@ -11,7 +11,7 @@ export class SessionUseCase {
   async execute({ username, password }: UserRequest) {
     const repo = UserRepository();
 
-    const user = await repo.findOne({ username });
+    const user = await repo.findOne({ username }, {relations: ['permissions', 'roles']});
 
     if (!user) {
       return new Error("Usuário não existe.");
@@ -27,6 +27,11 @@ export class SessionUseCase {
       subject: user.id,
     });
 
-    return { token };
+    return { 
+      token: token, 
+      user_id: user.id,
+      user_permissions: user.permissions, 
+      user_roles: user.roles
+    };
   }
 }

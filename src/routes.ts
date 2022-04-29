@@ -62,11 +62,11 @@ const upload = multer({storage})
 const routes = Router();
 
 // Usuários e Login
-routes.post("/users", is(["admin"]), ensuredAuthenticated(), new CreateUserController().handle);
-routes.get("/users",  is(["admin"]), ensuredAuthenticated(), new GetAllUsersController().handle);
-routes.post("/find_user",  is(["admin"]), ensuredAuthenticated(), new FindOneUserController().handle);
+routes.post("/users", ensuredAuthenticated(), is(["admin"]), new CreateUserController().handle);
+routes.get("/users",  ensuredAuthenticated(), is(["admin"]), new GetAllUsersController().handle);
+routes.post("/find_user",  ensuredAuthenticated(), is(["admin"]), new FindOneUserController().handle);
 routes.put("/users/:id", ensuredAuthenticated(), new UpdateInformationsUserController().handle);
-routes.delete("/users/:id", is(["admin"]), ensuredAuthenticated(), new DeleteUserController().handle);
+routes.delete("/users/:id", ensuredAuthenticated(), is(["admin"]), new DeleteUserController().handle);
 
 routes.post("/login", new SessionController().handle);               
 

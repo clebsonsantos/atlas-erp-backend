@@ -12,13 +12,14 @@ type IReports = {
   action?: string | any;
   initial_date?: Date | any;
   final_date?: Date | any;
-  customer_id?: string | any
+  customer_id?: string | any;
+  salesman?:string | any
 }
 
 
 export class GetReportsUseCase  {
 
-  async execute({action ,initial_date, final_date, customer_id}: IReports): Promise< Customers[] | Sales[] | Product[] | Category[] | CentersCost[] | Expenses[] | User[] | Error> {
+  async execute({action ,initial_date, final_date, customer_id, salesman}: IReports): Promise< Customers[] | Sales[] | Product[] | Category[] | CentersCost[] | Expenses[] | User[] | Error> {
 
     let customers = action == 'customers' ? true : false
     let sales = action == 'sales' ? true : false
@@ -49,16 +50,36 @@ export class GetReportsUseCase  {
       if(sales.length == 0 && (initial && final_date)){
         return new Error("Não existem vendas registradas no período informado")
       }
-      if(customer_id){
-        const onNewSales = sales.filter(sale => sale.customer_id == customer_id)
+      let onNewSales: Sales[]
+      if(customer_id && !salesman){
+        onNewSales = sales.filter(sale => sale.customer_id == customer_id)
         if(onNewSales.length == 0 && (initial_date && final_date)){
-          return new Error("Não existem vendas registradas para este cliente no período selecionado")
+          return new Error("Não existem vendas registradaspara este cliente no período selecionado")
         }
         else if(onNewSales.length == 0){
-          return new Error("Não existem vendas registradas para este cliente")
+          return new Error("Não existem vendas registradas no período informado")
         }
         return onNewSales
-      }      
+      }else if(salesman && !customer_id){
+        onNewSales = sales.filter(sale => sale.salesman == salesman)
+        if(onNewSales.length == 0 && (initial_date && final_date)){
+          return new Error("Não existem vendas registradas para este vendedor no período selecionado")
+        }
+        else if(onNewSales.length == 0){
+          return new Error("Não existem vendas registradas no período informado")
+        }
+        return onNewSales
+      }else if(customer_id && salesman){
+        onNewSales = sales.filter(sale => sale.salesman == salesman)
+        onNewSales = onNewSales.filter(sale => sale.customer_id == customer_id)
+        if(onNewSales.length == 0 && (initial_date && final_date)){
+          return new Error("Não existem vendas registradas para este vendedor e cliente no período selecionado")
+        }
+        else if(onNewSales.length == 0){
+          return new Error("Não existem vendas registradas no período informado")
+        }
+        return onNewSales
+      }
       return sales
 
     }else if(products){

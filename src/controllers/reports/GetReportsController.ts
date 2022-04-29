@@ -20,15 +20,15 @@ export class GetReportsController {
 
   async handle(request: Request, response: Response) {
 
-    const { action, initial_date, final_date, center_cost, customer_id } = request.query
+    const { action, initial_date, final_date, center_cost, customer_id, salesman } = request.query
     const getReports = new GetReportsUseCase()
 
     const time_course: string = (initial_date && final_date) 
-      ? `Período: ${new Date(initial_date.toString()).toLocaleDateString()} até ${new Date(final_date.toString()).toLocaleDateString()}`
+      ? `\n\nPeríodo: ${new Date(initial_date.toString()).toLocaleDateString()} até ${new Date(final_date.toString()).toLocaleDateString()}`
       : ""
     const customer_find: string = customer_id ? customer_id.toString() : ''
 
-      const reports = await getReports.execute({action, initial_date, final_date, customer_id})
+      const reports = await getReports.execute({action, initial_date, final_date, customer_id, salesman})
 
       if(reports instanceof Error){
         return response.status(400).json(reports.message)
@@ -47,7 +47,7 @@ export class GetReportsController {
         await (new ExpensesReports()).execute(reports as Expenses[], center_cost, time_course, response)
       }
       if(instaceType instanceof Sales ){
-        await (new SalesReports()).execute(reports as Sales[], time_course, customer_find, response)
+        await (new SalesReports()).execute(reports as Sales[], time_course, customer_find, salesman, response)
       }
       if(instaceType instanceof Product ){
         await (new ProductsReports()).execute(reports as Product[], response)

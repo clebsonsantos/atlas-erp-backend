@@ -1,4 +1,4 @@
-import { CustomerRepository, ProductRepository } from './../../repositories/index';
+import { CustomerRepository, ProductRepository, UserRepository } from './../../repositories/index';
 import { TableCell } from 'pdfmake/interfaces';
 import { Sales } from '../../entities/Sales';
 import { Response } from 'express';
@@ -9,15 +9,17 @@ import { Customers } from '../../entities/Customers';
 
 export class SalesReports  {
 
-  async execute( Sales: Sales[], time_course: string, customer_id: string | any, response: Response){
+  async execute( Sales: Sales[], time_course: string, customer_id: string | any, salesman: string | any, response: Response){
     const ondisplay = customer_id === '' ? false : true
     const {body, valuetotal} = await this.handleBodyContent(Sales, ondisplay)
     const ContentTable = this.handleContextTable(body)
     if(ondisplay){
       var customer:Customers = await CustomerRepository().findOne({id: customer_id}) 
     }
+    const saller = salesman !== undefined ? UserRepository().findOne({id: Sales[0].salesman}) : ""
+    const salesmanName = saller === '' ? '' : `\n\nVendedor: ${(await saller).full_name}`
 
-    const titleReport = `Vendas\n\n${ondisplay ? customer.full_name : ''}\n\n${time_course}`
+    const titleReport = `Relatório de vendas${ondisplay ? '\n\nCliente: '+customer.full_name : ''}${salesmanName}${time_course}`
     
     await (new DefaultsConfigReport()).execute({titleReport, body: [ContentTable], response, orientationPage: 'portrait', CategoryTitleGroup: true, widthsColumns: [100, 'auto', '*'], totalExpenses: valuetotal})
   }

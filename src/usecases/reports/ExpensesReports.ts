@@ -11,9 +11,9 @@ export class ExpensesReports  {
 
     const categories = await CategoryRepository().find({order: {name: "ASC"}})
     const ExpensesFilter = centerName ? Expenses.filter(fill=> fill.center_cost_id == centerName) : Expenses
-    let center: string = centerName ? ExpensesFilter[0].center_cost.name : ""
+    let center: string = centerName ? "\n\nCentro de custo: "+ExpensesFilter[0].center_cost.name : ""
     
-    const titleReport = `Relatório de Despesas\n\n${center}\n\n${time_course}`
+    const titleReport = `Relatório de Despesas${center}${time_course}`
     const ContentLayout = []
     for await(const categorie of categories){
       const expensesFiltered = ExpensesFilter.filter(expense => expense.category_id == categorie.id)
