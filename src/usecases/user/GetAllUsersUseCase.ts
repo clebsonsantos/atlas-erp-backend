@@ -4,7 +4,8 @@ import { UserRepository } from "../../repositories";
 export class GetAllUsersUseCase {
   async execute(): Promise<User[]> {
 
-    const users =  await UserRepository().find({relations: ["permissions", "roles"], order: {full_name: "ASC"}})
+   //"roles" relationship removed, returning only the permissions
+    const users =  await UserRepository().find({relations: ["permissions"], order: {full_name: "ASC"}})
     return users
   }
 }

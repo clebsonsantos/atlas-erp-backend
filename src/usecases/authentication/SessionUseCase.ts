@@ -31,7 +31,7 @@ export class SessionUseCase {
       token: token, 
       user_id: user.id,
       user_permissions: user.permissions, 
-      user_roles: user.roles
+      // user_roles: user.roles
     };
   }
 }

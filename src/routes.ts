@@ -25,9 +25,6 @@ import { DeleteCenterCostController } from './controllers/centercost/DeleteCente
 import { CreateAdministratorController } from './controllers/administrator/CreateAdministratorController';
 import { UpdateAdministratorController } from './controllers/administrator/UpdateAdministratorController';
 import { GetAdministratorController } from './controllers/administrator/GetAdministratorController';
-
-// Inserindo um arquivo de imagem
-import multer from 'multer'
 import { GetAllUsersController } from './controllers/user/GetAllUsersController';
 import { UpdateInformationsUserController } from './controllers/user/UpdateInformationsUserController';
 import { DeleteUserController } from './controllers/user/DeleteUserController';
@@ -45,6 +42,8 @@ import { FindOneUserController } from './controllers/user/FindOneUserController'
 import { GetReportsController } from './controllers/reports/GetReportsController';
 import { ensuredAuthReports } from './middleware/ensuredAuthReports';
 
+// Inserindo um arquivo de imagem
+import multer from 'multer'
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');
@@ -62,11 +61,11 @@ const upload = multer({storage})
 const routes = Router();
 
 // Usuários e Login
-routes.post("/users", ensuredAuthenticated(), is(["admin"]), new CreateUserController().handle);
-routes.get("/users",  ensuredAuthenticated(), is(["admin"]), new GetAllUsersController().handle);
-routes.post("/find_user",  ensuredAuthenticated(), is(["admin"]), new FindOneUserController().handle);
+routes.post("/users", ensuredAuthenticated(), can(["admin"]), new CreateUserController().handle);
+routes.get("/users",  ensuredAuthenticated(), new GetAllUsersController().handle);
+routes.post("/find_user",  ensuredAuthenticated(), new FindOneUserController().handle);
 routes.put("/users/:id", ensuredAuthenticated(), new UpdateInformationsUserController().handle);
-routes.delete("/users/:id", ensuredAuthenticated(), is(["admin"]), new DeleteUserController().handle);
+routes.delete("/users/:id", ensuredAuthenticated(), can(["admin"]), new DeleteUserController().handle);
 
 routes.post("/login", new SessionController().handle);               
 
@@ -74,75 +73,75 @@ routes.post("/login", new SessionController().handle);
 routes.post(
   "/roles",
   ensuredAuthenticated(),
-  is(["admin"]),
+  can(["admin"]),
   new CreateRoleController().handle
 );
 
 routes.post(
   "/permissions",
   ensuredAuthenticated(),
-  is(["admin"]),
+  can(["admin"]),
   new CreatePermissionController().handle
 );
 
 routes.post(
   "/users/acl/:userId",
   ensuredAuthenticated(),
-  is(["admin"]),
+  can(["admin"]),
   new CreateUserAccessControlListController().handle
 );
 
 routes.post("/roles/:roleId",   
   ensuredAuthenticated(),
-  is(["admin"]),
+  can(["admin"]),
   new CreateRolePermissionController().handle
 );
 
 // Despesas/ganhos
-routes.post("/expenses", ensuredAuthenticated(), new CreateExpensesController().handle)
-routes.get("/expenses", ensuredAuthenticated(), new GetAllExpensesController().handle)
-routes.put("/expenses/:id", ensuredAuthenticated(), new UpdateExpensesController().handle)
-routes.delete("/expenses/:id", ensuredAuthenticated(), new DeleteExpenseController().handle)
+routes.post("/expenses", ensuredAuthenticated(), can(["admin", 'expenses']), new CreateExpensesController().handle)
+routes.get("/expenses", ensuredAuthenticated(), can(["admin", 'expenses']), new GetAllExpensesController().handle)
+routes.put("/expenses/:id", ensuredAuthenticated(), can(["admin", 'expenses']), new UpdateExpensesController().handle)
+routes.delete("/expenses/:id", ensuredAuthenticated(), can(["admin", 'expenses']), new DeleteExpenseController().handle)
 
 // Categorias
-routes.post("/categories", ensuredAuthenticated(), new CreateCategoryController().handle)
-routes.get("/categories", ensuredAuthenticated(), new GetAllCategoryController().handle)
-routes.put("/categories/:id", ensuredAuthenticated(), new UpdateCategoryController().handle)
-routes.delete("/categories/:id", ensuredAuthenticated(), new DeleteCategoryController().handle)
+routes.post("/categories", ensuredAuthenticated(), can(["admin", 'categories']), new CreateCategoryController().handle)
+routes.get("/categories", ensuredAuthenticated(), can(["admin", 'categories']), new GetAllCategoryController().handle)
+routes.put("/categories/:id", ensuredAuthenticated(), can(["admin", 'categories']), new UpdateCategoryController().handle)
+routes.delete("/categories/:id", ensuredAuthenticated(), can(["admin", 'categories']), new DeleteCategoryController().handle)
 
 // Centro de custo
-routes.post("/center_cost", ensuredAuthenticated(), new CreateCenterCostController().handle)
-routes.get("/center_cost", ensuredAuthenticated(), new GetAllCenterCostController().handle)
-routes.put("/center_cost/:id", ensuredAuthenticated(), new UpdateCenterCostController().handle)
-routes.delete("/center_cost/:id", ensuredAuthenticated(), new DeleteCenterCostController().handle)
+routes.post("/center_cost", ensuredAuthenticated(), can(["admin", 'center_cost']), new CreateCenterCostController().handle)
+routes.get("/center_cost", ensuredAuthenticated(), can(["admin", 'center_cost']), new GetAllCenterCostController().handle)
+routes.put("/center_cost/:id", ensuredAuthenticated(), can(["admin", 'center_cost']), new UpdateCenterCostController().handle)
+routes.delete("/center_cost/:id", ensuredAuthenticated(), can(["admin", 'center_cost']), new DeleteCenterCostController().handle)
 
 //Administrador
-routes.post("/create_admin", ensuredAuthenticated(), upload.single('url_image'), new CreateAdministratorController().handle)
-routes.put("/update_admin/:id", ensuredAuthenticated(), upload.single('url_image'), new UpdateAdministratorController().handle)
-routes.get("/get_admin", ensuredAuthenticated(), new GetAdministratorController().handle)
+routes.post("/create_admin", ensuredAuthenticated(), upload.single('url_image'), can(["admin"]), new CreateAdministratorController().handle)
+routes.put("/update_admin/:id", ensuredAuthenticated(), upload.single('url_image'), can(["admin"]), new UpdateAdministratorController().handle)
+routes.get("/get_admin", ensuredAuthenticated(), can(["admin"]), new GetAdministratorController().handle)
 
 //Clientes
-routes.post("/customers", ensuredAuthenticated(), new CreateCustomerController().handle)
-routes.get("/customers", ensuredAuthenticated(), new GetAllCustomersController().handle)
-routes.post("/customers/search", ensuredAuthenticated(), new GetAllCustomersController().handle)
-routes.put("/customers/:id", ensuredAuthenticated(), new UpdateCustomerController().handle)
-routes.delete("/customers/:id", ensuredAuthenticated(), new DeleteCustomerController().handle)
+routes.post("/customers", ensuredAuthenticated(), can(["admin", 'customers']), new CreateCustomerController().handle)
+routes.get("/customers", ensuredAuthenticated(), can(["admin", 'customers']), new GetAllCustomersController().handle)
+routes.post("/customers/search", ensuredAuthenticated(), can(["admin", 'customers']), new GetAllCustomersController().handle)
+routes.put("/customers/:id", ensuredAuthenticated(), can(["admin", 'customers']), new UpdateCustomerController().handle)
+routes.delete("/customers/:id", ensuredAuthenticated(), can(["admin", 'customers']), new DeleteCustomerController().handle)
 
 // Produtos
-routes.get("/products", ensuredAuthenticated(), new GetAllProductsController().handle);
-routes.post("/products/search", ensuredAuthenticated(), new GetAllProductsController().handle);
-routes.post("/products",ensuredAuthenticated(), is(["admin"]), new CreateProductController().handle);
-routes.put("/products/:id", ensuredAuthenticated(), new UpdateProductController().handle);
-routes.delete("/products/:id", ensuredAuthenticated(), new DeleteProductController().handle);
+routes.get("/products", ensuredAuthenticated(), can(["admin", 'products']), new GetAllProductsController().handle);
+routes.post("/products/search", ensuredAuthenticated(), can(["admin", 'products']), new GetAllProductsController().handle);
+routes.post("/products", ensuredAuthenticated(), can(["admin", 'products']), new CreateProductController().handle);
+routes.put("/products/:id", ensuredAuthenticated(), can(["admin", 'products']), new UpdateProductController().handle);
+routes.delete("/products/:id", ensuredAuthenticated(), can(["admin", 'products']), new DeleteProductController().handle);
 
 // Pedidos/Vendas 
-routes.post("/sales", ensuredAuthenticated(), new CreateSaleProductsSoldController().handle);
-routes.get("/sales", ensuredAuthenticated(), new GettAllSaleProductsController().handle);
-routes.delete("/sales/:id", ensuredAuthenticated(), new DeleteSaleProductsController().handle);
-routes.put("/sales/:id", ensuredAuthenticated(), new UpdateSaleProductsController().handle);
+routes.post("/sales", ensuredAuthenticated(), can(["admin", 'sales']), new CreateSaleProductsSoldController().handle);
+routes.get("/sales", ensuredAuthenticated(), can(["admin", 'sales']), new GettAllSaleProductsController().handle);
+routes.delete("/sales/:id", ensuredAuthenticated(), can(["admin", 'sales']), new DeleteSaleProductsController().handle);
+routes.put("/sales/:id", ensuredAuthenticated(), can(["admin", 'sales']), new UpdateSaleProductsController().handle);
 
 // Relatórios
-routes.get("/reports", ensuredAuthReports(), new GetReportsController().handle);
-routes.get("/salesorder/:id", ensuredAuthReports(), new GetSalesOrderController().handle);
+routes.get("/reports", ensuredAuthReports(), can(["admin", 'reports']), new GetReportsController().handle);
+routes.get("/salesorder/:id", ensuredAuthReports(), can(["admin", 'reports']), new GetSalesOrderController().handle);
 
 export { routes };

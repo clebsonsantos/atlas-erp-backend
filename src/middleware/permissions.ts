@@ -19,7 +19,7 @@ export function can(permissionsRoutes: string[]) {
       .some((permission) => permissionsRoutes.includes(permission));
 
     if (!permissionExists) {
-      return response.status(401).end();
+      return response.status(401).json('Você não possui permissões para acessar esse serviço.').end();
     }
 
     return next();
