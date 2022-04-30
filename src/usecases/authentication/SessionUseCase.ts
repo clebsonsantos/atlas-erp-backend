@@ -27,6 +27,10 @@ export class SessionUseCase {
       subject: user.id,
     });
 
+    if(user.permissions.length == 0){
+      return new Error(`Você não possui nenhuma permissão para acessar o Atlas.\n\nSolicite a um usuário com permissões administrativas para lhe atribuir permissões.`)
+    }
+
     return { 
       token: token, 
       user_id: user.id,

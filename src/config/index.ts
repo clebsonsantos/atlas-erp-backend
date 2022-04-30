@@ -1,7 +1,8 @@
+import { CreateUserAccessControlListUseCase } from './../usecases/user/CreateUserAccessControlListUseCase';
 import { CreatePermissionUseCase } from './../usecases/permissions/CreatePermissionUseCase';
 import { permissions } from './../utils/permissions';
 import { hash } from 'bcryptjs';
-import { UserRepository } from './../repositories/index';
+import { PermissionRepository, UserRepository } from './../repositories/index';
 
 
 async function CreateUserSupport() {
@@ -19,7 +20,14 @@ async function CreateUserSupport() {
     support.password = passwordHash
 
     const onNewuUser = repositore.create(support)
-    repositore.save(onNewuUser)
+    await repositore.save(onNewuUser)
+
+    const permission = await PermissionRepository().find({where: {name: 'admin'}})
+    const permissions = [permission[0].id]
+    const userId = onNewuUser.id
+    
+    const createPermissions = new CreateUserAccessControlListUseCase()
+    await createPermissions.execute({userId, roles: [], permissions})
     console.log("[ Usuário de inicialização criado ]")
     return 
   }
@@ -29,7 +37,7 @@ async function DefaultPermissionsSystem() {
   for await(const permission of permissions){
     await (new CreatePermissionUseCase()).execute({name: permission.name, description: permission.descripion})
   }
-  return 
+  return true
 }
 
 export { CreateUserSupport, DefaultPermissionsSystem }

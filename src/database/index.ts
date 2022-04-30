@@ -2,6 +2,8 @@ import { createConnection } from "typeorm";
 import { CreateUserSupport, DefaultPermissionsSystem } from '../config';
 
 createConnection().then(async ()=>{
-  await CreateUserSupport()
-  await DefaultPermissionsSystem()
+  const nextAction = await DefaultPermissionsSystem()
+  if(nextAction){
+    await CreateUserSupport()
+  }
 })
