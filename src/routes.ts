@@ -1,3 +1,4 @@
+import { GetAllPermissionsController } from './controllers/permissions/GetAllPermissionsController';
 import { GetSalesOrderController } from './controllers/reports/GetSalesOrderController';
 import { Router } from "express";
 import { CreatePermissionController } from "./controllers/permissions/CreatePermissionController";
@@ -83,6 +84,7 @@ routes.post(
   can(["admin"]),
   new CreatePermissionController().handle
 );
+routes.get('/permissions', ensuredAuthenticated(), new GetAllPermissionsController().handle)
 
 routes.post(
   "/users/acl/:userId",
