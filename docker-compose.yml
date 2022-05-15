@@ -18,7 +18,7 @@ services:
     restart: always
     depends_on:
       - pg-pro
-    # command: yarn typeorm migration:run 
+    # command: npm run typeorm migration:run 
     # comentar a linha de cima após executada, para evitar que fique gerando as migrations
     ports:
       - 4000:4000
@@ -26,6 +26,7 @@ services:
       - POSTGRES=pg-pro
       - POSTGRES_NAME=postgres
       - POSTGRES_PASSWORD=s-cleb96
+      - USE_LOGO_COMPANY=false
     volumes:
       - ./uploads:/app/uploads
       - ./docker-ormconfig.js:/app/ormconfig.js

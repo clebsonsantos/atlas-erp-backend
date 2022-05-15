@@ -4,15 +4,11 @@ WORKDIR /app
 
 COPY . .
 
-
-RUN npm install yarn 
-RUN yarn install
-
 VOLUME [ "/app/uploads" ]
 
 EXPOSE 4000
 
-CMD [ "yarn", "start" ]
+CMD [ "npm", "start" ]
 
 
 # CRIAR IMAGEM=> docker image build -t server-expenses:1.0 .
