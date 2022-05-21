@@ -15,7 +15,7 @@ export class CreateUsersPermissions1627565156251 implements MigrationInterface {
             referencedColumnNames: ["id"],
             referencedTableName: "permissions",
             name: "fk_roles_user",
-            onDelete: "RESTRICT",
+            onDelete: "CASCADE",
             onUpdate: "CASCADE",
           },
           {
@@ -23,7 +23,7 @@ export class CreateUsersPermissions1627565156251 implements MigrationInterface {
             referencedColumnNames: ["id"],
             referencedTableName: "users",
             name: "fk_users_permissions",
-            onDelete: "RESTRICT",
+            onDelete: "CASCADE",
             onUpdate: "CASCADE",
           },
         ],

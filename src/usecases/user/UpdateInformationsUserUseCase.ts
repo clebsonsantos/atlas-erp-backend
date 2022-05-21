@@ -21,6 +21,11 @@ export class UpdateInformationsUserUseCase  {
     if(!user){
       return new Error("Usuário não encontrado.");
     }
+    const existUser = await UserRepository().findOne({ username });
+
+    if (existUser) {
+      return new Error("Usuário já existe!");
+    }
 
     user.username = username ? username : user.username;
     user.full_name = full_name ? full_name : user.full_name;

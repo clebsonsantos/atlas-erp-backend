@@ -15,7 +15,7 @@ export class CreateUsersRoles1627509179887 implements MigrationInterface {
             referencedColumnNames: ["id"],
             referencedTableName: "roles",
             name: "fk_roles_user",
-            onDelete: "RESTRICT",
+            onDelete: "CASCADE",
             onUpdate: "CASCADE",
           },
           {
@@ -23,7 +23,7 @@ export class CreateUsersRoles1627509179887 implements MigrationInterface {
             referencedColumnNames: ["id"],
             referencedTableName: "users",
             name: "fk_users_roles",
-            onDelete: "RESTRICT",
+            onDelete: "CASCADE",
             onUpdate: "CASCADE",
           },
         ],

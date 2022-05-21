@@ -28,6 +28,6 @@ export class ProductsReports  {
     }
     const titleReport = "Produtos Cadastrados"
 
-    await (new DefaultsConfigReport()).execute({titleReport, columnsTitle, body, response, orientationPage: 'portrait'})
+    await (new DefaultsConfigReport()).execute({titleReport, columnsTitle, body, response, orientationPage: 'portrait', widthsColumns: [100, 150, 100, 100]})
   }
 }

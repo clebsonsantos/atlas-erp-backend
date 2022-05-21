@@ -16,6 +16,6 @@ export class DeleteUserController {
       return response.status(400).json(result.message)
     }
 
-    return response.json("Usuário deletado com sucesso!")
+    return response.json(result)
   }
 }
