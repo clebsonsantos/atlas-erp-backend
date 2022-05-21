@@ -73,7 +73,7 @@ export class ExpensesReports  {
 
     for await (const item of Expenses){
       const rows = new Array()
-      rows.push(item.date.toLocaleDateString())
+      rows.push(item.date.toLocaleDateString('pt-BR'))
       rows.push(item.description)
       rows.push(item.quantity)
       rows.push(formatCurrency(Number(item.amount)))

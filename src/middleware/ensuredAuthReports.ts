@@ -11,7 +11,7 @@ export const ensuredAuthReports = () => {
     const authToken = token.toString()
     
     try {
-      verify(authToken, process.env.SECRET_JWT);
+      verify(authToken, "" + process.env.SECRET_JWT);
 
       const { sub } = decode(authToken);
       request.userId = sub.toString();

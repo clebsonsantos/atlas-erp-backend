@@ -50,7 +50,7 @@ export class SalesReports  {
     valuetotal += totalSolds
     const notDisplayName = ondisplayName ? 'Valor unitário' : `Cliente: ${sale.customer.full_name}`
     const columnsTitle: TableCell[] = [
-      {text: `Data: ${sale.date.toLocaleDateString()}`, style: "tableTitle"},
+      {text: `Data: ${sale.date.toLocaleDateString('pt-BR')}`, style: "tableTitle"},
       {text: `Nº: ${sale.sale_number}`, style: `tableTitle`},
       {text: `${notDisplayName}`, style: `tableTitle`},
       {text: `Subtotal`, style: `tableTitle`},

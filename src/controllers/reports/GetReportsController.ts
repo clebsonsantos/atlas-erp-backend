@@ -24,7 +24,7 @@ export class GetReportsController {
     const getReports = new GetReportsUseCase()
 
     const time_course: string = (initial_date && final_date) 
-      ? `\n\nPeríodo: ${new Date(initial_date.toString()).toLocaleDateString()} até ${new Date(final_date.toString()).toLocaleDateString()}`
+      ? `\n\nPeríodo: ${new Date(initial_date.toString()).toLocaleDateString('pt-BR')} até ${new Date(final_date.toString()).toLocaleDateString('pt-BR')}`
       : ""
     const customer_find: string = customer_id ? customer_id.toString() : ''
 

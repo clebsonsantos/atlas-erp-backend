@@ -23,7 +23,7 @@ export class ProductsReports  {
       rows.push(product.name)
       rows.push(center.name)
       rows.push(formatCurrency(Number(product.price_default)))
-      rows.push(product.created_at.toLocaleDateString())
+      rows.push(product.created_at.toLocaleDateString('pt-BR'))
       body.push(rows)
     }
     const titleReport = "Produtos Cadastrados"
