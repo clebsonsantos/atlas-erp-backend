@@ -23,7 +23,7 @@ export class SessionUseCase {
       return new Error("Usuário ou senha incorretos.");
     }
 
-    const token = sign({}, process.env.SECRET_JWT, {
+    const token = sign({}, "" + process.env.SECRET_JWT, {
       subject: user.id,
     });
 
