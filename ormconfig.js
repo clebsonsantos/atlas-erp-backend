@@ -3,7 +3,7 @@ module.exports = {
   "port": 5432,
   "host": 'localhost',
   "username": 'postgres',
-  "password": "rbCOW@Nj",
+  "password": "docker",
   "database": "expense_manager_software",
   "entities": ["./src/entities/*.ts"],
   "migrations": ["./src/database/migrations/*.ts"],
