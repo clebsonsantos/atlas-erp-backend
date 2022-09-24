@@ -6,4 +6,6 @@ createConnection().then(async ()=>{
   if(nextAction){
     await CreateUserSupport()
   }
+}).catch(err=> {
+  console.log("🚀 ~ Erro ao se conectar com o banco de dados", err)
 })

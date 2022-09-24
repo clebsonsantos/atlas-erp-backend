@@ -8,13 +8,13 @@ services:
       - 5000:5432
     # command: cat backup.sql | sudo docker exec -i 99d16ea99408 psql -U postgres -d expense_manager_software
     environment:
-      POSTGRES_PASSWORD: s-cleb96
+      POSTGRES_PASSWORD: docker
       POSTGRES_DB: expense_manager_software
     volumes:
       - ./pg-producao/data:/var/lib/postgresql/data:rw
 
   server:
-    image: atlas-server:1.0
+    build: .
     restart: always
     depends_on:
       - pg-pro
@@ -25,7 +25,7 @@ services:
     environment:
       - POSTGRES=pg-pro
       - POSTGRES_NAME=postgres
-      - POSTGRES_PASSWORD=s-cleb96
+      - POSTGRES_PASSWORD=docker
       - USE_LOGO_COMPANY=false
     volumes:
       - ./uploads:/app/uploads
