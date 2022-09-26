@@ -9,7 +9,7 @@ export class DeleteProductUseCase  {
 
   async execute({ id }: Type) {
     const product = await ProductRepository().findOne({id})
-    let ErrorQuery;
+    let ErrorQuery: string
 
     if(!product){
       return new Error("Produto não encontrado.");

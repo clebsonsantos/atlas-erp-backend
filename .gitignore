@@ -6,3 +6,4 @@ src/utils/CredentialsServiceAccount.json
 pg-producao
 yarn.lock
 *.lock
+dist

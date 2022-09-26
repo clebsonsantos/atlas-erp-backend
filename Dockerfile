@@ -8,6 +8,6 @@ VOLUME [ "/app/uploads" ]
 
 EXPOSE 4000
 
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "dev" ]
 
 # Obs: em versões mais atigas do docker compose é preciso atribuir o ` - ` ex: (docker-compose)

@@ -1,21 +1,16 @@
 {
   "name": "api_expense_manager",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.js",
   "license": "MIT",
   "private": true,
-  "exports": {
-    ".": {
-      "import": "./esm/index.js",
-      "require": "./commonjs/index.cjs"
-    }
-  },
   "engines": {
-    "node": "16"
+    "node": "16.x"
   },
   "scripts": {
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
-    "start": "ts-node-dev src/server.ts"
+    "typeorm": "ts-node-dev -r tsconfig-paths/register node_modules/typeorm/cli",
+    "start": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "build": "rimraf dist && tsc"
   },
   "dependencies": {
     "@types/cors": "^2.8.12",
@@ -27,12 +22,14 @@
     "express": "^4.17.1",
     "googleapis": "^100.0.0",
     "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
     "multer": "^1.4.4",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "pdfmake": "^0.2.4",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
     "sync-drive": "^1.0.2",
     "typeorm": "^0.2.34",
     "uuid": "^8.3.2"
@@ -42,9 +39,11 @@
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^8.5.4",
+    "@types/module-alias": "^2.0.1",
     "@types/multer": "^1.4.7",
     "@types/uuid": "^8.3.1",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^4.7.2"
+    "tsconfig-paths": "^4.1.0",
+    "typescript": "^4.8.3"
   }
 }
