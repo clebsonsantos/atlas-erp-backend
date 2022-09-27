@@ -1,24 +1,27 @@
 import { Customers } from "@/modules/customers/infra/typeorm/entities/customer";
 import { CustomerRepository } from "@/repositories";
 
-type ICustomers = {
-  id: string
-  full_name: string;
-  cpf_cnpj: string;
-  state_registration: number;
-  phone: string;
-  email: string;
-  state: string;
-  city: string;
-  address: string;
-  zip_code: string
-}
 
+namespace UpdateCustomerUseCase {
+  export type Params = {
+    id: string
+    full_name: string;
+    cpf_cnpj: string;
+    state_registration: number;
+    phone: string;
+    email: string;
+    state: string;
+    city: string;
+    address: string;
+    zip_code: string
+  }
+  export type Result = Customers | Error
+}
 
 
 export class UpdateCustomerUseCase  {
 
-    async execute({id, full_name, cpf_cnpj, state_registration, phone, email, state, city, address, zip_code }: ICustomers): Promise< Customers | Error> {
+    async execute({id, full_name, cpf_cnpj, state_registration, phone, email, state, city, address, zip_code }: UpdateCustomerUseCase.Params): Promise<UpdateCustomerUseCase.Result> {
 
       const customerRepository = CustomerRepository() 
 

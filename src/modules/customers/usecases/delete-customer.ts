@@ -4,10 +4,9 @@ type Type = {
   id: string
 }
 
-
 export class DeleteCustomerUseCase  {
 
-  async execute({id}: Type){
+  async execute({ id }: Type){
     const customer = await CustomerRepository().findOne({id})
 
     if(!customer){
