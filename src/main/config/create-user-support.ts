@@ -1,8 +1,7 @@
-import { CreateUserAccessControlListUseCase } from '../modules/user/CreateUserAccessControlListUseCase';
-import { CreatePermissionUseCase } from '../modules/permissions/CreatePermissionUseCase';
-import { permissions } from './../utils/permissions';
+
+import { CreateUserAccessControlListUseCase } from "@/modules/user/CreateUserAccessControlListUseCase";
+import { PermissionRepository, UserRepository } from "@/repositories";
 import { hash } from 'bcryptjs';
-import { PermissionRepository, UserRepository } from './../repositories/index';
 
 
 async function CreateUserSupport() {
@@ -13,7 +12,7 @@ async function CreateUserSupport() {
     email:     'clebsonsantos.dev@gmail.com',
     phone:     '83993898073',
   }
-  const repositore =  UserRepository()
+  const repositore = UserRepository()
   const user = await repositore.findOne({username: support.username})
   if(user == undefined){
     const passwordHash = await hash(support.password, 8)
@@ -33,12 +32,7 @@ async function CreateUserSupport() {
   }
   return 
 }
-async function DefaultPermissionsSystem() {
-  for await(const permission of permissions){
-    await (new CreatePermissionUseCase()).execute({name: permission.name, description: permission.descripion})
-  }
-  return true
-}
 
-export { CreateUserSupport, DefaultPermissionsSystem }
+
+export { CreateUserSupport }
 
