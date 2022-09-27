@@ -1,6 +1,6 @@
+import { Customers } from "@/modules/customers/infra/typeorm/entities/customer";
 import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, Generated } from "typeorm";
 import { BaseEntity } from './BaseEntity';
-import { Customers } from './Customers';
 import { ProductSales } from './ProductSales';
 
 @Entity("sales")

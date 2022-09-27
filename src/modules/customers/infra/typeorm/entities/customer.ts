@@ -1,8 +1,8 @@
+import { BaseEntity } from "@/entities/BaseEntity";
 import {
   Column,
   Entity,
 } from "typeorm";
-import { BaseEntity } from "./BaseEntity";
 
 @Entity("customers")
 export class Customers extends BaseEntity {
@@ -33,6 +33,5 @@ export class Customers extends BaseEntity {
 
   @Column()
   zip_code: string;
-
   
 }
