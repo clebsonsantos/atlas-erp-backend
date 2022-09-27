@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { GetAllCategoryUseCase } from '../../usecases/categories/GetAllCategoryUseCase';
+import { GetAllCategoryUseCase } from '../../modules/categories/GetAllCategoryUseCase';
 
 
 

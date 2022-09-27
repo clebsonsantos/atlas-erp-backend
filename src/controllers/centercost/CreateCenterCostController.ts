@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { CreateCenterCostUseCase } from '../../usecases/centercost/CreateCenterCostUseCase';
+import { CreateCenterCostUseCase } from '../../modules/centercost/CreateCenterCostUseCase';
 
 
 export class CreateCenterCostController {

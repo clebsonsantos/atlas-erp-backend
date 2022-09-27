@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { CreateExpenseUseCase } from '../../usecases/expenses/CreateExpenseUseCase';
+import { CreateExpenseUseCase } from '../../modules/expenses/CreateExpenseUseCase';
 
 
 export class CreateExpensesController {

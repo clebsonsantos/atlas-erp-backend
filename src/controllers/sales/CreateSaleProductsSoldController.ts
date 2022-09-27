@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { CreateSaleProductsSoldUseCase } from '../../usecases/sales/CreateSaleProductsSoldUseCase';
+import { CreateSaleProductsSoldUseCase } from '../../modules/sales/CreateSaleProductsSoldUseCase';
 
 
 export class CreateSaleProductsSoldController {

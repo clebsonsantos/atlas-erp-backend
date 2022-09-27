@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { UpdateCategoryUseCase } from '../../usecases/categories/UpdateCategoryUseCase';
+import { UpdateCategoryUseCase } from '../../modules/categories/UpdateCategoryUseCase';
 
 
 

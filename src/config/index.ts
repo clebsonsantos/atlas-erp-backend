@@ -1,5 +1,5 @@
-import { CreateUserAccessControlListUseCase } from './../usecases/user/CreateUserAccessControlListUseCase';
-import { CreatePermissionUseCase } from './../usecases/permissions/CreatePermissionUseCase';
+import { CreateUserAccessControlListUseCase } from '../modules/user/CreateUserAccessControlListUseCase';
+import { CreatePermissionUseCase } from '../modules/permissions/CreatePermissionUseCase';
 import { permissions } from './../utils/permissions';
 import { hash } from 'bcryptjs';
 import { PermissionRepository, UserRepository } from './../repositories/index';

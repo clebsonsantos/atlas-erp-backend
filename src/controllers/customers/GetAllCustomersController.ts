@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { GetAllCustomersUseCase } from '../../usecases/customers/GetAllCustomersUseCase';
+import { GetAllCustomersUseCase } from '../../modules/customers/GetAllCustomersUseCase';
 
 
 

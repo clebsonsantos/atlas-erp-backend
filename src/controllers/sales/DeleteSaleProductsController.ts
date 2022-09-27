@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { DeleteSaleProductsUseCase } from '../../usecases/sales/DeleteSaleProductsUseCase';
+import { DeleteSaleProductsUseCase } from '../../modules/sales/DeleteSaleProductsUseCase';
 
 
 

@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { DeleteCategoryUseCase } from '../../usecases/categories/DeleteCategoryUseCase';
+import { DeleteCategoryUseCase } from '../../modules/categories/DeleteCategoryUseCase';
 
 
 

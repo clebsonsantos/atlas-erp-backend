@@ -6,13 +6,13 @@ import { Expenses } from '../../entities/Expenses';
 import { Product } from '../../entities/Product';
 import { Sales } from '../../entities/Sales';
 import { User } from '../../entities/User';
-import { CategoriesCenterReports } from '../../usecases/reports/CategoriesCenterReports';
-import { CustomersReports } from '../../usecases/reports/CustomersReports';
-import { ExpensesReports } from '../../usecases/reports/ExpensesReports';
-import { GetReportsUseCase } from '../../usecases/reports/GetReportsUseCase';
-import { ProductsReports } from '../../usecases/reports/ProductsReports';
-import { UsersReports } from '../../usecases/reports/UsersReports';
-import { SalesReports } from './../../usecases/reports/SalesReports';
+import { CategoriesCenterReports } from '../../modules/reports/CategoriesCenterReports';
+import { CustomersReports } from '../../modules/reports/CustomersReports';
+import { ExpensesReports } from '../../modules/reports/ExpensesReports';
+import { GetReportsUseCase } from '../../modules/reports/GetReportsUseCase';
+import { ProductsReports } from '../../modules/reports/ProductsReports';
+import { UsersReports } from '../../modules/reports/UsersReports';
+import { SalesReports } from '../../modules/reports/SalesReports';
 
 
 

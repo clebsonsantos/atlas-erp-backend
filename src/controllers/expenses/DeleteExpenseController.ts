@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { DeleteExpenseUseCase } from '../../usecases/expenses/DeleteExpenseUseCase';
+import { DeleteExpenseUseCase } from '../../modules/expenses/DeleteExpenseUseCase';
 
 
 

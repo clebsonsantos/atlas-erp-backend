@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { DeleteCenterCostUseCase } from '../../usecases/centercost/DeleteCenterCostUseCase';
+import { DeleteCenterCostUseCase } from '../../modules/centercost/DeleteCenterCostUseCase';
 
 
 

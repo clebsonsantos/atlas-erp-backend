@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { FindOneUserUseCase } from '../../usecases/user/FindOneUserUseCase';
+import { FindOneUserUseCase } from '../../modules/user/FindOneUserUseCase';
 
 export class FindOneUserController {
   async handle(request: Request, response: Response) {

@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { UpdateAdministratorUseCase } from '../../usecases/administrator/UpdateAdministratorUseCase';
+import { UpdateAdministratorUseCase } from '../../modules/administrator/UpdateAdministratorUseCase';
 
 
 export class UpdateAdministratorController {

@@ -1,4 +1,4 @@
-import { PermissionRepository } from './../../repositories/index';
+import { PermissionRepository } from '../../repositories/index';
 import { Permission } from '../../entities/Permission'
 
 export class GetAllPermissionsUseCase  {

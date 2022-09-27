@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { GetAllCenterCostUseCase } from '../../usecases/centercost/GetAllCenterCostUseCase';
+import { GetAllCenterCostUseCase } from '../../modules/centercost/GetAllCenterCostUseCase';
 
 
 

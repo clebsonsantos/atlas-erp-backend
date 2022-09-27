@@ -1,4 +1,4 @@
-import { CustomerRepository, ProductRepository, UserRepository } from './../../repositories/index';
+import { CustomerRepository, ProductRepository, UserRepository } from '../../repositories/index';
 import { TableCell } from 'pdfmake/interfaces';
 import { Sales } from '../../entities/Sales';
 import { Response } from 'express';

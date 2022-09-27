@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { UpdateCenterCostUseCase } from '../../usecases/centercost/UpdateCenterCostUseCase';
+import { UpdateCenterCostUseCase } from '../../modules/centercost/UpdateCenterCostUseCase';
 
 
 

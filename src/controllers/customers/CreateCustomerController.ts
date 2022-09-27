@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { CreateCustomerUseCase } from '../../usecases/customers/CreateCustomerUseCase';
+import { CreateCustomerUseCase } from '../../modules/customers/CreateCustomerUseCase';
 
 
 
