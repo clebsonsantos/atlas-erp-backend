@@ -1,5 +1,5 @@
+import { UserRepository } from "@/repositories";
 import { NextFunction, Request, Response } from "express";
-import { UserRepository } from "../repositories";
 
 export function can(permissionsRoutes: string[]) {
   return async (request: Request, response: Response, next: NextFunction) => {

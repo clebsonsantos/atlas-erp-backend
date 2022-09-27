@@ -1,5 +1,5 @@
-import { Customers } from '../../entities/Customers';
-import { CustomerRepository } from '../../repositories';
+import { Customers } from "@/entities/Customers";
+import { CustomerRepository } from "@/repositories";
 
 type ICustomers = {
   id: string

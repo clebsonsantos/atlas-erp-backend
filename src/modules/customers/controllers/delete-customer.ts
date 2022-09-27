@@ -1,6 +1,6 @@
 
+import { DeleteCustomerUseCase } from "@/modules/customers/usecases/delete-customer";
 import { Request, Response } from "express";
-import { DeleteCustomerUseCase } from '../../modules/customers/DeleteCustomerUseCase';
 
 
 

@@ -1,6 +1,6 @@
 
+import { UpdateCustomerUseCase } from "@/modules/customers/usecases/updated-customer";
 import { Request, Response } from "express";
-import { UpdateCustomerUseCase } from '../../modules/customers/UpdateCustomerUseCase';
 
 
 export class UpdateCustomerController {

@@ -1,55 +1,55 @@
-import { ensuredValidateUUID } from './middleware/ensured-validate-uuid';
-import { GetAllPermissionsController } from './controllers/permissions/GetAllPermissionsController';
-import { GetSalesOrderController } from './controllers/reports/GetSalesOrderController';
 import { Router } from "express";
-import { CreatePermissionController } from "./controllers/permissions/CreatePermissionController";
-import { CreateProductController } from "./controllers/products/CreateProductController";
-import { CreateRoleController } from "./controllers/roles/CreateRoleController";
-import { CreateRolePermissionController } from "./controllers/roles/CreateRolePermissionController";
-import { CreateUserAccessControlListController } from "./controllers/user/CreateUserAccessControlListController";
-import { CreateUserController } from "./controllers/user/CreateUserController";
-import { GetAllProductsController } from "./controllers/products/GetAllProductsController";
-import { SessionController } from "./controllers/authentication/SessionController";
-import { ensuredAuthenticated } from "./middleware/ensuredAuthenticated";
-import { can, is } from "./middleware/permissions";
-import { CreateExpensesController } from './controllers/expenses/CreateExpensesController';
-import { CreateCategoryController } from './controllers/categories/CreateCategoryController';
-import { CreateCenterCostController } from './controllers/centercost/CreateCenterCostController';
-import { GetAllCategoryController } from './controllers/categories/GetAllCategoryController';
-import { GetAllExpensesController } from './controllers/expenses/GetAllExpensesController';
-import { GetAllCenterCostController } from './controllers/centercost/GetAllCenterCostController';
-import { UpdateExpensesController } from './controllers/expenses/UpdateExpensesController';
-import { DeleteExpenseController } from './controllers/expenses/DeleteExpenseController';
-import { UpdateCategoryController } from './controllers/categories/UpdateCategoryController';
-import { DeleteCategoryController } from './controllers/categories/DeleteCategoryController';
-import { UpdateCenterCostController } from './controllers/centercost/UpdateCenterCostController';
-import { DeleteCenterCostController } from './controllers/centercost/DeleteCenterCostController';
-import { CreateAdministratorController } from './controllers/administrator/CreateAdministratorController';
-import { UpdateAdministratorController } from './controllers/administrator/UpdateAdministratorController';
-import { GetAdministratorController } from './controllers/administrator/GetAdministratorController';
-import { GetAllUsersController } from './controllers/user/GetAllUsersController';
-import { UpdateInformationsUserController } from './controllers/user/UpdateInformationsUserController';
-import { DeleteUserController } from './controllers/user/DeleteUserController';
-import { CreateCustomerController } from './controllers/customers/CreateCustomerController';
-import { GetAllCustomersController } from './controllers/customers/GetAllCustomersController';
-import { UpdateCustomerController } from './controllers/customers/UpdateCustomerController';
-import { DeleteCustomerController } from './controllers/customers/DeleteCustomerController';
-import { UpdateProductController } from './controllers/products/UpdateProductController';
-import { DeleteProductController } from './controllers/products/DeleteProductController';
-import { CreateSaleProductsSoldController } from './controllers/sales/CreateSaleProductsSoldController';
-import { GettAllSaleProductsController } from './controllers/sales/GettAllSaleProductsController';
-import { DeleteSaleProductsController } from './controllers/sales/DeleteSaleProductsController';
-import { UpdateSaleProductsController } from './controllers/sales/UpdateSaleProductsController';
-import { FindOneUserController } from './controllers/user/FindOneUserController';
-import { GetReportsController } from './controllers/reports/GetReportsController';
-import { ensuredAuthReports } from './middleware/ensuredAuthReports';
+import { customerRoutes } from "./customer.routes";
+
+const routes = Router();
+
+
+
+import { ensuredValidateUUID, ensuredAuthReports, ensuredAuthenticated, can } from '../middlewares';
+import { GetAllPermissionsController } from '@/controllers/permissions/GetAllPermissionsController';
+import { GetSalesOrderController } from '@/controllers/reports/GetSalesOrderController';
+import { CreatePermissionController } from "@/controllers/permissions/CreatePermissionController";
+import { CreateProductController } from "@/controllers/products/CreateProductController";
+import { CreateRoleController } from "@/controllers/roles/CreateRoleController";
+import { CreateRolePermissionController } from "@/controllers/roles/CreateRolePermissionController";
+import { CreateUserAccessControlListController } from "@/controllers/user/CreateUserAccessControlListController";
+import { CreateUserController } from "@/controllers/user/CreateUserController";
+import { GetAllProductsController } from "@/controllers/products/GetAllProductsController";
+import { SessionController } from "@/controllers/authentication/SessionController";
+
+import { CreateExpensesController } from '@/controllers/expenses/CreateExpensesController';
+import { CreateCategoryController } from '@/controllers/categories/CreateCategoryController';
+import { CreateCenterCostController } from '@/controllers/centercost/CreateCenterCostController';
+import { GetAllCategoryController } from '@/controllers/categories/GetAllCategoryController';
+import { GetAllExpensesController } from '@/controllers/expenses/GetAllExpensesController';
+import { GetAllCenterCostController } from '@/controllers/centercost/GetAllCenterCostController';
+import { UpdateExpensesController } from '@/controllers/expenses/UpdateExpensesController';
+import { DeleteExpenseController } from '@/controllers/expenses/DeleteExpenseController';
+import { UpdateCategoryController } from '@/controllers/categories/UpdateCategoryController';
+import { DeleteCategoryController } from '@/controllers/categories/DeleteCategoryController';
+import { UpdateCenterCostController } from '@/controllers/centercost/UpdateCenterCostController';
+import { DeleteCenterCostController } from '@/controllers/centercost/DeleteCenterCostController';
+import { CreateAdministratorController } from '@/controllers/administrator/CreateAdministratorController';
+import { UpdateAdministratorController } from '@/controllers/administrator/UpdateAdministratorController';
+import { GetAdministratorController } from '@/controllers/administrator/GetAdministratorController';
+import { GetAllUsersController } from '@/controllers/user/GetAllUsersController';
+import { UpdateInformationsUserController } from '@/controllers/user/UpdateInformationsUserController';
+import { DeleteUserController } from '@/controllers/user/DeleteUserController';
+import { UpdateProductController } from '@/controllers/products/UpdateProductController';
+import { DeleteProductController } from '@/controllers/products/DeleteProductController';
+import { CreateSaleProductsSoldController } from '@/controllers/sales/CreateSaleProductsSoldController';
+import { GettAllSaleProductsController } from '@/controllers/sales/GettAllSaleProductsController';
+import { DeleteSaleProductsController } from '@/controllers/sales/DeleteSaleProductsController';
+import { UpdateSaleProductsController } from '@/controllers/sales/UpdateSaleProductsController';
+import { FindOneUserController } from '@/controllers/user/FindOneUserController';
+import { GetReportsController } from '@/controllers/reports/GetReportsController';
 
 // Inserindo um arquivo de imagem
 import multer from 'multer'
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');
-
+    
   },
   filename: function(req, file, cb) {
     cb(null, "company_logo.png")
@@ -59,8 +59,8 @@ const storage = multer.diskStorage({
 const upload = multer({storage})
 // Fim
 
-
-const routes = Router();
+// Customers
+routes.use("/customers", customerRoutes);
 
 // Usuários e Login
 routes.post("/users", ensuredAuthenticated(), can(["admin"]), new CreateUserController().handle);
@@ -125,12 +125,6 @@ routes.post("/create_admin", ensuredAuthenticated(), upload.single('url_image'),
 routes.put("/update_admin/:id", ensuredAuthenticated(), upload.single('url_image'), can(["admin"]), ensuredValidateUUID(), new UpdateAdministratorController().handle)
 routes.get("/get_admin", ensuredAuthenticated(), can(["admin"]), new GetAdministratorController().handle)
 
-//Clientes
-routes.post("/customers", ensuredAuthenticated(), can(["admin", 'customers']), new CreateCustomerController().handle)
-routes.get("/customers", ensuredAuthenticated(), can(["admin", 'customers']), new GetAllCustomersController().handle)
-// routes.post("/customers/search", ensuredAuthenticated(), can(["admin", 'customers']), new GetAllCustomersController().handle)
-routes.put("/customers/:id", ensuredAuthenticated(), can(["admin", 'customers']), ensuredValidateUUID(), new UpdateCustomerController().handle)
-routes.delete("/customers/:id", ensuredAuthenticated(), can(["admin", 'customers']), ensuredValidateUUID(), new DeleteCustomerController().handle)
 
 // Produtos
 routes.get("/products", ensuredAuthenticated(), can(["admin", 'products']), new GetAllProductsController().handle);

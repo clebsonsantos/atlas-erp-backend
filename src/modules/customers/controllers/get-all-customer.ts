@@ -1,6 +1,6 @@
 
+import { GetAllCustomersUseCase } from "@/modules/customers/usecases/get-all-customers";
 import { Request, Response } from "express";
-import { GetAllCustomersUseCase } from '../../modules/customers/GetAllCustomersUseCase';
 
 
 

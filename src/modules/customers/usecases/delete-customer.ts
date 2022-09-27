@@ -1,4 +1,4 @@
-import { CustomerRepository } from '../../repositories';
+import { CustomerRepository } from "@/repositories";
 
 type Type = {
   id: string

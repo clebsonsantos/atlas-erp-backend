@@ -6,9 +6,9 @@ module.exports = {
   "password": "docker",
   "database": "expense_manager_software",
   "entities": ["./src/entities/*.ts"],
-  "migrations": ["./src/database/migrations/*.ts"],
+  "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
   "cli": {
-    "migrationsDir": "./src/database/migrations"
+    "migrationsDir": "./src/shared/infra/typeorm/migrations"
   }
 }
 

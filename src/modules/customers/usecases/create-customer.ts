@@ -1,6 +1,7 @@
+import { Customers } from "@/entities/Customers";
+import { CustomerRepository } from "@/repositories";
 import { cnpj, cpf } from 'cpf-cnpj-validator';
-import { Customers } from '../../entities/Customers';
-import { CustomerRepository } from '../../repositories';
+
 
 type ICustomers = {
   full_name: string;
