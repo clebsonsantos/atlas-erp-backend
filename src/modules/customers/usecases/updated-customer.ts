@@ -1,5 +1,6 @@
 import { Customers } from "@/modules/customers/infra/typeorm/entities/customer";
 import { CustomerRepository } from "@/repositories";
+import { Either, left, right } from "@/shared/either";
 
 
 namespace UpdateCustomerUseCase {
@@ -15,7 +16,7 @@ namespace UpdateCustomerUseCase {
     address: string;
     zip_code: string
   }
-  export type Result = Customers | Error
+  export type Result = Either<Error, Customers>
 }
 
 
@@ -28,7 +29,7 @@ export class UpdateCustomerUseCase  {
       const customer = await customerRepository.findOne({id})
   
       if(!customer){
-        return new Error('Cliente não existe.')
+        return left(new Error('Cliente não existe.'))
       }
   
       customer.full_name = full_name ? full_name : customer.full_name;
@@ -43,7 +44,7 @@ export class UpdateCustomerUseCase  {
   
       customerRepository.save(customer)
   
-      return customer
+      return right(customer)
     }
     
 }

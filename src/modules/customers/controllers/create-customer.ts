@@ -13,10 +13,10 @@ export class CreateCustomerController {
 
     const result = await customerService.execute({full_name, cpf_cnpj, state_registration, phone, email, state, city, address, zip_code})
 
-    if(result instanceof Error){
-      return response.status(400).json(result.message)
+    if(result.isLeft()){
+      return response.status(400).json(result.value)
     }
 
-    return response.json(result)
+    return response.json(result.value)
   }
 }

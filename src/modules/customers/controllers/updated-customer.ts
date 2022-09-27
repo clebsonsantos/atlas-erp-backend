@@ -13,10 +13,10 @@ export class UpdateCustomerController {
 
     const result = await customer.execute({id, full_name, cpf_cnpj, state_registration, phone, email, state, city, address, zip_code  })
 
-    if(result instanceof Error){
-      return response.status(400).json(result.message)
+    if(result.isLeft()){
+      return response.status(400).json(result.value)
     }
 
-    return response.status(200).json(result)
+    return response.status(200).json(result.value)
   }
 }

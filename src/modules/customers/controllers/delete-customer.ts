@@ -13,10 +13,10 @@ export class DeleteCustomerController {
 
     const result = await deleteCustomer.execute({id})
 
-    if(result instanceof Error){
-      return response.status(400).json(result.message)
+    if(result.isLeft()){
+      return response.status(400).json(result.value)
     }
 
-    return response.json("Cliente deletado com sucesso!")
+    return response.json(result.value)
   }
 }
