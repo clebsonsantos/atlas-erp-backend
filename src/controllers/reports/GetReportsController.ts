@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { Category } from '../../entities/Category';
 import { CentersCost } from '../../entities/CentersCost';
-import { Customers } from '../../entities/Customers';
 import { Expenses } from '../../entities/Expenses';
 import { Product } from '../../entities/Product';
 import { Sales } from '../../entities/Sales';
@@ -13,6 +12,7 @@ import { GetReportsUseCase } from '../../modules/reports/GetReportsUseCase';
 import { ProductsReports } from '../../modules/reports/ProductsReports';
 import { UsersReports } from '../../modules/reports/UsersReports';
 import { SalesReports } from '../../modules/reports/SalesReports';
+import { Customers } from "@/modules/customers/infra/typeorm/entities/customer";
 
 
 

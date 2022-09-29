@@ -1,9 +1,9 @@
 import { PageOrientation, Size, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { Administrator } from '../../../entities/Administrator';
-import { Customers } from '../../../entities/Customers';
 import HeadersReport from './header';
 import { cpf, cnpj } from 'cpf-cnpj-validator'
 import formatCurrency from '../../../utils/formatCurrency';
+import { Customers } from "@/modules/customers/infra/typeorm/entities/customer";
 
 type DefaultCongig = {
   company: Administrator;

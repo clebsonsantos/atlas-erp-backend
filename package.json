@@ -31,6 +31,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "sync-drive": "^1.0.2",
+    "tsyringe": "^4.7.0",
     "typeorm": "^0.2.34",
     "uuid": "^8.3.2"
   },

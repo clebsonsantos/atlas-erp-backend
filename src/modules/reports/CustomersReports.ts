@@ -1,7 +1,7 @@
-import { Customers } from '../../entities/Customers';
 import { TableCell } from 'pdfmake/interfaces';
 import { Response } from 'express';
 import { DefaultsConfigReport } from './DefaultsConfigReport';
+import { Customers } from "../customers/infra/typeorm/entities/customer";
 
 export class CustomersReports  {
 

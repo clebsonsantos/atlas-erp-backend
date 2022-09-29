@@ -4,7 +4,7 @@ import { Sales } from '../../entities/Sales';
 import { Response } from 'express';
 import { DefaultsConfigReport } from './DefaultsConfigReport';
 import formatCurrency from '../../utils/formatCurrency';
-import { Customers } from '../../entities/Customers';
+import { Customers } from "../customers/infra/typeorm/entities/customer";
 
 
 export class SalesReports  {

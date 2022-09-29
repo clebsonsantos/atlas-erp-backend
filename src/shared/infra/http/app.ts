@@ -9,9 +9,10 @@ import "@/utils/on-backups"
 import "@/main/config/module-alias"
 import { routes } from "./routes";
 import { AppError } from "@/shared/errors/AppError";
+import { startContainer } from "@/shared/container";
 
 const app = express();
-
+startContainer()
 app.use(cors())
 app.use('/uploads', express.static('uploads'))
 app.options('*', cors());
