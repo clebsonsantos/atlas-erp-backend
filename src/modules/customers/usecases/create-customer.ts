@@ -1,4 +1,3 @@
-import { CustomerRepository } from "@/repositories";
 import { cnpj, cpf } from 'cpf-cnpj-validator';
 import { left, right } from "@/shared/either";
 import { CreateCustomer } from "../contracts/create-customer";

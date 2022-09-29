@@ -1,30 +1,26 @@
-import { CustomerRepository } from "@/repositories";
-import { Either, left, right } from "@/shared/either";
+import { left, right } from "@/shared/either";
+import { inject, injectable } from "tsyringe";
+import { DeleteCustomer } from "../contracts/delete-customer";
+import { ICustomerRepository } from "../repositories/icustomer-repository";
 
-type Type = {
-  id: string
-}
-namespace DeleteCustomerUseCase {
-  export type Params = {
-    id: string
-  }
-  export type Result = Either<Error, String>
-}
+@injectable()
 export class DeleteCustomerUseCase  {
+  constructor(
+    @inject("CustomerRepository")
+    private customerRepository: ICustomerRepository,
+  ) {}
 
-  async execute({ id }: Type){
-    const customer = await CustomerRepository().findOne({id})
+  async execute({ id }: DeleteCustomer.Params){
+    const customer = await this.customerRepository.findById(id)
 
     if(!customer){
       return left(new Error("Cliente não encontrado."));
     }
-    let ErrorQuery: string
-    await CustomerRepository().delete({id}).catch(error => {
-      ErrorQuery = error.message
-    })
 
-    if(ErrorQuery && ErrorQuery.includes("violates foreign key constraint")){
-      return left(new Error("Não é possível deletar esse registro. Existem relacionamentos que dependem dele."))
+    const success = await this.customerRepository.removeById(id)
+
+    if(!success){
+      return left(new Error("Ocorreu um erro ao deletar esse registro. Verifique se há relacionamentos que dependem dele ou tente novamente."))
     }
     return right("Cliente deletado com sucesso")
     
