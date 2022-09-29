@@ -4,7 +4,8 @@ import { DeleteCustomer } from "../contracts/delete-customer";
 import { ICustomerRepository } from "../repositories/icustomer-repository";
 
 @injectable()
-export class DeleteCustomerUseCase  {
+export class DeleteCustomerUseCase {
+  
   constructor(
     @inject("CustomerRepository")
     private customerRepository: ICustomerRepository,

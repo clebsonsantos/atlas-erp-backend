@@ -6,6 +6,7 @@ import { ICustomerRepository } from "../repositories/icustomer-repository";
 
 @injectable()
 export class CreateCustomerUseCase  {
+  
   constructor(
     @inject("CustomerRepository")
     private customerRepository: ICustomerRepository,

@@ -3,7 +3,8 @@ import { FindAllCustomerOrFilter } from "../contracts/find-all-or-filter-custome
 import { ICustomerRepository } from "../repositories/icustomer-repository";
 
 @injectable()
-export class FindAllCustomersUseCase  {
+export class FindAllCustomersUseCase {
+  
   constructor(
     @inject("CustomerRepository")
     private customerRepository: ICustomerRepository,

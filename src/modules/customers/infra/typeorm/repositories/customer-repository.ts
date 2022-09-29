@@ -5,6 +5,7 @@ import { getRepository, Repository } from "typeorm"
 import { Customer } from "../entities/customer";
 
 export class CustomerRepository implements ICustomerRepository {
+  
   private repository: Repository<Customer>
   constructor() {
     this.repository = getRepository(Customer)
@@ -44,7 +45,7 @@ export class CustomerRepository implements ICustomerRepository {
       return false
     }
   }
-  
+
   async findByFullName(fullName: string): Promise<Customer> {
     const customer = await this.repository.findOne({ full_name: fullName })
     return customer

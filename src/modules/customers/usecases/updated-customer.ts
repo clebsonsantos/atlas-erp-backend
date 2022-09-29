@@ -4,7 +4,8 @@ import { UpdateCustomer } from "../contracts/updated-customer";
 import { ICustomerRepository } from "../repositories/icustomer-repository";
 
 @injectable()
-export class UpdateCustomerUseCase  {
+export class UpdateCustomerUseCase {
+  
   constructor(
     @inject("CustomerRepository")
     private customerRepository: ICustomerRepository,
