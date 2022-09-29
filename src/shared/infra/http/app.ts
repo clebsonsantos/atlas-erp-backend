@@ -1,12 +1,13 @@
 import "reflect-metadata";
+import "../../../main/config/module-alias"
+import "@/shared/infra/typeorm";
+import "@/utils/on-backups"
+
 import * as dotenv from 'dotenv'
 import express, { NextFunction, Request, Response } from "express";
 import cors from 'cors';
 
 dotenv.config({ path: `${__dirname}/../../.env`});
-import "@/shared/infra/typeorm";
-import "@/utils/on-backups"
-import "@/main/config/module-alias"
 import { routes } from "./routes";
 import { AppError } from "@/shared/errors/AppError";
 import { startContainer } from "@/shared/container";
