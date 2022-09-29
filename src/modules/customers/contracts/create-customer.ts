@@ -1,5 +1,5 @@
 import { Either } from "@/shared/either";
-import { Customers } from "../infra/typeorm/entities/customer";
+import { Customer } from "../infra/typeorm/entities/customer";
 
 export namespace CreateCustomer {
   export type Params = {
@@ -13,5 +13,5 @@ export namespace CreateCustomer {
     address: string;
     zip_code: string
   }
-  export type Result = Either<Error, Customers>
+  export type Result = Either<Error, Customer>
 }

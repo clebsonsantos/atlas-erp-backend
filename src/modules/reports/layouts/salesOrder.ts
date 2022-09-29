@@ -3,7 +3,7 @@ import { Administrator } from '../../../entities/Administrator';
 import HeadersReport from './header';
 import { cpf, cnpj } from 'cpf-cnpj-validator'
 import formatCurrency from '../../../utils/formatCurrency';
-import { Customers } from "@/modules/customers/infra/typeorm/entities/customer";
+import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
 
 type DefaultCongig = {
   company: Administrator;
@@ -13,7 +13,7 @@ type DefaultCongig = {
   orientationPage: PageOrientation;
   widthsColumns?: Size[];
   LogoImage: void | any;
-  client: Customers;
+  client: Customer;
   totalSale: number
 }
 

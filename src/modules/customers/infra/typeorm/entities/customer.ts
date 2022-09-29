@@ -5,7 +5,7 @@ import {
 } from "typeorm";
 
 @Entity("customers")
-export class Customers extends BaseEntity {
+export class Customer extends BaseEntity {
   @Column()
   full_name: string;
 

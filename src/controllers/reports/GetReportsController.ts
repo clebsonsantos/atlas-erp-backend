@@ -12,7 +12,7 @@ import { GetReportsUseCase } from '../../modules/reports/GetReportsUseCase';
 import { ProductsReports } from '../../modules/reports/ProductsReports';
 import { UsersReports } from '../../modules/reports/UsersReports';
 import { SalesReports } from '../../modules/reports/SalesReports';
-import { Customers } from "@/modules/customers/infra/typeorm/entities/customer";
+import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
 
 
 
@@ -36,8 +36,8 @@ export class GetReportsController {
 
       const instaceType = reports[0]
 
-      if(instaceType instanceof Customers ){
-        await (new CustomersReports()).execute(reports as Customers[], response)
+      if(instaceType instanceof Customer ){
+        await (new CustomersReports()).execute(reports as Customer[], response)
       }
       if(instaceType instanceof User ){
         await (new UsersReports()).execute(reports as User[], response)

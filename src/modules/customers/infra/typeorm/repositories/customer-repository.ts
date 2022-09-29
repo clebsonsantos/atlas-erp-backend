@@ -1,15 +1,15 @@
 import { CreateCustomer } from "@/modules/customers/contracts/create-customer";
 import { ICustomerRepository } from "@/modules/customers/repositories/icustomer-repository";
 import { getRepository, Repository } from "typeorm"
-import { Customers } from "../entities/customer";
+import { Customer } from "../entities/customer";
 
 export class CustomerRepository implements ICustomerRepository {
-  private repository: Repository<Customers>
+  private repository: Repository<Customer>
   constructor() {
-    this.repository = getRepository(Customers)
+    this.repository = getRepository(Customer)
   }
   
-  async create({ full_name, cpf_cnpj, state_registration, phone, email, state, city, address, zip_code }: CreateCustomer.Params): Promise<Customers> {
+  async create({ full_name, cpf_cnpj, state_registration, phone, email, state, city, address, zip_code }: CreateCustomer.Params): Promise<Customer> {
     const customer = this.repository.create({ 
       full_name,
       cpf_cnpj,
@@ -25,12 +25,12 @@ export class CustomerRepository implements ICustomerRepository {
     return customerCreated
   }
 
-  async findByCpfCnpj(cpfCnpj: string): Promise<Customers> {
+  async findByCpfCnpj(cpfCnpj: string): Promise<Customer> {
     const customer = await this.repository.findOne({ cpf_cnpj: cpfCnpj })
     return customer
   }
 
-  async findById(id: string): Promise<Customers> {
+  async findById(id: string): Promise<Customer> {
     const customer = await this.repository.findOne({ id })
     return customer
   }
@@ -42,5 +42,17 @@ export class CustomerRepository implements ICustomerRepository {
     } catch(error) {
       return false
     }
+  }
+  async findByFullName(fullName: string): Promise<Customer> {
+    const customer = await this.repository.findOne({ full_name: fullName })
+    return customer
+  }
+  async findAll(): Promise<Customer[]> {
+    const customers = await this.repository.find({
+      order: {
+        full_name: "ASC"
+      }
+    })
+    return customers
   }
 }

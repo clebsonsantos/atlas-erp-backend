@@ -1,4 +1,4 @@
-import { Customers } from "@/modules/customers/infra/typeorm/entities/customer";
+import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
 import { CustomerRepository } from "@/repositories";
 import { Either, left, right } from "@/shared/either";
 
@@ -16,7 +16,7 @@ namespace UpdateCustomerUseCase {
     address: string;
     zip_code: string
   }
-  export type Result = Either<Error, Customers>
+  export type Result = Either<Error, Customer>
 }
 
 

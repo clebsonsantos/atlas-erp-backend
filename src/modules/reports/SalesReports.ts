@@ -4,7 +4,7 @@ import { Sales } from '../../entities/Sales';
 import { Response } from 'express';
 import { DefaultsConfigReport } from './DefaultsConfigReport';
 import formatCurrency from '../../utils/formatCurrency';
-import { Customers } from "../customers/infra/typeorm/entities/customer";
+import { Customer } from "../customers/infra/typeorm/entities/customer";
 
 
 export class SalesReports  {
@@ -14,7 +14,7 @@ export class SalesReports  {
     const {body, valuetotal} = await this.handleBodyContent(Sales, ondisplay)
     const ContentTable = this.handleContextTable(body)
     if(ondisplay){
-      var customer:Customers = await CustomerRepository().findOne({id: customer_id}) 
+      var customer:Customer = await CustomerRepository().findOne({id: customer_id}) 
     }
     const saller = salesman !== undefined ? UserRepository().findOne({id: Sales[0].salesman}) : ""
     const salesmanName = saller === '' ? '' : `\n\nVendedor: ${(await saller).full_name}`

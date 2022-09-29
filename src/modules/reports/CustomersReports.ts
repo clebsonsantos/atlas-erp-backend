@@ -1,11 +1,11 @@
 import { TableCell } from 'pdfmake/interfaces';
 import { Response } from 'express';
 import { DefaultsConfigReport } from './DefaultsConfigReport';
-import { Customers } from "../customers/infra/typeorm/entities/customer";
+import { Customer } from "../customers/infra/typeorm/entities/customer";
 
 export class CustomersReports  {
 
-  async execute( Customers: Customers[], response: Response){
+  async execute( Customers: Customer[], response: Response){
 
     //CORPO DA TABELA
     const body = [ ];

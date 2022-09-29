@@ -10,7 +10,7 @@ import { Administrator } from '../entities/Administrator';
 import { ProductSales } from '../entities/ProductSales';
 import { Sales } from '../entities/Sales';
 import { RelationsSaleProductsSolds } from '../entities/RelationsSaleProductsSolds';
-import { Customers } from "@/modules/customers/infra/typeorm/entities/customer";
+import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
 
 export const UserRepository = () => {
   return getRepository(User);
@@ -45,7 +45,7 @@ export const AdministratorRepository = () => {
 };
 
 export const CustomerRepository = () => {
-  return getRepository(Customers);
+  return getRepository(Customer);
 };
 
 export const ProductsSoldsRepository = () => {
