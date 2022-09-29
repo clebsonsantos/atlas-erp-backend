@@ -1,4 +1,5 @@
 import { CreateCustomer } from "../contracts/create-customer";
+import { UpdateCustomer } from "../contracts/updated-customer";
 import { Customer } from "../infra/typeorm/entities/customer";
 
 export interface ICustomerRepository {
@@ -8,4 +9,5 @@ export interface ICustomerRepository {
   removeById: (id: string) => Promise<boolean>
   findByFullName: (fullName: string) => Promise<Customer>
   findAll: () => Promise<Customer[]>
+  updatedCustomer: (data: UpdateCustomer.Params) => Promise<Customer>
 }

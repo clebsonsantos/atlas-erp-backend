@@ -1,32 +1,18 @@
-import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
-import { CustomerRepository } from "@/repositories";
-import { Either, left, right } from "@/shared/either";
+import { left, right } from "@/shared/either";
+import { inject, injectable } from "tsyringe";
+import { UpdateCustomer } from "../contracts/updated-customer";
+import { ICustomerRepository } from "../repositories/icustomer-repository";
 
-
-namespace UpdateCustomerUseCase {
-  export type Params = {
-    id: string
-    full_name: string;
-    cpf_cnpj: string;
-    state_registration: number;
-    phone: string;
-    email: string;
-    state: string;
-    city: string;
-    address: string;
-    zip_code: string
-  }
-  export type Result = Either<Error, Customer>
-}
-
-
+@injectable()
 export class UpdateCustomerUseCase  {
+  constructor(
+    @inject("CustomerRepository")
+    private customerRepository: ICustomerRepository,
+  ) {}
 
-    async execute({id, full_name, cpf_cnpj, state_registration, phone, email, state, city, address, zip_code }: UpdateCustomerUseCase.Params): Promise<UpdateCustomerUseCase.Result> {
+    async execute({ id, full_name, cpf_cnpj, state_registration, phone, email, state, city, address, zip_code }: UpdateCustomer.Params): Promise<UpdateCustomer.Result> {
 
-      const customerRepository = CustomerRepository() 
-
-      const customer = await customerRepository.findOne({id})
+      const customer = await this.customerRepository.findById(id)
   
       if(!customer){
         return left(new Error('Cliente não existe.'))
@@ -42,9 +28,9 @@ export class UpdateCustomerUseCase  {
       customer.address = address ? address : customer.address;
       customer.zip_code = zip_code ? zip_code : customer.zip_code;
   
-      customerRepository.save(customer)
+      const result = await this.customerRepository.updatedCustomer(customer)
   
-      return right(customer)
+      return right(result)
     }
     
 }

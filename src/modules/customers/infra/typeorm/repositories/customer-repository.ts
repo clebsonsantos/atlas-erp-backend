@@ -1,4 +1,5 @@
 import { CreateCustomer } from "@/modules/customers/contracts/create-customer";
+import { UpdateCustomer } from "@/modules/customers/contracts/updated-customer";
 import { ICustomerRepository } from "@/modules/customers/repositories/icustomer-repository";
 import { getRepository, Repository } from "typeorm"
 import { Customer } from "../entities/customer";
@@ -43,10 +44,12 @@ export class CustomerRepository implements ICustomerRepository {
       return false
     }
   }
+  
   async findByFullName(fullName: string): Promise<Customer> {
     const customer = await this.repository.findOne({ full_name: fullName })
     return customer
   }
+
   async findAll(): Promise<Customer[]> {
     const customers = await this.repository.find({
       order: {
@@ -54,5 +57,10 @@ export class CustomerRepository implements ICustomerRepository {
       }
     })
     return customers
+  }
+
+  async updatedCustomer(customer: UpdateCustomer.Params): Promise<Customer> {
+    const result = await this.repository.save(customer)
+    return result
   }
 }
