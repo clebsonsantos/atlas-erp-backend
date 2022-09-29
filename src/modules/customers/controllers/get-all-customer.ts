@@ -3,7 +3,6 @@ import { GetAllCustomersUseCase } from "@/modules/customers/usecases/get-all-cus
 import { Request, Response } from "express";
 
 
-
 export class GetAllCustomersController {
 
   async handle(request: Request, response: Response) {
