@@ -33,7 +33,6 @@ import { UpdateAdministratorController } from '@/controllers/administrator/Updat
 import { GetAdministratorController } from '@/controllers/administrator/GetAdministratorController';
 import { GetAllUsersController } from '@/controllers/user/GetAllUsersController';
 import { UpdateInformationsUserController } from '@/controllers/user/UpdateInformationsUserController';
-import { DeleteUserController } from '@/controllers/user/DeleteUserController';
 import { UpdateProductController } from '@/controllers/products/UpdateProductController';
 import { DeleteProductController } from '@/controllers/products/DeleteProductController';
 import { CreateSaleProductsSoldController } from '@/controllers/sales/CreateSaleProductsSoldController';
@@ -46,6 +45,7 @@ import { GetReportsController } from '@/controllers/reports/GetReportsController
 // Inserindo um arquivo de imagem
 import multer from 'multer'
 import { CreateUserController } from "@/modules/user/controllers/create-user";
+import { DeleteUserController } from "@/modules/user/controllers/delete-user";
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');

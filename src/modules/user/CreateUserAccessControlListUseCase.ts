@@ -18,6 +18,7 @@ export class CreateUserAccessControlListUseCase {
     @inject("UserRepository")
     private userRepository: IUserRepository,
   ) {}
+  
   async execute({
     userId,
     roles,
@@ -43,6 +44,6 @@ export class CreateUserAccessControlListUseCase {
 
     const userResult = await this.userRepository.update(user)
 
-    return user
+    return userResult
   }
 }

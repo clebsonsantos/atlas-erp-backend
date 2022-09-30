@@ -1,7 +1,7 @@
 import { container } from 'tsyringe';
 
 import { Request, Response } from "express";
-import { DeleteUserUseCase } from '../../modules/user/DeleteUserUseCase'
+import { DeleteUserUseCase } from "../usecases/delete-user";
 
 export class DeleteUserController {
 

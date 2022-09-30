@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IUserRepository } from "./repositories/iuser-reposiotry";
+import { IUserRepository } from "../repositories/iuser-reposiotry";
 
 type DeleteType = {
   id: string
