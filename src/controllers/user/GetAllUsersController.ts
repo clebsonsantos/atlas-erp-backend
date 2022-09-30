@@ -1,9 +1,10 @@
+import { container } from 'tsyringe';
 import { Request, Response } from "express";
 import { GetAllUsersUseCase } from "../../modules/user/GetAllUsersUseCase";
 
 export class GetAllUsersController {
   async handle(request: Request, response: Response) {
-    const getAllUsersService = new GetAllUsersUseCase();
+    const getAllUsersService = container.resolve(GetAllUsersUseCase)
 
     const users = await getAllUsersService.execute();
 

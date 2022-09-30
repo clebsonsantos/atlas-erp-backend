@@ -1,3 +1,4 @@
+import { container } from 'tsyringe';
 import { Request, Response } from "express";
 import { CreateUserAccessControlListUseCase } from "../../modules/user/CreateUserAccessControlListUseCase";
 
@@ -6,7 +7,7 @@ export class CreateUserAccessControlListController {
     const { permissions, roles } = request.body;
     const { userId } = request.params;
 
-    const createUserACLService = new CreateUserAccessControlListUseCase();
+    const createUserACLService = container.resolve(CreateUserAccessControlListUseCase)
 
     const result = await createUserACLService.execute({
       userId,

@@ -4,7 +4,6 @@ import { CentersCost } from '../../entities/CentersCost';
 import { Expenses } from '../../entities/Expenses';
 import { Product } from '../../entities/Product';
 import { Sales } from '../../entities/Sales';
-import { User } from '../../entities/User';
 import { CategoriesCenterReports } from '../../modules/reports/CategoriesCenterReports';
 import { CustomersReports } from '../../modules/reports/CustomersReports';
 import { ExpensesReports } from '../../modules/reports/ExpensesReports';
@@ -13,6 +12,7 @@ import { ProductsReports } from '../../modules/reports/ProductsReports';
 import { UsersReports } from '../../modules/reports/UsersReports';
 import { SalesReports } from '../../modules/reports/SalesReports';
 import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
+import { User } from "@/modules/user/infra/typeorm/entities/user";
 
 
 

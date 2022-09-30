@@ -13,7 +13,6 @@ import { CreateProductController } from "@/controllers/products/CreateProductCon
 import { CreateRoleController } from "@/controllers/roles/CreateRoleController";
 import { CreateRolePermissionController } from "@/controllers/roles/CreateRolePermissionController";
 import { CreateUserAccessControlListController } from "@/controllers/user/CreateUserAccessControlListController";
-import { CreateUserController } from "@/controllers/user/CreateUserController";
 import { GetAllProductsController } from "@/controllers/products/GetAllProductsController";
 import { SessionController } from "@/controllers/authentication/SessionController";
 
@@ -46,6 +45,7 @@ import { GetReportsController } from '@/controllers/reports/GetReportsController
 
 // Inserindo um arquivo de imagem
 import multer from 'multer'
+import { CreateUserController } from "@/modules/user/controllers/create-user";
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');

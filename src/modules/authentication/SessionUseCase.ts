@@ -1,6 +1,7 @@
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { UserRepository } from "../../repositories";
+import { User } from "../user/infra/typeorm/entities/user";
 
 type UserRequest = {
   username: string;
@@ -11,7 +12,7 @@ export class SessionUseCase {
   async execute({ username, password }: UserRequest) {
     const repo = UserRepository();
 
-    const user = await repo.findOne({ username }, {relations: ['permissions', 'roles']});
+    const user = await repo.findOne({ username }, {relations: ['permissions', 'roles']}) as unknown as User
 
     if (!user) {
       return new Error("Usuário não existe.");

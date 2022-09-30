@@ -1,32 +1,30 @@
+import { BaseEntity } from "@/entities/BaseEntity"
+import { Permission } from "@/entities/Permission"
+import { Role } from "@/entities/Role"
+
 import {
   Column,
   Entity,
-  getRepository,
-  JoinColumn,
   JoinTable,
   ManyToMany,
-  RelationId,
-} from "typeorm";
-import { BaseEntity } from "./BaseEntity";
-import { Permission } from "./Permission";
-import { Role } from "./Role";
+} from "typeorm"
 
 @Entity("users")
 export class User extends BaseEntity {
   @Column()
-  username: string;
+  username: string
 
   @Column()
-  password: string;
+  password: string
 
   @Column()
-  email: string;
+  email: string
 
   @Column()
-  phone: string;
+  phone: string
 
   @Column()
-  full_name: string;
+  full_name: string
 
   @ManyToMany(() => Role)
   @JoinTable({
@@ -34,7 +32,7 @@ export class User extends BaseEntity {
     joinColumns: [{ name: "user_id" }],
     inverseJoinColumns: [{ name: "role_id" }],
   })
-  roles: Role[];
+  roles: Role[]
 
   @ManyToMany(() => Permission)
   @JoinTable({
@@ -42,5 +40,5 @@ export class User extends BaseEntity {
     joinColumns: [{ name: "user_id" }],
     inverseJoinColumns: [{ name: "permission_id" }],
   })
-  permissions: Permission[];
+  permissions: Permission[]
 }

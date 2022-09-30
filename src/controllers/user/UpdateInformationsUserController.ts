@@ -1,3 +1,4 @@
+import { container } from 'tsyringe';
 
 import { Request, Response } from "express";
 import {UpdateInformationsUserUseCase} from '../../modules/user/UpdateInformationsUserUseCase'
@@ -9,7 +10,7 @@ export class UpdateInformationsUserController {
     const {username, full_name, phone, password, email} = request.body;
     const { id } = request.params;
 
-    const user = new UpdateInformationsUserUseCase()
+    const user = container.resolve(UpdateInformationsUserUseCase)
     const result = await user.execute({id, username, password, email, full_name, phone})
 
     if(result instanceof Error){

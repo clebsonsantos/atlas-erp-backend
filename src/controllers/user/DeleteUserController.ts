@@ -1,14 +1,13 @@
+import { container } from 'tsyringe';
 
 import { Request, Response } from "express";
 import { DeleteUserUseCase } from '../../modules/user/DeleteUserUseCase'
-
-
 
 export class DeleteUserController {
 
   async handle(request: Request, response: Response) {
     const { id } = request.params;
-    const deleteUser = new DeleteUserUseCase()
+    const deleteUser = container.resolve(DeleteUserUseCase)
 
     const result = await deleteUser.execute({id})
 

@@ -1,11 +1,16 @@
-import { User } from "../../entities/User";
-import { UserRepository } from "../../repositories";
+import { inject, injectable } from "tsyringe";
+import { User } from "./infra/typeorm/entities/user";
+import { IUserRepository } from "./repositories/iuser-reposiotry";
 
+@injectable()
 export class GetAllUsersUseCase {
-  async execute(): Promise<User[]> {
+  constructor(
+    @inject("UserRepository")
+    private userRepository: IUserRepository,
+  ) {}
 
-   //"roles" relationship removed, returning only the permissions
-    const users =  await UserRepository().find({relations: ["permissions"], order: {full_name: "ASC"}})
+  async execute(): Promise<User[]> {
+    const users = this.userRepository.findAll()
     return users
   }
 }

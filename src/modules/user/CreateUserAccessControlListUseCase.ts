@@ -1,43 +1,48 @@
-import { User } from "../../entities/User";
+import { inject, injectable } from "tsyringe"
 import {
   PermissionRepository,
   RoleRepository,
-  UserRepository,
-} from "../../repositories";
+} from "../../repositories"
+import { User } from "./infra/typeorm/entities/user"
+import { IUserRepository } from "./repositories/iuser-reposiotry"
 
 type UserACLRequest = {
-  userId: string;
-  roles: string[];
-  permissions: string[];
-};
+  userId: string
+  roles: string[]
+  permissions: string[]
+}
 
+@injectable()
 export class CreateUserAccessControlListUseCase {
+  constructor(
+    @inject("UserRepository")
+    private userRepository: IUserRepository,
+  ) {}
   async execute({
     userId,
     roles,
     permissions,
   }: UserACLRequest): Promise<User | Error> {
-    const repo = UserRepository();
 
-    const user = await repo.findOne(userId);
+    const user = await this.userRepository.findById(userId)
 
     if (!user) {
-      return new Error("Usuário não existe!");
+      return new Error("Usuário não existe!")
     }
 
     const permissionsExists = await PermissionRepository().findByIds(
       permissions
-    );
+    )
     
     if(roles && roles.length >= 1){
-      const rolesExists = await RoleRepository().findByIds(roles);
-      user.roles = rolesExists;
+      const rolesExists = await RoleRepository().findByIds(roles)
+      user.roles = rolesExists
     }
 
-    user.permissions = permissionsExists;
+    user.permissions = permissionsExists
 
-    repo.save(user);
+    const userResult = await this.userRepository.update(user)
 
-    return user;
+    return user
   }
 }

@@ -4,9 +4,9 @@ import { CentersCost } from '../../entities/CentersCost';
 import { Expenses } from '../../entities/Expenses';
 import { Product } from '../../entities/Product';
 import { Sales } from '../../entities/Sales';
-import { User } from '../../entities/User';
 import { CategoryRepository, CenterCostRepository, CustomerRepository, ExpenseRepository, ProductRepository, SalesRepository, UserRepository } from '../../repositories';
 import { Customer } from "../customers/infra/typeorm/entities/customer";
+import { User } from "../user/infra/typeorm/entities/user";
 
 type IReports = {
   action?: string | any;

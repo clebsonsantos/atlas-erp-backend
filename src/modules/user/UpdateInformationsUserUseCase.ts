@@ -1,6 +1,7 @@
 import { hash } from "bcryptjs";
-import { User } from '../../entities/User';
-import { UserRepository } from '../../repositories';
+import { inject, injectable } from "tsyringe";
+import { User } from "./infra/typeorm/entities/user";
+import { IUserRepository } from "./repositories/iuser-reposiotry";
 
 type UsersTypes = {
   id: string
@@ -11,12 +12,16 @@ type UsersTypes = {
   phone: string
 }
 
+@injectable()
 export class UpdateInformationsUserUseCase  {
+  constructor(
+    @inject("UserRepository")
+    private userRepository: IUserRepository,
+  ) {}
 
   async execute({id, username, password, email, full_name, phone}: UsersTypes) :  Promise< User | Error> {
 
-    const usersRepository = UserRepository()
-    const user = await usersRepository.findOne({id})
+    const user = await this.userRepository.findById(id)
 
     if(!user){
       return new Error("Usuário não encontrado.");
@@ -28,7 +33,7 @@ export class UpdateInformationsUserUseCase  {
     user.phone = phone ? phone : user.phone;
     user.password = password ? await hash(password, 8) : user.password;
 
-    usersRepository.save(user)
-    return user
+    const userResult = await this.userRepository.update(user)
+    return userResult
   }
 }

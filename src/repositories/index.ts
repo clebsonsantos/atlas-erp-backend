@@ -1,5 +1,4 @@
 import { Role } from "../entities/Role";
-import { User } from "../entities/User";
 import { getRepository } from "typeorm";
 import { Product } from "../entities/Product";
 import { Permission } from "../entities/Permission";
@@ -11,6 +10,7 @@ import { ProductSales } from '../entities/ProductSales';
 import { Sales } from '../entities/Sales';
 import { RelationsSaleProductsSolds } from '../entities/RelationsSaleProductsSolds';
 import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
+import { User } from "@/modules/user/infra/typeorm/entities/user";
 
 export const UserRepository = () => {
   return getRepository(User);
