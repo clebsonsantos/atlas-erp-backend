@@ -31,7 +31,6 @@ import { DeleteCenterCostController } from '@/controllers/centercost/DeleteCente
 import { CreateAdministratorController } from '@/controllers/administrator/CreateAdministratorController';
 import { UpdateAdministratorController } from '@/controllers/administrator/UpdateAdministratorController';
 import { GetAdministratorController } from '@/controllers/administrator/GetAdministratorController';
-import { GetAllUsersController } from '@/controllers/user/GetAllUsersController';
 import { UpdateInformationsUserController } from '@/controllers/user/UpdateInformationsUserController';
 import { UpdateProductController } from '@/controllers/products/UpdateProductController';
 import { DeleteProductController } from '@/controllers/products/DeleteProductController';
@@ -46,6 +45,7 @@ import { GetReportsController } from '@/controllers/reports/GetReportsController
 import multer from 'multer'
 import { CreateUserController } from "@/modules/user/controllers/create-user";
 import { DeleteUserController } from "@/modules/user/controllers/delete-user";
+import { FindAllUsersController } from "@/modules/user/controllers/find-all-users";
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');
@@ -64,7 +64,7 @@ routes.use("/customers", customerRoutes);
 
 // Usuários e Login
 routes.post("/users", ensuredAuthenticated(), can(["admin"]), new CreateUserController().handle);
-routes.get("/users",  ensuredAuthenticated(), new GetAllUsersController().handle);
+routes.get("/users",  ensuredAuthenticated(), new FindAllUsersController().handle);
 routes.post("/find_user",  ensuredAuthenticated(), new FindOneUserController().handle);
 routes.put("/users/:id", ensuredAuthenticated(), ensuredValidateUUID(), new UpdateInformationsUserController().handle);
 routes.delete("/users/:id", ensuredAuthenticated(), can(["admin"]), ensuredValidateUUID(), new DeleteUserController().handle);
