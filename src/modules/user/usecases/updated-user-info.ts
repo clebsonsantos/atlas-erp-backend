@@ -13,7 +13,7 @@ export class UpdatedUserInfoUserUseCase  {
     private userRepository: IUserRepository,
   ) {}
 
-  async execute({id, username, password, email, full_name, phone}: UpdatedUserInfo.Params) :  Promise<UpdatedUserInfo.Result> {
+  async execute({ id, username, password, email, full_name, phone}: UpdatedUserInfo.Params) :  Promise<UpdatedUserInfo.Result> {
 
     const user = await this.userRepository.findById(id)
 

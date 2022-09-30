@@ -1,6 +1,6 @@
+import { Permission } from "@/modules/permissions/infra/typeorm/entities/permission";
+import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity";
 import { Column, Entity, JoinTable, ManyToMany } from "typeorm";
-import { BaseEntity } from "./BaseEntity";
-import { Permission } from "./Permission";
 
 @Entity("roles")
 export class Role extends BaseEntity {

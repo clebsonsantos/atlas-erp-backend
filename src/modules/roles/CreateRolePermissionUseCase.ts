@@ -1,5 +1,5 @@
-import { Role } from "../../entities/Role";
 import { PermissionRepository, RoleRepository } from "../../repositories";
+import { Role } from "./infra/typeorm/entities/role";
 
 type RolePermissionRequest = {
   roleId: string;

@@ -1,9 +1,5 @@
 import { Request, Response } from "express";
-import { Category } from '../../entities/Category';
-import { CentersCost } from '../../entities/CentersCost';
-import { Expenses } from '../../entities/Expenses';
-import { Product } from '../../entities/Product';
-import { Sales } from '../../entities/Sales';
+
 import { CategoriesCenterReports } from '../../modules/reports/CategoriesCenterReports';
 import { CustomersReports } from '../../modules/reports/CustomersReports';
 import { ExpensesReports } from '../../modules/reports/ExpensesReports';
@@ -13,6 +9,11 @@ import { UsersReports } from '../../modules/reports/UsersReports';
 import { SalesReports } from '../../modules/reports/SalesReports';
 import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
 import { User } from "@/modules/user/infra/typeorm/entities/user";
+import { Expenses } from "@/modules/expenses/infra/typeorm/entities/expense";
+import { Sales } from "@/modules/sales/infra/typeorm/entities/sale";
+import { Product } from "@/modules/products/infra/typeorm/entities/product";
+import { CentersCost } from "@/modules/centercost/infra/typeorm/entities/center-cost";
+import { Category } from "@/modules/categories/infra/typeorm/entities/category";
 
 
 

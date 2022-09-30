@@ -1,6 +1,6 @@
 
-import { Expenses } from '../../entities/Expenses';
 import { ExpenseRepository } from "../../repositories";
+import { Expenses } from "./infra/typeorm/entities/expense";
 
 
 export class GetAllExpensesUseCase  {

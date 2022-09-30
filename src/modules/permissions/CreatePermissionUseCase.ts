@@ -1,5 +1,5 @@
-import { Permission } from "../../entities/Permission";
 import { PermissionRepository } from "@/repositories";
+import { Permission } from "./infra/typeorm/entities/permission";
 
 type PermissionRequest = {
   name: string;

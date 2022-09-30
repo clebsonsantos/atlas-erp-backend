@@ -1,9 +1,10 @@
+import { Product } from "@/modules/products/infra/typeorm/entities/product";
+import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity";
 import { Column, Entity, JoinColumn, OneToOne } from "typeorm";
-import { BaseEntity } from './BaseEntity';
-import { Product } from './Product';
+
 
 @Entity("products_solds")
-export class ProductSales extends BaseEntity{
+export class ProductSales extends BaseEntity {
 
   @Column()
   id_product: string;

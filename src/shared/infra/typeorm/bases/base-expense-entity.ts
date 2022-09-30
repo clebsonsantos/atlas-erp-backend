@@ -1,4 +1,3 @@
-// ENTIDADE BASE AS DESPESAS
 import { v4 as uuid } from "uuid";
 import { Column, CreateDateColumn, PrimaryColumn} from "typeorm";
 

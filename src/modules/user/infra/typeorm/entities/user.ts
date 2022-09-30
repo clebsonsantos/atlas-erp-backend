@@ -1,7 +1,8 @@
-import { BaseEntity } from "@/entities/BaseEntity"
-import { Permission } from "@/entities/Permission"
-import { Role } from "@/entities/Role"
 
+
+import { Permission } from "@/modules/permissions/infra/typeorm/entities/permission"
+import { Role } from "@/modules/roles/infra/typeorm/entities/role"
+import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity"
 import {
   Column,
   Entity,

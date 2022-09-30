@@ -1,7 +1,8 @@
+import { Category } from "@/modules/categories/infra/typeorm/entities/category";
+import { CentersCost } from "@/modules/centercost/infra/typeorm/entities/center-cost";
+import { BaseExpenses } from "@/shared/infra/typeorm/bases/base-expense-entity";
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
-import { BaseExpenses } from './BaseExpenses';
-import { Category } from './Category';
-import { CentersCost } from './CentersCost';
+
 
 @Entity("expenses")
 export class Expenses extends BaseExpenses {
@@ -19,7 +20,5 @@ export class Expenses extends BaseExpenses {
   @ManyToOne(() => Category)
   @JoinColumn({name: "category_id"})
   category: Category;
-
-
 
 }

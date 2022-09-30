@@ -1,5 +1,5 @@
+import { Administrator } from "@/modules/administrator/infra/typeorm/entities/adminitrator";
 import { PageOrientation, Size, TDocumentDefinitions } from 'pdfmake/interfaces';
-import { Administrator } from '../../../entities/Administrator';
 import formatCurrency from '../../../utils/formatCurrency';
 import HeadersReport from './header';
 

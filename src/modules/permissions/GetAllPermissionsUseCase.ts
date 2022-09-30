@@ -1,5 +1,5 @@
 import { PermissionRepository } from '../../repositories/index';
-import { Permission } from '../../entities/Permission'
+import { Permission } from "./infra/typeorm/entities/permission";
 
 export class GetAllPermissionsUseCase  {
 

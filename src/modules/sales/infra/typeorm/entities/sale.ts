@@ -1,7 +1,8 @@
 import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, Generated } from "typeorm";
-import { BaseEntity } from './BaseEntity';
-import { ProductSales } from './ProductSales';
+import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity";
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne } from "typeorm";
+import { ProductSales } from "./product-sale";
+
 
 @Entity("sales")
 export class Sales extends BaseEntity {

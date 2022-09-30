@@ -1,5 +1,5 @@
-import { Sales } from '../../entities/Sales';
-import { ProductsSoldsRepository, RelationsSaleProductsRepository, SalesRepository } from '../../repositories'
+import { ProductsSoldsRepository, SalesRepository } from '../../repositories'
+import { Sales } from "./infra/typeorm/entities/sale";
 
 type IproductsSolds = {
   id?: string;

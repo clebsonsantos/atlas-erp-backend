@@ -1,5 +1,5 @@
+import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity";
 import { Column, Entity,  } from "typeorm";
-import { BaseEntity } from "./BaseEntity";
 
 @Entity("administrator")
 export class Administrator extends BaseEntity {

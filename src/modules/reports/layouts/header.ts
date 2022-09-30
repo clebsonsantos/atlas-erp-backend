@@ -1,5 +1,5 @@
+import { Administrator } from "@/modules/administrator/infra/typeorm/entities/adminitrator"
 import { Column } from 'pdfmake/interfaces'
-import { Administrator } from '../../../entities/Administrator'
 
 const HeadersReport = (company: Administrator, classImage:string, styleHeader: string):Column[] => {
    return [
