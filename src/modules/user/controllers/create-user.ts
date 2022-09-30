@@ -9,10 +9,10 @@ export class CreateUserController {
     const createUserService = container.resolve(CreateUserUseCase)
     const result = await createUserService.execute({ username, password, full_name, email, phone});
 
-    if (result instanceof Error) {
-      return response.status(400).json(result.message);
+    if (result.isLeft()) {
+      return response.status(result.value.statusCode).json(result.value.message);
     }
 
-    return response.json(result);
+    return response.json(result.value);
   }
 }

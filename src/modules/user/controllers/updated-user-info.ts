@@ -17,6 +17,6 @@ export class UpdatedUserInfoController {
       return response.status(result.value.statusCode).json(result.value.message)
     }
 
-    return response.status(200).json(result)
+    return response.status(200).json(result.value)
   }
 }

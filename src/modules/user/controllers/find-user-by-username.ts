@@ -13,6 +13,6 @@ export class FindUserByUsernameController {
       return response.json(user.value.message).status(user.value.statusCode);
     }
 
-    return response.json(user);
+    return response.json(user.value);
   }
 }

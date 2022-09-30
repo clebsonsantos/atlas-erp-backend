@@ -1,4 +1,5 @@
 import { Either, left, right } from "@/shared/either"
+import { AppError } from "@/shared/errors/AppError"
 import { hash } from "bcryptjs"
 import { inject, injectable } from "tsyringe"
 import { CreateUser } from "../contracts/create-user"
@@ -16,13 +17,13 @@ export class CreateUserUseCase {
     const validateParams = this.validateParams({ password, username, full_name, email, phone })
 
     if(validateParams.isLeft()) {
-      return left(new Error(validateParams.value))
+      return left(new AppError(validateParams.value, 400))
     }
-    
+
     const existUser = await this.userRepository.findByUserName(username)
 
     if (existUser) {
-      return left(new Error("Usuário já existe!"))
+      return left(new AppError("Usuário já existe!", 400))
     }
 
     const passwordHash = await hash(password, 8)
