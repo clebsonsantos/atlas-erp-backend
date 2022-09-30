@@ -1,6 +1,6 @@
+import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
 import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, Generated } from "typeorm";
 import { BaseEntity } from './BaseEntity';
-import { Customers } from './Customers';
 import { ProductSales } from './ProductSales';
 
 @Entity("sales")
@@ -15,9 +15,9 @@ export class Sales extends BaseEntity {
   @Column()
   salesman: string;
 
-  @ManyToOne(() => Customers)
+  @ManyToOne(() => Customer)
   @JoinColumn({name: "customer_id"})
-  customer: Customers;
+  customer: Customer;
 
   @Column()
   sale_number: number;

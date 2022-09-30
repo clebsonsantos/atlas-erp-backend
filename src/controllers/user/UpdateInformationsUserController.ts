@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import {UpdateInformationsUserUseCase} from '../../usecases/user/UpdateInformationsUserUseCase'
+import {UpdateInformationsUserUseCase} from '../../modules/user/UpdateInformationsUserUseCase'
 
 
 export class UpdateInformationsUserController {

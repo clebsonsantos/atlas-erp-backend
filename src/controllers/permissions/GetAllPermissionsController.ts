@@ -1,4 +1,4 @@
-import { GetAllPermissionsUseCase } from './../../usecases/permissions/GetAllPermissionsUseCase';
+import { GetAllPermissionsUseCase } from '../../modules/permissions/GetAllPermissionsUseCase';
 
 import { Request, Response } from "express";
 

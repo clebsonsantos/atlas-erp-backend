@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateRolePermissionUseCase } from "../../usecases/roles/CreateRolePermissionUseCase";
+import { CreateRolePermissionUseCase } from "../../modules/roles/CreateRolePermissionUseCase";
 
 export class CreateRolePermissionController {
   async handle(request: Request, response: Response) {

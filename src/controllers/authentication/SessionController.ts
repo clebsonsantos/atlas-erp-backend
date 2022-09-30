@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { SessionUseCase } from "../../usecases/authentication/SessionUseCase";
+import { SessionUseCase } from "../../modules/authentication/SessionUseCase";
 
 export class SessionController {
   async handle(request: Request, response: Response) {

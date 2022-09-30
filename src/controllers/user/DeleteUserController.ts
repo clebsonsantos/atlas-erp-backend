@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { DeleteUserUseCase } from '../../usecases/user/DeleteUserUseCase'
+import { DeleteUserUseCase } from '../../modules/user/DeleteUserUseCase'
 
 
 

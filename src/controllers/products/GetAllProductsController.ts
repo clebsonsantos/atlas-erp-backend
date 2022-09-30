@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { GetAllProductsUseCase } from "../../usecases/products/GetAllProductsUseCase";
+import { GetAllProductsUseCase } from "../../modules/products/GetAllProductsUseCase";
 
 export class GetAllProductsController {
   async handle(request: Request, response: Response) {

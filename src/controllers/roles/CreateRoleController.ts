@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateRoleUseCase } from "../../usecases/roles/CreateRoleUseCase";
+import { CreateRoleUseCase } from "../../modules/roles/CreateRoleUseCase";
 
 export class CreateRoleController {
   async handle(request: Request, response: Response) {

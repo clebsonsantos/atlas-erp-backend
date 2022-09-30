@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateUserAccessControlListUseCase } from "../../usecases/user/CreateUserAccessControlListUseCase";
+import { CreateUserAccessControlListUseCase } from "../../modules/user/CreateUserAccessControlListUseCase";
 
 export class CreateUserAccessControlListController {
   async handle(request: Request, response: Response) {

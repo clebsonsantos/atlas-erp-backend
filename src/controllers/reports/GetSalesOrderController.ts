@@ -1,6 +1,6 @@
 import { SalesRepository } from './../../repositories/index';
 import { Request, Response } from "express";
-import { SalesOrderPrint } from '../../usecases/reports/SalesOrderPrint';
+import { SalesOrderPrint } from '../../modules/reports/SalesOrderPrint';
 import { Sales } from '../../entities/Sales';
 
 

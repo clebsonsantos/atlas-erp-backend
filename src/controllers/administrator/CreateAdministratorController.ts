@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { CreateAdministratorUseCase } from '../../usecases/administrator/CreateAdministratorUseCase';
+import { CreateAdministratorUseCase } from '../../modules/administrator/CreateAdministratorUseCase';
 
 
 

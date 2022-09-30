@@ -1,6 +1,6 @@
 import { UuidValidate } from './../../shared/infra/uuid/uuid-validate';
 import { Request, Response } from "express";
-import { CreateProductsUseCase } from "../../usecases/products/CreateProductsUseCase";
+import { CreateProductsUseCase } from "../../modules/products/CreateProductsUseCase";
 
 const isValidUUID = new UuidValidate()
 export class CreateProductController {
