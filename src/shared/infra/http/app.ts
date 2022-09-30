@@ -1,6 +1,5 @@
 import "reflect-metadata";
 import "../../../main/config/module-alias"
-import "@/shared/infra/typeorm";
 import "@/utils/on-backups"
 
 import * as dotenv from 'dotenv'
@@ -11,6 +10,7 @@ dotenv.config({ path: `${__dirname}/../../.env`});
 import { routes } from "./routes";
 import { AppError } from "@/shared/errors/AppError";
 import { startContainer } from "@/shared/container";
+import "@/shared/infra/typeorm";
 
 const app = express();
 startContainer()
