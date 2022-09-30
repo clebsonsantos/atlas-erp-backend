@@ -1,8 +1,8 @@
 import { container } from 'tsyringe';
 
-import { CreateUserAccessControlListUseCase } from "@/modules/user/CreateUserAccessControlListUseCase";
 import { PermissionRepository, UserRepository } from "@/repositories";
 import { hash } from 'bcryptjs';
+import { CreateUserAccessControlListUseCase } from "@/modules/user/usecases/create-user-access-controll-list";
 
 
 async function CreateUserSupport() {

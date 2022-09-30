@@ -1,16 +1,10 @@
 import { inject, injectable } from "tsyringe"
-import {
-  PermissionRepository,
-  RoleRepository,
-} from "../../repositories"
-import { User } from "./infra/typeorm/entities/user"
-import { IUserRepository } from "./repositories/iuser-reposiotry"
+import { PermissionRepository, RoleRepository } from "@/repositories"
+import { left, right } from "@/shared/either"
+import { AppError } from "@/shared/errors/AppError"
+import { CreateUserAccessControllList } from "../contracts/create-user-access-controll-list"
 
-type UserACLRequest = {
-  userId: string
-  roles: string[]
-  permissions: string[]
-}
+import { IUserRepository } from "../repositories/iuser-reposiotry"
 
 @injectable()
 export class CreateUserAccessControlListUseCase {
@@ -19,16 +13,12 @@ export class CreateUserAccessControlListUseCase {
     private userRepository: IUserRepository,
   ) {}
   
-  async execute({
-    userId,
-    roles,
-    permissions,
-  }: UserACLRequest): Promise<User | Error> {
+  async execute({ permissions, roles, userId }: CreateUserAccessControllList.Params): Promise<CreateUserAccessControllList.Result> {
 
     const user = await this.userRepository.findById(userId)
 
     if (!user) {
-      return new Error("Usuário não existe!")
+      return left(new AppError("Usuário não existe!"))
     }
 
     const permissionsExists = await PermissionRepository().findByIds(
@@ -44,6 +34,6 @@ export class CreateUserAccessControlListUseCase {
 
     const userResult = await this.userRepository.update(user)
 
-    return userResult
+    return right(userResult)
   }
 }

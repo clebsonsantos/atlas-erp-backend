@@ -1,9 +1,8 @@
 import { Router } from "express";
 import { customerRoutes } from "./customer.routes";
+import { userRoutes } from "./user.routes";
 
 const routes = Router();
-
-
 
 import { ensuredValidateUUID, ensuredAuthReports, ensuredAuthenticated, can } from '../middlewares';
 import { GetAllPermissionsController } from '@/controllers/permissions/GetAllPermissionsController';
@@ -12,7 +11,6 @@ import { CreatePermissionController } from "@/controllers/permissions/CreatePerm
 import { CreateProductController } from "@/controllers/products/CreateProductController";
 import { CreateRoleController } from "@/controllers/roles/CreateRoleController";
 import { CreateRolePermissionController } from "@/controllers/roles/CreateRolePermissionController";
-import { CreateUserAccessControlListController } from "@/controllers/user/CreateUserAccessControlListController";
 import { GetAllProductsController } from "@/controllers/products/GetAllProductsController";
 import { SessionController } from "@/controllers/authentication/SessionController";
 
@@ -41,11 +39,6 @@ import { GetReportsController } from '@/controllers/reports/GetReportsController
 
 // Inserindo um arquivo de imagem
 import multer from 'multer'
-import { CreateUserController } from "@/modules/user/controllers/create-user";
-import { DeleteUserController } from "@/modules/user/controllers/delete-user";
-import { FindAllUsersController } from "@/modules/user/controllers/find-all-users";
-import { FindUserByUsernameController } from "@/modules/user/controllers/find-user-by-username";
-import { UpdatedUserInfoController } from "@/modules/user/controllers/updated-user-info";
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');
@@ -62,12 +55,9 @@ const upload = multer({storage})
 // Customers
 routes.use("/customers", customerRoutes);
 
-// Usuários e Login
-routes.post("/users", ensuredAuthenticated(), can(["admin"]), new CreateUserController().handle);
-routes.get("/users",  ensuredAuthenticated(), new FindAllUsersController().handle);
-routes.post("/find_user",  ensuredAuthenticated(), new FindUserByUsernameController().handle);
-routes.put("/users/:id", ensuredAuthenticated(), ensuredValidateUUID(), new UpdatedUserInfoController().handle);
-routes.delete("/users/:id", ensuredAuthenticated(), can(["admin"]), ensuredValidateUUID(), new DeleteUserController().handle);
+// Usuários
+routes.use("/users", userRoutes);
+
 
 routes.post("/login", new SessionController().handle);               
 
@@ -87,13 +77,6 @@ routes.post(
 );
 routes.get('/permissions', ensuredAuthenticated(), new GetAllPermissionsController().handle)
 
-routes.post(
-  "/users/acl/:userId",
-  ensuredAuthenticated(),
-  can(["admin"]),
-  ensuredValidateUUID(),
-  new CreateUserAccessControlListController().handle
-);
 
 routes.post("/roles/:roleId",   
   ensuredAuthenticated(),

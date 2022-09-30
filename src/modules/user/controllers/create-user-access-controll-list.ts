@@ -1,6 +1,6 @@
 import { container } from 'tsyringe';
 import { Request, Response } from "express";
-import { CreateUserAccessControlListUseCase } from "../../modules/user/CreateUserAccessControlListUseCase";
+import { CreateUserAccessControlListUseCase } from "../usecases/create-user-access-controll-list";
 
 export class CreateUserAccessControlListController {
   async handle(request: Request, response: Response) {
@@ -15,10 +15,10 @@ export class CreateUserAccessControlListController {
       roles,
     });
 
-    if (result instanceof Error) {
-      return response.status(400).json(result.message);
+    if (result.isLeft()) {
+      return response.status(result.value.statusCode).json(result.value.message);
     }
 
-    return response.json(result);
+    return response.json(result.value);
   }
 }
