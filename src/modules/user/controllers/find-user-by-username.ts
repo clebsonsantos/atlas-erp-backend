@@ -8,7 +8,7 @@ export class FindUserByUsernameController {
     const { username } = request.body
     const findOne = container.resolve(FindUserByUsernameUseCase)
 
-    const user = await findOne.execute(username);
+    const user = await findOne.execute({ username });
     if (user.isLeft()) {
       return response.json(user.value.message).status(user.value.statusCode);
     }

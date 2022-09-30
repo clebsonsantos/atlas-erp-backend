@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import "../../../main/config/module-alias"
-import "@/utils/on-backups"
+// import "@/utils/on-backups"
 
 import * as dotenv from 'dotenv'
 import express, { NextFunction, Request, Response } from "express";
@@ -10,9 +10,9 @@ dotenv.config({ path: `${__dirname}/../../.env`});
 import { routes } from "./routes";
 import { AppError } from "@/shared/errors/AppError";
 import { startContainer } from "@/shared/container";
-import "@/shared/infra/typeorm";
 
 const app = express();
+import "@/shared/infra/typeorm";
 startContainer()
 app.use(cors())
 app.use('/uploads', express.static('uploads'))
@@ -34,4 +34,4 @@ app.use(
   }
   );
 
-  export { app }
+export { app }

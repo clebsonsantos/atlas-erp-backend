@@ -4,10 +4,10 @@ module.exports = {
   "host": process.env.POSTGRES,
   "username": process.env.POSTGRES_NAME,
   "password": process.env.POSTGRES_PASSWORD,
-  "database": "atlas_softmanager",
-  "entities": ["./src/modules/**/infra/typeorm/entities/*.ts"],
-  "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
+  "database": "expense_manager_software",
+  "entities": ["./dist/modules/**/infra/typeorm/entities/*.js"],
+  "migrations": ["./dist/shared/infra/typeorm/migrations/*.js"],
   "cli": {
-    "migrationsDir": "./src/shared/infra/typeorm/migrations"
+    "migrationsDir": "./dist/shared/infra/typeorm/migrations"
   }
 }
