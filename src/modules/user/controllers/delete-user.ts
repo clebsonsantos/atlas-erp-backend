@@ -9,12 +9,12 @@ export class DeleteUserController {
     const { id } = request.params;
     const deleteUser = container.resolve(DeleteUserUseCase)
 
-    const result = await deleteUser.execute({id})
+    const result = await deleteUser.execute({ id })
 
-    if(result instanceof Error){
-      return response.status(400).json(result.message)
+    if(result.isLeft()){
+      return response.status(result.value.statusCode).json(result.value.message)
     }
 
-    return response.json(result)
+    return response.json(result.value)
   }
 }
