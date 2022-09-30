@@ -37,7 +37,7 @@ export class UpdateCustomerController {
     })
 
     if(result.isLeft()){
-      return response.status(400).json(result.value)
+      return response.status(result.value.statusCode).json(result.value.message)
     }
 
     return response.status(200).json(result.value)

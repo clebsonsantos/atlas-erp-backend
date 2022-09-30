@@ -1,4 +1,5 @@
 import { left, right } from "@/shared/either";
+import { AppError } from "@/shared/errors/AppError";
 import { inject, injectable } from "tsyringe";
 import { UpdateCustomer } from "../contracts/updated-customer";
 import { ICustomerRepository } from "../repositories/icustomer-repository";
@@ -16,7 +17,7 @@ export class UpdateCustomerUseCase {
       const customer = await this.customerRepository.findById(id)
   
       if(!customer){
-        return left(new Error('Cliente não existe.'))
+        return left(new AppError('Cliente não existe.', 404))
       }
   
       customer.full_name = full_name ? full_name : customer.full_name;
