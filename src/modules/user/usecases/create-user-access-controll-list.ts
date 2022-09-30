@@ -18,7 +18,7 @@ export class CreateUserAccessControlListUseCase {
     const user = await this.userRepository.findById(userId)
 
     if (!user) {
-      return left(new AppError("Usuário não existe!"))
+      return left(new AppError("Usuário não existe!", 404))
     }
 
     const permissionsExists = await PermissionRepository().findByIds(
