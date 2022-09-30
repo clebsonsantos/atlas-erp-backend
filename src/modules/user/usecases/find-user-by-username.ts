@@ -1,4 +1,5 @@
 import { left, right } from "@/shared/either";
+import { AppError } from "@/shared/errors/AppError";
 import { inject, injectable } from "tsyringe";
 import { FindUserByUsername } from "../contracts/find-user-by-username";
 import { User } from "../infra/typeorm/entities/user";
@@ -14,7 +15,7 @@ export class FindUserByUsernameUseCase {
   async execute({ username }: FindUserByUsername.Params): Promise<FindUserByUsername.Result> {
     const user = await this.userRepository.findByUserName(username)
     if (!user) {
-      return left(new Error("Usuário não existe"))
+      return left(new AppError("Usuário não existe", 404))
     }
     return right(user)
   }

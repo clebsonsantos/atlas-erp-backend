@@ -31,7 +31,6 @@ import { DeleteCenterCostController } from '@/controllers/centercost/DeleteCente
 import { CreateAdministratorController } from '@/controllers/administrator/CreateAdministratorController';
 import { UpdateAdministratorController } from '@/controllers/administrator/UpdateAdministratorController';
 import { GetAdministratorController } from '@/controllers/administrator/GetAdministratorController';
-import { UpdateInformationsUserController } from '@/controllers/user/UpdateInformationsUserController';
 import { UpdateProductController } from '@/controllers/products/UpdateProductController';
 import { DeleteProductController } from '@/controllers/products/DeleteProductController';
 import { CreateSaleProductsSoldController } from '@/controllers/sales/CreateSaleProductsSoldController';
@@ -46,6 +45,7 @@ import { CreateUserController } from "@/modules/user/controllers/create-user";
 import { DeleteUserController } from "@/modules/user/controllers/delete-user";
 import { FindAllUsersController } from "@/modules/user/controllers/find-all-users";
 import { FindUserByUsernameController } from "@/modules/user/controllers/find-user-by-username";
+import { UpdatedUserInfoController } from "@/modules/user/controllers/updated-user-info";
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');
@@ -66,7 +66,7 @@ routes.use("/customers", customerRoutes);
 routes.post("/users", ensuredAuthenticated(), can(["admin"]), new CreateUserController().handle);
 routes.get("/users",  ensuredAuthenticated(), new FindAllUsersController().handle);
 routes.post("/find_user",  ensuredAuthenticated(), new FindUserByUsernameController().handle);
-routes.put("/users/:id", ensuredAuthenticated(), ensuredValidateUUID(), new UpdateInformationsUserController().handle);
+routes.put("/users/:id", ensuredAuthenticated(), ensuredValidateUUID(), new UpdatedUserInfoController().handle);
 routes.delete("/users/:id", ensuredAuthenticated(), can(["admin"]), ensuredValidateUUID(), new DeleteUserController().handle);
 
 routes.post("/login", new SessionController().handle);               
