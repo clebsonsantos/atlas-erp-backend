@@ -38,7 +38,6 @@ import { CreateSaleProductsSoldController } from '@/controllers/sales/CreateSale
 import { GettAllSaleProductsController } from '@/controllers/sales/GettAllSaleProductsController';
 import { DeleteSaleProductsController } from '@/controllers/sales/DeleteSaleProductsController';
 import { UpdateSaleProductsController } from '@/controllers/sales/UpdateSaleProductsController';
-import { FindOneUserController } from '@/controllers/user/FindOneUserController';
 import { GetReportsController } from '@/controllers/reports/GetReportsController';
 
 // Inserindo um arquivo de imagem
@@ -46,6 +45,7 @@ import multer from 'multer'
 import { CreateUserController } from "@/modules/user/controllers/create-user";
 import { DeleteUserController } from "@/modules/user/controllers/delete-user";
 import { FindAllUsersController } from "@/modules/user/controllers/find-all-users";
+import { FindUserByUsernameController } from "@/modules/user/controllers/find-user-by-username";
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');
@@ -65,7 +65,7 @@ routes.use("/customers", customerRoutes);
 // Usuários e Login
 routes.post("/users", ensuredAuthenticated(), can(["admin"]), new CreateUserController().handle);
 routes.get("/users",  ensuredAuthenticated(), new FindAllUsersController().handle);
-routes.post("/find_user",  ensuredAuthenticated(), new FindOneUserController().handle);
+routes.post("/find_user",  ensuredAuthenticated(), new FindUserByUsernameController().handle);
 routes.put("/users/:id", ensuredAuthenticated(), ensuredValidateUUID(), new UpdateInformationsUserController().handle);
 routes.delete("/users/:id", ensuredAuthenticated(), can(["admin"]), ensuredValidateUUID(), new DeleteUserController().handle);
 
