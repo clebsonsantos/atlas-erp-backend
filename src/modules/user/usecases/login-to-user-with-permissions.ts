@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe"
 import { compare } from "bcryptjs"
 import { sign } from "jsonwebtoken"
 import { AppError } from "@/shared/errors/AppError"
-import { IUserRepository } from "../repositories/iuser-reposiotry"
+import { IUserRepository } from "../repositories/iuser-repository"
 import { LoginToUser } from "../contracts/login-to-user-with-permissions"
 import { left, right } from "@/shared/either"
 

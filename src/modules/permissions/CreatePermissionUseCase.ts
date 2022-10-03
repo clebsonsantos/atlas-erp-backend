@@ -1,26 +1,23 @@
-import { PermissionRepository } from "@/repositories";
-import { Permission } from "./infra/typeorm/entities/permission";
-
-type PermissionRequest = {
-  name: string;
-  description: string;
-};
+import { PermissionRepository } from "@/repositories"
+import { left, right } from "@/shared/either"
+import { AppError } from "@/shared/errors/AppError"
+import { CreatePermission } from "./contracts/create-permission"
 
 export class CreatePermissionUseCase {
   async execute({
     name,
     description,
-  }: PermissionRequest): Promise<Permission | Error> {
-    const repo = PermissionRepository();
+  }: CreatePermission.Params): Promise<CreatePermission.Result> {
+    const repo = PermissionRepository()
 
     if (await repo.findOne({ name })) {
-      return new Error("Permissão já existe!");
+      return left(new AppError("Permissão já existe!"))
     }
 
-    const permission = repo.create({ name, description });
+    const permission = repo.create({ name, description })
 
-    await repo.save(permission);
+    await repo.save(permission)
 
-    return permission;
+    return right(permission)
   }
 }
