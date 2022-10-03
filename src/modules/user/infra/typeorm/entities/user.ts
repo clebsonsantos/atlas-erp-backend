@@ -1,5 +1,3 @@
-
-
 import { Permission } from "@/modules/permissions/infra/typeorm/entities/permission"
 import { Role } from "@/modules/roles/infra/typeorm/entities/role"
 import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity"
