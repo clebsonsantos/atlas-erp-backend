@@ -12,7 +12,6 @@ import { CreateProductController } from "@/controllers/products/CreateProductCon
 import { CreateRoleController } from "@/controllers/roles/CreateRoleController";
 import { CreateRolePermissionController } from "@/controllers/roles/CreateRolePermissionController";
 import { GetAllProductsController } from "@/controllers/products/GetAllProductsController";
-import { SessionController } from "@/controllers/authentication/SessionController";
 
 import { CreateExpensesController } from '@/controllers/expenses/CreateExpensesController';
 import { CreateCategoryController } from '@/controllers/categories/CreateCategoryController';
@@ -39,6 +38,7 @@ import { GetReportsController } from '@/controllers/reports/GetReportsController
 
 // Inserindo um arquivo de imagem
 import multer from 'multer'
+import { CreateSessionLoginController } from "@/modules/user/controllers/create-session-login";
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads');
@@ -52,14 +52,10 @@ const storage = multer.diskStorage({
 const upload = multer({storage})
 // Fim
 
-// Customers
+// ?? Rotas refatoradas.
 routes.use("/customers", customerRoutes);
-
-// Usuários
 routes.use("/users", userRoutes);
-
-
-routes.post("/login", new SessionController().handle);               
+routes.post("/login", new CreateSessionLoginController().handle);               
 
 
 routes.post(
