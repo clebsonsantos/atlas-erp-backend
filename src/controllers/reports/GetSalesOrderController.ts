@@ -1,7 +1,7 @@
 import { SalesRepository } from './../../repositories/index';
 import { Request, Response } from "express";
 import { SalesOrderPrint } from '../../modules/reports/SalesOrderPrint';
-import { Sales } from '../../entities/Sales';
+import { Sales } from "@/modules/sales/infra/typeorm/entities/sale";
 
 
 export class GetSalesOrderController {

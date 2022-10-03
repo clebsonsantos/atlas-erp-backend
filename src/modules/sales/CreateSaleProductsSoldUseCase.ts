@@ -1,10 +1,8 @@
-// import { ProductSales } from '../../entities/ProductSales';
-import { Sales } from '../../entities/Sales';
 import {
   CustomerRepository,
   ProductsSoldsRepository,
-  // RelationsSaleProductsRepository,
   SalesRepository } from '../../repositories';
+import { Sales } from "./infra/typeorm/entities/sale";
 
 
 type IproductsSolds = {

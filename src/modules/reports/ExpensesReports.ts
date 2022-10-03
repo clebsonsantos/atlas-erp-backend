@@ -1,9 +1,9 @@
-import { Expenses } from '../../entities/Expenses';
 import { Column, TableCell } from 'pdfmake/interfaces';
 import { Response } from 'express';
 import { DefaultsConfigReport } from './DefaultsConfigReport';
 import { CategoryRepository } from '../../repositories';
 import formatCurrency from '../../utils/formatCurrency';
+import { Expenses } from "../expenses/infra/typeorm/entities/expense";
 
 export class ExpensesReports  {
 

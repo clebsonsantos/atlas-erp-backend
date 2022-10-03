@@ -1,4 +1,5 @@
 import { left, right } from "@/shared/either";
+import { AppError } from "@/shared/errors/AppError";
 import { inject, injectable } from "tsyringe";
 import { DeleteCustomer } from "../contracts/delete-customer";
 import { ICustomerRepository } from "../repositories/icustomer-repository";
@@ -11,17 +12,17 @@ export class DeleteCustomerUseCase {
     private customerRepository: ICustomerRepository,
   ) {}
 
-  async execute({ id }: DeleteCustomer.Params){
+  async execute({ id }: DeleteCustomer.Params): Promise<DeleteCustomer.Result> {
     const customer = await this.customerRepository.findById(id)
 
     if(!customer){
-      return left(new Error("Cliente não encontrado."));
+      return left(new AppError("Cliente não encontrado.", 404));
     }
 
     const success = await this.customerRepository.removeById(id)
 
     if(!success){
-      return left(new Error("Ocorreu um erro ao deletar esse registro. Verifique se há relacionamentos que dependem dele ou tente novamente."))
+      return left(new AppError("Ocorreu um erro ao deletar esse registro. Verifique se há relacionamentos que dependem dele ou tente novamente."))
     }
     return right("Cliente deletado com sucesso")
     

@@ -1,5 +1,5 @@
-import { Administrator } from '../../entities/Administrator';
 import { AdministratorRepository } from '../../repositories';
+import { Administrator } from "./infra/typeorm/entities/adminitrator";
 
 type AdministratorTypes = {
   razao: string;

@@ -1,7 +1,7 @@
-import { User } from '../../entities/User';
 import { TableCell } from 'pdfmake/interfaces';
 import { Response } from 'express';
 import { DefaultsConfigReport } from './DefaultsConfigReport';
+import { User } from "../user/infra/typeorm/entities/user";
 
 export class UsersReports  {
 

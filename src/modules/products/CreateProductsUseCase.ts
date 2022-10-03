@@ -1,5 +1,5 @@
-import { Product } from '../../entities/Product';
 import { CenterCostRepository, ProductRepository } from "../../repositories";
+import { Product } from "./infra/typeorm/entities/product";
 
 type ProductRequest = {
   name: string;

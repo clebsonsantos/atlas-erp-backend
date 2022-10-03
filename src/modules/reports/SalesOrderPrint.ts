@@ -1,12 +1,12 @@
-import { Sales } from '../../entities/Sales';
 import { TableCell } from 'pdfmake/interfaces';
 import { Response } from 'express';
-import { Administrator } from '../../entities/Administrator';
 import { AdministratorRepository, ProductRepository } from '../../repositories';
 import salesOrdes from './layouts/salesOrder';
 import LogoImage from './LogoImage'
 import { ResponseReportClient } from './ResponseReportClient';
 import formatCurrency from '../../utils/formatCurrency';
+import { Sales } from "../sales/infra/typeorm/entities/sale";
+import { Administrator } from "../administrator/infra/typeorm/entities/adminitrator";
 
 type SalesORder =  {
   Sales: Sales, 

@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 
 export const ensuredValidateUUID = () => {
   return async (request: Request, response: Response, next: NextFunction) => {
-    const { id } = request.body ?? request.params
+    const id = request.body.id ?? request.params.id
 
     const isValid = new UuidValidate()
 

@@ -1,7 +1,8 @@
+import { container } from 'tsyringe';
 
-import { CreateUserAccessControlListUseCase } from "@/modules/user/CreateUserAccessControlListUseCase";
 import { PermissionRepository, UserRepository } from "@/repositories";
 import { hash } from 'bcryptjs';
+import { CreateUserAccessControlListUseCase } from "@/modules/user/usecases/create-user-access-controll-list";
 
 
 async function CreateUserSupport() {
@@ -25,7 +26,7 @@ async function CreateUserSupport() {
     const permissions = [permission[0].id]
     const userId = onNewuUser.id
     
-    const createPermissions = new CreateUserAccessControlListUseCase()
+    const createPermissions = container.resolve(CreateUserAccessControlListUseCase)
     await createPermissions.execute({userId, roles: [], permissions})
     console.log("[ Usuário de inicialização criado ]")
     return 

@@ -1,9 +1,9 @@
 
-import { Product } from '../../entities/Product';
 import { TableCell } from 'pdfmake/interfaces';
 import { Response } from 'express';
 import { DefaultsConfigReport } from './DefaultsConfigReport';
 import formatCurrency from '../../utils/formatCurrency';
+import { Product } from "../products/infra/typeorm/entities/product";
 
 export class ProductsReports  {
 

@@ -14,7 +14,7 @@ export class DeleteCustomerController {
     const result = await deleteCustomer.execute({id})
 
     if(result.isLeft()){
-      return response.status(400).json(result.value)
+      return response.status(result.value.statusCode).json(result.value.message)
     }
 
     return response.json(result.value)

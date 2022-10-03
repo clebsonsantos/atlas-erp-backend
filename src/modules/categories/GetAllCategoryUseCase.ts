@@ -1,5 +1,5 @@
-import { Category } from '../../entities/Category';
 import { CategoryRepository } from '../../repositories';
+import { Category } from "./infra/typeorm/entities/category";
 
 export class GetAllCategoryUseCase  {
 

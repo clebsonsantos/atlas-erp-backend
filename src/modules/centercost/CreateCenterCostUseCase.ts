@@ -1,5 +1,5 @@
-import { CentersCost } from '../../entities/CentersCost';
 import { CenterCostRepository } from '../../repositories';
+import { CentersCost } from "./infra/typeorm/entities/center-cost";
 
 type CategoryType = {
   name: string

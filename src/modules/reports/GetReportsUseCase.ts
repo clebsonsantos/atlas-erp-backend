@@ -1,12 +1,13 @@
 import { Between } from 'typeorm';
-import { Category } from '../../entities/Category';
-import { CentersCost } from '../../entities/CentersCost';
-import { Expenses } from '../../entities/Expenses';
-import { Product } from '../../entities/Product';
-import { Sales } from '../../entities/Sales';
-import { User } from '../../entities/User';
+
 import { CategoryRepository, CenterCostRepository, CustomerRepository, ExpenseRepository, ProductRepository, SalesRepository, UserRepository } from '../../repositories';
-import { Customer } from "../customers/infra/typeorm/entities/customer";
+import { Category } from "@/modules/categories/infra/typeorm/entities/category";
+import { CentersCost } from "@/modules/centercost/infra/typeorm/entities/center-cost";
+import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
+import { Expenses } from "@/modules/expenses/infra/typeorm/entities/expense";
+import { Product } from "@/modules/products/infra/typeorm/entities/product";
+import { Sales } from "@/modules/sales/infra/typeorm/entities/sale";
+import { User } from "@/modules/user/infra/typeorm/entities/user";
 
 type IReports = {
   action?: string | any;

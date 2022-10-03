@@ -1,5 +1,5 @@
-import { Expenses } from '../../entities/Expenses';
 import { CategoryRepository, CenterCostRepository, ExpenseRepository } from '../../repositories';
+import { Expenses } from "./infra/typeorm/entities/expense";
 
 type ExpenseTypes = {
   
