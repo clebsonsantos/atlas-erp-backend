@@ -7,7 +7,6 @@ const routes = Router()
 import { ensuredValidateUUID, ensuredAuthReports, ensuredAuthenticated, can } from '../middlewares'
 import { GetSalesOrderController } from '@/controllers/reports/GetSalesOrderController'
 import { CreateProductController } from "@/controllers/products/CreateProductController"
-import { CreateRoleController } from "@/controllers/roles/CreateRoleController"
 import { GetAllProductsController } from "@/controllers/products/GetAllProductsController"
 
 import { CreateExpensesController } from '@/controllers/expenses/CreateExpensesController'
@@ -59,15 +58,6 @@ routes.post("/login", new CreateSessionLoginController().handle)
 routes.use("/permissions", permissionRoutes)
 routes.use("/roles", roleRoutes)
 //?? Fim de rotas refatoradas
-
-routes.post(
-  "/roles",
-  ensuredAuthenticated(),
-  can(["admin"]),
-  new CreateRoleController().handle
-)
-
-
 
 
 // Despesas/ganhos

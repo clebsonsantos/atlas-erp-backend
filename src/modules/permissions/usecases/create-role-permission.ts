@@ -36,7 +36,7 @@ export class CreateRolePermissionUseCase {
 
     role.permissions = permissionsExists
 
-    const resultRole = await this.roleRepository.add(role)
+    const resultRole = await this.roleRepository.addPermission(role)
 
     return right(resultRole)
   }

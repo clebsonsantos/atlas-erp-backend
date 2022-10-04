@@ -1,6 +1,7 @@
 import { IRoleRepository } from "@/modules/permissions/repositories/irole-repository";
 import { Role } from "@/modules/permissions/infra/typeorm/entities/role";
 import { getRepository, Repository } from "typeorm";
+import { CreateRole } from "@/modules/permissions/contracts/create-role";
 
 
 export class RoleRepository implements IRoleRepository {
@@ -14,10 +15,20 @@ export class RoleRepository implements IRoleRepository {
     return role
   }
   
-  async add(data: Role): Promise<Role> {
+  async addPermission(data: Role): Promise<Role> {
     const role = this.repository.create(data)
     const roleSave = await this.repository.save(role)
     return roleSave
   }
 
+  async findByName(name: string): Promise<Role> {
+    const role = await this.repository.findOne({ name })
+    return role
+  }
+
+  async add(data: CreateRole.Params): Promise<Role> {
+      const role = this.repository.create(data)
+      const roleSave = await this.repository.save(role)
+      return roleSave
+  }
 }

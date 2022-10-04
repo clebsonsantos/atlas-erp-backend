@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { left, right } from "@/shared/either"
+import { Either, left, right } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
 import { CreatePermission } from "../contracts/create-permission"
 import { IPermissionRepository } from "../repositories/ipermission-repository"
@@ -15,6 +15,13 @@ export class CreatePermissionUseCase {
     name,
     description,
   }: CreatePermission.Params): Promise<CreatePermission.Result> {
+    
+    const validate = this.validate(name, description)
+
+    if (validate.isLeft()) {
+      return left(new AppError(validate.value))
+    }
+
     const permission = await this.permissionRepository.findByName(name)
 
     if (permission) {
@@ -23,5 +30,16 @@ export class CreatePermissionUseCase {
 
     const savePermission = await this.permissionRepository.add({ name, description })
     return right(savePermission)
+  }
+
+  validate(name: string, description: string): Either<string, null> {
+    const messageError = `Params is required: `
+    if (!name) {
+      return left(messageError.concat("name"))
+    }
+    if (!description) {
+      return left(messageError.concat("description"))
+    }
+    return right(null)
   }
 }
