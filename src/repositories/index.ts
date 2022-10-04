@@ -2,7 +2,7 @@ import { getRepository } from "typeorm";
 
 import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
 import { User } from "@/modules/user/infra/typeorm/entities/user";
-import { Role } from "@/modules/roles/infra/typeorm/entities/role";
+import { Role } from "@/modules/permissions/infra/typeorm/entities/role";
 import { Permission } from "@/modules/permissions/infra/typeorm/entities/permission";
 import { Product } from "@/modules/products/infra/typeorm/entities/product";
 import { Expenses } from "@/modules/expenses/infra/typeorm/entities/expense";

@@ -8,7 +8,6 @@ import { ensuredValidateUUID, ensuredAuthReports, ensuredAuthenticated, can } fr
 import { GetSalesOrderController } from '@/controllers/reports/GetSalesOrderController'
 import { CreateProductController } from "@/controllers/products/CreateProductController"
 import { CreateRoleController } from "@/controllers/roles/CreateRoleController"
-import { CreateRolePermissionController } from "@/controllers/roles/CreateRolePermissionController"
 import { GetAllProductsController } from "@/controllers/products/GetAllProductsController"
 
 import { CreateExpensesController } from '@/controllers/expenses/CreateExpensesController'
@@ -38,6 +37,7 @@ import { GetReportsController } from '@/controllers/reports/GetReportsController
 import multer from 'multer'
 import { CreateSessionLoginController } from "@/modules/user/controllers/create-session-login"
 import { permissionRoutes } from "./permission.routes"
+import { roleRoutes } from "./role.routes"
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads')
@@ -57,6 +57,7 @@ routes.use("/users", userRoutes)
 routes.post("/login", new CreateSessionLoginController().handle)               
 
 routes.use("/permissions", permissionRoutes)
+routes.use("/roles", roleRoutes)
 //?? Fim de rotas refatoradas
 
 routes.post(
@@ -67,12 +68,7 @@ routes.post(
 )
 
 
-routes.post("/roles/:roleId",   
-  ensuredAuthenticated(),
-  can(["admin"]),
-  ensuredValidateUUID(),
-  new CreateRolePermissionController().handle
-)
+
 
 // Despesas/ganhos
 routes.post("/expenses", ensuredAuthenticated(), can(["admin", 'expenses']), new CreateExpensesController().handle)
