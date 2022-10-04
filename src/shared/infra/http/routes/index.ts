@@ -5,7 +5,6 @@ import { userRoutes } from "./user.routes"
 const routes = Router()
 
 import { ensuredValidateUUID, ensuredAuthReports, ensuredAuthenticated, can } from '../middlewares'
-import { GetAllPermissionsController } from '@/controllers/permissions/GetAllPermissionsController'
 import { GetSalesOrderController } from '@/controllers/reports/GetSalesOrderController'
 import { CreateProductController } from "@/controllers/products/CreateProductController"
 import { CreateRoleController } from "@/controllers/roles/CreateRoleController"
@@ -66,9 +65,6 @@ routes.post(
   can(["admin"]),
   new CreateRoleController().handle
 )
-
-
-routes.get('/permissions', ensuredAuthenticated(), new GetAllPermissionsController().handle)
 
 
 routes.post("/roles/:roleId",   
