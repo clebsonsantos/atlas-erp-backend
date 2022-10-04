@@ -1,8 +1,8 @@
-import { inject, injectable } from 'tsyringe';
+import { inject, injectable } from "tsyringe";
 import { left, right } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
-import { CreatePermission } from "./contracts/create-permission"
-import { IPermissionRepository } from "./repositories/ipermission-repository"
+import { CreatePermission } from "../contracts/create-permission"
+import { IPermissionRepository } from "../repositories/ipermission-repository"
 
 @injectable()
 export class CreatePermissionUseCase {
