@@ -5,6 +5,7 @@ import { CreateRole } from "@/modules/permissions/contracts/create-role";
 
 
 export class RoleRepository implements IRoleRepository {
+  
   private repository: Repository<Role>
   constructor(){
     this.repository = getRepository(Role)

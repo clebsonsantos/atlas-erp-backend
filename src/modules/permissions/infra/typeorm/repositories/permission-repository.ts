@@ -5,6 +5,7 @@ import { Permission } from "../entities/permission";
 
 
 export class PermissionRepository implements IPermissionRepository {
+  
   private repository: Repository<Permission>
   constructor(){
     this.repository = getRepository(Permission)
@@ -14,10 +15,12 @@ export class PermissionRepository implements IPermissionRepository {
     const permissions = await this.repository.find()
     return permissions
   }
+
   async add({ name, description }: CreatePermission.Params): Promise<Permission> {
     const permission = this.repository.create({ name, description })
     return await this.repository.save(permission)
   }
+
   async findByName(name: string): Promise<Permission> {
     const permission = await this.repository.findOne({ name })
     return permission
