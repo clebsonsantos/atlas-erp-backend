@@ -70,3 +70,8 @@ Apply clean architecture in:
 - reports
 - sales
 - products
+  
+Create Documentation:
+
+- use Swagger
+- all routes
