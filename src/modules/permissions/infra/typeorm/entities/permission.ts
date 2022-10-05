@@ -1,11 +1,11 @@
-import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity";
-import { Column, Entity } from "typeorm";
+import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity" 
+import { Column, Entity } from "typeorm" 
 
 @Entity("permissions")
 export class Permission extends BaseEntity {
   @Column()
-  name: string;
+  name: string 
 
   @Column()
-  description: string;
+  description: string 
 }

@@ -1,19 +1,19 @@
-import { Between } from 'typeorm';
+import { Between } from 'typeorm' 
 
-import { CategoryRepository, CenterCostRepository, CustomerRepository, ExpenseRepository, ProductRepository, SalesRepository, UserRepository } from '../../repositories';
-import { Category } from "@/modules/categories/infra/typeorm/entities/category";
-import { CentersCost } from "@/modules/centercost/infra/typeorm/entities/center-cost";
-import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
-import { Expenses } from "@/modules/expenses/infra/typeorm/entities/expense";
-import { Product } from "@/modules/products/infra/typeorm/entities/product";
-import { Sales } from "@/modules/sales/infra/typeorm/entities/sale";
-import { User } from "@/modules/user/infra/typeorm/entities/user";
+import { CategoryRepository, CenterCostRepository, CustomerRepository, ExpenseRepository, ProductRepository, SalesRepository, UserRepository } from '../../repositories' 
+import { Category } from "@/modules/expenses/infra/typeorm/entities/category" 
+import { CentersCost } from "@/modules/expenses/infra/typeorm/entities/center-cost" 
+import { Customer } from "@/modules/customers/infra/typeorm/entities/customer" 
+import { Expenses } from "@/modules/expenses/infra/typeorm/entities/expense" 
+import { Product } from "@/modules/products/infra/typeorm/entities/product" 
+import { Sales } from "@/modules/sales/infra/typeorm/entities/sale" 
+import { User } from "@/modules/user/infra/typeorm/entities/user" 
 
 type IReports = {
-  action?: string | any;
-  initial_date?: Date | any;
-  final_date?: Date | any;
-  customer_id?: string | any;
+  action?: string | any 
+  initial_date?: Date | any 
+  final_date?: Date | any 
+  customer_id?: string | any 
   salesman?:string | any
 }
 

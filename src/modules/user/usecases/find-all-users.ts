@@ -1,6 +1,6 @@
-import { inject, injectable } from "tsyringe";
-import { User } from "../infra/typeorm/entities/user";
-import { IUserRepository } from "../repositories/iuser-repository";
+import { inject, injectable } from "tsyringe" 
+import { User } from "../infra/typeorm/entities/user" 
+import { IUserRepository } from "../repositories/iuser-repository" 
 
 @injectable()
 export class FindAllUsersUseCase {

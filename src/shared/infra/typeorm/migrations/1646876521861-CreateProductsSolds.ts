@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table} from "typeorm" 
 
 export class CreateProductsSolds1646876521861 implements MigrationInterface {
 
@@ -40,11 +40,11 @@ export class CreateProductsSolds1646876521861 implements MigrationInterface {
                 }
             ]
             })
-          );
+          ) 
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("products_solds");
+        await queryRunner.dropTable("products_solds") 
     }
 
 }

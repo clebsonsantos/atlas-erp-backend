@@ -1,6 +1,6 @@
 
-import { Request, Response } from "express";
-import { UpdateAdministratorUseCase } from '../../modules/administrator/UpdateAdministratorUseCase';
+import { Request, Response } from "express" 
+import { UpdateAdministratorUseCase } from '../../modules/administrator/UpdateAdministratorUseCase' 
 
 
 export class UpdateAdministratorController {
@@ -21,7 +21,7 @@ export class UpdateAdministratorController {
       cep,
       telefone,
       email
-    } = request.body;
+    } = request.body 
     
     const {path} = request.file
     const url_image = path

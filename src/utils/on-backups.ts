@@ -22,7 +22,7 @@ const TimeOutBackups = () => {
   }, timerDonwload)
 
   setInterval(async()=> {
-    const credentials = path.join(__dirname,'./CredentialsServiceAccount.json');
+    const credentials = path.join(__dirname,'./CredentialsServiceAccount.json') 
     const folderId = process.env.FOLDER_ID_DRIVE
     const mimeType = 'text/sql'
     const file = fs.createReadStream('./my_backup.sql')

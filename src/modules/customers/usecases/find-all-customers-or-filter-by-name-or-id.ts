@@ -1,6 +1,6 @@
-import { inject, injectable } from "tsyringe";
-import { FindAllCustomerOrFilter } from "../contracts/find-all-or-filter-customer";
-import { ICustomerRepository } from "../repositories/icustomer-repository";
+import { inject, injectable } from "tsyringe" 
+import { FindAllCustomerOrFilter } from "../contracts/find-all-or-filter-customer" 
+import { ICustomerRepository } from "../repositories/icustomer-repository" 
 
 @injectable()
 export class FindAllCustomersUseCase {

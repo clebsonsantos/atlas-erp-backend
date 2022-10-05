@@ -1,5 +1,5 @@
-import { SalesRepository } from '../../repositories';
-import { Sales } from "./infra/typeorm/entities/sale";
+import { SalesRepository } from '../../repositories' 
+import { Sales } from "./infra/typeorm/entities/sale" 
 
 export class GetAllSalesProductsUseCase  {
 

@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table} from "typeorm" 
 
 export class CreateRelationSalesProdcuts1646925804023 implements MigrationInterface {
 
@@ -29,7 +29,7 @@ export class CreateRelationSalesProdcuts1646925804023 implements MigrationInterf
                 },
               ],
             })
-          );
+          ) 
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

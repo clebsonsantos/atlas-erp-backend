@@ -1,5 +1,5 @@
-import { UuidValidate } from "@/shared/infra/uuid/uuid-validate";
-import { NextFunction, Request, Response } from "express";
+import { UuidValidate } from "@/shared/infra/uuid/uuid-validate" 
+import { NextFunction, Request, Response } from "express" 
 
 export const ensuredValidateUUID = () => {
   return async (request: Request, response: Response, next: NextFunction) => {
@@ -10,8 +10,8 @@ export const ensuredValidateUUID = () => {
 
     const value = isValid.validateUuid(id)
     if (value) {
-      return next();
+      return next() 
     }
-    return response.status(500).json({ error: "Invalid uuid" });
-  };
-};
+    return response.status(500).json({ error: "Invalid uuid" }) 
+  } 
+} 

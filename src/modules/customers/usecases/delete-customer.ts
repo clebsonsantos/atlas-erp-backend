@@ -1,8 +1,8 @@
-import { left, right } from "@/shared/either";
-import { AppError } from "@/shared/errors/AppError";
-import { inject, injectable } from "tsyringe";
-import { DeleteCustomer } from "../contracts/delete-customer";
-import { ICustomerRepository } from "../repositories/icustomer-repository";
+import { left, right } from "@/shared/either" 
+import { AppError } from "@/shared/errors/AppError" 
+import { inject, injectable } from "tsyringe" 
+import { DeleteCustomer } from "../contracts/delete-customer" 
+import { ICustomerRepository } from "../repositories/icustomer-repository" 
 
 @injectable()
 export class DeleteCustomerUseCase {
@@ -16,7 +16,7 @@ export class DeleteCustomerUseCase {
     const customer = await this.customerRepository.findById(id)
 
     if(!customer){
-      return left(new AppError("Cliente não encontrado.", 404));
+      return left(new AppError("Cliente não encontrado.", 404)) 
     }
 
     const success = await this.customerRepository.removeById(id)

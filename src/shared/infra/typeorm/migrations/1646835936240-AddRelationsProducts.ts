@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, TableColumn, TableForeignKey} from "typeorm";
+import {MigrationInterface, QueryRunner, TableColumn, TableForeignKey} from "typeorm" 
 
 export class AddRelationsProducts1646835936240 implements MigrationInterface {
 
@@ -13,7 +13,7 @@ export class AddRelationsProducts1646835936240 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-       await queryRunner.dropForeignKey("products","fk_products_centers_cost");
+       await queryRunner.dropForeignKey("products","fk_products_centers_cost") 
 
     }
 

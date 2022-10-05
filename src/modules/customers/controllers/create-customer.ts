@@ -1,7 +1,7 @@
 
-import { CreateCustomerUseCase } from "@/modules/customers/usecases/create-customer";
-import { Request, Response } from "express";
-import { container } from "tsyringe";
+import { CreateCustomerUseCase } from "@/modules/customers/usecases/create-customer" 
+import { Request, Response } from "express" 
+import { container } from "tsyringe" 
 
 export class CreateCustomerController {
 

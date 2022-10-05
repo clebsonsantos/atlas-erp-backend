@@ -1,6 +1,6 @@
 
-import { Request, Response } from "express";
-import { CreateAdministratorUseCase } from '../../modules/administrator/CreateAdministratorUseCase';
+import { Request, Response } from "express" 
+import { CreateAdministratorUseCase } from '../../modules/administrator/CreateAdministratorUseCase' 
 
 
 
@@ -22,7 +22,7 @@ export class CreateAdministratorController {
       telefone,
       email,
       
-    } = request.body;
+    } = request.body 
     const {path} = request.file
     const url_image = path
 

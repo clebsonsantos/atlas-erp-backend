@@ -1,13 +1,13 @@
 
-import { Request, Response } from "express";
-import { DeleteSaleProductsUseCase } from '../../modules/sales/DeleteSaleProductsUseCase';
+import { Request, Response } from "express" 
+import { DeleteSaleProductsUseCase } from '../../modules/sales/DeleteSaleProductsUseCase' 
 
 
 
 export class DeleteSaleProductsController {
 
   async handle(request: Request, response: Response) {
-    const { id } = request.params;
+    const { id } = request.params 
 
     const deleteSaleProducts = new DeleteSaleProductsUseCase()
 

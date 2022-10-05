@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table} from "typeorm" 
 
 export class CreateAdministrator1644689648894 implements MigrationInterface {
 
@@ -70,11 +70,11 @@ export class CreateAdministrator1644689648894 implements MigrationInterface {
                   default: "now()"
                 },
               ]})
-          );
+          ) 
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-       await queryRunner.dropTable("administrator");
+       await queryRunner.dropTable("administrator") 
 
     }
 

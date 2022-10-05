@@ -1,7 +1,7 @@
-import { container } from 'tsyringe';
+import { container } from 'tsyringe' 
 
-import { DeleteCustomerUseCase } from "@/modules/customers/usecases/delete-customer";
-import { Request, Response } from "express";
+import { DeleteCustomerUseCase } from "@/modules/customers/usecases/delete-customer" 
+import { Request, Response } from "express" 
 
 
 export class DeleteCustomerController {

@@ -1,16 +1,16 @@
 
-import { TableCell } from 'pdfmake/interfaces';
-import { Response } from 'express';
-import { DefaultsConfigReport } from './DefaultsConfigReport';
-import formatCurrency from '../../utils/formatCurrency';
-import { Product } from "../products/infra/typeorm/entities/product";
+import { TableCell } from 'pdfmake/interfaces' 
+import { Response } from 'express' 
+import { DefaultsConfigReport } from './DefaultsConfigReport' 
+import formatCurrency from '../../utils/formatCurrency' 
+import { Product } from "../products/infra/typeorm/entities/product" 
 
 export class ProductsReports  {
 
   async execute( Products: Product[], response: Response){
 
     //CORPO DA TABELA
-    const body = [ ];
+    const body = [ ] 
     const columnsTitle: TableCell[] = [
       {text: "Descrição", style: "tableTitle"},
       {text: "Centro de custo", style: "tableTitle"},

@@ -1,8 +1,8 @@
-import { CreateCustomer } from "@/modules/customers/contracts/create-customer";
-import { UpdateCustomer } from "@/modules/customers/contracts/updated-customer";
-import { ICustomerRepository } from "@/modules/customers/repositories/icustomer-repository";
+import { CreateCustomer } from "@/modules/customers/contracts/create-customer" 
+import { UpdateCustomer } from "@/modules/customers/contracts/updated-customer" 
+import { ICustomerRepository } from "@/modules/customers/repositories/icustomer-repository" 
 import { getRepository, Repository } from "typeorm"
-import { Customer } from "../entities/customer";
+import { Customer } from "../entities/customer" 
 
 export class CustomerRepository implements ICustomerRepository {
   

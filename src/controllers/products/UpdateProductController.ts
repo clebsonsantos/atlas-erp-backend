@@ -1,7 +1,7 @@
 
-import { UuidValidate } from "@/shared/infra/uuid";
-import { Request, Response } from "express";
-import { UpdateProductUseCase } from '../../modules/products/UpdateProductUseCase';
+import { UuidValidate } from "@/shared/infra/uuid" 
+import { Request, Response } from "express" 
+import { UpdateProductUseCase } from '../../modules/products/UpdateProductUseCase' 
 
 const isValidUUID = new UuidValidate()
 export class UpdateProductController {

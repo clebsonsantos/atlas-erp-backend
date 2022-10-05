@@ -1,9 +1,9 @@
-import { Column, TableCell } from 'pdfmake/interfaces';
-import { Response } from 'express';
-import { DefaultsConfigReport } from './DefaultsConfigReport';
-import { CategoryRepository } from '../../repositories';
-import formatCurrency from '../../utils/formatCurrency';
-import { Expenses } from "../expenses/infra/typeorm/entities/expense";
+import { Column, TableCell } from 'pdfmake/interfaces' 
+import { Response } from 'express' 
+import { DefaultsConfigReport } from './DefaultsConfigReport' 
+import { CategoryRepository } from '../../repositories' 
+import formatCurrency from '../../utils/formatCurrency' 
+import { Expenses } from "../expenses/infra/typeorm/entities/expense" 
 
 export class ExpensesReports  {
 
@@ -50,7 +50,7 @@ export class ExpensesReports  {
             headerRows: 1,
             widths: [70, 200, 48, 80, 80],
             heights: function (){
-              return 15;
+              return 15 
             },
             body: [
               ...body
@@ -60,7 +60,7 @@ export class ExpensesReports  {
   }
   async handleBodyContent(Expenses: Expenses[]){
     //CORPO DA TABELA
-    const body = [ ];
+    const body = [ ] 
     const columnsTitle: TableCell[] = [
       {text: "Data", style: "tableTitle"},
       {text: "Descrição", style: "tableTitle"},

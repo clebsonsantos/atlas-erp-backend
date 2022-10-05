@@ -1,7 +1,7 @@
-import { container } from 'tsyringe';
+import { container } from 'tsyringe' 
 
-import { UpdateCustomerUseCase } from "@/modules/customers/usecases/updated-customer";
-import { Request, Response } from "express";
+import { UpdateCustomerUseCase } from "@/modules/customers/usecases/updated-customer" 
+import { Request, Response } from "express" 
 
 
 export class UpdateCustomerController {

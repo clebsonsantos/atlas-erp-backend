@@ -61,3 +61,12 @@ ATLAS - SOFTMANAGER API
               +--> products
 
 ```
+
+## In Progressing
+
+Apply clean architecture in:
+
+- administrator
+- reports
+- sales
+- products

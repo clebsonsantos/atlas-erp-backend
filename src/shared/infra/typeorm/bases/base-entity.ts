@@ -1,16 +1,16 @@
-import { PrimaryColumn, CreateDateColumn } from "typeorm";
-import { v4 as uuid } from "uuid";
+import { PrimaryColumn, CreateDateColumn } from "typeorm" 
+import { v4 as uuid } from "uuid" 
 
 export class BaseEntity {
   @PrimaryColumn()
-  id: string;
+  id: string 
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at: Date 
 
   constructor() {
     if (!this.id) {
-      this.id = uuid();
+      this.id = uuid() 
     }
   }
 }

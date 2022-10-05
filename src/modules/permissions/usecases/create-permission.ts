@@ -1,4 +1,4 @@
-import { inject, injectable } from "tsyringe";
+import { inject, injectable } from "tsyringe" 
 import { Either, left, right } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
 import { CreatePermission } from "../contracts/create-permission"

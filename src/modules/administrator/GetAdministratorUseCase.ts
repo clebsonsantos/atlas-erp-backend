@@ -1,5 +1,5 @@
-import { AdministratorRepository } from '../../repositories';
-import { Administrator } from "./infra/typeorm/entities/adminitrator";
+import { AdministratorRepository } from '../../repositories' 
+import { Administrator } from "./infra/typeorm/entities/adminitrator" 
 
 
 export class GetAdministratorUseCase  {

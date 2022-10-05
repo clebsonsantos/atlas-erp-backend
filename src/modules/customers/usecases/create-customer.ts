@@ -1,9 +1,9 @@
-import { cnpj, cpf } from 'cpf-cnpj-validator';
-import { left, right } from "@/shared/either";
-import { CreateCustomer } from "../contracts/create-customer";
-import { inject, injectable } from "tsyringe";
-import { ICustomerRepository } from "../repositories/icustomer-repository";
-import { AppError } from "@/shared/errors/AppError";
+import { cnpj, cpf } from 'cpf-cnpj-validator' 
+import { left, right } from "@/shared/either" 
+import { CreateCustomer } from "../contracts/create-customer" 
+import { inject, injectable } from "tsyringe" 
+import { ICustomerRepository } from "../repositories/icustomer-repository" 
+import { AppError } from "@/shared/errors/AppError" 
 
 @injectable()
 export class CreateCustomerUseCase  {

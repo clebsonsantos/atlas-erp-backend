@@ -5,7 +5,7 @@ import { UpdateCustomerController } from "@/modules/customers/controllers/update
 import { Router } from "express"
 import { can, ensuredAuthenticated, ensuredValidateUUID } from "../middlewares"
 
-const customerRoutes = Router();
+const customerRoutes = Router() 
 
 customerRoutes.post("/", ensuredAuthenticated(), can(["admin", 'customers']), new CreateCustomerController().handle)
 

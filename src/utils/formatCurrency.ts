@@ -4,7 +4,7 @@ const formatCurrency = (current: number): string => {
         {
             style: 'currency', 
             currency: 'BRL'
-        });
-};
+        }) 
+} 
 
-export default formatCurrency;
+export default formatCurrency 

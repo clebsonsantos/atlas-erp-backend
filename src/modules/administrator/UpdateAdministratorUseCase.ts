@@ -1,21 +1,21 @@
-import { AdministratorRepository } from '../../repositories';
+import { AdministratorRepository } from '../../repositories' 
 
 type AdministratorTypes = {
-  id: string;
-  razao?: string;
-  fantasia?: string;
-  cpf_cnpj?: number;
-  insc_estadual?: number;
-  endereco?: string;
-  bairro?: string;
-  numero?: string;
-  complemento?: string;
-  cidade?: string;
-  uf?: string;
-  cep?: string;
-  telefone?: string;
-  email?: string;
-  url_image?: string;
+  id: string 
+  razao?: string 
+  fantasia?: string 
+  cpf_cnpj?: number 
+  insc_estadual?: number 
+  endereco?: string 
+  bairro?: string 
+  numero?: string 
+  complemento?: string 
+  cidade?: string 
+  uf?: string 
+  cep?: string 
+  telefone?: string 
+  email?: string 
+  url_image?: string 
 }
 
 
@@ -40,7 +40,7 @@ export class UpdateAdministratorUseCase  {
     const administrator = await AdministratorRepository().findOne({id})
 
     if(!administrator){
-      return new Error("Administrador não existe.");
+      return new Error("Administrador não existe.") 
     }
 
     administrator.razao = razao ? razao : administrator.razao

@@ -1,8 +1,8 @@
 import { google }  from 'googleapis'
 
 class GoogleDriveService {
-  folderId: string;
-  OAuth2client: any;
+  folderId: string 
+  OAuth2client: any 
   drive: any
   constructor(credentials: any, folderId: string){
     this.folderId = folderId
@@ -78,7 +78,7 @@ class GoogleDriveService {
       var requestBody = {
         name: nameFolder,
         mimeType: 'application/vnd.google-apps.folder'
-    };
+    } 
     const response = await this.drive.files.create({
       requestBody    
     })

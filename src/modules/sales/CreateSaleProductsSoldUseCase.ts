@@ -1,8 +1,8 @@
 import {
   CustomerRepository,
   ProductsSoldsRepository,
-  SalesRepository } from '../../repositories';
-import { Sales } from "./infra/typeorm/entities/sale";
+  SalesRepository } from '../../repositories' 
+import { Sales } from "./infra/typeorm/entities/sale" 
 
 
 type IproductsSolds = {
@@ -31,7 +31,7 @@ export class CreateSaleProductsSoldUseCase  {
   }: ISales): Promise< Sales | Error> {
 
     if(!await CustomerRepository().findOne(customer_id)){
-      return new Error("Este cliente não existe.");
+      return new Error("Este cliente não existe.") 
     }
 
     const sales = await SalesRepository().find()

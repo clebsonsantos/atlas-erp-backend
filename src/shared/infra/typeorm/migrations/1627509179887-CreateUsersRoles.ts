@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm" 
 
 export class CreateUsersRoles1627509179887 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -28,10 +28,10 @@ export class CreateUsersRoles1627509179887 implements MigrationInterface {
           },
         ],
       })
-    );
+    ) 
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("users_roles");
+    await queryRunner.dropTable("users_roles") 
   }
 }

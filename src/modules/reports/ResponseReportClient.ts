@@ -1,9 +1,9 @@
 import PdfPrinter from 'pdfmake'
 import { TDocumentDefinitions } from 'pdfmake/interfaces'
-import { Response } from 'express';
+import { Response } from 'express' 
 
 type TResponseReportsDefinitions = {
-  response: Response;
+  response: Response 
   docDefinitions: TDocumentDefinitions
 }
 
@@ -31,7 +31,7 @@ export class ResponseReportClient  {
       chuncks.push(chunk)
     })
 
-    pdfDoc.end();
+    pdfDoc.end() 
 
     pdfDoc.on("end", ()=>{
       const result = Buffer.concat(chuncks)
