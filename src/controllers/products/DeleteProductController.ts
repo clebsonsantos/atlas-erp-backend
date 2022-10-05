@@ -1,6 +1,6 @@
 
-import { Request, Response } from "express";
-import { DeleteProductUseCase } from '../../modules/products/DeleteProductUseCase';
+import { Request, Response } from "express" 
+import { DeleteProductUseCase } from '../../modules/products/DeleteProductUseCase' 
 
 export class DeleteProductController {
 

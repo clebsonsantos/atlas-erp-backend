@@ -1,12 +1,12 @@
 
-import { Request, Response } from "express";
-import { UpdatesaleProductsUseCase } from '../../modules/sales/UpdatesaleProductsUseCase';
+import { Request, Response } from "express" 
+import { UpdatesaleProductsUseCase } from '../../modules/sales/UpdatesaleProductsUseCase' 
 
 
 export class UpdateSaleProductsController {
 
   async handle(request: Request, response: Response) {
-    const { date, customer_id, products_sold, salesman } = request.body;
+    const { date, customer_id, products_sold, salesman } = request.body 
     const { id } = request.params
 
     const updateSale = new UpdatesaleProductsUseCase()

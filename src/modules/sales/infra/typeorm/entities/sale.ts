@@ -1,27 +1,27 @@
-import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
-import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity";
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne } from "typeorm";
-import { ProductSales } from "./product-sale";
+import { Customer } from "@/modules/customers/infra/typeorm/entities/customer" 
+import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity" 
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne } from "typeorm" 
+import { ProductSales } from "./product-sale" 
 
 
 @Entity("sales")
 export class Sales extends BaseEntity {
 
   @Column()
-  date: Date;
+  date: Date 
 
   @Column()
-  customer_id: string;
+  customer_id: string 
 
   @Column()
-  salesman: string;
+  salesman: string 
 
   @ManyToOne(() => Customer)
   @JoinColumn({name: "customer_id"})
-  customer: Customer;
+  customer: Customer 
 
   @Column()
-  sale_number: number;
+  sale_number: number 
 
   @ManyToMany(() => ProductSales)
   @JoinTable({
@@ -29,7 +29,7 @@ export class Sales extends BaseEntity {
     joinColumns: [{ name: "sale_id" }],
     inverseJoinColumns: [{ name: "products_sold_id" }],
   })
-  products_sold: ProductSales[];
+  products_sold: ProductSales[] 
 
 
 }

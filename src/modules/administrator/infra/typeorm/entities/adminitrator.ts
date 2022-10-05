@@ -1,48 +1,48 @@
-import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity";
-import { Column, Entity,  } from "typeorm";
+import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity" 
+import { Column, Entity,  } from "typeorm" 
 
 @Entity("administrator")
 export class Administrator extends BaseEntity {
 
   @Column()
-  razao: string;
+  razao: string 
 
   @Column()
-  fantasia: string;
+  fantasia: string 
 
   @Column()
-  cpf_cnpj: number;
+  cpf_cnpj: number 
 
   @Column()
-  insc_estadual: number;
+  insc_estadual: number 
 
   @Column()
-  endereco: string;
+  endereco: string 
 
   @Column()
-  bairro: string;
+  bairro: string 
 
   @Column()
-  numero: string;
+  numero: string 
 
   @Column()
-  complemento: string;
+  complemento: string 
 
   @Column()
-  cidade: string;
+  cidade: string 
 
   @Column()
-  uf: string;
+  uf: string 
 
   @Column()
-  cep: string;
+  cep: string 
 
   @Column()
-  telefone: string;
+  telefone: string 
 
   @Column()
-  email: string;
+  email: string 
 
   @Column()
-  url_image: string;
+  url_image: string 
 }

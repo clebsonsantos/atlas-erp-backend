@@ -1,5 +1,5 @@
-import { CreateUserSupport, DefaultPermissionsSystem } from "@/main/config";
-import { createConnection } from "typeorm";
+import { CreateUserSupport, DefaultPermissionsSystem } from "@/main/config" 
+import { createConnection } from "typeorm" 
 
 createConnection().then(async ()=>{
   const nextAction = await DefaultPermissionsSystem()

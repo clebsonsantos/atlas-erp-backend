@@ -1,12 +1,12 @@
-import { CenterCostRepository, ProductRepository } from "../../repositories";
-import { Product } from "./infra/typeorm/entities/product";
+import { CenterCostRepository, ProductRepository } from "../../repositories" 
+import { Product } from "./infra/typeorm/entities/product" 
 
 type ProductRequest = {
-  name: string;
-  description: string;
-  price_default: number;
+  name: string 
+  description: string 
+  price_default: number 
   center_cost_id: string
-};
+} 
 
 export class CreateProductsUseCase {
   async execute({ name, description, price_default, center_cost_id }: ProductRequest): Promise<Product | Error> {
@@ -17,14 +17,14 @@ export class CreateProductsUseCase {
       description,
       price_default,
       center_cost_id
-    });
+    }) 
 
     if(!await CenterCostRepository().findOne({id: center_cost_id})){
       return new Error ("Centro de custo não existe!")
 
     }
-    await ProductRepository().save(product);
+    await ProductRepository().save(product) 
 
-    return product;
+    return product 
   }
 }

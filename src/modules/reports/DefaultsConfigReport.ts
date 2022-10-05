@@ -2,20 +2,20 @@ import PdfPrinter from 'pdfmake'
 import { PageOrientation, Size, TDocumentDefinitions } from 'pdfmake/interfaces'
 import { AdministratorRepository } from '../../repositories'
 import LogoImage from './LogoImage'
-import { Response } from 'express';
+import { Response } from 'express' 
 import defaultLayout from './layouts/defaultLayout'
 import groupedLayout from './layouts/groupedLayout'
 import { ResponseReportClient } from './ResponseReportClient'
-import { Administrator } from "../administrator/infra/typeorm/entities/adminitrator";
+import { Administrator } from "../administrator/infra/typeorm/entities/adminitrator" 
 
 type Type = {
-  titleReport?: string;
-  columnsTitle?: any;
-  body?: any;
-  response: Response;
-  orientationPage: PageOrientation;
-  widthsColumns?: Size[];
-  CategoryTitleGroup?:boolean;
+  titleReport?: string 
+  columnsTitle?: any 
+  body?: any 
+  response: Response 
+  orientationPage: PageOrientation 
+  widthsColumns?: Size[] 
+  CategoryTitleGroup?:boolean 
   totalExpenses?: number
 }
 

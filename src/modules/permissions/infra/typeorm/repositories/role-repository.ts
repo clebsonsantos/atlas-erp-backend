@@ -1,7 +1,7 @@
-import { IRoleRepository } from "@/modules/permissions/repositories/irole-repository";
-import { Role } from "@/modules/permissions/infra/typeorm/entities/role";
-import { getRepository, Repository } from "typeorm";
-import { CreateRole } from "@/modules/permissions/contracts/create-role";
+import { IRoleRepository } from "@/modules/permissions/repositories/irole-repository" 
+import { Role } from "@/modules/permissions/infra/typeorm/entities/role" 
+import { getRepository, Repository } from "typeorm" 
+import { CreateRole } from "@/modules/permissions/contracts/create-role" 
 
 
 export class RoleRepository implements IRoleRepository {

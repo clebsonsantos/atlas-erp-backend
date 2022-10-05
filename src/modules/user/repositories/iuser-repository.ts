@@ -1,5 +1,5 @@
-import { CreateUser } from "../contracts/create-user";
-import { User } from "../infra/typeorm/entities/user";
+import { CreateUser } from "../contracts/create-user" 
+import { User } from "../infra/typeorm/entities/user" 
 
 export interface IUserRepository {
   findByUserName: (username: string) => Promise<User>

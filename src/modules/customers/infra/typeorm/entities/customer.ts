@@ -1,37 +1,37 @@
-import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity";
+import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity" 
 import {
   Column,
   Entity,
-} from "typeorm";
+} from "typeorm" 
 
 @Entity("customers")
 export class Customer extends BaseEntity {
   @Column()
-  full_name: string;
+  full_name: string 
 
   @Column()
-  cpf_cnpj: string;
+  cpf_cnpj: string 
 
   @Column()
-  state_registration: number;
+  state_registration: number 
 
   @Column()
-  phone: string;
+  phone: string 
 
   @Column()
-  email: string;
+  email: string 
 
   @Column()
-  state: string;
+  state: string 
 
   @Column()
-  city: string;
+  city: string 
 
   @Column()
-  address: string;
+  address: string 
 
 
   @Column()
-  zip_code: string;
+  zip_code: string 
   
 }

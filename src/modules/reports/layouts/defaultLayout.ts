@@ -1,14 +1,14 @@
-import { Administrator } from "@/modules/administrator/infra/typeorm/entities/adminitrator";
-import { PageOrientation, Size, TDocumentDefinitions } from 'pdfmake/interfaces';
-import HeadersReport from './header';
+import { Administrator } from "@/modules/administrator/infra/typeorm/entities/adminitrator" 
+import { PageOrientation, Size, TDocumentDefinitions } from 'pdfmake/interfaces' 
+import HeadersReport from './header' 
 
 type DefaultCongig = {
-  company: Administrator;
-  titleReport: string;
-  columnsTitle?: any;
-  body?: any;
-  orientationPage: PageOrientation;
-  widthsColumns?: Size[];
+  company: Administrator 
+  titleReport: string 
+  columnsTitle?: any 
+  body?: any 
+  orientationPage: PageOrientation 
+  widthsColumns?: Size[] 
   LogoImage: void | any
 }
 
@@ -40,7 +40,7 @@ const defaultLayout  = ({orientationPage, company, titleReport, widthsColumns, c
           headerRows: 1,
           widths: widthsColumns,
           heights: function (){
-            return 15;
+            return 15 
           },
           body: [
             columnsTitle,

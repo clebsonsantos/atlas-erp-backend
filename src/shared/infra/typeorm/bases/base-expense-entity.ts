@@ -1,28 +1,28 @@
-import { v4 as uuid } from "uuid";
-import { Column, CreateDateColumn, PrimaryColumn} from "typeorm";
+import { v4 as uuid } from "uuid" 
+import { Column, CreateDateColumn, PrimaryColumn} from "typeorm" 
 
 export class BaseExpenses {
 
   @PrimaryColumn()
-  id: string;
+  id: string 
 
   @Column()
-  description: string;
+  description: string 
 
   @Column()
-  quantity: number;
+  quantity: number 
 
   @Column()
-  amount: number;
+  amount: number 
 
   @Column()
-  frequency: string;
+  frequency: string 
 
   @Column()
-  type: string;
+  type: string 
 
   @CreateDateColumn()
-  date: Date;
+  date: Date 
 
   @CreateDateColumn()
   created_at: Date
@@ -30,7 +30,7 @@ export class BaseExpenses {
 
   constructor() {
     if (!this.id) {
-      this.id = uuid();
+      this.id = uuid() 
     }
   }
 

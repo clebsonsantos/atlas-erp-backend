@@ -1,21 +1,21 @@
-import { AdministratorRepository } from '../../repositories';
-import { Administrator } from "./infra/typeorm/entities/adminitrator";
+import { AdministratorRepository } from '../../repositories' 
+import { Administrator } from "./infra/typeorm/entities/adminitrator" 
 
 type AdministratorTypes = {
-  razao: string;
-  fantasia?: string;
-  cpf_cnpj: number;
-  insc_estadual: number;
-  endereco: string;
-  bairro: string;
-  numero: string;
-  complemento: string;
-  cidade: string;
-  uf: string;
-  cep: string;
-  telefone: string;
-  email: string;
-  url_image?: string;
+  razao: string 
+  fantasia?: string 
+  cpf_cnpj: number 
+  insc_estadual: number 
+  endereco: string 
+  bairro: string 
+  numero: string 
+  complemento: string 
+  cidade: string 
+  uf: string 
+  cep: string 
+  telefone: string 
+  email: string 
+  url_image?: string 
 }
 
 

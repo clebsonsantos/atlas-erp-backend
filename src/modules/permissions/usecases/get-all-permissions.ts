@@ -1,6 +1,6 @@
-import { inject, injectable } from "tsyringe";
-import { Permission } from "../infra/typeorm/entities/permission";
-import { IPermissionRepository } from "../repositories/ipermission-repository";
+import { inject, injectable } from "tsyringe" 
+import { Permission } from "../infra/typeorm/entities/permission" 
+import { IPermissionRepository } from "../repositories/ipermission-repository" 
 
 @injectable()
 export class GetAllPermissionsUseCase  {

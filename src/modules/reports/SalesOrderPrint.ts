@@ -1,12 +1,12 @@
-import { TableCell } from 'pdfmake/interfaces';
-import { Response } from 'express';
-import { AdministratorRepository, ProductRepository } from '../../repositories';
-import salesOrdes from './layouts/salesOrder';
+import { TableCell } from 'pdfmake/interfaces' 
+import { Response } from 'express' 
+import { AdministratorRepository, ProductRepository } from '../../repositories' 
+import salesOrdes from './layouts/salesOrder' 
 import LogoImage from './LogoImage'
-import { ResponseReportClient } from './ResponseReportClient';
-import formatCurrency from '../../utils/formatCurrency';
-import { Sales } from "../sales/infra/typeorm/entities/sale";
-import { Administrator } from "../administrator/infra/typeorm/entities/adminitrator";
+import { ResponseReportClient } from './ResponseReportClient' 
+import formatCurrency from '../../utils/formatCurrency' 
+import { Sales } from "../sales/infra/typeorm/entities/sale" 
+import { Administrator } from "../administrator/infra/typeorm/entities/adminitrator" 
 
 type SalesORder =  {
   Sales: Sales, 
@@ -18,7 +18,7 @@ export class SalesOrderPrint  {
   async execute({ Sales, response }: SalesORder){
 
     //CORPO DA TABELA
-    const body = [ ];
+    const body = [ ] 
     const columnsTitle: TableCell[] = [
       {text: "Produto", style: "tableTitle"},
       {text: "Quant.", style: "tableTitle"},

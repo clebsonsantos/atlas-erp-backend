@@ -1,6 +1,6 @@
-import { inject, injectable } from "tsyringe";
-import { CentersCost } from "../infra/typeorm/entities/center-cost";
-import { ICenterCostRepository } from "../repositories/icenter-cost-repository";
+import { inject, injectable } from "tsyringe" 
+import { CentersCost } from "../infra/typeorm/entities/center-cost" 
+import { ICenterCostRepository } from "../repositories/icenter-cost-repository" 
 
 
 @injectable()

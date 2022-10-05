@@ -1,13 +1,13 @@
 import { ProductsSoldsRepository, SalesRepository } from '../../repositories'
-import { Sales } from "./infra/typeorm/entities/sale";
+import { Sales } from "./infra/typeorm/entities/sale" 
 
 type IproductsSolds = {
-  id?: string;
-  delete?: boolean;
+  id?: string 
+  delete?: boolean 
   id_product: string,
   quantity: number,
   price_unit: number,
-  total_price: number;
+  total_price: number 
   created_at: Date
 }
 type ISales = {
@@ -27,7 +27,7 @@ export class UpdatesaleProductsUseCase  {
     const sale = await SalesRepository().findOne({id}, {relations: ["products_sold"]})
     
     if(!sale){
-      return new Error("Este pedido/venda não existe.");
+      return new Error("Este pedido/venda não existe.") 
     }
 
     sale.customer_id = customer_id ? customer_id : sale.customer_id

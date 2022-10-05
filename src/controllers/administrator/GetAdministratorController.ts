@@ -1,6 +1,6 @@
 
-import { Request, Response } from "express";
-import { GetAdministratorUseCase } from '../../modules/administrator/GetAdministratorUseCase';
+import { Request, Response } from "express" 
+import { GetAdministratorUseCase } from '../../modules/administrator/GetAdministratorUseCase' 
 
 
 export class GetAdministratorController {

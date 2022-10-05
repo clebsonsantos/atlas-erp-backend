@@ -1,16 +1,16 @@
 
-import { TableCell } from 'pdfmake/interfaces';
-import { Response } from 'express';
-import { DefaultsConfigReport } from './DefaultsConfigReport';
-import { Category } from "../expenses/infra/typeorm/entities/category";
-import { CentersCost } from "../expenses/infra/typeorm/entities/center-cost";
+import { TableCell } from 'pdfmake/interfaces' 
+import { Response } from 'express' 
+import { DefaultsConfigReport } from './DefaultsConfigReport' 
+import { Category } from "../expenses/infra/typeorm/entities/category" 
+import { CentersCost } from "../expenses/infra/typeorm/entities/center-cost" 
 
 export class CategoriesCenterReports  {
 
   async execute( Component: Category[] | CentersCost[], response: Response){
 
     //CORPO DA TABELA
-    const body = [ ];
+    const body = [ ] 
     const columnsTitle: TableCell[] = [
       {text: "Descrição", style: "tableTitle"},
       {text: "Data de criação", style: "tableTitle"}

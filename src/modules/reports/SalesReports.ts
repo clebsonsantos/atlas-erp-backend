@@ -1,10 +1,10 @@
-import { CustomerRepository, ProductRepository, UserRepository } from '../../repositories/index';
-import { TableCell } from 'pdfmake/interfaces';
-import { Response } from 'express';
-import { DefaultsConfigReport } from './DefaultsConfigReport';
-import formatCurrency from '../../utils/formatCurrency';
-import { Customer } from "../customers/infra/typeorm/entities/customer";
-import { Sales } from "../sales/infra/typeorm/entities/sale";
+import { CustomerRepository, ProductRepository, UserRepository } from '../../repositories/index' 
+import { TableCell } from 'pdfmake/interfaces' 
+import { Response } from 'express' 
+import { DefaultsConfigReport } from './DefaultsConfigReport' 
+import formatCurrency from '../../utils/formatCurrency' 
+import { Customer } from "../customers/infra/typeorm/entities/customer" 
+import { Sales } from "../sales/infra/typeorm/entities/sale" 
 
 
 export class SalesReports  {
@@ -31,7 +31,7 @@ export class SalesReports  {
             headerRows: 1,
             widths: [150, 50, '*', 80],
             heights: function (){
-              return 15;
+              return 15 
             },
             body: [
               ...body
@@ -41,7 +41,7 @@ export class SalesReports  {
   }
   async handleBodyContent(Sales: Sales[], ondisplayName?: boolean){
     //CORPO DA TABELA
-    const body = [ ];
+    const body = [ ] 
     var addLine = false
     let valuetotal = 0
     for await (const sale of Sales){

@@ -1,5 +1,5 @@
-import { ProductRepository } from "../../repositories";
-import { Product } from "./infra/typeorm/entities/product";
+import { ProductRepository } from "../../repositories" 
+import { Product } from "./infra/typeorm/entities/product" 
 
 type IProductSearch = {
   id?: string,
@@ -16,6 +16,6 @@ export class GetAllProductsUseCase {
         await ProductRepository().find({relations: ["center_cost"], order: {
           name: "ASC"
         }})
-    return products;
+    return products 
   }
 }

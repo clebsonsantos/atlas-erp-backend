@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { DeleteCategoryUseCase } from "../usecases/delete-category";
+import { Request, Response } from "express" 
+import { container } from "tsyringe" 
+import { DeleteCategoryUseCase } from "../usecases/delete-category" 
 
 export class DeleteCategoryController {
 

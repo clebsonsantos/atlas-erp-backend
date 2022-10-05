@@ -1,19 +1,19 @@
-import { Request, Response } from "express";
+import { Request, Response } from "express" 
 
-import { CategoriesCenterReports } from '../../modules/reports/CategoriesCenterReports';
-import { CustomersReports } from '../../modules/reports/CustomersReports';
-import { ExpensesReports } from '../../modules/reports/ExpensesReports';
-import { GetReportsUseCase } from '../../modules/reports/GetReportsUseCase';
-import { ProductsReports } from '../../modules/reports/ProductsReports';
-import { UsersReports } from '../../modules/reports/UsersReports';
-import { SalesReports } from '../../modules/reports/SalesReports';
-import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
-import { User } from "@/modules/user/infra/typeorm/entities/user";
-import { Expenses } from "@/modules/expenses/infra/typeorm/entities/expense";
-import { Sales } from "@/modules/sales/infra/typeorm/entities/sale";
-import { Product } from "@/modules/products/infra/typeorm/entities/product";
-import { CentersCost } from "@/modules/expenses/infra/typeorm/entities/center-cost";
-import { Category } from "@/modules/expenses/infra/typeorm/entities/category";
+import { CategoriesCenterReports } from '../../modules/reports/CategoriesCenterReports' 
+import { CustomersReports } from '../../modules/reports/CustomersReports' 
+import { ExpensesReports } from '../../modules/reports/ExpensesReports' 
+import { GetReportsUseCase } from '../../modules/reports/GetReportsUseCase' 
+import { ProductsReports } from '../../modules/reports/ProductsReports' 
+import { UsersReports } from '../../modules/reports/UsersReports' 
+import { SalesReports } from '../../modules/reports/SalesReports' 
+import { Customer } from "@/modules/customers/infra/typeorm/entities/customer" 
+import { User } from "@/modules/user/infra/typeorm/entities/user" 
+import { Expenses } from "@/modules/expenses/infra/typeorm/entities/expense" 
+import { Sales } from "@/modules/sales/infra/typeorm/entities/sale" 
+import { Product } from "@/modules/products/infra/typeorm/entities/product" 
+import { CentersCost } from "@/modules/expenses/infra/typeorm/entities/center-cost" 
+import { Category } from "@/modules/expenses/infra/typeorm/entities/category" 
 
 
 

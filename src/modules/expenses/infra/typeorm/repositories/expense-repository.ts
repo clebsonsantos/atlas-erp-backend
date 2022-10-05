@@ -1,7 +1,7 @@
-import { CreateExpense } from "@/modules/expenses/contracts/create-expense";
-import { IExpenseRepository } from "@/modules/expenses/repositories/iexpense-repository";
-import { getRepository, Repository } from "typeorm";
-import { Expenses } from "../entities/expense";
+import { CreateExpense } from "@/modules/expenses/contracts/create-expense" 
+import { IExpenseRepository } from "@/modules/expenses/repositories/iexpense-repository" 
+import { getRepository, Repository } from "typeorm" 
+import { Expenses } from "../entities/expense" 
 
 
 export class ExpenseRepository implements IExpenseRepository {

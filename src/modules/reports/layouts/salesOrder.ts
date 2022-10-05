@@ -1,19 +1,19 @@
-import { PageOrientation, Size, TDocumentDefinitions } from 'pdfmake/interfaces';
-import HeadersReport from './header';
+import { PageOrientation, Size, TDocumentDefinitions } from 'pdfmake/interfaces' 
+import HeadersReport from './header' 
 import { cpf, cnpj } from 'cpf-cnpj-validator'
-import formatCurrency from '../../../utils/formatCurrency';
-import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
-import { Administrator } from "@/modules/administrator/infra/typeorm/entities/adminitrator";
+import formatCurrency from '../../../utils/formatCurrency' 
+import { Customer } from "@/modules/customers/infra/typeorm/entities/customer" 
+import { Administrator } from "@/modules/administrator/infra/typeorm/entities/adminitrator" 
 
 type DefaultCongig = {
-  company: Administrator;
-  titleReport: string;
-  columnsTitle?: any;
-  body?: any;
-  orientationPage: PageOrientation;
-  widthsColumns?: Size[];
-  LogoImage: void | any;
-  client: Customer;
+  company: Administrator 
+  titleReport: string 
+  columnsTitle?: any 
+  body?: any 
+  orientationPage: PageOrientation 
+  widthsColumns?: Size[] 
+  LogoImage: void | any 
+  client: Customer 
   totalSale: number
 }
 
@@ -56,7 +56,7 @@ const salesOrdes  = ({orientationPage, company, titleReport, widthsColumns, colu
           headerRows: 1,
           widths: widthsColumns,
           heights: function (){
-            return 15;
+            return 15 
           },
           body: [
             columnsTitle,

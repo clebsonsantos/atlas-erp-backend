@@ -1,7 +1,7 @@
-import { CreateCenterCost } from "@/modules/expenses/contracts/create-center-cost";
-import { ICenterCostRepository } from "@/modules/expenses/repositories/icenter-cost-repository";
-import { getRepository, Repository } from "typeorm";
-import { CentersCost } from "../entities/center-cost";
+import { CreateCenterCost } from "@/modules/expenses/contracts/create-center-cost" 
+import { ICenterCostRepository } from "@/modules/expenses/repositories/icenter-cost-repository" 
+import { getRepository, Repository } from "typeorm" 
+import { CentersCost } from "../entities/center-cost" 
 
 export class CenterCostRepository implements ICenterCostRepository {
   

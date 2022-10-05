@@ -1,6 +1,6 @@
-import { app } from "./app";
+import { app } from "./app" 
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000 
 
 app.listen(PORT, () => {
   if(!process.env.SECRET_JWT) {
@@ -12,6 +12,6 @@ app.listen(PORT, () => {
     node_version: 16,
     port: PORT,
     message: "Server is running",
-  };
-  console.table([running]);
-});
+  } 
+  console.table([running]) 
+}) 

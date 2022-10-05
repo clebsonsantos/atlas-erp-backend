@@ -1,6 +1,6 @@
-import { CreateCustomer } from "../contracts/create-customer";
-import { UpdateCustomer } from "../contracts/updated-customer";
-import { Customer } from "../infra/typeorm/entities/customer";
+import { CreateCustomer } from "../contracts/create-customer" 
+import { UpdateCustomer } from "../contracts/updated-customer" 
+import { Customer } from "../infra/typeorm/entities/customer" 
 
 export interface ICustomerRepository {
   create: (data: CreateCustomer.Params) => Promise<Customer>

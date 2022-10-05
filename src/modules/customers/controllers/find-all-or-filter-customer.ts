@@ -1,7 +1,7 @@
-import { container } from 'tsyringe';
+import { container } from 'tsyringe' 
 
-import { FindAllCustomersUseCase } from "@/modules/customers/usecases/find-all-customers-or-filter-by-name-or-id";
-import { Request, Response } from "express";
+import { FindAllCustomersUseCase } from "@/modules/customers/usecases/find-all-customers-or-filter-by-name-or-id" 
+import { Request, Response } from "express" 
 
 
 export class FindAllOrFilterCustomersController {

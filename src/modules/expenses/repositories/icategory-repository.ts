@@ -1,5 +1,5 @@
-import { CreateCategory } from "../contracts/create-category";
-import { Category } from "../infra/typeorm/entities/category";
+import { CreateCategory } from "../contracts/create-category" 
+import { Category } from "../infra/typeorm/entities/category" 
 
 export interface ICategoryRepository {
   list(): Promise<Category[]>

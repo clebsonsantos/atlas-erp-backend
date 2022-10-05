@@ -1,13 +1,13 @@
 
-import { Request, Response } from "express";
-import { CreateSaleProductsSoldUseCase } from '../../modules/sales/CreateSaleProductsSoldUseCase';
+import { Request, Response } from "express" 
+import { CreateSaleProductsSoldUseCase } from '../../modules/sales/CreateSaleProductsSoldUseCase' 
 
 
 export class CreateSaleProductsSoldController {
 
   async handle(request: Request, response: Response) {
-    const { date, customer_id, products_sold, salesman } = request.body;
-    const { userId } = request;
+    const { date, customer_id, products_sold, salesman } = request.body 
+    const { userId } = request 
 
     const saleUseCase = new CreateSaleProductsSoldUseCase()
     const result = await saleUseCase.execute({date, customer_id, products_sold, salesman, userId})

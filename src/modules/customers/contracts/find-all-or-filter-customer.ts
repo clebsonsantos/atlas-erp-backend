@@ -1,8 +1,8 @@
-import { Customer } from "../infra/typeorm/entities/customer";
+import { Customer } from "../infra/typeorm/entities/customer" 
 
 export namespace FindAllCustomerOrFilter {
   export type Params = {
-    id?: string;
+    id?: string 
     full_name?: string
   }
   export type Result =  Customer[] | Customer

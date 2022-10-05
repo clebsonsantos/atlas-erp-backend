@@ -1,4 +1,4 @@
-import { ProductRepository } from '../../repositories';
+import { ProductRepository } from '../../repositories' 
 
 type Type = {
   id: string
@@ -12,7 +12,7 @@ export class DeleteProductUseCase  {
     let ErrorQuery: string
 
     if(!product){
-      return new Error("Produto não encontrado.");
+      return new Error("Produto não encontrado.") 
     }
 
     await ProductRepository().delete({ id }).catch(error => {

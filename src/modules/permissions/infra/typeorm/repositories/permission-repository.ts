@@ -1,7 +1,7 @@
-import { CreatePermission } from "@/modules/permissions/contracts/create-permission";
-import { IPermissionRepository } from "@/modules/permissions/repositories/ipermission-repository";
-import { getRepository, Repository } from "typeorm";
-import { Permission } from "../entities/permission";
+import { CreatePermission } from "@/modules/permissions/contracts/create-permission" 
+import { IPermissionRepository } from "@/modules/permissions/repositories/ipermission-repository" 
+import { getRepository, Repository } from "typeorm" 
+import { Permission } from "../entities/permission" 
 
 
 export class PermissionRepository implements IPermissionRepository {

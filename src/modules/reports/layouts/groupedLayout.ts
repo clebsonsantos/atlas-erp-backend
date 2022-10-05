@@ -1,15 +1,15 @@
-import { Administrator } from "@/modules/administrator/infra/typeorm/entities/adminitrator";
-import { PageOrientation, Size, TDocumentDefinitions } from 'pdfmake/interfaces';
-import formatCurrency from '../../../utils/formatCurrency';
-import HeadersReport from './header';
+import { Administrator } from "@/modules/administrator/infra/typeorm/entities/adminitrator" 
+import { PageOrientation, Size, TDocumentDefinitions } from 'pdfmake/interfaces' 
+import formatCurrency from '../../../utils/formatCurrency' 
+import HeadersReport from './header' 
 
 
 type GroupedConfig = {
-    company: Administrator;
-    titleReport: string;
-    contentTable?: any;
-    orientationPage: PageOrientation;
-    LogoImage: void | any;
+    company: Administrator 
+    titleReport: string 
+    contentTable?: any 
+    orientationPage: PageOrientation 
+    LogoImage: void | any 
     totalExpenses?: number
   }
 

@@ -1,14 +1,14 @@
-import { TableCell } from 'pdfmake/interfaces';
-import { Response } from 'express';
-import { DefaultsConfigReport } from './DefaultsConfigReport';
-import { User } from "../user/infra/typeorm/entities/user";
+import { TableCell } from 'pdfmake/interfaces' 
+import { Response } from 'express' 
+import { DefaultsConfigReport } from './DefaultsConfigReport' 
+import { User } from "../user/infra/typeorm/entities/user" 
 
 export class UsersReports  {
 
   async execute( Users: User[], response: Response){
 
     //CORPO DA TABELA
-    const body = [ ];
+    const body = [ ] 
     const columnsTitle: TableCell[] = [
       {text: "Nome completo", style: "tableTitle"},
       {text: "Usuário", style: "tableTitle"},

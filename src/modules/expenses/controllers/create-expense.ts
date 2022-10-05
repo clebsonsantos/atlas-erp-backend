@@ -1,7 +1,7 @@
 
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { CreateExpenseUseCase } from "../usecases/create-expense";
+import { Request, Response } from "express" 
+import { container } from "tsyringe" 
+import { CreateExpenseUseCase } from "../usecases/create-expense" 
 
 
 export class CreateExpensesController {
@@ -16,7 +16,7 @@ export class CreateExpensesController {
       date,
       category_id,
       center_cost_id
-    } = request.body;
+    } = request.body 
 
     const createExpenseService = container.resolve(CreateExpenseUseCase)
 
@@ -29,7 +29,7 @@ export class CreateExpensesController {
       date,
       category_id,
       center_cost_id
-    });
+    }) 
     
     if(result.isLeft()){
      return response.status(result.value.statusCode).json(result.value.message)
