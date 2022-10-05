@@ -1,10 +1,11 @@
 import { ICenterCostRepository } from "@/modules/expenses/repositories/icenter-cost-repository"
 import { Either, left, right } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
-import { inject } from "tsyringe"
+import { inject, injectable } from "tsyringe"
 import { CreateProduct } from "../contracts/create-product"
 import { ProductRepository } from "../repositories/product-repository"
 
+@injectable()
 export class CreateProductsUseCase {
   constructor(
     @inject("ProductRepository")

@@ -19,4 +19,12 @@ export class ProductRepositoryImpl implements ProductRepository {
     return await this.repository.findOne({ id })
   }
 
+  async delete(id: string): Promise<boolean> {
+    try {
+      await this.repository.delete({ id })
+      return true
+    } catch {
+      return false
+    }
+  }
 }
