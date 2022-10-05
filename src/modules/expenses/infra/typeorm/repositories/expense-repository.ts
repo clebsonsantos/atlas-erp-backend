@@ -18,7 +18,9 @@ export class ExpenseRepository implements IExpenseRepository {
   }
 
   async list(): Promise<Expenses[]> {
-    const expenses = await this.repository.find()
+    const expenses = await this.repository.find({
+      relations: ["category", "center_cost"]
+    })
     return expenses
   }
 
