@@ -12,8 +12,8 @@ import { User } from "@/modules/user/infra/typeorm/entities/user";
 import { Expenses } from "@/modules/expenses/infra/typeorm/entities/expense";
 import { Sales } from "@/modules/sales/infra/typeorm/entities/sale";
 import { Product } from "@/modules/products/infra/typeorm/entities/product";
-import { CentersCost } from "@/modules/centercost/infra/typeorm/entities/center-cost";
-import { Category } from "@/modules/categories/infra/typeorm/entities/category";
+import { CentersCost } from "@/modules/expenses/infra/typeorm/entities/center-cost";
+import { Category } from "@/modules/expenses/infra/typeorm/entities/category";
 
 
 

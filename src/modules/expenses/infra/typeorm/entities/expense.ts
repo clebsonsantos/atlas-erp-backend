@@ -1,5 +1,5 @@
-import { Category } from "@/modules/categories/infra/typeorm/entities/category";
-import { CentersCost } from "@/modules/centercost/infra/typeorm/entities/center-cost";
+import { Category } from "@/modules/expenses/infra/typeorm/entities/category";
+import { CentersCost } from "@/modules/expenses/infra/typeorm/entities/center-cost";
 import { BaseExpenses } from "@/shared/infra/typeorm/bases/base-expense-entity";
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 

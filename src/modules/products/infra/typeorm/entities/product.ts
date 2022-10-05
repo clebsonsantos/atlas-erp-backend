@@ -1,4 +1,4 @@
-import { CentersCost } from "@/modules/centercost/infra/typeorm/entities/center-cost";
+import { CentersCost } from "@/modules/expenses/infra/typeorm/entities/center-cost";
 import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity";
 import { Entity, Column, ManyToOne, JoinColumn } from "typeorm";
 

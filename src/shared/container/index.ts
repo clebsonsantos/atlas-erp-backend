@@ -9,6 +9,10 @@ import { IRoleRepository } from "@/modules/permissions/repositories/irole-reposi
 import { RoleRepository } from "@/modules/permissions/infra/typeorm/repositories/role-repository";
 import { ExpenseRepository } from "@/modules/expenses/infra/typeorm/repositories/expense-repository";
 import { IExpenseRepository } from "@/modules/expenses/repositories/iexpense-repository";
+import { ICategoryRepository } from "@/modules/expenses/repositories/icategory-repository";
+import { CategoryRepository } from "@/modules/expenses/infra/typeorm/repositories/category-repository";
+import { CenterCostRepository } from "@/modules/expenses/infra/typeorm/repositories/center-cost-repository";
+import { ICenterCostRepository } from "@/modules/expenses/repositories/icenter-cost-repository";
 
 export function startContainer() {
   container.registerSingleton<ICustomerRepository>(
@@ -35,4 +39,15 @@ export function startContainer() {
     "ExpenseRepository",
     ExpenseRepository
   )
+
+  container.registerSingleton<ICategoryRepository>(
+    "CategoryRepository",
+    CategoryRepository
+  )
+
+  container.registerSingleton<ICenterCostRepository>(
+    "CenterCostRepository",
+    CenterCostRepository
+  )
 }
+

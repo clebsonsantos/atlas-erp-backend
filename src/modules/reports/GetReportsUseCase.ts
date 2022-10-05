@@ -1,8 +1,8 @@
 import { Between } from 'typeorm';
 
 import { CategoryRepository, CenterCostRepository, CustomerRepository, ExpenseRepository, ProductRepository, SalesRepository, UserRepository } from '../../repositories';
-import { Category } from "@/modules/categories/infra/typeorm/entities/category";
-import { CentersCost } from "@/modules/centercost/infra/typeorm/entities/center-cost";
+import { Category } from "@/modules/expenses/infra/typeorm/entities/category";
+import { CentersCost } from "@/modules/expenses/infra/typeorm/entities/center-cost";
 import { Customer } from "@/modules/customers/infra/typeorm/entities/customer";
 import { Expenses } from "@/modules/expenses/infra/typeorm/entities/expense";
 import { Product } from "@/modules/products/infra/typeorm/entities/product";

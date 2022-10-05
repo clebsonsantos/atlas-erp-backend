@@ -2,8 +2,8 @@
 import { TableCell } from 'pdfmake/interfaces';
 import { Response } from 'express';
 import { DefaultsConfigReport } from './DefaultsConfigReport';
-import { Category } from "../categories/infra/typeorm/entities/category";
-import { CentersCost } from "../centercost/infra/typeorm/entities/center-cost";
+import { Category } from "../expenses/infra/typeorm/entities/category";
+import { CentersCost } from "../expenses/infra/typeorm/entities/center-cost";
 
 export class CategoriesCenterReports  {
 

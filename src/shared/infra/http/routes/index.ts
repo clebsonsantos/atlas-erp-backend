@@ -11,15 +11,6 @@ import { ensuredValidateUUID, ensuredAuthReports, ensuredAuthenticated, can } fr
 import { GetSalesOrderController } from '@/controllers/reports/GetSalesOrderController'
 import { CreateProductController } from "@/controllers/products/CreateProductController"
 import { GetAllProductsController } from "@/controllers/products/GetAllProductsController"
-
-import { CreateCategoryController } from '@/controllers/categories/CreateCategoryController'
-import { CreateCenterCostController } from '@/controllers/centercost/CreateCenterCostController'
-import { GetAllCategoryController } from '@/controllers/categories/GetAllCategoryController'
-import { GetAllCenterCostController } from '@/controllers/centercost/GetAllCenterCostController'
-import { UpdateCategoryController } from '@/controllers/categories/UpdateCategoryController'
-import { DeleteCategoryController } from '@/controllers/categories/DeleteCategoryController'
-import { UpdateCenterCostController } from '@/controllers/centercost/UpdateCenterCostController'
-import { DeleteCenterCostController } from '@/controllers/centercost/DeleteCenterCostController'
 import { CreateAdministratorController } from '@/controllers/administrator/CreateAdministratorController'
 import { UpdateAdministratorController } from '@/controllers/administrator/UpdateAdministratorController'
 import { GetAdministratorController } from '@/controllers/administrator/GetAdministratorController'
@@ -57,17 +48,6 @@ routes.use("/roles", roleRoutes)
 routes.use("/expenses", expenseRoutes)
 //?? Fim de rotas refatoradas
 
-// Categorias
-routes.post("/categories", ensuredAuthenticated(), can(["admin", 'categories']), new CreateCategoryController().handle)
-routes.get("/categories", ensuredAuthenticated(), can(["admin", 'categories']), new GetAllCategoryController().handle)
-routes.put("/categories/:id", ensuredAuthenticated(), can(["admin", 'categories']), ensuredValidateUUID(), new UpdateCategoryController().handle)
-routes.delete("/categories/:id", ensuredAuthenticated(), can(["admin", 'categories']), ensuredValidateUUID(), new DeleteCategoryController().handle)
-
-// Centro de custo
-routes.post("/center_cost", ensuredAuthenticated(), can(["admin", 'center_cost']), new CreateCenterCostController().handle)
-routes.get("/center_cost", ensuredAuthenticated(), can(["admin", 'center_cost']), new GetAllCenterCostController().handle)
-routes.put("/center_cost/:id", ensuredAuthenticated(), can(["admin", 'center_cost']), ensuredValidateUUID(), new UpdateCenterCostController().handle)
-routes.delete("/center_cost/:id", ensuredAuthenticated(), can(["admin", 'center_cost']), ensuredValidateUUID(), new DeleteCenterCostController().handle)
 
 //Administrador
 routes.post("/create_admin", ensuredAuthenticated(), upload.single('url_image'), can(["admin"]), new CreateAdministratorController().handle)
