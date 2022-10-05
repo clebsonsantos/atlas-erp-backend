@@ -13,6 +13,8 @@ import { ICategoryRepository } from "@/modules/expenses/repositories/icategory-r
 import { CategoryRepository } from "@/modules/expenses/infra/typeorm/repositories/category-repository" 
 import { CenterCostRepository } from "@/modules/expenses/infra/typeorm/repositories/center-cost-repository" 
 import { ICenterCostRepository } from "@/modules/expenses/repositories/icenter-cost-repository" 
+import { ProductRepositoryImpl } from "@/modules/products/infra/typeorm/repositories/product-repository"
+import { ProductRepository } from "@/modules/products/repositories/product-repository"
 
 export function startContainer() {
   container.registerSingleton<ICustomerRepository>(
@@ -48,6 +50,11 @@ export function startContainer() {
   container.registerSingleton<ICenterCostRepository>(
     "CenterCostRepository",
     CenterCostRepository
+  )
+
+  container.registerSingleton<ProductRepository>(
+    "ProductRepository",
+    ProductRepositoryImpl
   )
 }
 
