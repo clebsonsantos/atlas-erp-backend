@@ -1,8 +1,8 @@
+import { Router } from "express"
 import { DeleteExpenseController } from "@/controllers/expenses/DeleteExpenseController"
-import { UpdateExpensesController } from "@/controllers/expenses/UpdateExpensesController"
 import { CreateExpensesController } from "@/modules/expenses/controllers/create-expense"
 import { ListExpensesController } from "@/modules/expenses/controllers/list-expenses"
-import { Router } from "express"
+import { UpdateExpensesController } from "@/modules/expenses/controllers/updated-expense"
 import { can, ensuredAuthenticated, ensuredValidateUUID } from "../middlewares"
 
 const expenseRoutes = Router()

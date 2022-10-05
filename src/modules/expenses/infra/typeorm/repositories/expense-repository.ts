@@ -24,4 +24,13 @@ export class ExpenseRepository implements IExpenseRepository {
     return expenses
   }
 
+  async findById(id: string): Promise<Expenses> {
+      const expense = await this.repository.findOne({ id })
+      return expense
+  }
+
+  async update(data: Expenses): Promise<Expenses> {
+      const expense = await this.repository.save(data)
+      return expense
+  }
 }
