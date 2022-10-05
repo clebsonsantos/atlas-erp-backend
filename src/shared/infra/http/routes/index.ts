@@ -1,6 +1,9 @@
 import { Router } from "express"
 import { customerRoutes } from "./customer.routes"
 import { userRoutes } from "./user.routes"
+import { permissionRoutes } from "./permission.routes"
+import { roleRoutes } from "./role.routes"
+import { expenseRoutes } from "./expense.routes"
 
 const routes = Router()
 
@@ -9,14 +12,10 @@ import { GetSalesOrderController } from '@/controllers/reports/GetSalesOrderCont
 import { CreateProductController } from "@/controllers/products/CreateProductController"
 import { GetAllProductsController } from "@/controllers/products/GetAllProductsController"
 
-import { CreateExpensesController } from '@/controllers/expenses/CreateExpensesController'
 import { CreateCategoryController } from '@/controllers/categories/CreateCategoryController'
 import { CreateCenterCostController } from '@/controllers/centercost/CreateCenterCostController'
 import { GetAllCategoryController } from '@/controllers/categories/GetAllCategoryController'
-import { GetAllExpensesController } from '@/controllers/expenses/GetAllExpensesController'
 import { GetAllCenterCostController } from '@/controllers/centercost/GetAllCenterCostController'
-import { UpdateExpensesController } from '@/controllers/expenses/UpdateExpensesController'
-import { DeleteExpenseController } from '@/controllers/expenses/DeleteExpenseController'
 import { UpdateCategoryController } from '@/controllers/categories/UpdateCategoryController'
 import { DeleteCategoryController } from '@/controllers/categories/DeleteCategoryController'
 import { UpdateCenterCostController } from '@/controllers/centercost/UpdateCenterCostController'
@@ -35,8 +34,6 @@ import { GetReportsController } from '@/controllers/reports/GetReportsController
 // Inserindo um arquivo de imagem
 import multer from 'multer'
 import { CreateSessionLoginController } from "@/modules/user/controllers/create-session-login"
-import { permissionRoutes } from "./permission.routes"
-import { roleRoutes } from "./role.routes"
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads')
@@ -57,14 +54,8 @@ routes.post("/login", new CreateSessionLoginController().handle)
 
 routes.use("/permissions", permissionRoutes)
 routes.use("/roles", roleRoutes)
+routes.use("/expenses", expenseRoutes)
 //?? Fim de rotas refatoradas
-
-
-// Despesas/ganhos
-routes.post("/expenses", ensuredAuthenticated(), can(["admin", 'expenses']), new CreateExpensesController().handle)
-routes.get("/expenses", ensuredAuthenticated(), can(["admin", 'expenses']), new GetAllExpensesController().handle)
-routes.put("/expenses/:id", ensuredAuthenticated(), can(["admin", 'expenses']), ensuredValidateUUID(), new UpdateExpensesController().handle)
-routes.delete("/expenses/:id", ensuredAuthenticated(), can(["admin", 'expenses']), ensuredValidateUUID(), new DeleteExpenseController().handle)
 
 // Categorias
 routes.post("/categories", ensuredAuthenticated(), can(["admin", 'categories']), new CreateCategoryController().handle)

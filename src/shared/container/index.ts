@@ -7,6 +7,8 @@ import { IPermissionRepository } from "@/modules/permissions/repositories/ipermi
 import { PermissionRepository } from "@/modules/permissions/infra/typeorm/repositories/permission-repository";
 import { IRoleRepository } from "@/modules/permissions/repositories/irole-repository";
 import { RoleRepository } from "@/modules/permissions/infra/typeorm/repositories/role-repository";
+import { ExpenseRepository } from "@/modules/expenses/infra/typeorm/repositories/expense-repository";
+import { IExpenseRepository } from "@/modules/expenses/repositories/iexpense-repository";
 
 export function startContainer() {
   container.registerSingleton<ICustomerRepository>(
@@ -27,5 +29,10 @@ export function startContainer() {
   container.registerSingleton<IRoleRepository>(
     "RoleRepository",
     RoleRepository
+  )
+
+  container.registerSingleton<IExpenseRepository>(
+    "ExpenseRepository",
+    ExpenseRepository
   )
 }
