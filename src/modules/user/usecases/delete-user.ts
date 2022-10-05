@@ -2,7 +2,7 @@ import { left, right } from "@/shared/either";
 import { AppError } from "@/shared/errors/AppError";
 import { inject, injectable } from "tsyringe";
 import { DeleteUserById } from "../contracts/delete-user-by-id";
-import { IUserRepository } from "../repositories/iuser-reposiotry";
+import { IUserRepository } from "../repositories/iuser-repository";
 
 @injectable()
 export class DeleteUserUseCase  {

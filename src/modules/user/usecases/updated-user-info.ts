@@ -3,7 +3,7 @@ import { AppError } from "@/shared/errors/AppError"
 import { hash } from "bcryptjs"
 import { inject, injectable } from "tsyringe"
 import { UpdatedUserInfo } from "../contracts/updated-user-info"
-import { IUserRepository } from "../repositories/iuser-reposiotry"
+import { IUserRepository } from "../repositories/iuser-repository"
 
 
 @injectable()

@@ -4,7 +4,7 @@ import { left, right } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
 import { CreateUserAccessControllList } from "../contracts/create-user-access-controll-list"
 
-import { IUserRepository } from "../repositories/iuser-reposiotry"
+import { IUserRepository } from "../repositories/iuser-repository"
 
 @injectable()
 export class CreateUserAccessControlListUseCase {

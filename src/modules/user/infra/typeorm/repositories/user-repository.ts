@@ -1,5 +1,5 @@
 import { CreateUser } from "@/modules/user/contracts/create-user";
-import { IUserRepository } from "@/modules/user/repositories/iuser-reposiotry";
+import { IUserRepository } from "@/modules/user/repositories/iuser-repository";
 import { getRepository, Repository } from "typeorm";
 import { User } from "../entities/user";
 
