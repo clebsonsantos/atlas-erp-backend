@@ -33,4 +33,13 @@ export class ExpenseRepository implements IExpenseRepository {
       const expense = await this.repository.save(data)
       return expense
   }
+
+  async delete(id: string): Promise<boolean> {
+    try {
+      await this.repository.delete(id)
+      return true
+    } catch {
+      return false
+    }
+  }
 }

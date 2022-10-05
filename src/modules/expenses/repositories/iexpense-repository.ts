@@ -6,4 +6,5 @@ export interface IExpenseRepository {
   list(): Promise<Expenses[]>
   findById(id: string): Promise<Expenses>
   update(data: Expenses): Promise<Expenses>
+  delete(id: string): Promise<boolean>
 }
