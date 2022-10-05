@@ -5,4 +5,6 @@ export interface ProductRepository {
   add(data: CreateProduct.Params): Promise<Product>
   findById(id: string): Promise<Product>
   delete(id: string): Promise<boolean>
+  findByName(name: string): Promise<Product>
+  list(): Promise<Product[]>
 }

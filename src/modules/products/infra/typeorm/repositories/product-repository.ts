@@ -16,7 +16,7 @@ export class ProductRepositoryImpl implements ProductRepository {
     return product
   }
   async findById(id: string): Promise<Product> {
-    return await this.repository.findOne({ id })
+    return await this.repository.findOne({ id }, {relations: ["center_cost"]})
   }
 
   async delete(id: string): Promise<boolean> {
@@ -26,5 +26,13 @@ export class ProductRepositoryImpl implements ProductRepository {
     } catch {
       return false
     }
+  }
+  async findByName(name: string): Promise<Product> {
+    return await this.repository.findOne({ name })
+  }
+  async list(): Promise<Product[]> {
+    return await this.repository.find({relations: ["center_cost"], order: {
+        name: "ASC"
+    }})
   }
 }
