@@ -7,4 +7,5 @@ export interface ProductRepository {
   delete(id: string): Promise<boolean>
   findByName(name: string): Promise<Product>
   list(): Promise<Product[]>
+  update(data: Product): Promise<Product>
 }

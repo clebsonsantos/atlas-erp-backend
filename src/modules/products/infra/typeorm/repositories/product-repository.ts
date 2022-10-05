@@ -15,6 +15,7 @@ export class ProductRepositoryImpl implements ProductRepository {
     const product = await this.repository.save(toSave)
     return product
   }
+  
   async findById(id: string): Promise<Product> {
     return await this.repository.findOne({ id }, {relations: ["center_cost"]})
   }
@@ -27,12 +28,18 @@ export class ProductRepositoryImpl implements ProductRepository {
       return false
     }
   }
+
   async findByName(name: string): Promise<Product> {
     return await this.repository.findOne({ name })
   }
+
   async list(): Promise<Product[]> {
     return await this.repository.find({relations: ["center_cost"], order: {
         name: "ASC"
     }})
+  }
+
+  async update(data: Product): Promise<Product> {
+    return await this.repository.save(data) 
   }
 }
