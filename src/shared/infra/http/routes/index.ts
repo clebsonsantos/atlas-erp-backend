@@ -9,13 +9,9 @@ const routes = Router()
 
 import { ensuredValidateUUID, ensuredAuthReports, ensuredAuthenticated, can } from '../middlewares'
 import { GetSalesOrderController } from '@/controllers/reports/GetSalesOrderController'
-import { CreateProductController } from "@/controllers/products/CreateProductController"
-import { GetAllProductsController } from "@/controllers/products/GetAllProductsController"
 import { CreateAdministratorController } from '@/controllers/administrator/CreateAdministratorController'
 import { UpdateAdministratorController } from '@/controllers/administrator/UpdateAdministratorController'
 import { GetAdministratorController } from '@/controllers/administrator/GetAdministratorController'
-import { UpdateProductController } from '@/controllers/products/UpdateProductController'
-import { DeleteProductController } from '@/controllers/products/DeleteProductController'
 import { CreateSaleProductsSoldController } from '@/controllers/sales/CreateSaleProductsSoldController'
 import { GettAllSaleProductsController } from '@/controllers/sales/GettAllSaleProductsController'
 import { DeleteSaleProductsController } from '@/controllers/sales/DeleteSaleProductsController'
@@ -25,6 +21,7 @@ import { GetReportsController } from '@/controllers/reports/GetReportsController
 // Inserindo um arquivo de imagem
 import multer from 'multer'
 import { CreateSessionLoginController } from "@/modules/user/controllers/create-session-login"
+import { productRoutes } from "./produc.routes"
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
     cb(null, './uploads')
@@ -46,6 +43,7 @@ routes.post("/login", new CreateSessionLoginController().handle)
 routes.use("/permissions", permissionRoutes)
 routes.use("/roles", roleRoutes)
 routes.use("/expenses", expenseRoutes)
+routes.use("/products", productRoutes)
 //?? Fim de rotas refatoradas
 
 
@@ -53,14 +51,6 @@ routes.use("/expenses", expenseRoutes)
 routes.post("/create_admin", ensuredAuthenticated(), upload.single('url_image'), can(["admin"]), new CreateAdministratorController().handle)
 routes.put("/update_admin/:id", ensuredAuthenticated(), upload.single('url_image'), can(["admin"]), ensuredValidateUUID(), new UpdateAdministratorController().handle)
 routes.get("/get_admin", ensuredAuthenticated(), can(["admin"]), new GetAdministratorController().handle)
-
-
-// Produtos
-routes.get("/products", ensuredAuthenticated(), can(["admin", 'products']), new GetAllProductsController().handle)
-// routes.post("/products/search", ensuredAuthenticated(), can(["admin", 'products']), new GetAllProductsController().handle)
-routes.post("/products", ensuredAuthenticated(), can(["admin", 'products']), new CreateProductController().handle)
-routes.put("/products/:id", ensuredAuthenticated(), can(["admin", 'products']), ensuredValidateUUID(),new UpdateProductController().handle)
-routes.delete("/products/:id", ensuredAuthenticated(), can(["admin", 'products']), ensuredValidateUUID(), new DeleteProductController().handle)
 
 // Pedidos/Vendas 
 routes.post("/sales", ensuredAuthenticated(), can(["admin", 'sales']), new CreateSaleProductsSoldController().handle)

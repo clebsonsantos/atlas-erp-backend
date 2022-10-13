@@ -1,7 +1,8 @@
 
 import { UuidValidate } from "@/shared/infra/uuid" 
 import { Request, Response } from "express" 
-import { UpdateProductUseCase } from '../../modules/products/UpdateProductUseCase' 
+import { container } from "tsyringe"
+import { UpdateProductUseCase } from "../usecases/updated-product"
 
 const isValidUUID = new UuidValidate()
 export class UpdateProductController {
@@ -14,14 +15,14 @@ export class UpdateProductController {
       return response.status(400).json("Invalid uuid")
     }
 
-    const product = new UpdateProductUseCase()
+    const product = container.resolve(UpdateProductUseCase)
 
-    const result = await product.execute({id, name, description, price_default, center_cost_id })
+    const result = await product.execute({ id, name, description, price_default, center_cost_id })
 
-    if(result instanceof Error){
-      return response.status(400).json(result.message)
+    if(result.isLeft()){
+      return response.status(result.value.statusCode).json(result.value.message)
     }
 
-    return response.status(200).json(result)
+    return response.status(200).json(result.value)
   }
 }
