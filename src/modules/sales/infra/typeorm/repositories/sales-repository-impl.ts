@@ -1,9 +1,16 @@
 import { CreateSaleAndAssociateProductsSold } from "@/modules/sales/contracts/create-sale-and-associate-products-sold";
 import { SaleRepository } from "@/modules/sales/repositories/sales-repository";
+import { getRepository, Repository } from "typeorm";
 import { Sales } from "../entities/sale";
 
 
 export class SaleRepositoryImpl implements SaleRepository {
+
+  private readonly repository: Repository<Sales>
+  constructor(){
+    this.repository = getRepository(Sales)
+  }
+
   async add(data: CreateSaleAndAssociateProductsSold.Params): Promise<Sales> {
     throw new Error("Method not implemented.");
   }
