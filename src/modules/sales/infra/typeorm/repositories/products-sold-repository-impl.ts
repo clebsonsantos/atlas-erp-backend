@@ -11,24 +11,27 @@ export class ProductsSoldsRepositoryImpl implements ProductsSoldRepository {
   }
 
   async add(data: CreateSaleAndAssociateProductsSold.ProductsSoldParams): Promise<ProductSales> {
-    throw new Error("Method not implemented.");
+    const productSold = this.repository.create(data)
+    return await this.repository.save(productSold)
   }
   async findById(id: string): Promise<ProductSales> {
-    throw new Error("Method not implemented.");
+    return await this.repository.findOne({ id })
   }
   async delete(id: string): Promise<boolean> {
-    throw new Error("Method not implemented.");
-  }
-  async findByName(name: string): Promise<ProductSales> {
-    throw new Error("Method not implemented.");
+    try {
+      await this.repository.delete({ id })
+      return true
+    } catch {
+      return false
+    }
   }
   async list(): Promise<ProductSales[]> {
-    throw new Error("Method not implemented.");
+    return await this.repository.find()
   }
   async update(data: ProductSales): Promise<ProductSales> {
-    throw new Error("Method not implemented.");
+    return await this.repository.save(data)
   }
   async findByIds(ids: string[]): Promise<ProductSales[]> {
-    throw new Error("Method not implemented.");
+    return await this.repository.findByIds(ids)
   }
 }

@@ -14,7 +14,7 @@ export class CreateSaleAndProductsAssociateController {
     const result = await saleUseCase.execute({ date, customer_id, products_sold, salesman: salesman, userId })
 
     if(result.isLeft()){
-      return response.status(result.value.statusCode).json(result.value.message)
+      return response.status(result.value.statusCode).json(result.value)
     }
 
     return response.json(result.value)

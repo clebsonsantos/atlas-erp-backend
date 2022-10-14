@@ -1,4 +1,4 @@
-import { left, right } from "@/shared/either"
+import { Either, left, right } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
 import { inject, injectable } from "tsyringe"
 import { ICustomerRepository } from "@/modules/customers/repositories/icustomer-repository"
@@ -38,14 +38,14 @@ export class CreateSaleAndProductsAssociateUseCase  {
     }
 
     const validateProducts = this.validateProductsParams(products_sold)
-    if (!validateProducts) {
-      return left(new AppError("Verifique se há algum parâmetro em falta para os produtos adicionados."))
+    if (validateProducts.isLeft()) {
+      return left(new AppError(validateProducts.value))
     }
     
     for await (const product of products_sold){
       const productValidate = await this.productRepository.findById(product.id_product)
       if (!productValidate) {
-        return left(new AppError(`Este produto não existe: ${JSON.stringify(product)}`))
+        return left(new AppError(`Este produto não existe: ${product.id_product}`))
       }
     }
 
@@ -73,14 +73,22 @@ export class CreateSaleAndProductsAssociateUseCase  {
 
   }
 
-  validateProductsParams(products: CreateSaleAndAssociateProductsSold.ProductsSoldParams[]): boolean {
+  validateProductsParams(products: CreateSaleAndAssociateProductsSold.ProductsSoldParams[]): Either<string, null> {
+    const messageError = `Params is required: `
     for (const product of products) {
-      for (const key in product) {
-        if (!product[key]) {
-          return false
+        if (!product.id_product) {
+          return left(messageError.concat("id_product"))
         }
-        return true
-      }
+        if (!product.price_unit) {
+          return left(messageError.concat("price_unit"))
+        }
+        if (!product.quantity) {
+          return left(messageError.concat("quantity"))
+        }
+        if (!product.total_price) {
+          return left(messageError.concat("total_price"))
+        }
+        return right(null)
     }
   }
 }
