@@ -28,5 +28,7 @@ export class ProductsSoldsRepositoryImpl implements ProductsSoldRepository {
   async update(data: ProductSales): Promise<ProductSales> {
     throw new Error("Method not implemented.");
   }
-
+  async findByIds(ids: string[]): Promise<ProductSales[]> {
+    throw new Error("Method not implemented.");
+  }
 }

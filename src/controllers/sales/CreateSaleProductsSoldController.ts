@@ -10,7 +10,7 @@ export class CreateSaleProductsSoldController {
     const { userId } = request 
 
     const saleUseCase = new CreateSaleProductsSoldUseCase()
-    const result = await saleUseCase.execute({date, customer_id, products_sold, salesman, userId})
+    const result = await saleUseCase.execute({date, customer_id, products_sold, salesman: salesman, userId})
 
     if(result instanceof Error){
       return response.status(400).json(result.message)

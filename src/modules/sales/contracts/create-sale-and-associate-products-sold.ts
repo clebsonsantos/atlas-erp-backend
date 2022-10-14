@@ -12,6 +12,7 @@ export namespace CreateSaleAndAssociateProductsSold {
     customer_id: string
     salesman: string
     userId?: string
+    sale_number: number
     products_sold: ProductsSoldParams[]
   }
 

@@ -12,7 +12,8 @@ export class SaleRepositoryImpl implements SaleRepository {
   }
 
   async add(data: CreateSaleAndAssociateProductsSold.Params): Promise<Sales> {
-    throw new Error("Method not implemented.");
+    const sale = this.repository.create(data)
+    return await this.repository.save(sale)
   }
   async findById(id: string): Promise<Sales> {
     throw new Error("Method not implemented.");

@@ -9,4 +9,5 @@ export interface ProductsSoldRepository {
   findByName(name: string): Promise<ProductSales>
   list(): Promise<ProductSales[]>
   update(data: ProductSales): Promise<ProductSales>
+  findByIds(ids: string[]): Promise<ProductSales[]>
 }
