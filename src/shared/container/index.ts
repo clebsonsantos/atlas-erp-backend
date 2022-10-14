@@ -19,6 +19,8 @@ import { SaleRepository } from "@/modules/sales/repositories/sales-repository"
 import { SaleRepositoryImpl } from "@/modules/sales/infra/typeorm/repositories/sales-repository-impl"
 import { ProductsSoldRepository } from "@/modules/sales/repositories/product-sold-repository"
 import { ProductsSoldsRepositoryImpl } from "@/modules/sales/infra/typeorm/repositories/products-sold-repository-impl"
+import { AdministratorRepository } from "@/modules/administrator/repositories/administrator-repository"
+import { AdministratorRepositoryImpl } from "@/modules/administrator/infra/typeorm/repositories/administrator-repository-impl"
 
 export function startContainer() {
   container.registerSingleton<ICustomerRepository>(
@@ -69,6 +71,11 @@ export function startContainer() {
   container.registerSingleton<ProductsSoldRepository>(
     "ProductsSoldRepository",
     ProductsSoldsRepositoryImpl
+  )
+
+  container.registerSingleton<AdministratorRepository>(
+    "AdministratorRepository",
+    AdministratorRepositoryImpl
   )
 }
 

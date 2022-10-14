@@ -1,7 +1,7 @@
 
 import { Request, Response } from "express" 
-import { UpdateAdministratorUseCase } from '../../modules/administrator/UpdateAdministratorUseCase' 
-
+import { container } from "tsyringe"
+import { UpdateAdministratorCompanyUseCase } from "../usecases/update-administrator-company"
 
 export class UpdateAdministratorController {
 
@@ -23,10 +23,10 @@ export class UpdateAdministratorController {
       email
     } = request.body 
     
-    const {path} = request.file
+    const { path } = request.file
     const url_image = path
 
-    const updateadmin = new UpdateAdministratorUseCase()
+    const updateadmin = container.resolve(UpdateAdministratorCompanyUseCase)
 
     const result = await updateadmin.execute({
       id,
@@ -45,11 +45,10 @@ export class UpdateAdministratorController {
       email,
       url_image})
 
-    if(result instanceof Error){
-      return response.status(400).json(result.message)
+    if(result.isLeft()){
+      return response.status(result.value.statusCode).json(result.value)
     }
 
-    return response.status(200).json(result)
+    return response.status(200).json(result.value)
   }
-
 }

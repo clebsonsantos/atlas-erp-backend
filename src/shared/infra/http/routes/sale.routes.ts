@@ -1,5 +1,5 @@
 
-import { CreateSaleAndProductsAssociateController } from "@/modules/sales/controllers/create-sale-and-products-associate.ts";
+import { CreateSaleAndProductsAssociateController } from "@/modules/sales/controllers/create-sale-and-products-associate";
 import { DeleteSaleProductsAssociateController } from "@/modules/sales/controllers/delete-sale-products-associate";
 import { ListAllSaleProductsController } from "@/modules/sales/controllers/list-all-sale-products";
 import { UpdateSaleAndProductsAssociateController } from "@/modules/sales/controllers/update-sale-and-products-associate";

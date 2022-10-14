@@ -1,8 +1,7 @@
 
 import { Request, Response } from "express" 
-import { CreateAdministratorUseCase } from '../../modules/administrator/CreateAdministratorUseCase' 
-
-
+import { container } from "tsyringe"
+import { CreateAdministratorUseCase } from "../usecases/create-adminitrator-company"
 
 export class CreateAdministratorController {
 
@@ -20,13 +19,12 @@ export class CreateAdministratorController {
       uf,
       cep,
       telefone,
-      email,
-      
+      email
     } = request.body 
-    const {path} = request.file
+    const { path } = request.file
     const url_image = path
 
-    const createAdminController = new CreateAdministratorUseCase()
+    const createAdminController = container.resolve(CreateAdministratorUseCase)
 
     const result = await createAdminController.execute({
       razao,
@@ -45,11 +43,10 @@ export class CreateAdministratorController {
       url_image
     })
 
-    if(result instanceof Error){
-    return response.status(400).json(result.message)
+    if(result.isLeft()){
+    return response.status(result.value.statusCode).json(result.value)
 
     }
-
-    return response.status(200).json(result)
+    return response.status(200).json(result.value)
   }
 }
