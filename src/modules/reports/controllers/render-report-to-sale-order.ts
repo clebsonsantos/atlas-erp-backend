@@ -1,7 +1,7 @@
 import { Request, Response } from "express" 
-import { Sales } from "@/modules/sales/infra/typeorm/entities/sale" 
-import { SalesRepository } from "@/repositories"
-import { SalesOrderPrint } from "../SalesOrderPrint"
+import { container } from "tsyringe"
+import { RenderSaleOrderPrintUseCase } from "../usecases/render-sale-order-print"
+import { SendReportPdfToClientSide } from "../adapters/send-report-pdf-to-client-side"
 
 
 export class RenderReportToSaleOrderController {
@@ -9,7 +9,14 @@ export class RenderReportToSaleOrderController {
   async handle(request: Request, response: Response) {
     const { id  } = request.params
 
-    const Sales: Sales = await SalesRepository().findOne({id: id}, {relations:  ["products_sold", "customer"]})
-    await (new SalesOrderPrint()).execute({Sales, response})
+    const renderSaleOrderService = container.resolve(RenderSaleOrderPrintUseCase)
+
+    const result = await renderSaleOrderService.execute({ id })
+
+    if (result.isLeft()) {
+      return response.status(result.value.statusCode).json(result.value)
+    }
+    const sendToClientSide = new SendReportPdfToClientSide()
+    await sendToClientSide.execute({ response, docDefinitions: result.value})
   }
 }
