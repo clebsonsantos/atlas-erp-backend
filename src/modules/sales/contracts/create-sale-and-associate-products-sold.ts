@@ -5,7 +5,7 @@ import { Sales } from "../infra/typeorm/entities/sale"
 
 export namespace CreateSaleAndAssociateProductsSold {
 
-  export type ProductsSoldParams = Omit<ProductSales, "created_at" | "id">
+  export type ProductsSoldParams = Omit<ProductSales, "created_at" | "id" | "product">
 
   export type Params = {
     date: Date
