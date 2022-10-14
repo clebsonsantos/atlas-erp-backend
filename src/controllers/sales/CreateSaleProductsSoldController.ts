@@ -1,6 +1,7 @@
 
+import { CreateSaleProductsSoldUseCase } from "@/modules/sales/CreateSaleProductsSoldUseCase"
 import { Request, Response } from "express" 
-import { CreateSaleProductsSoldUseCase } from '../../modules/sales/CreateSaleProductsSoldUseCase' 
+import { container } from "tsyringe"
 
 
 export class CreateSaleProductsSoldController {
@@ -9,13 +10,13 @@ export class CreateSaleProductsSoldController {
     const { date, customer_id, products_sold, salesman } = request.body 
     const { userId } = request 
 
-    const saleUseCase = new CreateSaleProductsSoldUseCase()
-    const result = await saleUseCase.execute({date, customer_id, products_sold, salesman: salesman, userId})
+    const saleUseCase = container.resolve(CreateSaleProductsSoldUseCase)
+    const result = await saleUseCase.execute({ date, customer_id, products_sold, salesman: salesman, userId })
 
-    if(result instanceof Error){
-      return response.status(400).json(result.message)
+    if(result.isLeft()){
+      return response.status(result.value.statusCode).json(result.value.message)
     }
 
-    return response.json(result)
+    return response.json(result.value)
   }
 }
