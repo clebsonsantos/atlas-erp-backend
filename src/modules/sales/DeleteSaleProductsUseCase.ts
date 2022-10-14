@@ -1,25 +1,35 @@
-import { ProductsSoldsRepository, SalesRepository } from '../../repositories'
+import { left, right } from "@/shared/either"
+import { AppError } from "@/shared/errors/AppError"
+import { inject, injectable } from "tsyringe"
+import { DeleteSaleAndProductsSold } from "./contracts/delete-sale-and-products-sold"
+import { ProductsSoldRepository } from "./repositories/product-sold-repository"
+import { SaleRepository } from "./repositories/sales-repository"
 
-type Type = {
-  id: string
-}
-
-
+@injectable()
 export class DeleteSaleProductsUseCase  {
+  constructor(
+    @inject("SaleRepository")
+    private readonly saleRepository: SaleRepository,
+    @inject("ProductsSoldRepository")
+    private readonly productSoldRepository: ProductsSoldRepository, 
+  ){}
 
-  async execute({ id }: Type): Promise< any | Error> {
+  async execute({ id }: DeleteSaleAndProductsSold.Params): Promise<DeleteSaleAndProductsSold.Result> {
 
-    const sale = await SalesRepository().findOne({id}, { relations: ["products_sold"]})
+    const sale = await this.saleRepository.findById(id)
+
     if(!sale){
-      return new Error("Pedido de venda não encontrado.")
+      return left(new AppError("Pedido de venda não encontrado.", 404))
     }
     
-    SalesRepository().delete({id})
-    sale.products_sold.forEach(async item=> {
-      ProductsSoldsRepository().delete({id: item.id})
+    const deleteSale = await this.saleRepository.delete(sale.id)
+    if (!deleteSale) {
+      return left(new AppError("Não é possível deletar esse registro. Verifique se há lançamentos dependentes."))
+    }
+    
+    sale?.products_sold.forEach(async ({ id }) => {
+      await this.productSoldRepository.delete(id)
     })
-
-    return "Pedido de venda deletado com sucesso."
-
+    return right("Pedido de venda deletado com sucesso.")
   }
 }

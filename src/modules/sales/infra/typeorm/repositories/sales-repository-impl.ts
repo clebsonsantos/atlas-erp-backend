@@ -17,7 +17,7 @@ export class SaleRepositoryImpl implements SaleRepository {
   }
 
   async findById(id: string): Promise<Sales> {
-    return await this.repository.findOne({ id })
+    return await this.repository.findOne({ id }, { relations: ["products_sold"] })
   }
 
   async delete(id: string): Promise<boolean> {
