@@ -1,12 +1,12 @@
 import { Request, Response } from "express" 
 
-import { CategoriesCenterReports } from '../../modules/reports/CategoriesCenterReports' 
-import { CustomersReports } from '../../modules/reports/CustomersReports' 
-import { ExpensesReports } from '../../modules/reports/ExpensesReports' 
-import { GetReportsUseCase } from '../../modules/reports/GetReportsUseCase' 
-import { ProductsReports } from '../../modules/reports/ProductsReports' 
-import { UsersReports } from '../../modules/reports/UsersReports' 
-import { SalesReports } from '../../modules/reports/SalesReports' 
+import { CategoriesCenterReports } from '@/modules/reports/CategoriesCenterReports' 
+import { CustomersReports } from '@/modules/reports/CustomersReports' 
+import { ExpensesReports } from '@/modules/reports/ExpensesReports' 
+import { GetReportsUseCase } from '@/modules/reports/GetReportsUseCase' 
+import { ProductsReports } from '@/modules/reports/ProductsReports' 
+import { UsersReports } from '@/modules/reports/UsersReports' 
+import { SalesReports } from '@/modules/reports/SalesReports' 
 import { Customer } from "@/modules/customers/infra/typeorm/entities/customer" 
 import { User } from "@/modules/user/infra/typeorm/entities/user" 
 import { Expenses } from "@/modules/expenses/infra/typeorm/entities/expense" 
@@ -17,7 +17,7 @@ import { Category } from "@/modules/expenses/infra/typeorm/entities/category"
 
 
 
-export class GetReportsController {
+export class RenderReportByConditioncontroller {
 
   async handle(request: Request, response: Response) {
 

@@ -1,10 +1,10 @@
-import { SalesRepository } from './../../repositories/index' 
 import { Request, Response } from "express" 
-import { SalesOrderPrint } from '../../modules/reports/SalesOrderPrint' 
 import { Sales } from "@/modules/sales/infra/typeorm/entities/sale" 
+import { SalesRepository } from "@/repositories"
+import { SalesOrderPrint } from "../SalesOrderPrint"
 
 
-export class GetSalesOrderController {
+export class RenderReportToSaleOrderController {
 
   async handle(request: Request, response: Response) {
     const { id  } = request.params
