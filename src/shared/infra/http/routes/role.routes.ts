@@ -6,7 +6,7 @@ import { can, ensuredAuthenticated, ensuredValidateUUID } from "../middlewares"
 const roleRoutes = Router()
 
 roleRoutes.post(
-  "/:roleId",
+  "/insert-role-permission/:roleId",
   ensuredAuthenticated(),
   can(["admin"]),
   ensuredValidateUUID(),
@@ -14,7 +14,7 @@ roleRoutes.post(
 )
 
 roleRoutes.post(
-  "/",
+  "/insert",
   ensuredAuthenticated(),
   can(["admin"]),
   new CreateRoleController().handle

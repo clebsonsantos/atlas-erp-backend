@@ -14,7 +14,7 @@ export class UpdatedUserInfoController {
     const result = await user.execute({id, username, password, email, full_name, phone})
 
     if(result.isLeft()){
-      return response.status(result.value.statusCode).json(result.value.message)
+      return response.status(result.value.statusCode).json(result.value)
     }
 
     return response.status(200).json(result.value)

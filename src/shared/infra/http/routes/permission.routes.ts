@@ -6,12 +6,12 @@ import { GetAllPermissionsController } from "@/modules/permissions/controllers/g
 const permissionRoutes = Router()
 
 permissionRoutes.post(
-  "/",
+  "/insert",
   ensuredAuthenticated(),
   can(["admin"]),
   new CreatePermissionController().handle
 )
 
-permissionRoutes.get('/', ensuredAuthenticated(), new GetAllPermissionsController().handle)
+permissionRoutes.get('/list', ensuredAuthenticated(), new GetAllPermissionsController().handle)
 
 export { permissionRoutes }

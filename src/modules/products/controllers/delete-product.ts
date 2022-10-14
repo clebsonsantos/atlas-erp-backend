@@ -13,7 +13,7 @@ export class DeleteProductController {
     const result = await deleteProduct.execute({id})
 
     if(result.isLeft()){
-      return response.status(result.value.statusCode).json(result.value.message)
+      return response.status(result.value.statusCode).json(result.value)
     }
 
     return response.json(result.value)

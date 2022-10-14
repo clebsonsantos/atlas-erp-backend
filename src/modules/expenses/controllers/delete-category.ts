@@ -13,7 +13,7 @@ export class DeleteCategoryController {
     const result = await deleteCategory.execute({id})
 
     if(result.isLeft()){
-      return response.status(result.value.statusCode).json(result.value.message)
+      return response.status(result.value.statusCode).json(result.value)
     }
     return response.status(200).json(result.value)
   }

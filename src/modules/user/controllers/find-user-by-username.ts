@@ -10,7 +10,7 @@ export class FindUserByUsernameController {
 
     const user = await findOne.execute({ username }) 
     if (user.isLeft()) {
-      return response.json(user.value.message).status(user.value.statusCode) 
+      return response.json(user.value).status(user.value.statusCode) 
     }
 
     return response.json(user.value) 

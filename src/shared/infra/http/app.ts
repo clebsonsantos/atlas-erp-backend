@@ -12,13 +12,16 @@ import { AppError } from "@/shared/errors/AppError"
 import { startContainer } from "@/shared/container" 
 
 const app = express() 
+const versionApp = "v1"
 import "@/shared/infra/typeorm" 
 startContainer()
+
+
 app.use(cors())
-app.use('/uploads', express.static('uploads'))
+app.use(`/${versionApp}/uploads`, express.static('uploads'))
 app.options('*', cors()) 
 app.use(express.json()) 
-app.use(routes) 
+app.use(`/${versionApp}`, routes) 
 
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {

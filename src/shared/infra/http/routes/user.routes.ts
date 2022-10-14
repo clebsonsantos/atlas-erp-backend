@@ -10,15 +10,15 @@ import { can, ensuredAuthenticated, ensuredValidateUUID } from "../middlewares"
 
 const userRoutes = Router()
 
-userRoutes.post("/", ensuredAuthenticated(), can(["admin"]), new CreateUserController().handle)
+userRoutes.post("/insert", ensuredAuthenticated(), can(["admin"]), new CreateUserController().handle)
 
-userRoutes.get("/",  ensuredAuthenticated(), new FindAllUsersController().handle)
+userRoutes.get("/list",  ensuredAuthenticated(), new FindAllUsersController().handle)
 
-userRoutes.post("/find_user",  ensuredAuthenticated(), new FindUserByUsernameController().handle)
+userRoutes.post("/find-by-username",  ensuredAuthenticated(), new FindUserByUsernameController().handle)
 
-userRoutes.put("/:id", ensuredAuthenticated(), ensuredValidateUUID(), new UpdatedUserInfoController().handle)
+userRoutes.put("/update/:id", ensuredAuthenticated(), ensuredValidateUUID(), new UpdatedUserInfoController().handle)
 
-userRoutes.delete("/:id", ensuredAuthenticated(), can(["admin"]), ensuredValidateUUID(), new DeleteUserController().handle)
+userRoutes.delete("/delete/:id", ensuredAuthenticated(), can(["admin"]), ensuredValidateUUID(), new DeleteUserController().handle)
 
 userRoutes.post(
   "/acl/:userId",
