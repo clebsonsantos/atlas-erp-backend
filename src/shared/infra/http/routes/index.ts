@@ -9,27 +9,14 @@ const routes = Router()
 
 import { ensuredValidateUUID, ensuredAuthReports, ensuredAuthenticated, can } from '../middlewares'
 import { GetSalesOrderController } from '@/controllers/reports/GetSalesOrderController'
-import { CreateAdministratorController } from '@/controllers/administrator/CreateAdministratorController'
-import { UpdateAdministratorController } from '@/controllers/administrator/UpdateAdministratorController'
-import { GetAdministratorController } from '@/controllers/administrator/GetAdministratorController'
 import { GetReportsController } from '@/controllers/reports/GetReportsController'
 
 // Inserindo um arquivo de imagem
-import multer from 'multer'
 import { CreateSessionLoginController } from "@/modules/user/controllers/create-session-login"
 import { productRoutes } from "./product.routes"
 import { saleRoutes } from "./sale.routes"
-const storage = multer.diskStorage({
-  destination: function(res, file, cb){
-    cb(null, './uploads')
-    
-  },
-  filename: function(req, file, cb) {
-    cb(null, "company_logo.png")
-    
-  }
-})
-const upload = multer({storage})
+import { administratorRoutes } from "./adminitrator.routes"
+
 // Fim
 
 // ?? Rotas refatoradas.
@@ -42,13 +29,10 @@ routes.use("/roles", roleRoutes)
 routes.use("/expenses", expenseRoutes)
 routes.use("/products", productRoutes)
 routes.use("/sales", saleRoutes)
+routes.use("/admin", administratorRoutes)
 //?? Fim de rotas refatoradas
 
 
-//Administrador
-routes.post("/create_admin", ensuredAuthenticated(), upload.single('url_image'), can(["admin"]), new CreateAdministratorController().handle)
-routes.put("/update_admin/:id", ensuredAuthenticated(), upload.single('url_image'), can(["admin"]), ensuredValidateUUID(), new UpdateAdministratorController().handle)
-routes.get("/get_admin", ensuredAuthenticated(), can(["admin"]), new GetAdministratorController().handle)
 
 
 // Relatórios
