@@ -10,7 +10,7 @@ export class CreateUserController {
     const result = await createUserService.execute({ username, password, full_name, email, phone}) 
 
     if (result.isLeft()) {
-      return response.status(result.value.statusCode).json(result.value.message) 
+      return response.status(result.value.statusCode).json(result.value) 
     }
 
     return response.json(result.value) 

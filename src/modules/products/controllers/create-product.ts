@@ -20,7 +20,7 @@ export class CreateProductController {
     }) 
 
     if(product.isLeft()){
-      return response.status(product.value.statusCode).json(product.value.message)
+      return response.status(product.value.statusCode).json(product.value)
     }
 
     return response.json(product.value) 
