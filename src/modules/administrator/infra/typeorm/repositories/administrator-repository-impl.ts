@@ -23,4 +23,8 @@ export class AdministratorRepositoryImpl implements AdministratorRepository {
   async update(data: Administrator): Promise<Administrator> {
     return await this.repository.save(data)
   }
+
+  async findById(id: string): Promise<Administrator> {
+    return await this.repository.findOne({ id })
+  }
 }

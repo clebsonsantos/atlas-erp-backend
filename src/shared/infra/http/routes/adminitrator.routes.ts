@@ -1,6 +1,6 @@
-import { UpdateAdministratorController } from "@/controllers/administrator/UpdateAdministratorController";
 import { CreateAdministratorController } from "@/modules/administrator/controllers/create-administrator-company";
 import { ListAdministratorCompanyController } from "@/modules/administrator/controllers/list-administrator-company";
+import { UpdateAdministratorController } from "@/modules/administrator/controllers/update-administrator-company"
 import { Router } from "express";
 import { can, ensuredAuthenticated, ensuredValidateUUID } from "../middlewares";
 
