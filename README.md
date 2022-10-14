@@ -68,7 +68,6 @@ Apply clean architecture in:
 
 - administrator
 - reports
-- sales
   
 Create Documentation:
 
