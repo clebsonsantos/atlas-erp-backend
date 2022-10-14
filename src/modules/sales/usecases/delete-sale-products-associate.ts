@@ -1,12 +1,12 @@
 import { left, right } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
 import { inject, injectable } from "tsyringe"
-import { DeleteSaleAndProductsSold } from "./contracts/delete-sale-and-products-sold"
-import { ProductsSoldRepository } from "./repositories/product-sold-repository"
-import { SaleRepository } from "./repositories/sales-repository"
+import { DeleteSaleAndProductsSold } from "../contracts/delete-sale-and-products-sold"
+import { ProductsSoldRepository } from "../repositories/product-sold-repository"
+import { SaleRepository } from "../repositories/sales-repository"
 
 @injectable()
-export class DeleteSaleProductsUseCase  {
+export class DeleteSaleProductsAssociateUseCase  {
   constructor(
     @inject("SaleRepository")
     private readonly saleRepository: SaleRepository,
