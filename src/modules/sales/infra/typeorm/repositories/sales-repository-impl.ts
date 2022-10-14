@@ -30,7 +30,12 @@ export class SaleRepositoryImpl implements SaleRepository {
   }
 
   async list(): Promise<Sales[]> {
-    return await this.repository.find()
+    return await this.repository.find({
+      relations: ["products_sold", "customer"], 
+      order: { 
+        created_at: "DESC"
+      }
+    })
   }
 
   async update(data: Sales): Promise<Sales> {
