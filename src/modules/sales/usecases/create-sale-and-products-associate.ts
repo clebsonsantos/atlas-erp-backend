@@ -1,15 +1,15 @@
 import { left, right } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
 import { inject, injectable } from "tsyringe"
-import { ICustomerRepository } from "../customers/repositories/icustomer-repository"
-import { ProductRepository } from "../products/repositories/product-repository"
-import { CreateSaleAndAssociateProductsSold } from "./contracts/create-sale-and-associate-products-sold"
-import { ProductsSoldRepository } from "./repositories/product-sold-repository"
-import { SaleRepository } from "./repositories/sales-repository"
+import { ICustomerRepository } from "@/modules/customers/repositories/icustomer-repository"
+import { ProductRepository } from "@/modules/products/repositories/product-repository"
+import { CreateSaleAndAssociateProductsSold } from "../contracts/create-sale-and-associate-products-sold"
+import { ProductsSoldRepository } from "../repositories/product-sold-repository"
+import { SaleRepository } from "../repositories/sales-repository"
 
 
 @injectable()
-export class CreateSaleProductsSoldUseCase  {
+export class CreateSaleAndProductsAssociateUseCase  {
   constructor(
     @inject("CustomerRepository")
     private readonly customerRepository: ICustomerRepository,
