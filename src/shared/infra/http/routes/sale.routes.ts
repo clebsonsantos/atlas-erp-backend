@@ -8,10 +8,10 @@ import { can, ensuredAuthenticated, ensuredValidateUUID } from "../middlewares";
 
 const saleRoutes = Router()
 
-saleRoutes.post("/", ensuredAuthenticated(), can(["admin", 'sales']), new CreateSaleAndProductsAssociateController().handle)
-saleRoutes.get("/", ensuredAuthenticated(), can(["admin", 'sales']), new GettAllSaleProductsController().handle)
-saleRoutes.delete("/:id", ensuredAuthenticated(), can(["admin", 'sales']), ensuredValidateUUID(), new DeleteSaleProductsController().handle)
-saleRoutes.put("/:id", ensuredAuthenticated(), can(["admin", 'sales']), ensuredValidateUUID(), new UpdateSaleProductsController().handle)
+saleRoutes.post("/insert", ensuredAuthenticated(), can(["admin", 'sales']), new CreateSaleAndProductsAssociateController().handle)
+saleRoutes.get("/list'", ensuredAuthenticated(), can(["admin", 'sales']), new GettAllSaleProductsController().handle)
+saleRoutes.delete("/delete/:id", ensuredAuthenticated(), can(["admin", 'sales']), ensuredValidateUUID(), new DeleteSaleProductsController().handle)
+saleRoutes.put("/update/:id", ensuredAuthenticated(), can(["admin", 'sales']), ensuredValidateUUID(), new UpdateSaleProductsController().handle)
 
 
 export { saleRoutes }

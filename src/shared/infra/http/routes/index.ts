@@ -17,7 +17,7 @@ import { GetReportsController } from '@/controllers/reports/GetReportsController
 // Inserindo um arquivo de imagem
 import multer from 'multer'
 import { CreateSessionLoginController } from "@/modules/user/controllers/create-session-login"
-import { productRoutes } from "./produc.routes"
+import { productRoutes } from "./product.routes"
 import { saleRoutes } from "./sale.routes"
 const storage = multer.diskStorage({
   destination: function(res, file, cb){
