@@ -1,12 +1,10 @@
 import { Request, Response } from "express" 
 
-import { CategoriesCenterReports } from '@/modules/reports/CategoriesCenterReports' 
-import { CustomersReports } from '@/modules/reports/CustomersReports' 
-import { ExpensesReports } from '@/modules/reports/ExpensesReports' 
+import { ReportToCategoryAndCenter } from '@/modules/reports/usecases/report-to-category-and-center' 
+import { ReportToCustomer } from '@/modules/reports/usecases/report-to-customer' 
+import { ReportToExpenses } from '@/modules/reports/usecases/report-to-expense' 
 import { GetReportsUseCase } from '@/modules/reports/GetReportsUseCase' 
-import { ProductsReports } from '@/modules/reports/ProductsReports' 
-import { UsersReports } from '@/modules/reports/UsersReports' 
-import { SalesReports } from '@/modules/reports/SalesReports' 
+import { ReportToUser } from '@/modules/reports/usecases/report-to-user' 
 import { Customer } from "@/modules/customers/infra/typeorm/entities/customer" 
 import { User } from "@/modules/user/infra/typeorm/entities/user" 
 import { Expenses } from "@/modules/expenses/infra/typeorm/entities/expense" 
@@ -14,6 +12,9 @@ import { Sales } from "@/modules/sales/infra/typeorm/entities/sale"
 import { Product } from "@/modules/products/infra/typeorm/entities/product" 
 import { CentersCost } from "@/modules/expenses/infra/typeorm/entities/center-cost" 
 import { Category } from "@/modules/expenses/infra/typeorm/entities/category" 
+import { container } from "tsyringe"
+import { ReportToProducts } from "../usecases/report-to-products"
+import { ReportToSale } from "../usecases/report-to-sale"
 
 
 
@@ -38,26 +39,27 @@ export class RenderReportByConditioncontroller {
       const instaceType = reports[0]
 
       if(instaceType instanceof Customer ){
-        await (new CustomersReports()).execute(reports as Customer[], response)
+        await (new ReportToCustomer()).execute(reports as Customer[], response)
       }
       if(instaceType instanceof User ){
-        await (new UsersReports()).execute(reports as User[], response)
+        await (new ReportToUser()).execute(reports as User[], response)
       }
       if(instaceType instanceof Expenses ){
-
-        await (new ExpensesReports()).execute(reports as Expenses[], center_cost, time_course, response)
+        const reportToExpense = container.resolve(ReportToExpenses)
+        await reportToExpense.execute(reports as Expenses[], center_cost, time_course, response)
       }
       if(instaceType instanceof Sales ){
-        await (new SalesReports()).execute(reports as Sales[], time_course, customer_find, salesman, response)
+        const reportToSale = container.resolve(ReportToSale)
+        await reportToSale.execute(reports as Sales[], time_course, customer_find, salesman, response)
       }
       if(instaceType instanceof Product ){
-        await (new ProductsReports()).execute(reports as Product[], response)
+        await (new ReportToProducts()).execute(reports as Product[], response)
       }
       if(instaceType instanceof CentersCost ){
-        await (new CategoriesCenterReports()).execute(reports as CentersCost[], response)
+        await (new ReportToCategoryAndCenter()).execute(reports as CentersCost[], response)
       }
       if(instaceType instanceof Category ){
-        await (new CategoriesCenterReports()).execute(reports as Category[], response)
+        await (new ReportToCategoryAndCenter()).execute(reports as Category[], response)
       }
   }
 }
