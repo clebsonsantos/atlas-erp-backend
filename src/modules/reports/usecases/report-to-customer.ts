@@ -1,5 +1,4 @@
 import { TableCell } from "pdfmake/interfaces"
-import { Response } from "express"
 import { Customer } from "@/modules/customers/infra/typeorm/entities/customer"
 import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 

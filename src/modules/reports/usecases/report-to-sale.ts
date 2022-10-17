@@ -6,7 +6,6 @@ import { IUserRepository } from "@/modules/user/repositories/iuser-repository"
 import { ProductRepository } from "@/modules/products/repositories/product-repository"
 import { Sales } from "@/modules/sales/infra/typeorm/entities/sale"
 import { Customer } from "@/modules/customers/infra/typeorm/entities/customer"
-import { DefaultsConfigReport } from "../DefaultsConfigReport"
 import formatCurrency from "@/utils/formatCurrency"
 import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 

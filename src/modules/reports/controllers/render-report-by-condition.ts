@@ -58,62 +58,54 @@ export class RenderReportByConditioncontroller {
     const instaceType = errorOrData.value[0]
     const reports = errorOrData.value
 
-    let definitionsToSend: DefaultConfigReport.Result
+    let docsDefinitions: DefaultConfigReport.Params
 
     if (instaceType instanceof Customer) {
 
       const reportCustomer = new ReportToCustomer()
-      const docsDefinitions = await reportCustomer.execute(reports as Customer[])
-      definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
+      docsDefinitions = await reportCustomer.execute(reports as Customer[])
 
     } else if (instaceType instanceof User) {
 
       const reportUser = new ReportToUser()
-      const docsDefinitions = await reportUser.execute(reports as User[])
-      definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
+      docsDefinitions = await reportUser.execute(reports as User[])
 
     } else if (instaceType instanceof Expenses) {
 
       const reportToExpense = container.resolve(ReportToExpenses)
       
-      const docsDefinitions = await reportToExpense.execute(
+      docsDefinitions = await reportToExpense.execute(
         reports as Expenses[],
         center_cost,
         time_course
       )
 
-      definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
-
     } else if (instaceType instanceof Sales) {
 
       const reportToSale = container.resolve(ReportToSale)
-      const docsDefinitions = await reportToSale.execute(
+      docsDefinitions = await reportToSale.execute(
         reports as Sales[],
         time_course,
         customer_find,
         salesman,
       )
-
-      definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
-
     } else if (instaceType instanceof Product) {
 
       const reportProducts =  new ReportToProducts()
-      const docsDefinitions = await reportProducts.execute(reports as Product[])
-      definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
+      docsDefinitions = await reportProducts.execute(reports as Product[])
 
     } else if (instaceType instanceof CentersCost) {
 
       const reportCenter =  new ReportToCategoryAndCenter()
-      const docsDefinitions = await reportCenter.execute(reports as CentersCost[])
-      definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
+      docsDefinitions = await reportCenter.execute(reports as CentersCost[])
 
     } else if (instaceType instanceof Category) {
 
       const reportCategory =  new ReportToCategoryAndCenter()
-      const docsDefinitions = await reportCategory.execute(reports as Category[])
-      definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
+      docsDefinitions = await reportCategory.execute(reports as Category[])
     }
+
+    const definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
 
     if (definitionsToSend.isLeft()) {
       return response.status(definitionsToSend.value.statusCode).json(definitionsToSend.value)
