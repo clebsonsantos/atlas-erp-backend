@@ -54,7 +54,6 @@ export class RenderReportByConditioncontroller {
       return response.status(errorOrData.value.statusCode).json(errorOrData.value)
     }
     
-    const sendReportByLayoutDefaults = container.resolve(SendReportByLayoutDefaults)
     const instaceType = errorOrData.value[0]
     const reports = errorOrData.value
 
@@ -78,7 +77,7 @@ export class RenderReportByConditioncontroller {
         reports as Expenses[],
         center_cost,
         time_course
-      )
+        )
 
     } else if (instaceType instanceof Sales) {
 
@@ -90,21 +89,22 @@ export class RenderReportByConditioncontroller {
         salesman,
       )
     } else if (instaceType instanceof Product) {
-
+      
       const reportProducts =  new ReportToProducts()
       docsDefinitions = await reportProducts.execute(reports as Product[])
-
+      
     } else if (instaceType instanceof CentersCost) {
-
+      
       const reportCenter =  new ReportToCategoryAndCenter()
       docsDefinitions = await reportCenter.execute(reports as CentersCost[])
-
+      
     } else if (instaceType instanceof Category) {
-
+      
       const reportCategory =  new ReportToCategoryAndCenter()
       docsDefinitions = await reportCategory.execute(reports as Category[])
     }
 
+    const sendReportByLayoutDefaults = container.resolve(SendReportByLayoutDefaults)
     const definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
 
     if (definitionsToSend.isLeft()) {
