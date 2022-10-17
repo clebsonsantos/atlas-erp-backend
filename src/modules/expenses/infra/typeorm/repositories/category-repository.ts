@@ -13,8 +13,10 @@ export class CategoryRepository implements ICategoryRepository {
     return await this.repository.findOne({ id })
   }
   async list(): Promise<Category[]> {
-    const categories = await this.repository.find({order: {
-      created_at: "DESC"
+    const categories = await this.repository.find({
+      order: {
+      created_at: "DESC",
+      name: "ASC"
     }})
     return categories
   }

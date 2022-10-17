@@ -8,9 +8,9 @@ type TResponseReportsDefinitions = {
 }
 
 
-export class ResponseReportClient  {
+export class SendReportPdfToClientSide  {
 
-  async execute({ response, docDefinitions }: TResponseReportsDefinitions){
+  async execute({ response, docDefinitions }: TResponseReportsDefinitions): Promise<void>{
     //FONTES DO RELATÓRIO
     const fonts = {
       Helvetica: {
@@ -37,6 +37,5 @@ export class ResponseReportClient  {
       const result = Buffer.concat(chuncks)
       response.end(result)
     })
-
   }
 }

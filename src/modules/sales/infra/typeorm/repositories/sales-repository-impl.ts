@@ -1,6 +1,6 @@
 import { CreateSaleAndAssociateProductsSold } from "@/modules/sales/contracts/create-sale-and-associate-products-sold";
 import { SaleRepository } from "@/modules/sales/repositories/sales-repository";
-import { getRepository, Repository } from "typeorm";
+import { Between, getRepository, Repository } from "typeorm";
 import { Sales } from "../entities/sale";
 
 
@@ -29,11 +29,11 @@ export class SaleRepositoryImpl implements SaleRepository {
     }
   }
 
-  async list(): Promise<Sales[]> {
+  async list(order: "ASC" | "DESC" = "DESC"): Promise<Sales[]> {
     return await this.repository.find({
       relations: ["products_sold", "customer"], 
       order: { 
-        created_at: "DESC"
+        created_at: order
       }
     })
   }
@@ -41,5 +41,15 @@ export class SaleRepositoryImpl implements SaleRepository {
   async update(data: Sales): Promise<Sales> {
     return await this.repository.save(data)
   }
+
+  async findByBetweenData(startDate: Date, endDate: Date): Promise<Sales[]> {
+    const sales = await this.repository.find({
+      order: { date: "ASC" }, 
+      where: { date: Between(startDate, endDate) }, 
+      relations: ["products_sold", "customer"] 
+    })
+    return sales
+  }
+
 
 }
