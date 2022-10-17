@@ -1,6 +1,6 @@
 import { CreateExpense } from "@/modules/expenses/contracts/create-expense" 
 import { IExpenseRepository } from "@/modules/expenses/repositories/iexpense-repository" 
-import { getRepository, Repository } from "typeorm" 
+import { Between, getRepository, Repository } from "typeorm" 
 import { Expenses } from "../entities/expense" 
 
 
@@ -41,5 +41,23 @@ export class ExpenseRepository implements IExpenseRepository {
     } catch {
       return false
     }
+  }
+
+  async findByDateOrder(): Promise<Expenses[]> {
+    return await this.repository.find({
+      order: {
+        date: "ASC"
+      }, 
+      relations: ["category", "center_cost"] 
+    })
+  }
+
+  async findByBetweenData(startDate: Date, endDate: Date): Promise<Expenses[]> {
+      const expenses = await this.repository.find({
+        order: {date: "ASC"}, 
+        where: {date: Between(startDate, endDate)}, 
+        relations: ["category", "center_cost"] 
+      })
+      return expenses
   }
 }

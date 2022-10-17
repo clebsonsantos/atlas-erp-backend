@@ -7,4 +7,6 @@ export interface IExpenseRepository {
   findById(id: string): Promise<Expenses>
   update(data: Expenses): Promise<Expenses>
   delete(id: string): Promise<boolean>
+  findByDateOrder(): Promise<Expenses[]>
+  findByBetweenData(startDate: Date, endDate: Date): Promise<Expenses[]>
 }

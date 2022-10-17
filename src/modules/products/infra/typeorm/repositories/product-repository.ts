@@ -33,9 +33,9 @@ export class ProductRepositoryImpl implements ProductRepository {
     return await this.repository.findOne({ name })
   }
 
-  async list(): Promise<Product[]> {
+  async list(order: "ASC" | "DESC"): Promise<Product[]> {
     return await this.repository.find({relations: ["center_cost"], order: {
-        name: "ASC"
+        name: order
     }})
   }
 
