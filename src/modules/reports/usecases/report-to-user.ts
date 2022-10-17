@@ -1,10 +1,9 @@
 import { TableCell } from "pdfmake/interfaces"
-import { Response } from "express"
-import { DefaultsConfigReport } from "../DefaultsConfigReport"
 import { User } from "@/modules/user/infra/typeorm/entities/user"
+import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 
 export class ReportToUser {
-  async execute(Users: User[], response: Response) {
+  async execute(Users: User[]): Promise<DefaultConfigReport.Params>  {
     //CORPO DA TABELA
     const body = []
     const columnsTitle: TableCell[] = [
@@ -23,13 +22,12 @@ export class ReportToUser {
     }
     const titleReport = "Usuários do sistema"
 
-    await new DefaultsConfigReport().execute({
+    return {
       titleReport,
       columnsTitle,
       body,
-      response,
       orientationPage: "portrait",
       widthsColumns: ["*", "auto", 100, "*"],
-    })
+    }
   }
 }

@@ -68,7 +68,9 @@ export class RenderReportByConditioncontroller {
 
     } else if (instaceType instanceof User) {
 
-      await new ReportToUser().execute(reports as User[], response)
+      const reportUser = new ReportToUser()
+      const docsDefinitions = await reportUser.execute(reports as User[])
+      definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
 
     } else if (instaceType instanceof Expenses) {
 
@@ -91,7 +93,7 @@ export class RenderReportByConditioncontroller {
         customer_find,
         salesman,
       )
-      
+
       definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
 
     } else if (instaceType instanceof Product) {
