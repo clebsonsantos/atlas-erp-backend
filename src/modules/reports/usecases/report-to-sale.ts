@@ -1,6 +1,5 @@
 
 import { TableCell } from "pdfmake/interfaces"
-import { Response } from "express"
 import { inject, injectable } from "tsyringe"
 import { ICustomerRepository } from "@/modules/customers/repositories/icustomer-repository"
 import { IUserRepository } from "@/modules/user/repositories/iuser-repository"
@@ -9,6 +8,7 @@ import { Sales } from "@/modules/sales/infra/typeorm/entities/sale"
 import { Customer } from "@/modules/customers/infra/typeorm/entities/customer"
 import { DefaultsConfigReport } from "../DefaultsConfigReport"
 import formatCurrency from "@/utils/formatCurrency"
+import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 
 @injectable()
 export class ReportToSale {
@@ -26,8 +26,7 @@ export class ReportToSale {
     time_course: string,
     customer_id: string | any,
     salesman: string | any,
-    response: Response
-  ) {
+  ): Promise<DefaultConfigReport.Params>  {
     const ondisplay = customer_id === "" ? false : true
     const { body, valuetotal } = await this.handleBodyContent(Sales, ondisplay)
     const ContentTable = this.handleContextTable(body)
@@ -48,15 +47,14 @@ export class ReportToSale {
       ondisplay ? "\n\nCliente: " + customer.full_name : ""
     }${salesmanName}${time_course}`
 
-    await new DefaultsConfigReport().execute({
+    return {
       titleReport,
       body: [ContentTable],
-      response,
       orientationPage: "portrait",
       CategoryTitleGroup: true,
       widthsColumns: [100, "auto", "*"],
       totalExpenses: valuetotal,
-    })
+    }
   }
 
   handleContextTable = (body: any[]) => {
