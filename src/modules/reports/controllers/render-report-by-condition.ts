@@ -17,6 +17,7 @@ import { ReportToSale } from "../usecases/report-to-sale"
 import { GetDataToRenderReportUseCase } from "../usecases/get-data-to-render-report-by-conditions"
 import { SendReportByLayoutDefaults } from "../usecases/send-report-by-layout-defaults"
 import { SendReportPdfToClientSide } from "../adapters/send-report-pdf-to-client-side"
+import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 
 export class RenderReportByConditioncontroller {
   async handle(request: Request, response: Response) {
@@ -52,22 +53,18 @@ export class RenderReportByConditioncontroller {
     if (errorOrData.isLeft()) {
       return response.status(errorOrData.value.statusCode).json(errorOrData.value)
     }
-
+    
+    const sendReportByLayoutDefaults = container.resolve(SendReportByLayoutDefaults)
     const instaceType = errorOrData.value[0]
     const reports = errorOrData.value
 
+    let definitionsToSend: DefaultConfigReport.Result
+
     if (instaceType instanceof Customer) {
-      
+
       const reportCustomer = new ReportToCustomer()
       const docsDefinitions = await reportCustomer.execute(reports as Customer[])
-      const sendReportByLayoutDefaults = container.resolve(SendReportByLayoutDefaults)
-      const definitions = await sendReportByLayoutDefaults.execute(docsDefinitions)
-
-      if (definitions.isLeft()) {
-        return response.status(definitions.value.statusCode).json(definitions.value)
-      }
-      const sendToClientSide = new SendReportPdfToClientSide()
-      await sendToClientSide.execute({ response, docDefinitions: definitions.value})
+      definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
 
     } else if (instaceType instanceof User) {
 
@@ -82,6 +79,7 @@ export class RenderReportByConditioncontroller {
         response
       )
     } else if (instaceType instanceof Sales) {
+
       const reportToSale = container.resolve(ReportToSale)
       await reportToSale.execute(
         reports as Sales[],
@@ -91,18 +89,26 @@ export class RenderReportByConditioncontroller {
         response
       )
     } else if (instaceType instanceof Product) {
+
       await new ReportToProducts().execute(reports as Product[], response)
+
     } else if (instaceType instanceof CentersCost) {
-      await new ReportToCategoryAndCenter().execute(
-        reports as CentersCost[],
-        response
-      )
+
+      const reportCenter =  new ReportToCategoryAndCenter()
+      const docsDefinitions = await reportCenter.execute(reports as CentersCost[])
+      definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
+
     } else if (instaceType instanceof Category) {
 
-      await new ReportToCategoryAndCenter().execute(
-        reports as Category[],
-        response
-      )
+      const reportCategory =  new ReportToCategoryAndCenter()
+      const docsDefinitions = await reportCategory.execute(reports as Category[])
+      definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
     }
+
+    if (definitionsToSend.isLeft()) {
+      return response.status(definitionsToSend.value.statusCode).json(definitionsToSend.value)
+    }
+    const sendToClientSide = new SendReportPdfToClientSide()
+    await sendToClientSide.execute({ response, docDefinitions: definitionsToSend.value})
   }
 }

@@ -1,11 +1,10 @@
 import { TableCell } from "pdfmake/interfaces"
-import { Response } from "express"
 import { Category } from "@/modules/expenses/infra/typeorm/entities/category"
 import { CentersCost } from "@/modules/expenses/infra/typeorm/entities/center-cost"
-import { DefaultsConfigReport } from "../DefaultsConfigReport"
+import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 
 export class ReportToCategoryAndCenter {
-  async execute(Component: Category[] | CentersCost[], response: Response) {
+  async execute(Component: Category[] | CentersCost[]): Promise<DefaultConfigReport.Params> {
     //CORPO DA TABELA
     const body = []
     const columnsTitle: TableCell[] = [
@@ -25,13 +24,12 @@ export class ReportToCategoryAndCenter {
         ? "Categorias registradas"
         : "Centros de Custo registrados"
 
-    await new DefaultsConfigReport().execute({
+    return {
       titleReport,
       columnsTitle,
       body,
-      response,
       orientationPage: "portrait",
       widthsColumns: ["*", "auto"],
-    })
+    }
   }
 }
