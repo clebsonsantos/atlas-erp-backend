@@ -63,11 +63,6 @@ ATLAS - SOFTMANAGER API
 ```
 
 ## In Progressing
-
-Apply clean architecture in:
-
-- administrator
-- reports
   
 Create Documentation:
 
