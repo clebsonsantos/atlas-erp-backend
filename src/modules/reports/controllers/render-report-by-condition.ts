@@ -71,13 +71,17 @@ export class RenderReportByConditioncontroller {
       await new ReportToUser().execute(reports as User[], response)
 
     } else if (instaceType instanceof Expenses) {
+      
       const reportToExpense = container.resolve(ReportToExpenses)
-      await reportToExpense.execute(
+      
+      const docsDefinitions = await reportToExpense.execute(
         reports as Expenses[],
         center_cost,
-        time_course,
-        response
+        time_course
       )
+
+      definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
+
     } else if (instaceType instanceof Sales) {
 
       const reportToSale = container.resolve(ReportToSale)

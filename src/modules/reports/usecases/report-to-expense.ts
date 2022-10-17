@@ -1,10 +1,9 @@
 import { Column, TableCell } from "pdfmake/interfaces"
-import { Response } from "express"
 import { Expenses } from "@/modules/expenses/infra/typeorm/entities/expense"
-import { DefaultsConfigReport } from "../DefaultsConfigReport"
 import formatCurrency from "@/utils/formatCurrency"
 import { inject, injectable } from "tsyringe"
 import { ICategoryRepository } from "@/modules/expenses/repositories/icategory-repository"
+import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 
 @injectable()
 export class ReportToExpenses {
@@ -16,9 +15,8 @@ export class ReportToExpenses {
   async execute(
     Expenses: Expenses[],
     centerName: string | string[] | any,
-    time_course: string,
-    response: Response
-  ) {
+    time_course: string
+  ): Promise<DefaultConfigReport.Params> {
     const categories = await this.categoryRepository.list()
     
     const ExpensesFilter = centerName
@@ -51,14 +49,13 @@ export class ReportToExpenses {
       0
     )
 
-    await new DefaultsConfigReport().execute({
+    return {
       titleReport,
       body: ContentLayout,
-      response,
       orientationPage: "portrait",
       CategoryTitleGroup: true,
       totalExpenses,
-    })
+    }
   }
 
   handleCategoryName = (category: string): Column[] => {
