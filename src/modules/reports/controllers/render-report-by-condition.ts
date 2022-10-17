@@ -71,7 +71,7 @@ export class RenderReportByConditioncontroller {
       await new ReportToUser().execute(reports as User[], response)
 
     } else if (instaceType instanceof Expenses) {
-      
+
       const reportToExpense = container.resolve(ReportToExpenses)
       
       const docsDefinitions = await reportToExpense.execute(
@@ -94,7 +94,9 @@ export class RenderReportByConditioncontroller {
       )
     } else if (instaceType instanceof Product) {
 
-      await new ReportToProducts().execute(reports as Product[], response)
+      const reportProducts =  new ReportToProducts()
+      const docsDefinitions = await reportProducts.execute(reports as Product[])
+      definitionsToSend = await sendReportByLayoutDefaults.execute(docsDefinitions)
 
     } else if (instaceType instanceof CentersCost) {
 

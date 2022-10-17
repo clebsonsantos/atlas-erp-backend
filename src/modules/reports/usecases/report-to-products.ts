@@ -1,11 +1,10 @@
 import { TableCell } from "pdfmake/interfaces"
-import { Response } from "express"
 import { Product } from "@/modules/products/infra/typeorm/entities/product"
 import formatCurrency from "@/utils/formatCurrency"
-import { DefaultsConfigReport } from "../DefaultsConfigReport"
+import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 
 export class ReportToProducts {
-  async execute(Products: Product[], response: Response) {
+  async execute(Products: Product[]): Promise<DefaultConfigReport.Params> {
     //CORPO DA TABELA
     const body = []
     const columnsTitle: TableCell[] = [
@@ -26,13 +25,12 @@ export class ReportToProducts {
     }
     const titleReport = "Produtos Cadastrados"
 
-    await new DefaultsConfigReport().execute({
+    return {
       titleReport,
       columnsTitle,
       body,
-      response,
       orientationPage: "portrait",
       widthsColumns: [100, 150, 100, 100],
-    })
+    }
   }
 }
