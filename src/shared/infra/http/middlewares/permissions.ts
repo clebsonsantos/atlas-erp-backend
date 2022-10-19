@@ -1,14 +1,11 @@
-import { UserRepository } from "@/repositories" 
+import { UserRepository } from "@/modules/user/infra/typeorm/repositories/user-repository"
 import { NextFunction, Request, Response } from "express" 
 
 export function can(permissionsRoutes: string[]) {
   return async (request: Request, response: Response, next: NextFunction) => {
+    const userRepository = new UserRepository()
     const { userId } = request 
-
-    const user = await UserRepository().findOne({
-      where: { id: userId },
-      relations: ["permissions"],
-    }) 
+    const user = await userRepository.findById(userId)
 
     if (!user) {
       return response.status(400).json("User does not exists") 
@@ -29,11 +26,8 @@ export function can(permissionsRoutes: string[]) {
 export function is(rolesRoutes: string[]) {
   return async (request: Request, response: Response, next: NextFunction) => {
     const { userId } = request 
-
-    const user = await UserRepository().findOne({
-      where: { id: userId },
-      relations: ["roles"],
-    }) 
+    const userRepository = new UserRepository()
+    const user = await userRepository.findById(userId) 
 
     if (!user) {
       return response.status(400).json("Usuário não existe.") 

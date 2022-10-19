@@ -1,11 +1,12 @@
 import { container } from 'tsyringe' 
 
-import { PermissionRepository, UserRepository } from "@/repositories" 
 import { hash } from 'bcryptjs' 
 import { CreateUserAccessControlListUseCase } from "@/modules/user/usecases/create-user-access-controll-list" 
+import { UserRepository } from "@/modules/user/infra/typeorm/repositories/user-repository"
+import { PermissionRepository } from "@/modules/permissions/infra/typeorm/repositories/permission-repository"
 
 
-async function CreateUserSupport() {
+async function createUserSupport(): Promise<void> {
   const support = {
     username:  'suporte',
     password:  'support-s_9691',
@@ -13,27 +14,33 @@ async function CreateUserSupport() {
     email:     'clebsonsantos.dev@gmail.com',
     phone:     '83993898073',
   }
-  const repositore = UserRepository()
-  const user = await repositore.findOne({username: support.username})
-  if(user == undefined){
+  const userRepository = new UserRepository()
+  const user = await userRepository.findByUserName(support.username)
+  if(!user){
     const passwordHash = await hash(support.password, 8)
     support.password = passwordHash
 
-    const onNewuUser = repositore.create(support)
-    await repositore.save(onNewuUser)
+    const userSuport = await userRepository.create(support)
 
-    const permission = await PermissionRepository().find({where: {name: 'admin'}})
-    const permissions = [permission[0].id]
-    const userId = onNewuUser.id
-    
-    const createPermissions = container.resolve(CreateUserAccessControlListUseCase)
-    await createPermissions.execute({userId, roles: [], permissions})
-    console.log("[ Usuário de inicialização criado ]")
-    return 
+    const permissionReporitory = new PermissionRepository()
+
+    const adminPermission = await permissionReporitory.findByName("admin")
+    if (adminPermission) {
+      const permissions = [adminPermission.id]
+      const userId = userSuport.id
+      
+      const createPermissions = container.resolve(CreateUserAccessControlListUseCase)
+      await createPermissions.execute({
+        userId, 
+        roles: [], 
+        permissions
+      })
+      console.log("[ Usuário de inicialização criado ]")
+    }
   }
-  return 
+  console.info("user support already exists")
 }
 
 
-export { CreateUserSupport }
+export { createUserSupport }
 

@@ -1,16 +1,21 @@
 import { inject, injectable } from "tsyringe"
-import { PermissionRepository, RoleRepository } from "@/repositories"
 import { left, right } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
 import { CreateUserAccessControllList } from "../contracts/create-user-access-controll-list"
 
 import { IUserRepository } from "../repositories/iuser-repository"
+import { IPermissionRepository } from "@/modules/permissions/repositories/ipermission-repository"
+import { IRoleRepository } from "@/modules/permissions/repositories/irole-repository"
 
 @injectable()
 export class CreateUserAccessControlListUseCase {
   constructor(
     @inject("UserRepository")
     private userRepository: IUserRepository,
+    @inject("PermissionRepository")
+    private permissionRepository: IPermissionRepository,
+    @inject("RoleRepository")
+    private roleRepository: IRoleRepository,
   ) {}
   
   async execute({ permissions, roles, userId }: CreateUserAccessControllList.Params): Promise<CreateUserAccessControllList.Result> {
@@ -21,12 +26,12 @@ export class CreateUserAccessControlListUseCase {
       return left(new AppError("Usuário não existe!", 404))
     }
 
-    const permissionsExists = await PermissionRepository().findByIds(
+    const permissionsExists = await this.permissionRepository.findByIds(
       permissions
     )
     
     if(roles && roles.length >= 1){
-      const rolesExists = await RoleRepository().findByIds(roles)
+      const rolesExists = await this.roleRepository.findByIds(roles)
       user.roles = rolesExists
     }
 

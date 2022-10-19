@@ -1,5 +1,4 @@
 import { Router } from "express"
-import { CreateSessionLoginController } from "@/modules/user/controllers/create-session-login"
 import { customerRoutes } from "./customer.routes"
 import { userRoutes } from "./user.routes"
 import { permissionRoutes } from "./permission.routes"
@@ -9,6 +8,7 @@ import { productRoutes } from "./product.routes"
 import { saleRoutes } from "./sale.routes"
 import { administratorRoutes } from "./adminitrator.routes"
 import { reportsRoutes } from "./reports.routes"
+import { CreateSessionLoginController } from "@/modules/user/controllers/create-session-login"
 
 const routes = Router()
 

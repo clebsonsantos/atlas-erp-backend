@@ -32,4 +32,8 @@ export class RoleRepository implements IRoleRepository {
       const roleSave = await this.repository.save(role)
       return roleSave
   }
+  async findByIds(ids: string[]): Promise<Role[]> {
+    const roles = await this.repository.findByIds(ids)
+    return roles
+  }
 }

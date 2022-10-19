@@ -20,7 +20,7 @@ export class ListOrFilterProductByIdName {
 
     const products = 
       paramsFind ? findByParams : 
-        await this.productRepository.list()
+        await this.productRepository.list("ASC")
     return products 
   }
 }

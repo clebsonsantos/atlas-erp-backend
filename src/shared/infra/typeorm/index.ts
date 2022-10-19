@@ -1,11 +1,14 @@
-import { CreateUserSupport, DefaultPermissionsSystem } from "@/main/config" 
+import { createUserSupport, DefaultPermissionsSystem } from "@/main/config" 
 import { createConnection } from "typeorm" 
 
-createConnection().then(async ()=>{
-  const nextAction = await DefaultPermissionsSystem()
-  if(nextAction){
-    await CreateUserSupport()
+export const conecctionPg = async (): Promise<void> => {
+  try {
+    await createConnection()
+    // const nextAction = await DefaultPermissionsSystem()
+    // if(nextAction){
+    //   await createUserSupport()
+    // }
+  } catch (err) {
+    console.warn("connection failed: ", err)
   }
-}).catch(err=> {
-  console.warn("connection failed ", err)
-})
+}

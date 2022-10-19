@@ -5,9 +5,9 @@ module.exports = {
   "username": process.env.POSTGRES_NAME,
   "password": process.env.POSTGRES_PASSWORD,
   "database": "expense_manager_software",
-  "entities": ["./dist/modules/**/infra/typeorm/entities/*.js"],
-  "migrations": ["./dist/shared/infra/typeorm/migrations/*.js"],
+  "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
+  "entities": ["./src/modules/**/entities/*.ts"],
   "cli": {
-    "migrationsDir": "./dist/shared/infra/typeorm/migrations"
+    "migrationsDir": "./src/shared/infra/typeorm/migrations"
   }
 }

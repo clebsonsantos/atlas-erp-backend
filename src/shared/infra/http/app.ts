@@ -1,20 +1,21 @@
 import "reflect-metadata" 
+import * as dotenv from 'dotenv'
 import "../../../main/config/module-alias"
 // import "@/utils/on-backups"
+dotenv.config({ path: `${__dirname}/../../.env`}) 
 
-import * as dotenv from 'dotenv'
 import express, { NextFunction, Request, Response } from "express" 
 import cors from 'cors' 
 
-dotenv.config({ path: `${__dirname}/../../.env`}) 
 import { routes } from "./routes" 
 import { AppError } from "@/shared/errors/AppError" 
 import { startContainer } from "@/shared/container" 
+import { conecctionPg } from "@/shared/infra/typeorm" 
+conecctionPg()
+startContainer()
 
 const app = express() 
 const versionApp = "v1"
-import "@/shared/infra/typeorm" 
-startContainer()
 
 
 app.use(cors())

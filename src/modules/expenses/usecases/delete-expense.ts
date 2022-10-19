@@ -1,10 +1,10 @@
 import { left, right } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
-import { inject } from "tsyringe"
+import { inject, injectable } from "tsyringe"
 import { DeleteExpense } from "../contracts/delete-expense"
 import { IExpenseRepository } from "../repositories/iexpense-repository"
 
-
+@injectable()
 export class DeleteExpenseUseCase  {
   constructor(
     @inject("ExpenseRepository")

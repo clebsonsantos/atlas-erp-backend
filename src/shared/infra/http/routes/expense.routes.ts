@@ -47,12 +47,12 @@ expenseRoutes.post("/category/insert",
   can(["admin", "categories"]),
   new CreateCategoryController().handle
 )
-expenseRoutes.get("/categories/list",
+expenseRoutes.get("/category/list",
   ensuredAuthenticated(),
   can(["admin", "categories"]),
   new GetAllCategoryController().handle
 )
-expenseRoutes.put("/category/update:id",
+expenseRoutes.put("/category/update/:id",
   ensuredAuthenticated(),
   can(["admin", "categories"]),
   ensuredValidateUUID(),
@@ -71,7 +71,7 @@ expenseRoutes.post("/center_cost/insert",
   can(["admin", "center_cost"]),
   new CreateCenterCostController().handle
 )
-expenseRoutes.get("/centers_cost/list",
+expenseRoutes.get("/center_cost/list",
   ensuredAuthenticated(),
   can(["admin", "center_cost"]),
   new GetAllCenterCostController().handle

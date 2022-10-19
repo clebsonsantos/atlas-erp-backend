@@ -5,7 +5,7 @@ import { User } from "../entities/user"
 
 
 export class UserRepository implements IUserRepository {
-  private repository: Repository<User>
+  private readonly repository: Repository<User>
   constructor() {
     this.repository = getRepository(User)
   }
@@ -29,7 +29,11 @@ export class UserRepository implements IUserRepository {
   }
 
   async findAll(): Promise<User[]> {
-    const users = this.repository.find({relations: ["permissions"], order: {full_name: "ASC"}})
+    const users = this.repository.find({
+      relations: ["permissions"], 
+      order: {
+        full_name: "ASC"
+      }})
     return users
   }
 
