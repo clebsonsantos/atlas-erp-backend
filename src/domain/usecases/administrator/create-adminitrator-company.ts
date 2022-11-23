@@ -8,7 +8,7 @@ import { Administrator } from "@/domain/entities"
 type Input = Interface.Params
 type Output = Interface.Result
 
-export class CreateAdministratorCompany  {
+export class CreateAdministratorCompany implements Interface {
   constructor(
     private readonly administratorRepository: AdministratorRepository,
     private readonly documentValidator: CPFCNPJValidator
@@ -17,12 +17,12 @@ export class CreateAdministratorCompany  {
   async execute(data: Input): Promise<Output>  {
     const admin = await this.administratorRepository.list()
     if(admin.length == 1){
-      return left(new AppError("Só é possivel que haja uma empresa administradora cadastrada."))
+      return left("Só é possivel que haja uma empresa administradora cadastrada.")
     }
 
     const validateCnpjCpf = this.documentValidator.validate(data.cpf_cnpj.toString())
     if (!validateCnpjCpf) {
-      return left(new AppError("Insira um cpf_cnpj válido"))
+      return left("Insira um cpf_cnpj válido")
     }
     
     const { email, telefone, bairro, cep, cidade, complemento, numero, endereco, uf, ...args } = data
@@ -46,7 +46,7 @@ export class CreateAdministratorCompany  {
     })
 
     if (company.isValid()){
-      return left(new AppError("Os dados inseridos são inválidos"))
+      return left("Os dados inseridos são inválidos")
     }
     const administrator = await this.administratorRepository.add(company.getValue())
     return right(administrator)

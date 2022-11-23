@@ -1,7 +1,8 @@
 import { Administrator } from "@/domain/entities"
 import { Either } from "@/shared/either"
-import { AppError } from "@/shared/errors/AppError"
-
+export interface CreateAdministratorCompany {
+  execute: (data: CreateAdministratorCompany.Params) => Promise<CreateAdministratorCompany.Result>
+}
 export namespace CreateAdministratorCompany {
   export type Params = {
     razao: string 
@@ -22,5 +23,5 @@ export namespace CreateAdministratorCompany {
     created_at: Date
   }
 
-  export type Result = Either<AppError, Administrator>
+  export type Result = Either<string, Administrator>
 }
