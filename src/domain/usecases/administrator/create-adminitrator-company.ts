@@ -2,7 +2,7 @@ import { left, right } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
 import { CreateAdministratorCompany as Interface } from "@/domain/contracts/usecases/administrator"
 import { CPFCNPJValidator } from "@/domain/contracts/gateways/cpf-cnpj-validator"
-import { AdministratorRepository } from "@/domain/repositories/administrator-repository"
+import { AdministratorRepository } from "@/domain/contracts/repositories/administrator-repository"
 import { Administrator } from "@/domain/entities"
 
 type Input = Interface.Params
