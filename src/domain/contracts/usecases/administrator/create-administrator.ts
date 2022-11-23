@@ -21,8 +21,6 @@ export namespace CreateAdministratorCompany {
     telefone: string 
     email: string 
     url_image: string
-    id: string
-    created_at: Date
   }
 
   export type Result = Either<string, Administrator>

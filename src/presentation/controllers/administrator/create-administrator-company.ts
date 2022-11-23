@@ -40,9 +40,7 @@ export class CreateAdministratorController extends Controller{
       cep,
       telefone,
       email,
-      url_image,
-      created_at: new Date(),
-      id: ''
+      url_image
     })
 
     if(result.isLeft()){
