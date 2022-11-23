@@ -7,8 +7,8 @@ export namespace CreateAdministratorCompany {
   export type Params = {
     razao: string 
     fantasia: string 
-    cpf_cnpj: number 
-    insc_estadual: number 
+    cpf_cnpj: string 
+    insc_estadual: string 
     endereco: string 
     bairro: string 
     numero: string 

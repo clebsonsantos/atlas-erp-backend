@@ -20,8 +20,8 @@ export type Admin = Omit<Administrator, "isValid" | "getValue">
 export class Administrator extends Base {
   public razao: string 
   public fantasia: string 
-  public cpf_cnpj: number 
-  public insc_estadual: number 
+  public cpf_cnpj: string 
+  public insc_estadual: string 
   public address: Address
   public contact: Contact
   public url_image: string 
@@ -34,15 +34,15 @@ export class Administrator extends Base {
 
   public isValid(): boolean {
     if (
-      this.id || 
-      this.fantasia || 
-      this.cpf_cnpj || 
-      this.insc_estadual || 
-      this.razao || 
-      this.created_at || 
-      this.url_image ||
-      !Object.entries(this.contact).length || 
-      !Object.entries(this.address).length
+      !this.id || 
+      !this.fantasia || 
+      !this.cpf_cnpj || 
+      !this.insc_estadual || 
+      !this.razao || 
+      !this.created_at || 
+      !this.url_image ||
+      !Object.values(this.contact).length || 
+      !Object.values(this.address).length
     ) {
       return false
     }
