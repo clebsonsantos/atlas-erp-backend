@@ -1,8 +1,10 @@
 import { Administrator } from "@/domain/entities"
 import { Either } from "@/shared/either"
+
 export interface CreateAdministratorCompany {
   execute: (data: CreateAdministratorCompany.Params) => Promise<CreateAdministratorCompany.Result>
 }
+
 export namespace CreateAdministratorCompany {
   export type Params = {
     razao: string 

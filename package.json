@@ -14,7 +14,8 @@
     "start:old": "NODE_ENV=production tsc & node dist/shared/infra/http/server.js",
     "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "npm test -- --watch",
-    "test:coverage": "npm test -- --coverage"
+    "test:coverage": "npm test -- --coverage",
+    "dev": "tsnd --respawn --transpile-only -r dotenv/config --inspect=0.0.0.0:9229 src/main"
   },
   "dependencies": {
     "@types/cors": "^2.8.12",
