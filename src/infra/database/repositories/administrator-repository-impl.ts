@@ -3,7 +3,6 @@ import { Admin, Administrator } from "@/domain/entities"
 import { getRepository, Repository } from "typeorm"
 
 export class AdministratorRepositoryImpl implements AdministratorRepository {
-
   private readonly repository: Repository<Administrator>
   constructor(){
     this.repository = getRepository(Administrator)
