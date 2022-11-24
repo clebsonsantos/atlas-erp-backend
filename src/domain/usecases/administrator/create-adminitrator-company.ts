@@ -24,27 +24,9 @@ export class CreateAdministratorCompany implements Interface {
       return left("Insira um cpf_cnpj válido")
     }
     
-    const { email, telefone, bairro, cep, cidade, complemento, numero, endereco, uf, ...args } = data
-    const contact = {
-      email,
-      telefone  
-    }
-    const address = {
-      bairro: bairro,
-      cep: cep,
-      cidade: cidade,
-      complemento: complemento,
-      endereco: endereco,
-      numero: numero,
-      uf: uf
-    }
-    const company = new Administrator({ 
-      contact, 
-      address, 
-      ...args 
-    })
+    const company = new Administrator(data)
 
-    if (company.isValid()){
+    if (!company.isValid()){
       return left("Os dados inseridos são inválidos")
     }
     const administrator = await this.administratorRepository.add(company.getValue())

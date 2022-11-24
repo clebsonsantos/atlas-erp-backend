@@ -11,10 +11,10 @@ export class Administrator extends BaseEntity {
   fantasia: string 
 
   @Column()
-  cpf_cnpj: number 
+  cpf_cnpj: string 
 
   @Column()
-  insc_estadual: number 
+  insc_estadual: string 
 
   @Column()
   endereco: string 

@@ -1,4 +1,4 @@
-import { Administrator } from "@/domain/entities"
+import { Admin } from "@/domain/entities"
 import { Either } from "@/shared/either"
 
 export interface CreateAdministratorCompany {
@@ -21,7 +21,9 @@ export namespace CreateAdministratorCompany {
     telefone: string 
     email: string 
     url_image: string
+    id?: string
+    created_at?: Date
   }
 
-  export type Result = Either<string, Administrator>
+  export type Result = Either<string, Admin>
 }

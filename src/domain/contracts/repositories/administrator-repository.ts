@@ -1,4 +1,5 @@
-import { Administrator, Admin } from "@/domain/entities"
+import { Admin } from "@/domain/entities"
+import { Administrator } from "@/infra/database/entities"
 
 export interface AdministratorRepository {
   add(data: Admin): Promise<Administrator>

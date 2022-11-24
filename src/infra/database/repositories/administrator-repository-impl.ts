@@ -1,5 +1,6 @@
 import { AdministratorRepository } from "@/domain/contracts/repositories/administrator-repository"
-import { Admin, Administrator } from "@/domain/entities"
+import { Admin } from "@/domain/entities"
+import { Administrator } from "@/infra/database/entities"
 import { getRepository, Repository } from "typeorm"
 
 export class AdministratorRepositoryImpl implements AdministratorRepository {
@@ -17,7 +18,7 @@ export class AdministratorRepositoryImpl implements AdministratorRepository {
     return await this.repository.find()
   }
 
-  async update(data: Administrator): Promise<Administrator> {
+  async update(data: Admin): Promise<Administrator> {
     return await this.repository.save(data)
   }
 

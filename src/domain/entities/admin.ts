@@ -1,30 +1,22 @@
 import { Base } from "./base"
 
-type Address = {
-  endereco: string
-  bairro: string
-  numero: string
-  complemento: string
-  cidade: string
-  uf: string
-  cep: string 
-}
-
-type Contact = {
-  telefone: string 
-  email: string 
-}
-
 export type Admin = Omit<Administrator, "isValid" | "getValue">
 
 export class Administrator extends Base {
-  public razao: string 
-  public fantasia: string 
-  public cpf_cnpj: string 
-  public insc_estadual: string 
-  public address: Address
-  public contact: Contact
-  public url_image: string 
+  private razao: string 
+  private fantasia: string 
+  private cpf_cnpj: string 
+  private insc_estadual: string 
+  private telefone: string 
+  private email: string 
+  private endereco: string
+  private bairro: string
+  private numero: string
+  private complemento: string
+  private cidade: string
+  private uf: string
+  private cep: string 
+  private url_image: string 
 
   constructor(params: Admin){
     super()
@@ -41,8 +33,15 @@ export class Administrator extends Base {
       !this.razao || 
       !this.created_at || 
       !this.url_image ||
-      !Object.values(this.contact).length || 
-      !Object.values(this.address).length
+      !this.telefone ||
+      !this.email ||
+      !this.endereco ||
+      !this.bairro ||
+      !this.numero ||
+      !this.complemento ||
+      !this.cidade ||
+      !this.uf ||
+      !this.cep
     ) {
       return false
     }
