@@ -2,7 +2,7 @@ import { LoadAdministrator } from "@/domain/contracts/usecases/administrator/loa
 import { Controller } from "@/presentation/controllers/controller"
 import { HttpRequest, HttpResponse, ok } from "@/presentation/helpers"
 
-export class ListAdministratorCompanyController  extends Controller {
+export class LoadAdministratorCompanyController  extends Controller {
 
   constructor(private readonly administratorInfo: LoadAdministrator){
     super()

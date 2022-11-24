@@ -2,7 +2,7 @@ import { AdministratorRepository } from "@/domain/contracts/repositories/adminis
 import { LoadAdministrator } from "@/domain/contracts/usecases/administrator/load-administrator"
 
 type Output = LoadAdministrator.Result
-export class ListAdministratorCompany implements LoadAdministrator {
+export class LoadAdministratorCompany implements LoadAdministrator {
   constructor(
     private readonly administratorRepository: AdministratorRepository
   ){}
