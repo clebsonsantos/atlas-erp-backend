@@ -1,4 +1,4 @@
-import { AdministratorRepository } from "@/domain/contracts/repositories/administrator-repository"
+import { AdministratorRepository } from "@/domain/contracts/repositories"
 import { Admin } from "@/domain/entities"
 import { Administrator } from "@/infra/database/entities"
 import { getRepository } from "typeorm"

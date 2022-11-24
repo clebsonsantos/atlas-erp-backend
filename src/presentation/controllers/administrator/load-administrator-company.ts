@@ -1,4 +1,4 @@
-import { LoadAdministrator } from "@/domain/contracts/usecases/administrator/load-administrator"
+import { LoadAdministrator } from "@/domain/contracts/usecases/administrator"
 import { Controller } from "@/presentation/controllers/controller"
 import { HttpRequest, HttpResponse, ok } from "@/presentation/helpers"
 
