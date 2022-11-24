@@ -24,7 +24,6 @@ export class CreateAdministratorController extends Controller{
       email
     } = request.body 
     const { path } = request.file
-    const url_image = path
 
     const result = await this.createAdminService.execute({
       razao,
@@ -40,7 +39,7 @@ export class CreateAdministratorController extends Controller{
       cep,
       telefone,
       email,
-      url_image
+      url_image: path
     })
 
     if(result.isLeft()){

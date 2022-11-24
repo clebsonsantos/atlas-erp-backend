@@ -19,7 +19,7 @@ export class CreateAdministratorCompany implements Interface {
       return left("Só é possivel que haja uma empresa administradora cadastrada.")
     }
 
-    const validateCnpjCpf = this.documentValidator.validate(data.cpf_cnpj.toString())
+    const validateCnpjCpf = this.documentValidator.validate(data.cpf_cnpj)
     if (!validateCnpjCpf) {
       return left("Insira um cpf_cnpj válido")
     }

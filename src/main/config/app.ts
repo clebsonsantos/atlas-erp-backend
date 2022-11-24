@@ -1,11 +1,13 @@
 import { setupRouters } from '@/main/config/routes'
 import { setupMidlewares } from '@/main/config/middlewares'
 import express, { NextFunction, Request, Response } from "express"
+import cors from "cors"
 
 const app = express()
-setupMidlewares(app)
-setupRouters(app)
-
+app.use(cors())
+app.options('*', cors()) 
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
     return response.status(500).json({
@@ -14,5 +16,7 @@ app.use(
     }) 
   }
 ) 
+setupMidlewares(app)
+setupRouters(app)
 
 export { app }
