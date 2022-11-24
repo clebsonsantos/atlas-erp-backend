@@ -19,10 +19,6 @@
     "experimentalDecorators": true,
     "preserveConstEnums": true,
     "disableSizeLimit": true,
-    "typeRoots": [
-      "./src/@types",
-      "node_modules/@types"
-    ],
     "paths": {
       "@/*": ["*"],
       "@/tests/*": ["../tests/*"]
