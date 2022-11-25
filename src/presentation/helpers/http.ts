@@ -7,6 +7,7 @@ export type HttpResponse<T = any> = {
 
 export type HttpRequest<T = any> = {
   body: any
+  params: any
   file: {
     path: string
   }
