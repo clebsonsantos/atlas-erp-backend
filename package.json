@@ -1,8 +1,9 @@
 {
-  "name": "atlas",
+  "name": "atlas-enterprice-resource-planning-server",
   "version": "1.0.0",
   "main": "src/server.js",
-  "license": "MIT",
+  "description": "Atlas is an E.R.P. capable of managing financial expenses and income and also generating pdf reports for analysis.",
+  "license": "GPL-3.0-or-later",
   "private": true,
   "engines": {
     "node": "16.x"
