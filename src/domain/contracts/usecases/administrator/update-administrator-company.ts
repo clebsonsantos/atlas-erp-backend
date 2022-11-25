@@ -1,14 +1,18 @@
-import { Administrator } from "@/domain/entities"
+import { Admin } from "@/domain/entities"
+import { InvalidFieldError, Failure } from "@/domain/errors"
 import { Either } from "@/shared/either"
-import { AppError } from "@/shared/errors/AppError"
+
+export interface UpdateAdministratorCompany {
+  execute: (data: UpdateAdministratorCompany.Params) => Promise<UpdateAdministratorCompany.Result>
+}
 
 export namespace UpdateAdministratorCompany {
   export type Params = {
     id: string 
     razao?: string 
     fantasia?: string 
-    cpf_cnpj?: number 
-    insc_estadual?: number 
+    cpf_cnpj?: string 
+    insc_estadual?: string 
     endereco?: string 
     bairro?: string 
     numero?: string 
@@ -20,5 +24,5 @@ export namespace UpdateAdministratorCompany {
     email?: string 
     url_image?: string 
   }
-  export type Result = Either<AppError, Administrator>
+  export type Result = Either<InvalidFieldError | Failure, Admin>
 }
