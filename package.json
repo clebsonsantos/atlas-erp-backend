@@ -1,5 +1,5 @@
 {
-  "name": "atlas-enterprice-resource-planning-server",
+  "name": "atlas-enterprise-resource-planning-server",
   "version": "1.0.0",
   "main": "src/server.js",
   "description": "Atlas is an E.R.P. capable of managing financial expenses and income and also generating pdf reports for analysis.",

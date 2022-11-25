@@ -1,6 +1,6 @@
 
 <h1 align="center">
-ATLAS - SOFTMANAGER API
+ATLAS - ENTERPRISE RESOURCE PLANNING (SERVER)
 </h1>
 <h1 align="center">
 <img src="https://user-images.githubusercontent.com/60331806/160242659-8d126cec-b865-47b3-b3c6-d2797dd6c7a7.svg">
