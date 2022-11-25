@@ -1,9 +1,9 @@
-import { Administrator } from "@/modules/administrator/infra/typeorm/entities/adminitrator" 
+import { Admin } from "@/domain/entities" 
 import { PageOrientation, Size, TDocumentDefinitions } from 'pdfmake/interfaces' 
 import HeadersReport from './header' 
 
 type DefaultCongig = {
-  company: Administrator 
+  company: Admin 
   titleReport: string 
   columnsTitle?: any 
   body?: any 

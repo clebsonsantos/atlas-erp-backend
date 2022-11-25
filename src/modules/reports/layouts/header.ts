@@ -1,7 +1,8 @@
-import { Administrator } from "@/modules/administrator/infra/typeorm/entities/adminitrator"
+import { Admin } from "@/domain/entities" 
+
 import { Column } from 'pdfmake/interfaces'
 
-const HeadersReport = (company: Administrator, classImage:string, styleHeader: string):Column[] => {
+const HeadersReport = (company: Admin, classImage:string, styleHeader: string):Column[] => {
    return [
     { image: classImage,  width: 120},
           {

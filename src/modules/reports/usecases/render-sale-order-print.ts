@@ -2,7 +2,7 @@ import { TableCell } from 'pdfmake/interfaces'
 import { inject, injectable } from "tsyringe"
 import { SaleRepository } from "@/modules/sales/repositories/sales-repository"
 import { ProductRepository } from "@/modules/products/repositories/product-repository"
-import { AdministratorRepository } from "@/modules/administrator/repositories/administrator-repository"
+import { AdministratorRepository } from "@/domain/contracts/repositories"
 import formatCurrency from "@/utils/formatCurrency"
 import salesOrdes from "../layouts/salesOrder"
 import { getLogoImage } from "@/modules/reports/utils/get-logo-image"
