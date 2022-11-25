@@ -5,6 +5,6 @@ import { makeCreateAdministratorController, makeLoadAdministratorController, mak
 export default (router: Router): void => {
   router.post("/admin/new", adapt(makeCreateAdministratorController()))
   router.get("/admin/load", adapt(makeLoadAdministratorController()))
-  router.put("/admin/update", adapt(makeUpdateAdministratorController()))
+  router.put("/admin/update/:id", adapt(makeUpdateAdministratorController()))
   router.use(router)
 }
