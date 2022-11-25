@@ -1,27 +1,26 @@
 import { Base } from "./base"
 
-export type Admin = Omit<Administrator, "isValid" | "getValue">
+export type Admin = Omit<Administrator, "isValid" | "getValue" | "id" | "created_at" | "setIdAndDate">
 
 export class Administrator extends Base {
-  private razao: string 
-  private fantasia: string 
-  private cpf_cnpj: string 
-  private insc_estadual: string 
-  private telefone: string 
-  private email: string 
-  private endereco: string
-  private bairro: string
-  private numero: string
-  private complemento: string
-  private cidade: string
-  private uf: string
-  private cep: string 
-  private url_image: string 
+  public razao: string 
+  public fantasia: string 
+  public cpf_cnpj: string 
+  public insc_estadual: string 
+  public telefone: string 
+  public email: string 
+  public endereco: string
+  public bairro: string
+  public numero: string
+  public complemento: string
+  public cidade: string
+  public uf: string
+  public cep: string 
+  public url_image: string 
 
   constructor(params: Admin){
     super()
     Object.assign(this, params)
-    Object.freeze(this)
   }
 
   public isValid(): boolean {
@@ -50,6 +49,12 @@ export class Administrator extends Base {
 
   public getValue(): Omit<this, "isValid" | "getValue"> {
     return this
+  }
+
+  setIdAndDate(id: string, createdAt: Date): void {
+    this.id = id
+    this.created_at = createdAt
+    Object.freeze(this)
   }
 }
 

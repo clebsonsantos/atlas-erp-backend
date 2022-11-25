@@ -5,42 +5,43 @@ describe('Administrator', () => {
   
   beforeEach(() => {
     sut = new Administrator({
-      address: {
-        bairro: "any",
-        cep: "any",
-        cidade: "any",
-        complemento: "any",
-        endereco: "any",
-        numero: "any",
-        uf: "any"
-      },
-      contact: {
-        email: "any",
-        telefone: "any"
-      },
+      cep: "any",
+      cidade: "any",
+      complemento: "any",
+      endereco: "any",
+      bairro: "any",
+      numero: "any",
+      uf: "any",
+      email: "any",
+      telefone: "any",
       cpf_cnpj: "any",
       fantasia: "any",
       insc_estadual: "any",
-      created_at: new Date(),
-      id: "any",
       razao: "any",
       url_image: "any"
     })
   })
 
   it('should be able return valid instance of Administrator', () => {
+    sut.setIdAndDate("any-id", new Date())
+
     expect(sut.isValid()).toBe(true)
   })
 
   it('should be able return invalid instance of Administrator', () => {
     sut = new Administrator({
-      address: {} as any,
-      contact: {} as any,
+      cep: "",
+      cidade: "",
+      complemento: "",
+      endereco: "",
+      bairro: "",
+      numero: "",
+      uf: "",
+      email: "",
+      telefone: "",
       cpf_cnpj: "",
       fantasia: "",
       insc_estadual: "",
-      created_at: new Date(),
-      id: "",
       razao: "",
       url_image: ""
     })

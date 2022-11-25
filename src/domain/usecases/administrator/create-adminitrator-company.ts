@@ -25,6 +25,8 @@ export class CreateAdministratorCompany implements Interface {
     }
     
     const company = new Administrator(data)
+    //?? é preciso injetar um gateways para gerar o uuid
+    company.setIdAndDate("any", new Date())
 
     if (!company.isValid()){
       return left("Os dados inseridos são inválidos")
