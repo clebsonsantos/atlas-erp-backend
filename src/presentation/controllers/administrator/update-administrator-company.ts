@@ -1,5 +1,5 @@
 import { Controller } from "@/presentation/controllers/controller"
-import { UpdateAdministratorCompany } from "@/domain/contracts/usecases/administrator"
+import { UpdateAdministratorCompany } from "@/domain/contracts/usecases"
 import { badRequest, HttpRequest, HttpResponse, ok } from "@/presentation/helpers"
 
 export class UpdateAdministratorController extends Controller {

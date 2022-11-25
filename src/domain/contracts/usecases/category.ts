@@ -5,7 +5,6 @@ import { Either } from "@/shared/either"
 export interface CreateCategory {
   execute: (data: CreateCategory.Params) => Promise<CreateCategory.Result>
 }
-
 export namespace CreateCategory {
   export type Params = {
     name: string

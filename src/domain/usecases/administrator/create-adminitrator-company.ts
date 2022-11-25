@@ -1,5 +1,5 @@
 import { left, right } from "@/shared/either"
-import { CreateAdministratorCompany as Interface } from "@/domain/contracts/usecases/administrator"
+import { CreateAdministratorCompany as Interface } from "@/domain/contracts/usecases"
 import { CPFCNPJValidator } from "@/domain/contracts/gateways"
 import { AdministratorRepository } from "@/domain/contracts/repositories"
 import { Administrator } from "@/domain/entities"

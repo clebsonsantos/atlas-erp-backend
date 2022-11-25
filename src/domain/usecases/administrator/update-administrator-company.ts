@@ -1,6 +1,6 @@
 import { CPFCNPJValidator } from "@/domain/contracts/gateways"
 import { AdministratorRepository } from "@/domain/contracts/repositories"
-import { UpdateAdministratorCompany as UpdateAdministrator } from "@/domain/contracts/usecases/administrator"
+import { UpdateAdministratorCompany as UpdateAdministrator } from "@/domain/contracts/usecases"
 import { Failure, InvalidFieldError } from "@/domain/errors"
 import { left, right } from "@/shared/either"
 

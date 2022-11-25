@@ -1,5 +1,5 @@
 import { AdministratorRepository } from "@/domain/contracts/repositories"
-import { LoadAdministrator } from "@/domain/contracts/usecases/administrator"
+import { LoadAdministrator } from "@/domain/contracts/usecases"
 
 type Output = LoadAdministrator.Result
 export class LoadAdministratorCompany implements LoadAdministrator {

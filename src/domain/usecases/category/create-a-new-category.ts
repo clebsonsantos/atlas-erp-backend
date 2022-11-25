@@ -1,5 +1,5 @@
 import { CategoryRepository } from "@/domain/contracts/repositories"
-import { CreateCategory } from "@/domain/contracts/usecases/category"
+import { CreateCategory } from "@/domain/contracts/usecases"
 import { Category } from "@/domain/entities"
 import { AlreadyExists, InvalidFieldError } from "@/domain/errors"
 import { left, right } from "@/shared/either"

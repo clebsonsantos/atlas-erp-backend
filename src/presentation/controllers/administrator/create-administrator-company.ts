@@ -1,6 +1,6 @@
 import { Controller } from "@/presentation/controllers/controller"
 import { badRequest, HttpRequest, HttpResponse, ok } from "@/presentation/helpers"
-import { CreateAdministratorCompany } from "@/domain/contracts/usecases/administrator"
+import { CreateAdministratorCompany } from "@/domain/contracts/usecases"
 
 export class CreateAdministratorController extends Controller {
   constructor(private readonly createAdminService: CreateAdministratorCompany){
