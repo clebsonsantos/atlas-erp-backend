@@ -11,7 +11,7 @@ export class DeleteExpenseUseCase  {
     private readonly expenseRepository: IExpenseRepository
   ){}
 
-  async execute({ id }: DeleteExpense.Params): Promise<DeleteExpense.Result>{
+  async execute({ id }: DeleteExpense.Input): Promise<DeleteExpense.Output>{
     const expense = await this.expenseRepository.findById(id)
     if(!expense){
       return left(new AppError("Registro não encontrado.", 404))

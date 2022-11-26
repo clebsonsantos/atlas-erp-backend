@@ -3,6 +3,6 @@ import { AppError } from "@/shared/errors/AppError"
 import { User } from "../infra/typeorm/entities/user" 
 
 export namespace UpdatedUserInfo {
-  export type Params = Omit<User, "created_at" | "roles" | "permissions">
-  export type Result = Either<AppError, User>
+  export type Input = Omit<User, "created_at" | "roles" | "permissions">
+  export type Output = Either<AppError, User>
 }

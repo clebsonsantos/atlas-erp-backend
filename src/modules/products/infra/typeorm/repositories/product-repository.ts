@@ -10,7 +10,7 @@ export class ProductRepositoryImpl implements ProductRepository {
     this.repository = getRepository(Product)
   }
 
-  async add(data: CreateProduct.Params): Promise<Product> {
+  async add(data: CreateProduct.Input): Promise<Product> {
     const toSave = this.repository.create(data)
     const product = await this.repository.save(toSave)
     return product

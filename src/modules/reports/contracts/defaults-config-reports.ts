@@ -4,7 +4,7 @@ import { Response } from "express"
 import { PageOrientation, Size, TDocumentDefinitions } from "pdfmake/interfaces"
 
 export namespace DefaultConfigReport {
-  export type Params = {
+  export type Input = {
     titleReport?: string
     columnsTitle?: any
     body?: any
@@ -14,5 +14,5 @@ export namespace DefaultConfigReport {
     CategoryTitleGroup?: boolean
     totalExpenses?: number
   }
-  export type Result = Either<AppError, TDocumentDefinitions>
+  export type Output = Either<AppError, TDocumentDefinitions>
 }

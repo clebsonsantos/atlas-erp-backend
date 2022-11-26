@@ -13,7 +13,7 @@ export class UpdatedUserInfoUserUseCase  {
     private userRepository: IUserRepository,
   ) {}
 
-  async execute({ id, username, password, email, full_name, phone}: UpdatedUserInfo.Params) :  Promise<UpdatedUserInfo.Result> {
+  async execute({ id, username, password, email, full_name, phone}: UpdatedUserInfo.Input) :  Promise<UpdatedUserInfo.Output> {
 
     const user = await this.userRepository.findById(id)
 
@@ -27,7 +27,7 @@ export class UpdatedUserInfoUserUseCase  {
     user.phone = phone ? phone : user.phone
     user.password = password ? await hash(password, 8) : user.password
 
-    const userResult = await this.userRepository.update(user)
-    return right(userResult)
+    const userOutput = await this.userRepository.update(user)
+    return right(userOutput)
   }
 }

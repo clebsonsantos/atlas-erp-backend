@@ -9,7 +9,7 @@ import { Either } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
 
 export namespace GetDataToRenderReport {
-  export type Params = {
+  export type Input = {
       action?: string | any 
       initial_date?: Date | any 
       final_date?: Date | any 
@@ -17,5 +17,5 @@ export namespace GetDataToRenderReport {
       salesman?:string | any
   }
 
-  export type Result = Either<AppError, Customer[] | Sales[] | Product[] | Category[] | CentersCost[] | Expenses[] | User[] >
+  export type Output = Either<AppError, Customer[] | Sales[] | Product[] | Category[] | CentersCost[] | Expenses[] | User[] >
 }

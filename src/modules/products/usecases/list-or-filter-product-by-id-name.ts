@@ -15,11 +15,11 @@ export class ListOrFilterProductByIdName {
   ){}
 
   async execute({ id, name }: Request): Promise<Product[] | Product> {
-    const findByParams = id ? await this.productRepository.findById(id) : await this.productRepository.findByName(name)
-    const paramsFind = id ? id : name
+    const findByInput = id ? await this.productRepository.findById(id) : await this.productRepository.findByName(name)
+    const InputFind = id ? id : name
 
     const products = 
-      paramsFind ? findByParams : 
+      InputFind ? findByInput : 
         await this.productRepository.list("ASC")
     return products 
   }

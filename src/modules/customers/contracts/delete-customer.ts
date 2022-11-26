@@ -2,8 +2,8 @@ import { Either } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
 
 export namespace DeleteCustomer {
-  export type Params = {
+  export type Input = {
     id: string
   }
-  export type Result = Either<AppError, String>
+  export type Output = Either<AppError, String>
 }

@@ -12,7 +12,7 @@ export class UpdateCustomerUseCase {
     private customerRepository: ICustomerRepository,
   ) {}
 
-    async execute({ id, full_name, cpf_cnpj, state_registration, phone, email, state, city, address, zip_code }: UpdateCustomer.Params): Promise<UpdateCustomer.Result> {
+    async execute({ id, full_name, cpf_cnpj, state_registration, phone, email, state, city, address, zip_code }: UpdateCustomer.Input): Promise<UpdateCustomer.Output> {
 
       const customer = await this.customerRepository.findById(id)
   

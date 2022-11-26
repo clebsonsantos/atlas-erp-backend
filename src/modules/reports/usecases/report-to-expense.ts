@@ -16,7 +16,7 @@ export class ReportToExpenses {
     Expenses: Expenses[],
     centerName: string | string[] | any,
     time_course: string
-  ): Promise<DefaultConfigReport.Params> {
+  ): Promise<DefaultConfigReport.Input> {
     const categories = await this.categoryRepository.list()
     
     const ExpensesFilter = centerName

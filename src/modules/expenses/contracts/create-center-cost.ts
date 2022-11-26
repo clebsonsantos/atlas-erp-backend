@@ -3,8 +3,8 @@ import { AppError } from "@/shared/errors/AppError"
 import { CentersCost } from "../infra/typeorm/entities/center-cost"
 
 export namespace CreateCenterCost {
-  export type Params = {
+  export type Input = {
     name: string
   }
-  export type Result = Either<AppError, CentersCost>
+  export type Output = Either<AppError, CentersCost>
 }

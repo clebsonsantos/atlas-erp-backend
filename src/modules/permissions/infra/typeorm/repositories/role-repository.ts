@@ -27,7 +27,7 @@ export class RoleRepository implements IRoleRepository {
     return role
   }
 
-  async add(data: CreateRole.Params): Promise<Role> {
+  async add(data: CreateRole.Input): Promise<Role> {
       const role = this.repository.create(data)
       const roleSave = await this.repository.save(role)
       return roleSave

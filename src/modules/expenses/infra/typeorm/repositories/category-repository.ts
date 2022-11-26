@@ -21,7 +21,7 @@ export class CategoryRepository implements ICategoryRepository {
     return categories
   }
 
-  async add(data: CreateCategory.Params): Promise<Category> {
+  async add(data: CreateCategory.Input): Promise<Category> {
     const category = this.repository.create(data)
     const categorySave = await this.repository.save(category)
     return categorySave

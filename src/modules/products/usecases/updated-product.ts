@@ -21,7 +21,7 @@ export class UpdateProductUseCase  {
     description,
     price_default,
     center_cost_id
-  }: UpdatedProduct.Params): Promise<UpdatedProduct.Result> {
+  }: UpdatedProduct.Input): Promise<UpdatedProduct.Output> {
     
     const centerCost = await this.centerCostRepository.findById(center_cost_id)
     if(!centerCost){

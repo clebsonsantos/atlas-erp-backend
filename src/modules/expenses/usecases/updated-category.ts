@@ -12,7 +12,7 @@ export class UpdateCategoryUseCase  {
     private readonly categoryRepository: ICategoryRepository
   ){}
 
-  async execute({ id, name }: UpdatedCategory.Params): Promise<UpdatedCategory.Result> {
+  async execute({ id, name }: UpdatedCategory.Input): Promise<UpdatedCategory.Output> {
     const category = await this.categoryRepository.findById(id)
     if(!category){
       return left(new AppError("Categoria não existe.", 404))

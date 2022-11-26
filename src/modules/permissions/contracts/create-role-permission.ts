@@ -4,9 +4,9 @@ import { Role } from "../infra/typeorm/entities/role"
 
 
 export namespace CreateRolePermission {
-  export type Params = {
+  export type Input = {
     roleId: string
     permissions: string[]
   }
-  export type Result = Either<AppError, Role>
+  export type Output = Either<AppError, Role>
 }

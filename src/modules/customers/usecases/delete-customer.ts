@@ -12,7 +12,7 @@ export class DeleteCustomerUseCase {
     private customerRepository: ICustomerRepository,
   ) {}
 
-  async execute({ id }: DeleteCustomer.Params): Promise<DeleteCustomer.Result> {
+  async execute({ id }: DeleteCustomer.Input): Promise<DeleteCustomer.Output> {
     const customer = await this.customerRepository.findById(id)
 
     if(!customer){

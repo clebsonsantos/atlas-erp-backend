@@ -14,7 +14,7 @@ export class LoginToUserWithPermissions {
     private userRepository: IUserRepository,
   ) {}
 
-  async execute({ username, password }: LoginToUser.Params): Promise<LoginToUser.Result> {
+  async execute({ username, password }: LoginToUser.Input): Promise<LoginToUser.Output> {
 
     const user = await this.userRepository.findByUserName(username)
 

@@ -3,7 +3,7 @@ import { Customer } from "@/modules/customers/infra/typeorm/entities/customer"
 import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 
 export class ReportToCustomer {
-  async execute(Customers: Customer[]): Promise<DefaultConfigReport.Params> {
+  async execute(Customers: Customer[]): Promise<DefaultConfigReport.Input> {
     //CORPO DA TABELA
     const body = []
     const columnsTitle: TableCell[] = [

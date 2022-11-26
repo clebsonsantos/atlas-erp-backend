@@ -18,7 +18,7 @@ export class CreateUserAccessControlListUseCase {
     private roleRepository: IRoleRepository,
   ) {}
   
-  async execute({ permissions, roles, userId }: CreateUserAccessControllList.Params): Promise<CreateUserAccessControllList.Result> {
+  async execute({ permissions, roles, userId }: CreateUserAccessControllList.Input): Promise<CreateUserAccessControllList.Output> {
 
     const user = await this.userRepository.findById(userId)
 
@@ -37,8 +37,8 @@ export class CreateUserAccessControlListUseCase {
 
     user.permissions = permissionsExists
 
-    const userResult = await this.userRepository.update(user)
+    const userOutput = await this.userRepository.update(user)
 
-    return right(userResult)
+    return right(userOutput)
   }
 }

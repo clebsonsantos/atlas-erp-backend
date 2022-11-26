@@ -11,7 +11,7 @@ export class ExpenseRepository implements IExpenseRepository {
     this.repository = getRepository(Expenses)
   }
 
-  async add(data: CreateExpense.Params): Promise<Expenses> {
+  async add(data: CreateExpense.Input): Promise<Expenses> {
     const toSave = this.repository.create(data)
     const expense = await this.repository.save(toSave)
     return expense

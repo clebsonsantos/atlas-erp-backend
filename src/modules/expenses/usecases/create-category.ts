@@ -11,7 +11,7 @@ export class CreateCategoryUseCase  {
     private readonly categoryRepository: ICategoryRepository
   ){}
 
-  async execute({ name }: CreateCategory.Params): Promise<CreateCategory.Result>  {
+  async execute({ name }: CreateCategory.Input): Promise<CreateCategory.Output>  {
     const validate = this.validate(name)
     if (validate.isLeft()) {
       return left(new AppError(validate.value))

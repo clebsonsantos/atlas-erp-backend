@@ -3,7 +3,7 @@ import { AppError } from "@/shared/errors/AppError"
 import { Sales } from "../infra/typeorm/entities/sale"
 
 export namespace UpdateSaleAndProductsSoldAssociate {
-  export type ProductsSoldsParams = {
+  export type ProductsSoldsInput = {
     id?: string 
     delete?: boolean 
     id_product: string
@@ -12,13 +12,13 @@ export namespace UpdateSaleAndProductsSoldAssociate {
     total_price: number 
     created_at: Date
   }
-  export type SalesParams = {
+  export type SalesInput = {
     id: string
     date: Date,
     customer_id: string,
     salesman: string,
-    products_sold: ProductsSoldsParams[]
+    products_sold: ProductsSoldsInput[]
   }
 
-  export type Result = Either<AppError, Sales>
+  export type Output = Either<AppError, Sales>
 }

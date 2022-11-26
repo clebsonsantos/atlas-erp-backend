@@ -11,7 +11,7 @@ export class UpdateCenterCostUseCase {
     private readonly centerCostRepository: ICenterCostRepository
   ){}
 
-  async execute({ id, name }: UpdatedCenterCost.Params): Promise<UpdatedCenterCost.Result> {
+  async execute({ id, name }: UpdatedCenterCost.Input): Promise<UpdatedCenterCost.Output> {
 
     const centerCost = await this.centerCostRepository.findById(id)
 

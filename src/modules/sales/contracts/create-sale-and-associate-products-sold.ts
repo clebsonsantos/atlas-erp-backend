@@ -5,16 +5,16 @@ import { Sales } from "../infra/typeorm/entities/sale"
 
 export namespace CreateSaleAndAssociateProductsSold {
 
-  export type ProductsSoldParams = Omit<ProductSales, "created_at" | "id" | "product">
+  export type ProductsSoldInput = Omit<ProductSales, "created_at" | "id" | "product">
 
-  export type Params = {
+  export type Input = {
     date: Date
     customer_id: string
     salesman: string
     userId?: string
     sale_number?: number
-    products_sold: ProductsSoldParams[]
+    products_sold: ProductsSoldInput[]
   }
 
-  export type Result = Either<AppError, Sales>
+  export type Output = Either<AppError, Sales>
 }

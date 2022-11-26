@@ -14,7 +14,7 @@ export class DeleteSaleProductsAssociateUseCase  {
     private readonly productSoldRepository: ProductsSoldRepository, 
   ){}
 
-  async execute({ id }: DeleteSaleAndProductsSold.Params): Promise<DeleteSaleAndProductsSold.Result> {
+  async execute({ id }: DeleteSaleAndProductsSold.Input): Promise<DeleteSaleAndProductsSold.Output> {
 
     const sale = await this.saleRepository.findById(id)
 

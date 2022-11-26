@@ -12,7 +12,7 @@ export class DeleteCategoryUseCase  {
     private readonly categoryRepository: ICategoryRepository
   ){}
 
-  async execute({ id }: DeleteCategory.Params): Promise<DeleteCategory.Result>{
+  async execute({ id }: DeleteCategory.Input): Promise<DeleteCategory.Output>{
     const category = await this.categoryRepository.findById(id)
 
     if(!category){

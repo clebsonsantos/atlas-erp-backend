@@ -3,9 +3,9 @@ import { AppError } from "@/shared/errors/AppError"
 import { Role } from "../infra/typeorm/entities/role"
 
 export namespace CreateRole {
-  export type Params = {
+  export type Input = {
     name: string
     description: string
   }
-  export type Result = Either<AppError, Role>
+  export type Output = Either<AppError, Role>
 }

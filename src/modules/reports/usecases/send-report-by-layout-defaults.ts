@@ -26,7 +26,7 @@ export class SendReportByLayoutDefaults {
     widthsColumns,
     CategoryTitleGroup,
     totalExpenses,
-  }: DefaultConfigReport.Params): Promise<DefaultConfigReport.Result> {
+  }: DefaultConfigReport.Input): Promise<DefaultConfigReport.Output> {
 
     const findCompany = await this.administratorRepository.list()
     

@@ -4,12 +4,15 @@ import { Category } from "@/domain/entities"
 import { AlreadyExists, InvalidFieldError } from "@/domain/errors"
 import { left, right } from "@/shared/either"
 
+type Input = CreateCategory.Input
+type Output = CreateCategory.Output
+
 export class CreateCategoryUseCase implements CreateCategory {
   constructor(
     private readonly categoryRepository: CategoryRepository
   ){}
 
-  async execute({ name }: CreateCategory.Params): Promise<CreateCategory.Result>  {
+  async execute({ name }: Input): Promise<Output>  {
     if (!name) {
       return left(new InvalidFieldError("name"))
     }

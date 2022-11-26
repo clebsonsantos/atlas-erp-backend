@@ -11,7 +11,7 @@ export class DeleteUserUseCase  {
     private userRepository: IUserRepository,
   ) {}
 
-  async execute({ id }: DeleteUserById.Params): Promise<DeleteUserById.Result>{
+  async execute({ id }: DeleteUserById.Input): Promise<DeleteUserById.Output>{
     const user = await this.userRepository.findById(id)
     if(!user){
       return left(new AppError("Usuário não encontrado.", 404)) 

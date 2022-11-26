@@ -14,7 +14,7 @@ export class CreateProductsUseCase {
     private readonly centerCostRepository: ICenterCostRepository
   ){}
 
-  async execute({ name, description, price_default, center_cost_id }: CreateProduct.Params): Promise<CreateProduct.Result> {
+  async execute({ name, description, price_default, center_cost_id }: CreateProduct.Input): Promise<CreateProduct.Output> {
     const validate = this.validate(name, description)
     if (validate.isLeft()) {
       return left(new AppError(validate.value))

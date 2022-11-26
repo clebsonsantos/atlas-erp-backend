@@ -11,7 +11,7 @@ export class CustomerRepository implements ICustomerRepository {
     this.repository = getRepository(Customer)
   }
   
-  async create({ full_name, cpf_cnpj, state_registration, phone, email, state, city, address, zip_code }: CreateCustomer.Params): Promise<Customer> {
+  async create({ full_name, cpf_cnpj, state_registration, phone, email, state, city, address, zip_code }: CreateCustomer.Input): Promise<Customer> {
     const customer = this.repository.create({ 
       full_name,
       cpf_cnpj,
@@ -60,7 +60,7 @@ export class CustomerRepository implements ICustomerRepository {
     return customers
   }
 
-  async updatedCustomer(customer: UpdateCustomer.Params): Promise<Customer> {
+  async updatedCustomer(customer: UpdateCustomer.Input): Promise<Customer> {
     const result = await this.repository.save(customer)
     return result
   }

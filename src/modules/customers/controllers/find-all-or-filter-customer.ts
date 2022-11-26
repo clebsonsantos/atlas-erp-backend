@@ -7,7 +7,7 @@ import { Request, Response } from "express"
 export class FindAllOrFilterCustomersController {
 
   async handle(request: Request, response: Response) {
-    // TODO: Adicionar também um filtro para cpf e telefone, alterar o recebimento de parametros pelo body e receber por query-params
+    // TODO: Adicionar também um filtro para cpf e telefone, alterar o recebimento de parametros pelo body e receber por query-Input
     const { id, full_name } = request.body
     const getAllCustomers = container.resolve(FindAllCustomersUseCase)
     

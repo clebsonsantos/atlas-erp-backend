@@ -26,7 +26,7 @@ export class CreateExpenseUseCase {
     date,
     center_cost_id,
     category_id
-  }: CreateExpense.Params): Promise<CreateExpense.Result>{
+  }: CreateExpense.Input): Promise<CreateExpense.Output>{
     const validate = this.validate(description, amount, quantity, frequency, type, date)
     if (validate.isLeft()) {
       return left(new AppError(validate.value))
@@ -54,7 +54,7 @@ export class CreateExpenseUseCase {
   }
   
   validate(description: string, amount: number, quantity: number, frequency: string, type: string, date: Date): Either<string, null> {
-    const messageError = `Params is required: `
+    const messageError = `Input is required: `
     if (!description || description.length < 5) {
       return left(messageError.concat("description"))
     }

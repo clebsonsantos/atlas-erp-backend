@@ -4,6 +4,8 @@ import { UpdateAdministratorCompany as UpdateAdministrator } from "@/domain/cont
 import { Failure, InvalidFieldError } from "@/domain/errors"
 import { left, right } from "@/shared/either"
 
+type Input = UpdateAdministrator.Input
+type Output = UpdateAdministrator.Output
 
 export class UpdateAdministratorCompany implements UpdateAdministrator {
   constructor(
@@ -26,7 +28,7 @@ export class UpdateAdministratorCompany implements UpdateAdministrator {
     telefone,
     email,
     url_image
-   }: UpdateAdministrator.Params): Promise<UpdateAdministrator.Result>{
+   }: Input): Promise<Output>{
     const administrator = await this.administratorRepository.findById(id)
 
     if(!administrator){

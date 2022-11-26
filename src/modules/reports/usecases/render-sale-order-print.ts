@@ -22,7 +22,7 @@ export class RenderSaleOrderPrintUseCase  {
     private readonly administratorRepository: AdministratorRepository
   ){}
 
-  async execute({ id }: RenderSaleOrderPrint.Params): Promise<RenderSaleOrderPrint.Result>{
+  async execute({ id }: RenderSaleOrderPrint.Input): Promise<RenderSaleOrderPrint.Output>{
     const sale = await this.saleRepository.findById(id)
 
     if (!sale) {

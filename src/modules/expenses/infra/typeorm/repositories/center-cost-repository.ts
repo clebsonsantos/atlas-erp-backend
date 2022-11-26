@@ -21,7 +21,7 @@ export class CenterCostRepository implements ICenterCostRepository {
     return centersCost
   }
 
-  async add(data: CreateCenterCost.Params): Promise<CentersCost> {
+  async add(data: CreateCenterCost.Input): Promise<CentersCost> {
     const center = this.repository.create(data)
     const centerSave = await this.repository.save(center)
     return centerSave

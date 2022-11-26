@@ -13,7 +13,7 @@ export class UserRepository implements IUserRepository {
     const user = await this.repository.findOne({ username }, { relations: ["permissions", "roles"] })
     return user
   }
-  async create(data: CreateUser.Params): Promise<User> {
+  async create(data: CreateUser.Input): Promise<User> {
     const create = this.repository.create(data)
     const user = await this.repository.save(create)
     return user

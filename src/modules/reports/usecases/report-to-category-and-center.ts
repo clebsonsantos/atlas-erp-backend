@@ -4,7 +4,7 @@ import { CentersCost } from "@/modules/expenses/infra/typeorm/entities/center-co
 import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 
 export class ReportToCategoryAndCenter {
-  async execute(Component: Category[] | CentersCost[]): Promise<DefaultConfigReport.Params> {
+  async execute(Component: Category[] | CentersCost[]): Promise<DefaultConfigReport.Input> {
     //CORPO DA TABELA
     const body = []
     const columnsTitle: TableCell[] = [

@@ -4,8 +4,8 @@ import { CPFCNPJValidator } from "@/domain/contracts/gateways"
 import { AdministratorRepository } from "@/domain/contracts/repositories"
 import { Administrator } from "@/domain/entities"
 
-type Input = Interface.Params
-type Output = Interface.Result
+type Input = Interface.Input
+type Output = Interface.Output
 
 export class CreateAdministratorCompany implements Interface {
   constructor(

@@ -15,7 +15,7 @@ export class UpdateSaleAndProductsAssociateUseCase  {
     private readonly productSoldRepository: ProductsSoldRepository
   ){}
 
-  async execute({ id, date, customer_id, products_sold, salesman }: UpdateSaleAndProductsSoldAssociate.SalesParams): Promise<UpdateSaleAndProductsSoldAssociate.Result> {
+  async execute({ id, date, customer_id, products_sold, salesman }: UpdateSaleAndProductsSoldAssociate.SalesInput): Promise<UpdateSaleAndProductsSoldAssociate.Output> {
 
     
     const sale = await this.saleRepository.findById(id)

@@ -3,10 +3,10 @@ import { AppError } from "@/shared/errors/AppError"
 import { User } from "../infra/typeorm/entities/user"
 
 export namespace CreateUserAccessControllList {
-  export type Params = {
+  export type Input = {
     userId: string
     roles: string[]
     permissions: string[]
   }
-  export type Result = Either<AppError, User>
+  export type Output = Either<AppError, User>
 }

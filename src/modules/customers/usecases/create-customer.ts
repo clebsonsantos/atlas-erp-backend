@@ -13,7 +13,7 @@ export class CreateCustomerUseCase  {
     private customerRepository: ICustomerRepository,
   ) {}
 
-  async execute({full_name, cpf_cnpj, state_registration, phone, email, state, city, address, zip_code }: CreateCustomer.Params): Promise<CreateCustomer.Result> {
+  async execute({full_name, cpf_cnpj, state_registration, phone, email, state, city, address, zip_code }: CreateCustomer.Input): Promise<CreateCustomer.Output> {
     
     if(!full_name || !phone){
       return left(new AppError("Nome completo e telefone são campos obrigatórios."))

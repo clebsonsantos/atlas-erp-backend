@@ -3,8 +3,8 @@ import { AppError } from "@/shared/errors/AppError"
 import { User } from "../infra/typeorm/entities/user" 
 
 export namespace FindUserByUsername {
-  export type Params = {
+  export type Input = {
     username: string
   }
-  export type Result = Either<AppError, User>
+  export type Output = Either<AppError, User>
 }

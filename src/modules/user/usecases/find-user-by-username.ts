@@ -11,7 +11,7 @@ export class FindUserByUsernameUseCase {
     private userRepository: IUserRepository,
   ) {}
 
-  async execute({ username }: FindUserByUsername.Params): Promise<FindUserByUsername.Result> {
+  async execute({ username }: FindUserByUsername.Input): Promise<FindUserByUsername.Output> {
     const user = await this.userRepository.findByUserName(username)
     if (!user) {
       return left(new AppError("Usuário não existe", 404))

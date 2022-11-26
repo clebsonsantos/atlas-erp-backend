@@ -57,7 +57,7 @@ export class RenderReportByConditioncontroller {
     const instaceType = errorOrData.value[0]
     const reports = errorOrData.value
 
-    let docsDefinitions: DefaultConfigReport.Params
+    let docsDefinitions: DefaultConfigReport.Input
 
     if (instaceType instanceof Customer) {
 

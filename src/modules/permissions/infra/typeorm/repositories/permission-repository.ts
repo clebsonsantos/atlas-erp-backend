@@ -16,7 +16,7 @@ export class PermissionRepository implements IPermissionRepository {
     return permissions
   }
 
-  async add({ name, description }: CreatePermission.Params): Promise<Permission> {
+  async add({ name, description }: CreatePermission.Input): Promise<Permission> {
     const permission = this.repository.create({ name, description })
     return await this.repository.save(permission)
   }

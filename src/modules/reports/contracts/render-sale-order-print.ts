@@ -3,8 +3,8 @@ import { AppError } from "@/shared/errors/AppError"
 import { TDocumentDefinitions } from "pdfmake/interfaces"
 
 export namespace RenderSaleOrderPrint {
-  export type Params =  {
+  export type Input =  {
     id: string
   }
-  export type Result = Either<AppError, TDocumentDefinitions>
+  export type Output = Either<AppError, TDocumentDefinitions>
 }

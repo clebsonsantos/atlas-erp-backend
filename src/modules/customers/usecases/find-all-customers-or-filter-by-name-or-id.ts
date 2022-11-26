@@ -10,11 +10,11 @@ export class FindAllCustomersUseCase {
     private customerRepository: ICustomerRepository,
   ) {}
 
-    async execute({ id, full_name }: FindAllCustomerOrFilter.Params): Promise<FindAllCustomerOrFilter.Result> {
-      const findByParams = id ? await this.customerRepository.findById(id) : await this.customerRepository.findByFullName(full_name)
-      const useThisParams = id ? id : full_name
+    async execute({ id, full_name }: FindAllCustomerOrFilter.Input): Promise<FindAllCustomerOrFilter.Output> {
+      const findByInput = id ? await this.customerRepository.findById(id) : await this.customerRepository.findByFullName(full_name)
+      const useThisInput = id ? id : full_name
 
-      const customers = useThisParams ? findByParams :  await this.customerRepository.findAll()
+      const customers = useThisInput ? findByInput :  await this.customerRepository.findAll()
       return customers
     }
     

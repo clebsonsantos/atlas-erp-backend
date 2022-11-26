@@ -3,11 +3,11 @@ import { Either } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
 
 export namespace LoginToUser {
-  export type Params = {
+  export type Input = {
     username: string
     password: string
   } 
-  export type Result = Either<AppError, {
+  export type Output = Either<AppError, {
     token: string, 
     user_id: string,
     user_permissions: Permission[]

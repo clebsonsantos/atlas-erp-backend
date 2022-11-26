@@ -12,7 +12,7 @@ export class DeleteCenterCostUseCase  {
     private readonly centerCostRepository: ICenterCostRepository
   ){}
 
-  async execute({ id }: DeleteCenterCost.Params): Promise<DeleteCenterCost.Result> {
+  async execute({ id }: DeleteCenterCost.Input): Promise<DeleteCenterCost.Output> {
 
     const center_cost = await this.centerCostRepository.findById(id)
 

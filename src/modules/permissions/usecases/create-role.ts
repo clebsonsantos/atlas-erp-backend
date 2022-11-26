@@ -10,7 +10,7 @@ export class CreateRoleUseCase {
   @inject("RoleRepository")
   private readonly roleRepository: IRoleRepository
   ){}
-  async execute({ name, description }: CreateRole.Params): Promise<CreateRole.Result> {
+  async execute({ name, description }: CreateRole.Input): Promise<CreateRole.Output> {
     const validate = this.validate(name, description)
     if (validate.isLeft()) {
       return left(new AppError(validate.value))
@@ -27,7 +27,7 @@ export class CreateRoleUseCase {
   }
 
   validate(name: string, description: string): Either<string, null> {
-    const messageError = `Params is required: `
+    const messageError = `Input is required: `
     if (!name) {
       return left(messageError.concat("name"))
     }

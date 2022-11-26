@@ -21,7 +21,7 @@ export class UpdateExpensesUseCase  {
     date,
     center_cost_id,
     category_id
-  }: UpdatedExpense.Params): Promise<UpdatedExpense.Result> {
+  }: UpdatedExpense.Input): Promise<UpdatedExpense.Output> {
 
     const expense = await this.expenseRepository.findById(id)
 

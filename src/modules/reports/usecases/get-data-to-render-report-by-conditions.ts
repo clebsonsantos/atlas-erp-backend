@@ -32,7 +32,7 @@ export class GetDataToRenderReportUseCase {
     private readonly userRepository: IUserRepository,
   ){}
 
-  async execute({action ,initial_date, final_date, customer_id, salesman}: GetDataToRenderReport.Params): Promise<GetDataToRenderReport.Result> {
+  async execute({action ,initial_date, final_date, customer_id, salesman}: GetDataToRenderReport.Input): Promise<GetDataToRenderReport.Output> {
 
     let customers = action == 'customers' ? true : false
     let sales = action == 'sales' ? true : false

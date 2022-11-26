@@ -12,7 +12,7 @@ export class DeleteProductUseCase  {
     private readonly productRepository: ProductRepository
   ){}
 
-  async execute({ id }: DeleteProduct.Params): Promise<DeleteProduct.Result> {
+  async execute({ id }: DeleteProduct.Input): Promise<DeleteProduct.Output> {
     const product = await this.productRepository.findById(id)
 
     if(!product){

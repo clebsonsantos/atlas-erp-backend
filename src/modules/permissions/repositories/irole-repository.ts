@@ -5,6 +5,6 @@ export interface IRoleRepository {
   findOne(id: string): Promise<Role>
   addPermission(data: Role): Promise<Role>
   findByName(name: string): Promise<Role>
-  add(data: CreateRole.Params): Promise<Role>
+  add(data: CreateRole.Input): Promise<Role>
   findByIds(ids: string[]): Promise<Role[]>
 }

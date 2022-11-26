@@ -25,7 +25,7 @@ export class ReportToSale {
     time_course: string,
     customer_id: string | any,
     salesman: string | any,
-  ): Promise<DefaultConfigReport.Params>  {
+  ): Promise<DefaultConfigReport.Input>  {
     const ondisplay = customer_id === "" ? false : true
     const { body, valuetotal } = await this.handleBodyContent(Sales, ondisplay)
     const ContentTable = this.handleContextTable(body)

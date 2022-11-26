@@ -27,7 +27,7 @@ export class CreateSaleAndProductsAssociateUseCase  {
     salesman,
     userId,
     products_sold
-  }: CreateSaleAndAssociateProductsSold.Params): Promise<CreateSaleAndAssociateProductsSold.Result> {
+  }: CreateSaleAndAssociateProductsSold.Input): Promise<CreateSaleAndAssociateProductsSold.Output> {
     const customer = await this.customerRepository.findById(customer_id)
     if(!customer){
       return left(new AppError("Este cliente não existe."))
@@ -37,7 +37,7 @@ export class CreateSaleAndProductsAssociateUseCase  {
       return left(new AppError("Você precisa inserir ao menos um produto para prosseguir."))
     }
 
-    const validateProducts = this.validateProductsParams(products_sold)
+    const validateProducts = this.validateProductsInput(products_sold)
     if (validateProducts.isLeft()) {
       return left(new AppError(validateProducts.value))
     }
@@ -73,8 +73,8 @@ export class CreateSaleAndProductsAssociateUseCase  {
 
   }
 
-  validateProductsParams(products: CreateSaleAndAssociateProductsSold.ProductsSoldParams[]): Either<string, null> {
-    const messageError = `Params is required: `
+  validateProductsInput(products: CreateSaleAndAssociateProductsSold.ProductsSoldInput[]): Either<string, null> {
+    const messageError = `Input is required: `
     for (const product of products) {
         if (!product.id_product) {
           return left(messageError.concat("id_product"))

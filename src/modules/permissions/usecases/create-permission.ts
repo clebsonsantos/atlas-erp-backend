@@ -14,7 +14,7 @@ export class CreatePermissionUseCase {
   async execute({
     name,
     description,
-  }: CreatePermission.Params): Promise<CreatePermission.Result> {
+  }: CreatePermission.Input): Promise<CreatePermission.Output> {
     
     const validate = this.validate(name, description)
 
@@ -33,7 +33,7 @@ export class CreatePermissionUseCase {
   }
 
   validate(name: string, description: string): Either<string, null> {
-    const messageError = `Params is required: `
+    const messageError = `Input is required: `
     if (!name) {
       return left(messageError.concat("name"))
     }

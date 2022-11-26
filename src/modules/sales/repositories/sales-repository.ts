@@ -3,7 +3,7 @@ import { Sales } from "../infra/typeorm/entities/sale"
 
 export interface SaleRepository {
 
-  add(data: CreateSaleAndAssociateProductsSold.Params): Promise<Sales>
+  add(data: CreateSaleAndAssociateProductsSold.Input): Promise<Sales>
   findById(id: string): Promise<Sales>
   delete(id: string): Promise<boolean>
   list(order?: "ASC" | "DESC"): Promise<Sales[]>

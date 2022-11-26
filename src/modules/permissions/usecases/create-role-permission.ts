@@ -18,7 +18,7 @@ export class CreateRolePermissionUseCase {
   async execute({
     roleId,
     permissions,
-  }: CreateRolePermission.Params): Promise<CreateRolePermission.Result> {
+  }: CreateRolePermission.Input): Promise<CreateRolePermission.Output> {
     
     const validate = this.validate(roleId, permissions)
     if (validate.isLeft()) {
@@ -42,7 +42,7 @@ export class CreateRolePermissionUseCase {
   }
 
   validate(roleId: string, permissions: string[]): Either<string, null> {
-    const messageError = `Params is required: `
+    const messageError = `Input is required: `
     if (!roleId) {
       return left(messageError.concat("roleId"))
     }

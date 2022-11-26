@@ -3,11 +3,11 @@ import { Either } from "@/shared/either"
 import { InvalidFieldError, Failure } from "@/domain/errors"
 
 export interface CreateAdministratorCompany {
-  execute: (data: CreateAdministratorCompany.Params) => Promise<CreateAdministratorCompany.Result>
+  execute: (data: CreateAdministratorCompany.Input) => Promise<CreateAdministratorCompany.Output>
 }
 
 export namespace CreateAdministratorCompany {
-  export type Params = {
+  export type Input = {
     razao: string 
     fantasia: string 
     cpf_cnpj: string 
@@ -25,23 +25,23 @@ export namespace CreateAdministratorCompany {
     id?: string
     created_at?: Date
   }
-  export type Result = Either<string, AdminDTO>
+  export type Output = Either<string, AdminDTO>
 }
 
 
 export interface LoadAdministrator {
-  execute: () => Promise<LoadAdministrator.Result>
+  execute: () => Promise<LoadAdministrator.Output>
 }
 export namespace LoadAdministrator {
-  export type Result = AdminDTO[]
+  export type Output = AdminDTO[]
 }
 
 
 export interface UpdateAdministratorCompany {
-  execute: (data: UpdateAdministratorCompany.Params) => Promise<UpdateAdministratorCompany.Result>
+  execute: (data: UpdateAdministratorCompany.Input) => Promise<UpdateAdministratorCompany.Output>
 }
 export namespace UpdateAdministratorCompany {
-  export type Params = {
+  export type Input = {
     id: string 
     razao?: string 
     fantasia?: string 
@@ -58,5 +58,5 @@ export namespace UpdateAdministratorCompany {
     email?: string 
     url_image?: string 
   }
-  export type Result = Either<InvalidFieldError | Failure, AdminDTO>
+  export type Output = Either<InvalidFieldError | Failure, AdminDTO>
 }

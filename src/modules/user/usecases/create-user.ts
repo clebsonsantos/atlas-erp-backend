@@ -13,11 +13,11 @@ export class CreateUserUseCase {
     private userRepository: IUserRepository,
   ) {}
 
-  async execute({ password, username, full_name, email, phone }: CreateUser.Params): Promise<CreateUser.Result> {
-    const validateParams = this.validateParams({ password, username, full_name, email, phone })
+  async execute({ password, username, full_name, email, phone }: CreateUser.Input): Promise<CreateUser.Output> {
+    const validateInput = this.validateInput({ password, username, full_name, email, phone })
 
-    if(validateParams.isLeft()) {
-      return left(new AppError(validateParams.value, 400))
+    if(validateInput.isLeft()) {
+      return left(new AppError(validateInput.value, 400))
     }
 
     const existUser = await this.userRepository.findByUserName(username)
@@ -33,8 +33,8 @@ export class CreateUserUseCase {
     return right(user)
   }
 
-  validateParams(data: CreateUser.Params): Either<string, null> {
-    let messageError = `Params is required: `
+  validateInput(data: CreateUser.Input): Either<string, null> {
+    let messageError = `Input is required: `
     if(!data.email) {
       return left(messageError + "email")
     }

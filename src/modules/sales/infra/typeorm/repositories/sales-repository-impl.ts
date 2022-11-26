@@ -11,7 +11,7 @@ export class SaleRepositoryImpl implements SaleRepository {
     this.repository = getRepository(Sales)
   }
 
-  async add(data: CreateSaleAndAssociateProductsSold.Params): Promise<Sales> {
+  async add(data: CreateSaleAndAssociateProductsSold.Input): Promise<Sales> {
     const sale = this.repository.create(data)
     return await this.repository.save(sale)
   }
