@@ -1,5 +1,5 @@
 import { Category } from "@/domain/entities"
-import { CreateCategory } from "@/domain/contracts/usecases/category"
+import { CreateCategory } from "@/domain/contracts/usecases"
 
 export interface CategoryRepository {
   list(): Promise<Category[]>
