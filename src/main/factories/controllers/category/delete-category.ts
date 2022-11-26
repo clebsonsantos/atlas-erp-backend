@@ -1,6 +1,6 @@
-import { DeleteCategoryUseCase } from "@/domain/usecases/category"
-import { makeCategoryRepository } from "@/main/factories/repositories"
+import { DeleteCategoryController } from "@/presentation/controllers/category"
+import { makeDeleteCategoryById } from "@/main/factories/usecases/category"
 
-export const makeDeleteCategoryController = (): DeleteCategoryUseCase => {
-  return new DeleteCategoryUseCase(makeCategoryRepository())
+export const makeDeleteCategoryController = (): DeleteCategoryController => {
+  return new DeleteCategoryController(makeDeleteCategoryById())
 }

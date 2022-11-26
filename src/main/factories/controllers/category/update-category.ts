@@ -1,6 +1,6 @@
-import { UpdateCategoryUseCase } from "@/domain/usecases/category"
-import { makeCategoryRepository } from "@/main/factories/repositories"
+import { UpdateCategoryController } from "@/presentation/controllers/category"
+import { makeUpdateCategory } from "@/main/factories/usecases/category"
 
-export const makeUpdateCategoryController = (): UpdateCategoryUseCase => {
-  return new UpdateCategoryUseCase(makeCategoryRepository())
+export const makeUpdateCategoryController = (): UpdateCategoryController => {
+  return new UpdateCategoryController(makeUpdateCategory())
 }

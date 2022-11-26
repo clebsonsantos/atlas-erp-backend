@@ -1,6 +1,6 @@
-import { ListCategoriesUseCase } from "@/domain/usecases/category"
-import { makeCategoryRepository } from "@/main/factories/repositories"
+import { GetAllCategoryController } from "@/presentation/controllers/category"
+import { makeListCategories } from "@/main/factories/usecases/category"
 
-export const makeLoadCategoriesController = (): ListCategoriesUseCase => {
-  return new ListCategoriesUseCase(makeCategoryRepository())
+export const makeLoadCategoriesController = (): GetAllCategoryController => {
+  return new GetAllCategoryController(makeListCategories())
 } 
