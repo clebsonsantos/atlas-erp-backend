@@ -7,7 +7,7 @@ export class GetAllCategoryController extends Controller {
     super()
   }
 
-  async perform(httpRequest: HttpRequest): Promise<HttpResponse> {
+  override async perform(httpRequest: HttpRequest): Promise<HttpResponse> {
     const categories = await this.listCategoriesService.execute()
     return ok(categories)
   }

@@ -7,7 +7,7 @@ export class LoadAdministratorCompanyController extends Controller {
   constructor(private readonly administratorInfo: LoadAdministrator){
     super()
   }
-  async perform(httpRequest: HttpRequest): Promise<HttpResponse> {
+  override async perform(httpRequest: HttpRequest): Promise<HttpResponse> {
     const administrator = await this.administratorInfo.execute()
     return ok(administrator)
   }

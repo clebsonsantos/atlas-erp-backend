@@ -6,7 +6,7 @@ export class UpdateAdministratorController extends Controller {
   constructor(private readonly administrationUpdateService: UpdateAdministratorCompany){
     super()
   }
-  async perform(httpRequest: HttpRequest): Promise<HttpResponse> {
+  override async perform(httpRequest: HttpRequest): Promise<HttpResponse> {
     const { id } = httpRequest.params
     const {
       razao,

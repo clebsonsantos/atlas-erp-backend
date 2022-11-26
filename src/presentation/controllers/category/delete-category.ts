@@ -7,7 +7,7 @@ export class DeleteCategoryController extends Controller {
     super()
   }
 
-  async perform(httpRequest: HttpRequest): Promise<HttpResponse> {
+  override async perform(httpRequest: HttpRequest): Promise<HttpResponse> {
     const { id } = httpRequest.params
     const result = await this.deleteCategoryService.execute({id})
     return result.isLeft()

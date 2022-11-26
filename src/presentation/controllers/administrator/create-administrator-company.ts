@@ -7,7 +7,7 @@ export class CreateAdministratorController extends Controller {
     super()
   }
 
-  async perform(request: HttpRequest): Promise<HttpResponse> {
+  override async perform(request: HttpRequest): Promise<HttpResponse> {
     const {
       razao,
       fantasia,

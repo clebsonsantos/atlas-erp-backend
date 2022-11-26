@@ -6,7 +6,7 @@ export class CreateANewCategoryController extends Controller {
   constructor(private readonly createCategoryService: CreateCategory){
     super()
   }
-  async perform(httpRequest: HttpRequest): Promise<HttpResponse> {
+  override async perform(httpRequest: HttpRequest): Promise<HttpResponse> {
     const { name } = httpRequest.body
     const result = await this.createCategoryService.execute({ name })
     return result.isLeft()
