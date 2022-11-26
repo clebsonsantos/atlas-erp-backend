@@ -3,7 +3,7 @@ import { CreateCategory } from "@/domain/contracts/usecases"
 import { Category } from "@/domain/entities"
 import { AlreadyExists, InvalidFieldError } from "@/domain/errors"
 import { left, right } from "@/shared/either"
-
+import { v4 as uuid } from "uuid"
 type Input = CreateCategory.Input
 type Output = CreateCategory.Output
 
@@ -21,7 +21,7 @@ export class CreateCategoryUseCase implements CreateCategory {
       return left(new AlreadyExists("Category"))
     }
     const category = new Category(name)
-    category.setIdAndDate("any", new Date())
+    category.setIdAndDate(uuid(), new Date())
 
     const result = await this.categoryRepository.add(category)
     return right(result)    

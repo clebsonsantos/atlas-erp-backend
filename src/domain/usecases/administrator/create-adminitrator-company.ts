@@ -3,7 +3,7 @@ import { CreateAdministratorCompany as Interface } from "@/domain/contracts/usec
 import { CPFCNPJValidator } from "@/domain/contracts/gateways"
 import { AdministratorRepository } from "@/domain/contracts/repositories"
 import { Administrator } from "@/domain/entities"
-
+import { v4 as uuid } from "uuid"
 type Input = Interface.Input
 type Output = Interface.Output
 
@@ -26,7 +26,7 @@ export class CreateAdministratorCompany implements Interface {
     
     const company = new Administrator(data)
     //?? é preciso injetar um gateways para gerar o uuid
-    company.setIdAndDate("any", new Date())
+    company.setIdAndDate(uuid(), new Date())
 
     if (!company.isValid()){
       return left("Os dados inseridos são inválidos")
