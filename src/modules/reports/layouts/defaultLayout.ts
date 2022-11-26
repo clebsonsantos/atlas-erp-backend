@@ -1,9 +1,9 @@
-import { Admin } from "@/domain/entities" 
+import { AdminDTO } from "@/domain/entities" 
 import { PageOrientation, Size, TDocumentDefinitions } from 'pdfmake/interfaces' 
 import HeadersReport from './header' 
 
 type DefaultCongig = {
-  company: Admin 
+  company: AdminDTO 
   titleReport: string 
   columnsTitle?: any 
   body?: any 

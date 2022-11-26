@@ -1,11 +1,11 @@
 import { AdministratorRepository } from "@/domain/contracts/repositories"
-import { Admin } from "@/domain/entities"
+import { AdminDTO } from "@/domain/entities"
 import { Administrator } from "@/infra/database/entities"
 import { getRepository } from "typeorm"
 
 export class AdministratorRepositoryImpl implements AdministratorRepository {
 
-  async add(data: Admin): Promise<Administrator> {
+  async add(data: AdminDTO): Promise<Administrator> {
     const repository = getRepository(Administrator)
 
     const admin = repository.create(data)
@@ -18,7 +18,7 @@ export class AdministratorRepositoryImpl implements AdministratorRepository {
     return await repository.find()
   }
 
-  async update(data: Admin): Promise<Administrator> {
+  async update(data: AdminDTO): Promise<Administrator> {
     const repository = getRepository(Administrator)
 
     return await repository.save(data)

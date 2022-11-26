@@ -1,6 +1,6 @@
 import { Base } from "./base"
 
-export type Admin = Omit<Administrator, "isValid" | "getValue" | "id" | "created_at" | "setIdAndDate">
+export type AdminDTO = Omit<Administrator, "isValid" | "getValue" | "id" | "created_at" | "setIdAndDate">
 
 export class Administrator extends Base {
   public razao: string 
@@ -18,7 +18,7 @@ export class Administrator extends Base {
   public cep: string 
   public url_image: string 
 
-  constructor(params: Admin){
+  constructor(params: AdminDTO){
     super()
     Object.assign(this, params)
   }

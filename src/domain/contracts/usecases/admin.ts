@@ -1,4 +1,4 @@
-import { Admin } from "@/domain/entities"
+import { AdminDTO } from "@/domain/entities"
 import { Either } from "@/shared/either"
 import { InvalidFieldError, Failure } from "@/domain/errors"
 
@@ -25,7 +25,7 @@ export namespace CreateAdministratorCompany {
     id?: string
     created_at?: Date
   }
-  export type Result = Either<string, Admin>
+  export type Result = Either<string, AdminDTO>
 }
 
 
@@ -33,7 +33,7 @@ export interface LoadAdministrator {
   execute: () => Promise<LoadAdministrator.Result>
 }
 export namespace LoadAdministrator {
-  export type Result = Admin[]
+  export type Result = AdminDTO[]
 }
 
 
@@ -58,5 +58,5 @@ export namespace UpdateAdministratorCompany {
     email?: string 
     url_image?: string 
   }
-  export type Result = Either<InvalidFieldError | Failure, Admin>
+  export type Result = Either<InvalidFieldError | Failure, AdminDTO>
 }

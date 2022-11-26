@@ -1,8 +1,8 @@
-import { Admin } from "@/domain/entities" 
+import { AdminDTO } from "@/domain/entities" 
 
 import { Column } from 'pdfmake/interfaces'
 
-const HeadersReport = (company: Admin, classImage:string, styleHeader: string):Column[] => {
+const HeadersReport = (company: AdminDTO, classImage:string, styleHeader: string):Column[] => {
    return [
     { image: classImage,  width: 120},
           {

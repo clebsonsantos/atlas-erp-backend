@@ -1,11 +1,11 @@
-import { Admin } from "@/domain/entities" 
+import { AdminDTO } from "@/domain/entities" 
 import { PageOrientation, TDocumentDefinitions } from 'pdfmake/interfaces' 
 import formatCurrency from '../../../utils/formatCurrency' 
 import HeadersReport from './header' 
 
 
 type GroupedConfig = {
-    company: Admin 
+    company: AdminDTO 
     titleReport: string 
     contentTable?: any 
     orientationPage: PageOrientation 

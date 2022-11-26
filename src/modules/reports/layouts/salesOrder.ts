@@ -3,11 +3,11 @@ import HeadersReport from './header'
 import { cpf, cnpj } from 'cpf-cnpj-validator'
 import formatCurrency from '../../../utils/formatCurrency' 
 import { Customer } from "@/modules/customers/infra/typeorm/entities/customer" 
-import { Admin } from "@/domain/entities" 
+import { AdminDTO } from "@/domain/entities" 
 
 
 type DefaultCongig = {
-  company: Admin 
+  company: AdminDTO 
   titleReport: string 
   columnsTitle?: any 
   body?: any 
