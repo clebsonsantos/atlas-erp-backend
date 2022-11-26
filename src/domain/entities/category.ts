@@ -4,7 +4,7 @@ export type CategoryDTO = Omit<Category, "isValid" | "getValue" | "setIdAndDate"
 
 export class Category extends Base {
   constructor(
-    public readonly name: string
+    public name: string
   ){
     super()
   }

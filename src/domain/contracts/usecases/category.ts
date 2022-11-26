@@ -36,3 +36,10 @@ export namespace DeleteCategory {
   }
   export type Output = Either<Invalid, string>
 }
+
+export interface LoadCategories {
+  execute:  () => Promise<LoadCategories.Output>
+}
+export namespace LoadCategories {
+  export type Output = Category[]
+}
