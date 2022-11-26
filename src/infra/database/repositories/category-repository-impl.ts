@@ -1,6 +1,7 @@
 import { CategoryRepository } from "@/domain/contracts/repositories"
 import { CreateCategory } from "@/domain/contracts/usecases"
 import { Category } from "@/infra/database/entities"
+
 import { getRepository } from "typeorm"
 
 export class CategoryRepositoryImpl implements CategoryRepository {
