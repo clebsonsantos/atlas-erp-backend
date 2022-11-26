@@ -1,4 +1,4 @@
-import { Category } from "@/domain/entities"
+import { CategoryDTO } from "@/domain/entities"
 import { AlreadyExists, Failure, InvalidFieldError } from "@/domain/errors"
 import { Either } from "@/shared/either"
 
@@ -13,7 +13,7 @@ export namespace CreateCategory {
     id?: string
     created_at?: Date
   }
-  export type Output = Either<Invalid, Category>
+  export type Output = Either<Invalid, CategoryDTO>
 }
 
 export interface UpdatedCategory {
@@ -24,7 +24,7 @@ export namespace UpdatedCategory {
     id: string
     name: string
   }
-  export type Output = Either<Invalid, Category>
+  export type Output = Either<Invalid, CategoryDTO>
 }
 
 export interface DeleteCategory {
@@ -41,5 +41,5 @@ export interface LoadCategories {
   execute:  () => Promise<LoadCategories.Output>
 }
 export namespace LoadCategories {
-  export type Output = Category[]
+  export type Output = CategoryDTO[]
 }

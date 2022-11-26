@@ -7,7 +7,7 @@ export class UpdateCategoryController extends Controller {
     super()
   }
 
-  async perform(httpRequest: HttpRequest<any>): Promise<HttpResponse<any>> {
+  async perform(httpRequest: HttpRequest): Promise<HttpResponse> {
     const { id } = httpRequest.params
     const { name} = httpRequest.body
     const result = await this.updateCategoryService.execute({ id, name })

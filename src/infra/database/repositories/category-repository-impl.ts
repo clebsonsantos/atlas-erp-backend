@@ -1,6 +1,6 @@
 import { CategoryRepository } from "@/domain/contracts/repositories"
 import { CreateCategory } from "@/domain/contracts/usecases"
-import { Category } from "@/domain/entities"
+import { Category } from "@/infra/database/entities"
 import { getRepository } from "typeorm"
 
 export class CategoryRepositoryImpl implements CategoryRepository {
@@ -39,8 +39,8 @@ export class CategoryRepositoryImpl implements CategoryRepository {
   }
 
   async delete(id: string): Promise<boolean> {
-    const repository = getRepository(Category)
     try {
+      const repository = getRepository(Category)
       await repository.delete({ id })
       return true
     } catch {
