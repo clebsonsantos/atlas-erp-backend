@@ -1,5 +1,5 @@
 import { CategoryDTO } from "@/domain/entities"
-import { AlreadyExists, Failure, InvalidFieldError } from "@/domain/errors"
+import { AlreadyExists, Failure, InvalidFieldError, RelationshipError } from "@/domain/errors"
 import { Either } from "@/shared/either"
 
 type Invalid = InvalidFieldError | AlreadyExists | Failure
@@ -34,7 +34,7 @@ export namespace DeleteCategory {
   export type Input = {
     id: string
   }
-  export type Output = Either<Invalid, string>
+  export type Output = Either<Failure | RelationshipError, string>
 }
 
 export interface LoadCategories {

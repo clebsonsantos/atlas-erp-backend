@@ -1,6 +1,6 @@
 import { CategoryRepository } from "@/domain/contracts/repositories"
 import { DeleteCategory } from "@/domain/contracts/usecases"
-import { Failure } from "@/domain/errors"
+import { Failure, RelationshipError } from "@/domain/errors"
 import { left, right } from "@/shared/either"
 
 export class DeleteCategoryUseCase implements DeleteCategory {
@@ -15,7 +15,7 @@ export class DeleteCategoryUseCase implements DeleteCategory {
     }
     const deleteCategory = await this.categoryRepository.delete(id)
     if(!deleteCategory){
-      return left(new Failure("Unable to delete record. Check the relationships that depend on it."))
+      return left(new RelationshipError())
     }
     return right("Success")
   }
