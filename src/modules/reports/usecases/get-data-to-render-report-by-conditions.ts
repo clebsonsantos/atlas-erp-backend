@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe"
 
 import { Sales } from "@/modules/sales/infra/typeorm/entities/sale" 
 import { IExpenseRepository } from "@/modules/expenses/repositories/iexpense-repository"
-import { ICategoryRepository } from "@/modules/expenses/repositories/icategory-repository"
+import { CategoryRepository } from "@/domain/contracts/repositories"
 import { ICenterCostRepository } from "@/modules/expenses/repositories/icenter-cost-repository"
 import { CustomerRepository } from "@/modules/customers/infra/typeorm/repositories/customer-repository"
 import { ProductRepository } from "@/modules/products/repositories/product-repository"
@@ -17,7 +17,7 @@ import { left, right } from "@/shared/either"
 export class GetDataToRenderReportUseCase {
   constructor(
     @inject("CategoryRepository")
-    private readonly categoryRepository: ICategoryRepository,
+    private readonly categoryRepository: CategoryRepository,
     @inject("CenterCostRepository")
     private readonly centerCostRepository: ICenterCostRepository,
     @inject("CustomerRepository")
@@ -111,7 +111,7 @@ export class GetDataToRenderReportUseCase {
     }else if(categories){
 
       const categories = await this.categoryRepository.list()
-      return right(categories)
+      return right(categories as any)
 
     }else if(centers_cost){
 

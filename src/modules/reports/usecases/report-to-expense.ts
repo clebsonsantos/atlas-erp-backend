@@ -2,14 +2,14 @@ import { Column, TableCell } from "pdfmake/interfaces"
 import { Expenses } from "@/modules/expenses/infra/typeorm/entities/expense"
 import formatCurrency from "@/utils/formatCurrency"
 import { inject, injectable } from "tsyringe"
-import { ICategoryRepository } from "@/modules/expenses/repositories/icategory-repository"
+import { CategoryRepository } from "@/domain/contracts/repositories"
 import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 
 @injectable()
 export class ReportToExpenses {
   constructor(
     @inject("CategoryRepository")
-    private readonly categoryRepository: ICategoryRepository
+    private readonly categoryRepository: CategoryRepository
   ) {}
 
   async execute(

@@ -9,10 +9,8 @@ import cors from 'cors'
 
 import { routes } from "./routes" 
 import { AppError } from "@/shared/errors/AppError" 
-import { startContainer } from "@/shared/container" 
 import { conecctionPg } from "@/shared/infra/typeorm" 
 conecctionPg()
-startContainer()
 
 const app = express() 
 const versionApp = "v1"

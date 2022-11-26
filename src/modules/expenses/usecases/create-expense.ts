@@ -2,7 +2,7 @@ import { Either, left, right } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError" 
 import { inject, injectable } from "tsyringe" 
 import { CreateExpense } from "../contracts/create-expense" 
-import { ICategoryRepository } from "../repositories/icategory-repository"
+import { CategoryRepository } from "@/domain/contracts/repositories"
 import { ICenterCostRepository } from "../repositories/icenter-cost-repository"
 import { IExpenseRepository } from "../repositories/iexpense-repository" 
 
@@ -14,7 +14,7 @@ export class CreateExpenseUseCase {
     @inject("CenterCostRepository")
     private readonly centerCostRepository: ICenterCostRepository,
     @inject("CategoryRepository")
-    private readonly categoryRepository: ICategoryRepository
+    private readonly categoryRepository: CategoryRepository
   ){}
 
   async execute({

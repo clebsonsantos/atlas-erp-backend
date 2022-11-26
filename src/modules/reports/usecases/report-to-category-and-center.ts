@@ -1,5 +1,5 @@
 import { TableCell } from "pdfmake/interfaces"
-import { Category } from "@/modules/expenses/infra/typeorm/entities/category"
+import { Category } from "@/infra/database/entities"
 import { CentersCost } from "@/modules/expenses/infra/typeorm/entities/center-cost"
 import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 

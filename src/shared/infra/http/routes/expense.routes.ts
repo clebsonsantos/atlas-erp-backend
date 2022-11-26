@@ -4,10 +4,6 @@ import { ListExpensesController } from "@/modules/expenses/controllers/list-expe
 import { UpdateExpensesController } from "@/modules/expenses/controllers/updated-expense"
 import { can, ensuredAuthenticated, ensuredValidateUUID } from "../middlewares"
 import { DeleteExpenseController } from "@/modules/expenses/controllers/delete-expense"
-import { CreateCategoryController } from "@/modules/expenses/controllers/create-category"
-import { GetAllCategoryController } from "@/modules/expenses/controllers/list-categories"
-import { UpdateCategoryController } from "@/modules/expenses/controllers/updated-category"
-import { DeleteCategoryController } from "@/modules/expenses/controllers/delete-category"
 import { CreateCenterCostController } from "@/modules/expenses/controllers/create-center-cost"
 import { GetAllCenterCostController } from "@/modules/expenses/controllers/list-centers-cost"
 import { UpdateCenterCostController } from "@/modules/expenses/controllers/updated-center-cost"
@@ -42,28 +38,28 @@ expenseRoutes.delete("/delete/:id",
 )
 
 // Categories
-expenseRoutes.post("/category/insert",
-  ensuredAuthenticated(),
-  can(["admin", "categories"]),
-  new CreateCategoryController().handle
-)
-expenseRoutes.get("/category/list",
-  ensuredAuthenticated(),
-  can(["admin", "categories"]),
-  new GetAllCategoryController().handle
-)
-expenseRoutes.put("/category/update/:id",
-  ensuredAuthenticated(),
-  can(["admin", "categories"]),
-  ensuredValidateUUID(),
-  new UpdateCategoryController().handle
-)
-expenseRoutes.delete("/category/delete/:id",
-  ensuredAuthenticated(),
-  can(["admin", "categories"]),
-  ensuredValidateUUID(),
-  new DeleteCategoryController().handle
-)
+// expenseRoutes.post("/category/insert",
+//   ensuredAuthenticated(),
+//   can(["admin", "categories"]),
+//   new CreateCategoryController().handle
+// )
+// expenseRoutes.get("/category/list",
+//   ensuredAuthenticated(),
+//   can(["admin", "categories"]),
+//   new GetAllCategoryController().handle
+// )
+// expenseRoutes.put("/category/update/:id",
+//   ensuredAuthenticated(),
+//   can(["admin", "categories"]),
+//   ensuredValidateUUID(),
+//   new UpdateCategoryController().handle
+// )
+// expenseRoutes.delete("/category/delete/:id",
+//   ensuredAuthenticated(),
+//   can(["admin", "categories"]),
+//   ensuredValidateUUID(),
+//   new DeleteCategoryController().handle
+// )
 
 // Centers Cost
 expenseRoutes.post("/center_cost/insert",
