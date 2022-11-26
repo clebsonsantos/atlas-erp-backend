@@ -12,6 +12,8 @@ export class DeleteCategoryController extends Controller {
     const result = await this.deleteCategoryService.execute({id})
     return result.isLeft()
       ? badRequest(result.value)
-      : ok(result.value)
+      : ok({
+        message: result.value
+      })
   }
 }
