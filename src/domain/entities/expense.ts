@@ -1,4 +1,6 @@
 import { Base } from "./base"
+import { CategoryDTO } from "./category"
+import { CenterCostDTO } from "./center-cost"
 
 export type ExpenseDTO = Omit<Expense, "isValid" | "getValue" | "setIdAndDate">
 
@@ -8,9 +10,11 @@ export class Expense extends Base {
   public description: string 
   public quantity: number 
   public amount: number 
-  public frequency: "recurrent" | "eventual" 
-  public type: "entry" | "output"
+  public frequency: string
+  public type: string
   public date: Date 
+  public center_cost?: CenterCostDTO
+  public category?: CategoryDTO
 
   constructor(params: ExpenseDTO){
     super()
