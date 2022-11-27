@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe"
 
 import { Sales } from "@/modules/sales/infra/typeorm/entities/sale" 
-import { IExpenseRepository } from "@/modules/expenses/repositories/iexpense-repository"
+import { ExpenseRepository } from "@/domain/contracts/repositories"
 import { CategoryRepository } from "@/domain/contracts/repositories"
 import { CenterCostRepository } from "@/domain/contracts/repositories"
 import { CustomerRepository } from "@/modules/customers/infra/typeorm/repositories/customer-repository"
@@ -23,7 +23,7 @@ export class GetDataToRenderReportUseCase {
     @inject("CustomerRepository")
     private readonly customerRepository: CustomerRepository,
     @inject("ExpenseRepository")
-    private readonly expenseRepository: IExpenseRepository,
+    private readonly expenseRepository: ExpenseRepository,
     @inject("ProductRepository")
     private readonly productRepository: ProductRepository,
     @inject("SalesRepository")
@@ -128,7 +128,7 @@ export class GetDataToRenderReportUseCase {
       if(expenses.length == 0 && (initial && final_date)){
         return left(new AppError("Não existem despesas registradas no período informado"))
       }
-      return right(expenses)
+      return right(expenses as any)
 
     }else if(users){
 

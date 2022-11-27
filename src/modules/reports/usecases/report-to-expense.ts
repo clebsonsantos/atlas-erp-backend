@@ -1,5 +1,5 @@
 import { Column, TableCell } from "pdfmake/interfaces"
-import { Expenses } from "@/modules/expenses/infra/typeorm/entities/expense"
+import { Expenses } from "@/infra/database/entities"
 import formatCurrency from "@/utils/formatCurrency"
 import { inject, injectable } from "tsyringe"
 import { CategoryRepository } from "@/domain/contracts/repositories"

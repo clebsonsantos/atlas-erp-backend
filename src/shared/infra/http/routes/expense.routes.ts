@@ -1,36 +1,32 @@
 import { Router } from "express"
-import { CreateExpensesController } from "@/modules/expenses/controllers/create-expense"
-import { ListExpensesController } from "@/modules/expenses/controllers/list-expenses"
-import { UpdateExpensesController } from "@/modules/expenses/controllers/updated-expense"
-import { can, ensuredAuthenticated, ensuredValidateUUID } from "../middlewares"
-import { DeleteExpenseController } from "@/modules/expenses/controllers/delete-expense"
+// import { can, ensuredAuthenticated, ensuredValidateUUID } from "../middlewares"
 const expenseRoutes = Router()
 
-expenseRoutes.post("/insert",
-  ensuredAuthenticated(),
-  can(["admin", "expenses"]),
-  new CreateExpensesController().handle
-)
+// expenseRoutes.post("/insert",
+//   ensuredAuthenticated(),
+//   can(["admin", "expenses"]),
+//   new CreateExpensesController().handle
+// )
 
-expenseRoutes.get("/list",
-  ensuredAuthenticated(),
-  can(["admin", "expenses"]),
-  new ListExpensesController().handle
-)
+// expenseRoutes.get("/list",
+//   ensuredAuthenticated(),
+//   can(["admin", "expenses"]),
+//   new ListExpensesController().handle
+// )
 
-expenseRoutes.put("/update/:id",
-  ensuredAuthenticated(),
-  can(["admin", "expenses"]),
-  ensuredValidateUUID(),
-  new UpdateExpensesController().handle
-)
+// expenseRoutes.put("/update/:id",
+//   ensuredAuthenticated(),
+//   can(["admin", "expenses"]),
+//   ensuredValidateUUID(),
+//   new UpdateExpensesController().handle
+// )
 
-expenseRoutes.delete("/delete/:id",
-  ensuredAuthenticated(),
-  can(["admin", "expenses"]),
-  ensuredValidateUUID(),
-  new DeleteExpenseController().handle
-)
+// expenseRoutes.delete("/delete/:id",
+//   ensuredAuthenticated(),
+//   can(["admin", "expenses"]),
+//   ensuredValidateUUID(),
+//   new DeleteExpenseController().handle
+// )
 
 // Categories
 // expenseRoutes.post("/category/insert",
