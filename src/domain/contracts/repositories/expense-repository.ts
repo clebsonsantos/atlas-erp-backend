@@ -1,7 +1,7 @@
 import { ExpenseDTO } from "@/domain/entities"
 import { CreateExpense } from "@/domain/contracts/usecases/expense"
 
-export interface IExpenseRepository {
+export interface ExpenseRepository {
   add(data: CreateExpense.Input): Promise<ExpenseDTO>
   list(): Promise<ExpenseDTO[]>
   findById(id: string): Promise<ExpenseDTO>
