@@ -20,7 +20,7 @@ export class CenterCost extends Base {
     return true
   }
 
-  getValue(): this {
+  getValue(): CenterCostDTO {
     return this
   }
 }

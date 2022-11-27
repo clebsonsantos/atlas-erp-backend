@@ -20,11 +20,13 @@ describe('Expense', () => {
     sut.setIdAndDate("any-id", new Date())
 
     expect(sut.isValid()).toBe(true)
+    expect(sut.getValue().amount).toBe(100)
   })
 
   it('should be able return invalid instance of Expense', () => {
     sut = new Expense({} as any)
     
     expect(sut.isValid()).toBe(false)
+    expect(sut.getValue().amount).toBeUndefined()
   })
 })

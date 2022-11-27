@@ -20,7 +20,7 @@ export class Category extends Base {
     return true
   }
 
-  getValue(): this {
+  getValue(): CategoryDTO {
     return this
   }
 }

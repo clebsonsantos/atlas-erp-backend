@@ -47,7 +47,7 @@ export class Administrator extends Base {
     return true
   }
 
-  public getValue(): Omit<this, "isValid" | "getValue"> {
+  public getValue(): AdminDTO {
     return this
   }
 }

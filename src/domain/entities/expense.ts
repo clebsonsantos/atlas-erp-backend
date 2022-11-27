@@ -35,7 +35,7 @@ export class Expense extends Base {
     return true
   }
 
-  getValue(): this {
+  getValue(): ExpenseDTO {
     return this
   }
 }
