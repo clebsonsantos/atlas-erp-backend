@@ -50,12 +50,6 @@ export class Administrator extends Base {
   public getValue(): Omit<this, "isValid" | "getValue"> {
     return this
   }
-
-  setIdAndDate(id: string, createdAt: Date): void {
-    this.id = id
-    this.created_at = createdAt
-    Object.freeze(this)
-  }
 }
 
 

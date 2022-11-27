@@ -23,10 +23,4 @@ export class CenterCost extends Base {
   getValue(): this {
     return this
   }
-  
-  setIdAndDate(id: string, createdAt: Date): void {
-    this.id = id
-    this.created_at = createdAt
-    Object.freeze(this)
-  }
 }
