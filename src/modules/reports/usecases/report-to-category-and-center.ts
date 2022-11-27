@@ -1,6 +1,6 @@
 import { TableCell } from "pdfmake/interfaces"
 import { Category } from "@/infra/database/entities"
-import { CentersCost } from "@/modules/expenses/infra/typeorm/entities/center-cost"
+import { CentersCost } from "@/infra/database/entities"
 import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 
 export class ReportToCategoryAndCenter {

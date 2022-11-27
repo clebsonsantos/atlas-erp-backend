@@ -4,11 +4,6 @@ import { ListExpensesController } from "@/modules/expenses/controllers/list-expe
 import { UpdateExpensesController } from "@/modules/expenses/controllers/updated-expense"
 import { can, ensuredAuthenticated, ensuredValidateUUID } from "../middlewares"
 import { DeleteExpenseController } from "@/modules/expenses/controllers/delete-expense"
-import { CreateCenterCostController } from "@/modules/expenses/controllers/create-center-cost"
-import { GetAllCenterCostController } from "@/modules/expenses/controllers/list-centers-cost"
-import { UpdateCenterCostController } from "@/modules/expenses/controllers/updated-center-cost"
-import { DeleteCenterCostController } from "@/modules/expenses/controllers/delete-cente-cost"
-
 const expenseRoutes = Router()
 
 expenseRoutes.post("/insert",
@@ -62,27 +57,27 @@ expenseRoutes.delete("/delete/:id",
 // )
 
 // Centers Cost
-expenseRoutes.post("/center_cost/insert",
-  ensuredAuthenticated(),
-  can(["admin", "center_cost"]),
-  new CreateCenterCostController().handle
-)
-expenseRoutes.get("/center_cost/list",
-  ensuredAuthenticated(),
-  can(["admin", "center_cost"]),
-  new GetAllCenterCostController().handle
-)
-expenseRoutes.put("/center_cost/update/:id",
-  ensuredAuthenticated(),
-  can(["admin", "center_cost"]),
-  ensuredValidateUUID(),
-  new UpdateCenterCostController().handle
-)
-expenseRoutes.delete("/center_cost/delete/:id",
-  ensuredAuthenticated(),
-  can(["admin", "center_cost"]),
-  ensuredValidateUUID(),
-  new DeleteCenterCostController().handle
-)
+// expenseRoutes.post("/center_cost/insert",
+//   ensuredAuthenticated(),
+//   can(["admin", "center_cost"]),
+//   new CreateCenterCostController().handle
+// )
+// expenseRoutes.get("/center_cost/list",
+//   ensuredAuthenticated(),
+//   can(["admin", "center_cost"]),
+//   new GetAllCenterCostController().handle
+// )
+// expenseRoutes.put("/center_cost/update/:id",
+//   ensuredAuthenticated(),
+//   can(["admin", "center_cost"]),
+//   ensuredValidateUUID(),
+//   new UpdateCenterCostController().handle
+// )
+// expenseRoutes.delete("/center_cost/delete/:id",
+//   ensuredAuthenticated(),
+//   can(["admin", "center_cost"]),
+//   ensuredValidateUUID(),
+//   new DeleteCenterCostController().handle
+// )
 
 export { expenseRoutes }

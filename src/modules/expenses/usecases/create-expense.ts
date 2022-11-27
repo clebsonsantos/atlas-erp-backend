@@ -3,7 +3,7 @@ import { AppError } from "@/shared/errors/AppError"
 import { inject, injectable } from "tsyringe" 
 import { CreateExpense } from "../contracts/create-expense" 
 import { CategoryRepository } from "@/domain/contracts/repositories"
-import { ICenterCostRepository } from "../repositories/icenter-cost-repository"
+import { CenterCostRepository } from "@/domain/contracts/repositories"
 import { IExpenseRepository } from "../repositories/iexpense-repository" 
 
 @injectable()
@@ -12,7 +12,7 @@ export class CreateExpenseUseCase {
     @inject("ExpenseRepository")
     private readonly expenseRepository: IExpenseRepository,
     @inject("CenterCostRepository")
-    private readonly centerCostRepository: ICenterCostRepository,
+    private readonly centerCostRepository: CenterCostRepository,
     @inject("CategoryRepository")
     private readonly categoryRepository: CategoryRepository
   ){}

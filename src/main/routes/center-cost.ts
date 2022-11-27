@@ -7,7 +7,6 @@ import {
   makeUpdateCenterCostController
 } from "@/main/factories/controllers/center-cost"
 
-
 export default (router: Router): void => {
   router.post("/centerCost/new", adapt(makeCreateCenterCostController()))
   router.get("/centerCost/list", adapt(makeListCenterCostController()))

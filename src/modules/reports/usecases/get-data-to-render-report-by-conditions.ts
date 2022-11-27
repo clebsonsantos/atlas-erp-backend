@@ -3,7 +3,7 @@ import { inject, injectable } from "tsyringe"
 import { Sales } from "@/modules/sales/infra/typeorm/entities/sale" 
 import { IExpenseRepository } from "@/modules/expenses/repositories/iexpense-repository"
 import { CategoryRepository } from "@/domain/contracts/repositories"
-import { ICenterCostRepository } from "@/modules/expenses/repositories/icenter-cost-repository"
+import { CenterCostRepository } from "@/domain/contracts/repositories"
 import { CustomerRepository } from "@/modules/customers/infra/typeorm/repositories/customer-repository"
 import { ProductRepository } from "@/modules/products/repositories/product-repository"
 import { IUserRepository } from "@/modules/user/repositories/iuser-repository"
@@ -19,7 +19,7 @@ export class GetDataToRenderReportUseCase {
     @inject("CategoryRepository")
     private readonly categoryRepository: CategoryRepository,
     @inject("CenterCostRepository")
-    private readonly centerCostRepository: ICenterCostRepository,
+    private readonly centerCostRepository: CenterCostRepository,
     @inject("CustomerRepository")
     private readonly customerRepository: CustomerRepository,
     @inject("ExpenseRepository")
@@ -116,7 +116,7 @@ export class GetDataToRenderReportUseCase {
     }else if(centers_cost){
 
       const centers_cost = await this.centerCostRepository.list()
-      return right(centers_cost)
+      return right(centers_cost as any)
 
     }else if(expenses){
 

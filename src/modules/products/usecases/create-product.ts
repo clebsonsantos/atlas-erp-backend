@@ -1,4 +1,4 @@
-import { ICenterCostRepository } from "@/modules/expenses/repositories/icenter-cost-repository"
+import { CenterCostRepository } from "@/domain/contracts/repositories"
 import { Either, left, right } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
 import { inject, injectable } from "tsyringe"
@@ -11,7 +11,7 @@ export class CreateProductsUseCase {
     @inject("ProductRepository")
     private readonly productRepository: ProductRepository,
     @inject("CenterCostRepository")
-    private readonly centerCostRepository: ICenterCostRepository
+    private readonly centerCostRepository: CenterCostRepository
   ){}
 
   async execute({ name, description, price_default, center_cost_id }: CreateProduct.Input): Promise<CreateProduct.Output> {

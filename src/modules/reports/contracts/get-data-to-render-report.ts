@@ -1,6 +1,6 @@
 import { Customer } from "@/modules/customers/infra/typeorm/entities/customer"
 import { Category } from "@/infra/database/entities"
-import { CentersCost } from "@/modules/expenses/infra/typeorm/entities/center-cost"
+import { CentersCost } from "@/infra/database/entities" 
 import { Expenses } from "@/modules/expenses/infra/typeorm/entities/expense"
 import { Product } from "@/modules/products/infra/typeorm/entities/product"
 import { Sales } from "@/modules/sales/infra/typeorm/entities/sale"
