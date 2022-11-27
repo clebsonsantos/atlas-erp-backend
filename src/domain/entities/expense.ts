@@ -8,8 +8,8 @@ export class Expense extends Base {
   public description: string 
   public quantity: number 
   public amount: number 
-  public frequency: string 
-  public type: string 
+  public frequency: "recurrent" | "eventual" 
+  public type: "entry" | "output"
   public date: Date 
 
   constructor(params: ExpenseDTO){
