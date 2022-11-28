@@ -1,4 +1,4 @@
-import { Base } from "@/domain/entities"
+import { Base, Email} from "@/domain/entities"
 
 export type CustomerDTO = Omit<Customer, "isValid" | "getValue" | "setIdAndDate">
 
@@ -24,7 +24,7 @@ export class Customer extends Base {
       !this.cpf_cnpj ||
       !this.state_registration ||
       !this.phone ||
-      !this.email ||
+      !Email.validate(this.email) ||
       !this.state ||
       !this.city ||
       !this.address ||

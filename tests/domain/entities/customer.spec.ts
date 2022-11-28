@@ -8,7 +8,7 @@ describe('Customer', () => {
       address: "empty",
       city: "empty",
       cpf_cnpj: "empty",
-      email: "empty",
+      email: "clebsnsantos@gmail.com",
       state: "empty",
       full_name: "empty",
       phone: "empty",
