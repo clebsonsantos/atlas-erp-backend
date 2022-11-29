@@ -31,5 +31,12 @@ export namespace UpdatedProduct {
 }
 
 export interface ListProducts {
-  execute: () => Promise<ProductDTO[]>
+  execute: (params?: ListProducts.Input) => Promise<ListProducts.Output>
+}
+export namespace ListProducts {
+  export type Input = {
+    id?: string,
+    name?:string
+  }
+  export type Output = ProductDTO[] | ProductDTO
 }
