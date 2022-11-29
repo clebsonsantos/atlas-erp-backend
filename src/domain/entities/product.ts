@@ -1,6 +1,6 @@
 import { CenterCost, Base } from "@/domain/entities" 
 
-type ProductDTO =  Omit<Product, "isValid" | "getValue" | "setIdAndDate">
+export type ProductDTO =  Omit<Product, "isValid" | "getValue" | "setIdAndDate">
 
 export class Product extends Base {
   public name: string 
