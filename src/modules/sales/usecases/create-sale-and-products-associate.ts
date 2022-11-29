@@ -1,7 +1,7 @@
 import { Either, left, right } from "@/shared/either"
 import { AppError } from "@/shared/errors/AppError"
 import { inject, injectable } from "tsyringe"
-import { ICustomerRepository } from "@/modules/customers/repositories/icustomer-repository"
+import { CustomerRepository } from "@/domain/contracts/repositories"
 import { ProductRepository } from "@/modules/products/repositories/product-repository"
 import { CreateSaleAndAssociateProductsSold } from "../contracts/create-sale-and-associate-products-sold"
 import { ProductsSoldRepository } from "../repositories/product-sold-repository"
@@ -12,7 +12,7 @@ import { SaleRepository } from "../repositories/sales-repository"
 export class CreateSaleAndProductsAssociateUseCase  {
   constructor(
     @inject("CustomerRepository")
-    private readonly customerRepository: ICustomerRepository,
+    private readonly customerRepository: CustomerRepository,
     @inject("SaleRepository")
     private readonly saleRepository: SaleRepository,
     @inject("ProductsSoldRepository")

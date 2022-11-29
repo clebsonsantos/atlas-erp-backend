@@ -4,7 +4,7 @@ import { Sales } from "@/modules/sales/infra/typeorm/entities/sale"
 import { ExpenseRepository } from "@/domain/contracts/repositories"
 import { CategoryRepository } from "@/domain/contracts/repositories"
 import { CenterCostRepository } from "@/domain/contracts/repositories"
-import { CustomerRepository } from "@/modules/customers/infra/typeorm/repositories/customer-repository"
+import { CustomerRepositoryImpl } from "@/infra/database/repositories"
 import { ProductRepository } from "@/modules/products/repositories/product-repository"
 import { IUserRepository } from "@/modules/user/repositories/iuser-repository"
 import { SaleRepository } from "@/modules/sales/repositories/sales-repository"
@@ -21,7 +21,7 @@ export class GetDataToRenderReportUseCase {
     @inject("CenterCostRepository")
     private readonly centerCostRepository: CenterCostRepository,
     @inject("CustomerRepository")
-    private readonly customerRepository: CustomerRepository,
+    private readonly customerRepository: CustomerRepositoryImpl,
     @inject("ExpenseRepository")
     private readonly expenseRepository: ExpenseRepository,
     @inject("ProductRepository")

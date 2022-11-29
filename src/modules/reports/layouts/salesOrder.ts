@@ -2,7 +2,7 @@ import { PageOrientation, Size, TDocumentDefinitions } from 'pdfmake/interfaces'
 import HeadersReport from './header' 
 import { cpf, cnpj } from 'cpf-cnpj-validator'
 import formatCurrency from '../../../utils/formatCurrency' 
-import { Customer } from "@/modules/customers/infra/typeorm/entities/customer" 
+import { Customer } from "@/infra/database/entities"
 import { AdminDTO } from "@/domain/entities" 
 
 

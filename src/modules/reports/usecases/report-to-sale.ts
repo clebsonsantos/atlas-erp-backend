@@ -1,11 +1,11 @@
 
 import { TableCell } from "pdfmake/interfaces"
 import { inject, injectable } from "tsyringe"
-import { ICustomerRepository } from "@/modules/customers/repositories/icustomer-repository"
+import { CustomerRepository } from "@/domain/contracts/repositories"
 import { IUserRepository } from "@/modules/user/repositories/iuser-repository"
 import { ProductRepository } from "@/modules/products/repositories/product-repository"
 import { Sales } from "@/modules/sales/infra/typeorm/entities/sale"
-import { Customer } from "@/modules/customers/infra/typeorm/entities/customer"
+import { Customer } from "@/infra/database/entities"
 import formatCurrency from "@/utils/formatCurrency"
 import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 
@@ -13,7 +13,7 @@ import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 export class ReportToSale {
   constructor(
     @inject("CustomerRepository")
-    private readonly customerRepository: ICustomerRepository,
+    private readonly customerRepository: CustomerRepository,
     @inject("ProductRepository")
     private readonly productRepository: ProductRepository,
     @inject("UserRepository")
@@ -31,7 +31,7 @@ export class ReportToSale {
     const ContentTable = this.handleContextTable(body)
 
     if (ondisplay) {
-      var customer: Customer = await this.customerRepository.findById(customer_id)
+      var customer: Customer = await this.customerRepository.findById(customer_id) as any
     }
 
     const saller =

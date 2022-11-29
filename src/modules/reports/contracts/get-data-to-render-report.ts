@@ -1,4 +1,4 @@
-import { Customer } from "@/modules/customers/infra/typeorm/entities/customer"
+import { Customer } from "@/infra/database/entities"
 import { Category } from "@/infra/database/entities"
 import { CentersCost } from "@/infra/database/entities" 
 import { Expenses } from "@/infra/database/entities"

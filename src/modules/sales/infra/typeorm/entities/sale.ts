@@ -1,4 +1,4 @@
-import { Customer } from "@/modules/customers/infra/typeorm/entities/customer" 
+import { Customer } from "@/infra/database/entities" 
 import { BaseEntity } from "@/shared/infra/typeorm/bases/base-entity" 
 import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne } from "typeorm" 
 import { ProductSales } from "./product-sale" 

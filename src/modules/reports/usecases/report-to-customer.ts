@@ -1,5 +1,5 @@
 import { TableCell } from "pdfmake/interfaces"
-import { Customer } from "@/modules/customers/infra/typeorm/entities/customer"
+import { Customer } from "@/infra/database/entities"
 import { DefaultConfigReport } from "../contracts/defaults-config-reports"
 
 export class ReportToCustomer {

@@ -4,7 +4,7 @@ import { ReportToCategoryAndCenter } from "@/modules/reports/usecases/report-to-
 import { ReportToCustomer } from "@/modules/reports/usecases/report-to-customer"
 import { ReportToExpenses } from "@/modules/reports/usecases/report-to-expense"
 import { ReportToUser } from "@/modules/reports/usecases/report-to-user"
-import { Customer } from "@/modules/customers/infra/typeorm/entities/customer"
+import { Customer } from "@/infra/database/entities"
 import { User } from "@/modules/user/infra/typeorm/entities/user"
 import { Expenses } from "@/infra/database/entities"
 import { Sales } from "@/modules/sales/infra/typeorm/entities/sale"
