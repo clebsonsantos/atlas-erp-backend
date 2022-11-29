@@ -1,4 +1,4 @@
-import { Base } from "./base"
+import { Base } from "@/domain/entities";
 
 export type AdminDTO = Omit<Administrator, "isValid" | "getValue" | "id" | "created_at" | "setIdAndDate">
 

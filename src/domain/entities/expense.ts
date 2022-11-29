@@ -1,6 +1,4 @@
-import { Base } from "./base"
-import { CategoryDTO } from "./category"
-import { CenterCostDTO } from "./center-cost"
+import { Base, CategoryDTO, CenterCostDTO } from "@/domain/entities"
 
 export type ExpenseDTO = Omit<Expense, "isValid" | "getValue" | "setIdAndDate">
 

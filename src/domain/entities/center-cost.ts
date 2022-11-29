@@ -1,4 +1,4 @@
-import { Base } from "./base";
+import { Base } from "@/domain/entities";
 
 export type CenterCostDTO = Omit<CenterCost, "isValid" | "getValue" | "setIdAndDate">
 
