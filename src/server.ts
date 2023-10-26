@@ -18,7 +18,8 @@ app.options('*', cors());
 
 app.use(express.json());
 
-app.use(routes);
+const appVersion = "/v1"
+app.use(appVersion, routes);
 
 app.use(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
