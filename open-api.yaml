@@ -1,0 +1,779 @@
+openapi: 3.0.0
+info:
+  title: Atlas - E.R.P
+  version: 1.0.0
+servers:
+  - url: http://{basePath}:{port}/{version}
+    description: The production API server
+    variables:
+      port:
+        default: 4000
+      basePath:
+        default: localhost
+      version:
+        default: v1
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []
+tags:
+  - name: Users
+  - name: Products
+  - name: Roles & Permissions
+  - name: Expenses
+  - name: Categories
+  - name: Center_cost
+  - name: Administrator
+  - name: Customers
+  - name: Sales
+  - name: Reports
+  - name: Authentication
+paths:
+  /users:
+    post:
+      tags:
+        - Users
+      summary: Create User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: clebson
+                password: '123456'
+                full_name: Suporte e manutenção
+                email: clebson@email.com
+                phone: '83993898073'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Users
+      summary: GetAll users or One user Passing Id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /find_user:
+    post:
+      tags:
+        - Users
+      summary: Find One User by username
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: clebson
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/{userId}:
+    put:
+      tags:
+        - Users
+      summary: Update User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                password: '999'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      parameters:
+        - name: userId
+          in: path
+          description: ID of User
+          required: true
+          schema:
+            type: UUID
+  /users/{userIdToBeDeleted}:
+    delete:
+      tags:
+        - Users
+      summary: Delte user
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      parameters:
+        - name: userIdToBeDeleted
+          in: path
+          description: ID of User
+          required: true
+          schema:
+            type: UUID
+  /products:
+    get:
+      tags:
+        - Products
+      summary: List Products
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Products
+      summary: Create Product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Danger Fire
+                description: medicamento
+                price_default: 15.4
+                center_cost_id: 6f38a763-ca5e-440c-aa40-b82689b5b027
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /products/{productId}:
+    put:
+      tags:
+        - Products
+      summary: Update Product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Rock Destroyer
+                description: medicamento
+                price_default: 15.4
+                center_cost_id: 42c8027d-dda2-4de5-9efd-47c51e50d1c9
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      parameters:
+        - name: productId
+          in: path
+          description: ID of Product
+          required: true
+          schema:
+            type: UUID
+  /products/{productIdToBeDeleted}:
+    delete:
+      tags:
+        - Products
+      summary: Delete Product
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+      parameters:
+        - name: productIdToBeDeleted
+          in: path
+          description: ID of Product
+          required: true
+          schema:
+            type: UUID
+  /roles:
+    post:
+      tags:
+        - Roles & Permissions
+      summary: create roles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                description: Administrativo
+                name: admin
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /permissions:
+    post:
+      tags:
+        - Roles & Permissions
+      summary: create permition
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: admin
+                description: Todas as permissões
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/acl/922de6e9-405f-469b-8ceb-f3ae3220a4d1:
+    post:
+      tags:
+        - Roles & Permissions
+      summary: Create User ACl
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                permissions:
+                  - 12aa87f4-70f4-4aae-b52c-c70b1265708a
+                  - 78c868df-2662-4532-bfb1-3fe42141c9b0
+                roles:
+                  - 1caaba4b-6595-495a-b3d5-0d8f5de4f759
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /roles/f71ba369-dbcf-458b-a0d4-f7e831c49756:
+    post:
+      tags:
+        - Roles & Permissions
+      summary: Create Role Permissions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                permissions: 5c1ff622-beaf-41f4-bc88-5e6ec693f934
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /permissions/list:
+    get:
+      tags:
+        - Roles & Permissions
+      summary: Get All Permissions
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /expense:
+    post:
+      tags:
+        - Expenses
+      summary: Create Expense
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                description: Pagamento recebido
+                quantity: 1
+                amount: 2550
+                frequency: eventual
+                type: entrada
+                date: '2020-07-30 12:00:00'
+                center_cost_id: 6f38a763-ca5e-440c-aa40-b82689b5b027
+                category_id: 4a86a47a-6536-4ac3-982e-912715adbf8a
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Expenses
+      summary: GetAll
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /expenses/694d8e59-e53e-4371-a250-cebd97db05d9:
+    put:
+      tags:
+        - Expenses
+      summary: Update Expense
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                description: Pagamento teste
+                quantity: 1
+                amount: 2550
+                frequency: eventual
+                type: entrada
+                date: '2020-07-30 12:00:00'
+                center_cost_id: 6f38a763-ca5e-440c-aa40-b82689b5b027
+                category_id: 4a86a47a-6536-4ac3-982e-912715adbf8a
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /expenses/f77132c5-37b7-4f7f-b29f-74fd1c7af1a7:
+    delete:
+      tags:
+        - Expenses
+      summary: Delete Expense
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /category:
+    post:
+      tags:
+        - Categories
+      summary: Criar Categoria
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: 'outro '
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Categories
+      summary: List All
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /category/4a86a47a-6536-4ac3-982e-912715adbf8a:
+    put:
+      tags:
+        - Categories
+      summary: Update Category
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Pagamentos diversos
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /category/5eb7766a-8ec3-4724-a582-9759d49bbca2:
+    delete:
+      tags:
+        - Categories
+      summary: Delete Category
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /center_cost:
+    post:
+      tags:
+        - Center_cost
+      summary: Create center cost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: outro teste
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Center_cost
+      summary: Get All
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /center_cost/06b045ca-faef-4cf7-a518-67274cc3aa73:
+    put:
+      tags:
+        - Center_cost
+      summary: Update CenterCost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Abacate 04
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /center_cost/6c23d3c8-085e-491b-81b3-24183b9746fe:
+    delete:
+      tags:
+        - Center_cost
+      summary: Delete center
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /create_admin:
+    post:
+      tags:
+        - Administrator
+      summary: Create admin
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                razao:
+                  type: string
+                  example: Clebson santos
+                fantasia:
+                  type: string
+                  example: C.Softwares
+                cpf_cnpj:
+                  type: integer
+                  example: '10366048457'
+                insc_estadual:
+                  type: integer
+                  example: '1565656'
+                endereco:
+                  type: string
+                  example: Rua das pedrinhas
+                bairro:
+                  type: string
+                  example: alto do cemiterio
+                numero:
+                  type: string
+                  example: 21-A
+                complemento:
+                  type: string
+                  example: casa
+                cidade:
+                  type: string
+                  example: mamanguape
+                uf:
+                  type: string
+                  example: PB
+                cep:
+                  type: string
+                  example: 58280-000
+                telefone:
+                  type: integer
+                  example: '83993898073'
+                email:
+                  type: string
+                  example: clebsonsantos.dev@gmail.com
+                url_image:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /update_admin/371a5229-1f52-40df-a74e-bdec44eaa88d:
+    put:
+      tags:
+        - Administrator
+      summary: Update Admin
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                razao:
+                  type: string
+                  example: 'Rivaldo Barbosa da Silva '
+                fantasia:
+                  type: string
+                cpf_cnpj:
+                  type: string
+                  example: 40.202.565/0001-76
+                insc_estadual:
+                  type: integer
+                  example: '163850461'
+                endereco:
+                  type: string
+                  example: R Barão de Cotegipe
+                bairro:
+                  type: string
+                  example: Centro
+                numero:
+                  type: string
+                complemento:
+                  type: string
+                cidade:
+                  type: string
+                uf:
+                  type: string
+                cep:
+                  type: string
+                telefone:
+                  type: integer
+                  example: '83991160536'
+                email:
+                  type: string
+                url_image:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /get_admin:
+    get:
+      tags:
+        - Administrator
+      summary: getAdmin
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /customer:
+    post:
+      tags:
+        - Customers
+      summary: Create Customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                full_name: Lucas Farias
+                cpf_cnpj: '75567369000180'
+                state_registration: '15648'
+                phone: '8999556365'
+                email: email@email.com
+                state: PB
+                city: Mamanguape
+                address: Rua logo ali, nº 12
+                zip_code: '53028000'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Customers
+      summary: Get All Customers
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /customer/27d65856-e445-43c5-9fa2-e8920135f3bf:
+    put:
+      tags:
+        - Customers
+      summary: Update Customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                full_name: Clebson Santiago
+                cpf_cnpj: '123145618788'
+                state_registration: '15648'
+                phone: '8999556365'
+                email: email@email.com
+                state: PB
+                city: Joao Pescoço
+                address: Rua logo ali, nº 12
+                zip_code: '53028000'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /customer/0e36a96f-0b28-4cd8-a739-205500b15b4d:
+    delete:
+      tags:
+        - Customers
+      summary: Delete Customer by id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /sales:
+    post:
+      tags:
+        - Sales
+      summary: Create Sales
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                date: '2022-03-09T12:15:43.656Z'
+                customer_id: 27d65856-e445-43c5-9fa2-e8920135f3bf
+                salesman: 922de6e9-405f-469b-8ceb-f3ae3220a4d1
+                products_sold:
+                  - id_product: 2909771d-84b7-49d6-a3bb-65baed6330a5
+                    quantity: 1
+                    price_unit: 150
+                    total_price: 200
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Sales
+      summary: Get All Sales
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /sales/f15c906f-ba5d-4279-927c-818d91e42f9a:
+    delete:
+      tags:
+        - Sales
+      summary: Delete Sale with relationship that products sold
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /sales/da6c3f87-e46a-4195-9236-bfba805a1c22:
+    put:
+      tags:
+        - Sales
+      summary: Update Sale With Relationship that products sold
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                date: '2022-02-09T12:15:43.656Z'
+                customer_id: eac66757-d5b9-40d1-847a-e3e2291a685b
+                products_sold:
+                  - id: f893d345-cc09-4eed-80a6-6154b28af68c
+                    created_at: '2022-03-24T17:40:07.831Z'
+                    id_product: 900b3e6c-6d95-4cfd-93cc-6dc15d93c32c
+                    quantity: 1
+                    price_unit: 150
+                    total_price: 180
+                  - id: b934e052-390c-4b72-994f-cb776c73ba1a
+                    created_at: '2022-03-24T17:40:07.857Z'
+                    id_product: b305443e-8774-4692-8913-8907065e5e3d
+                    quantity: 1
+                    price_unit: 6000
+                    total_price: 6000
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /reports:
+    get:
+      tags:
+        - Reports
+      summary: Find Reports
+      parameters:
+        - name: action
+          in: query
+          schema:
+            type: string
+          description: acão que determina qual relatorio buscar
+          example: expenses
+        - name: token
+          in: query
+          schema:
+            type: string
+          description: token do usuario
+          example: '{{token}}'
+        - name: center_cost
+          in: query
+          schema:
+            type: string
+          description: id do centro de custo
+          example: d9496f2b-0ca0-44e7-82cb-875dfb33e49d
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /salesorder/5d6e1583-83af-4609-b7db-1578da3653e8:
+    get:
+      tags:
+        - Reports
+      summary: Sales Order Print
+      parameters:
+        - name: token
+          in: query
+          schema:
+            type: string
+          example: '{{token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /login:
+    post:
+      tags:
+        - Authentication
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: suporte
+                password: support-s_9691
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

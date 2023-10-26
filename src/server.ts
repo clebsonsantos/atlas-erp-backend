@@ -3,13 +3,25 @@ import express, { NextFunction, Request, Response } from "express";
 import { routes } from "./routes";
 import cors from 'cors';
 import * as dotenv from 'dotenv'
+
 dotenv.config({ path: `${__dirname}/../../.env`});
-const PORT = process.env.PORT || 4000
+
 import "./database";
 import "./utils/on-backups"
 import { AppError } from "./shared/errors/AppError";
 const app = express();
-import "./main/config/module-alias"
+import YAML from "yaml";
+import swaggerUi from 'swagger-ui-express';
+import * as fs from "fs"
+import * as path from "path"
+
+import "./main/config/module-alias";
+
+const pathFile = path.resolve("./open-api.yaml")
+const file = fs.readFileSync(pathFile, "utf8");
+const swaggerDocument = YAML.parse(file)
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(cors())
 app.use('/uploads', express.static('uploads'))
@@ -36,6 +48,7 @@ app.use(
   }
 );
 
+const PORT = process.env.PORT || 4000
 app.listen(PORT, () => {
   const running = {
     author: "Clebson Santos",
