@@ -20,6 +20,7 @@ components:
 security:
   - bearerAuth: []
 tags:
+  - name: Authentication
   - name: Users
   - name: Products
   - name: Roles & Permissions
@@ -30,8 +31,25 @@ tags:
   - name: Customers
   - name: Sales
   - name: Reports
-  - name: Authentication
 paths:
+  /login:
+    post:
+      tags:
+        - Authentication
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: loginUser
+                password: passUser12434
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /users:
     post:
       tags:
@@ -231,7 +249,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /users/acl/922de6e9-405f-469b-8ceb-f3ae3220a4d1:
+  /users/acl/{userID}:
     post:
       tags:
         - Roles & Permissions
@@ -252,7 +270,14 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /roles/f71ba369-dbcf-458b-a0d4-f7e831c49756:
+      parameters:
+        - name: userID
+          in: path
+          description: ID of User
+          required: true
+          schema:
+            type: UUID
+  /roles/{roleID}:
     post:
       tags:
         - Roles & Permissions
@@ -269,6 +294,13 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      parameters:
+        - name: roleID
+          in: path
+          description: ID of Role
+          required: true
+          schema:
+            type: UUID
   /permissions/list:
     get:
       tags:
@@ -279,7 +311,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /expense:
+  /expenses:
     post:
       tags:
         - Expenses
@@ -312,7 +344,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /expenses/694d8e59-e53e-4371-a250-cebd97db05d9:
+  /expenses/{expenseID}:
     put:
       tags:
         - Expenses
@@ -336,7 +368,14 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /expenses/f77132c5-37b7-4f7f-b29f-74fd1c7af1a7:
+      parameters:
+        - name: expenseID
+          in: path
+          description: ID of expense
+          required: true
+          schema:
+            type: UUID
+  /expenses/{expenseIDToDeleted}:
     delete:
       tags:
         - Expenses
@@ -346,7 +385,14 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /category:
+      parameters:
+        - name: expenseIDToDeleted
+          in: path
+          description: ID of expense
+          required: true
+          schema:
+            type: UUID
+  /categories:
     post:
       tags:
         - Categories
@@ -372,7 +418,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /category/4a86a47a-6536-4ac3-982e-912715adbf8a:
+  /categories/{categoryID}:
     put:
       tags:
         - Categories
@@ -389,7 +435,14 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /category/5eb7766a-8ec3-4724-a582-9759d49bbca2:
+      parameters:
+        - name: categoryID
+          in: path
+          description: ID of category
+          required: true
+          schema:
+            type: UUID
+  /categories/{categoryID_}:
     delete:
       tags:
         - Categories
@@ -399,6 +452,13 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      parameters:
+        - name: categoryID_
+          in: path
+          description: ID of category
+          required: true
+          schema:
+            type: UUID
   /center_cost:
     post:
       tags:
@@ -425,7 +485,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /center_cost/06b045ca-faef-4cf7-a518-67274cc3aa73:
+  /center_cost/{centerCostID}:
     put:
       tags:
         - Center_cost
@@ -442,7 +502,14 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /center_cost/6c23d3c8-085e-491b-81b3-24183b9746fe:
+      parameters:
+        - name: centerCostID
+          in: path
+          description: ID of centerCost
+          required: true
+          schema:
+            type: UUID
+  /center_cost/{centerCostID_}:
     delete:
       tags:
         - Center_cost
@@ -452,6 +519,13 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      parameters:
+        - name: centerCostID_
+          in: path
+          description: ID of centerCost
+          required: true
+          schema:
+            type: UUID
   /create_admin:
     post:
       tags:
@@ -510,7 +584,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /update_admin/371a5229-1f52-40df-a74e-bdec44eaa88d:
+  /update_admin/{adminID}:
     put:
       tags:
         - Administrator
@@ -523,18 +597,18 @@ paths:
               properties:
                 razao:
                   type: string
-                  example: 'Rivaldo Barbosa da Silva '
+                  example: 'Rivaldo'
                 fantasia:
                   type: string
                 cpf_cnpj:
                   type: string
-                  example: 40.202.565/0001-76
+                  example: 11.202.111/0001-11
                 insc_estadual:
                   type: integer
                   example: '163850461'
                 endereco:
                   type: string
-                  example: R Barão de Cotegipe
+                  example: R Barão
                 bairro:
                   type: string
                   example: Centro
@@ -550,7 +624,7 @@ paths:
                   type: string
                 telefone:
                   type: integer
-                  example: '83991160536'
+                  example: '8390000000'
                 email:
                   type: string
                 url_image:
@@ -561,6 +635,13 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      parameters:
+      - name: adminID
+        in: path
+        description: ID of admin
+        required: true
+        schema:
+          type: UUID
   /get_admin:
     get:
       tags:
@@ -571,7 +652,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /customer:
+  /customers:
     post:
       tags:
         - Customers
@@ -605,7 +686,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /customer/27d65856-e445-43c5-9fa2-e8920135f3bf:
+  /customers/{customerID}:
     put:
       tags:
         - Customers
@@ -630,7 +711,14 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /customer/0e36a96f-0b28-4cd8-a739-205500b15b4d:
+      parameters:
+      - name: customerID
+        in: path
+        description: ID of Customer
+        required: true
+        schema:
+          type: UUID
+  /customers/{customerID_}:
     delete:
       tags:
         - Customers
@@ -640,6 +728,13 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      parameters:
+      - name: customerID_
+        in: path
+        description: ID of Customer
+        required: true
+        schema:
+          type: UUID
   /sales:
     post:
       tags:
@@ -673,7 +768,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /sales/f15c906f-ba5d-4279-927c-818d91e42f9a:
+  /sales/{salesID}:
     delete:
       tags:
         - Sales
@@ -683,7 +778,14 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /sales/da6c3f87-e46a-4195-9236-bfba805a1c22:
+      parameters:
+      - name: salesID
+        in: path
+        description: ID of Sale
+        required: true
+        schema:
+          type: UUID
+  /sales/{salesID_}:
     put:
       tags:
         - Sales
@@ -714,6 +816,13 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      parameters:
+      - name: salesID_
+        in: path
+        description: ID of Sale
+        required: true
+        schema:
+          type: UUID
   /reports:
     get:
       tags:
@@ -743,7 +852,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /salesorder/5d6e1583-83af-4609-b7db-1578da3653e8:
+  /salesorder/{salesID_}:
     get:
       tags:
         - Reports
@@ -754,26 +863,15 @@ paths:
           schema:
             type: string
           example: '{{token}}'
+        - name: salesID_
+          in: path
+          description: ID of Sale
+          required: true
+          schema:
+            type: UUID
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /login:
-    post:
-      tags:
-        - Authentication
-      summary: Login
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                username: suporte
-                password: support-s_9691
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
+
