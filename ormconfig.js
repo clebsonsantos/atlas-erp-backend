@@ -1,10 +1,10 @@
 module.exports = {
   "type": "postgres",
-  "port": 5432,
-  "host": process.env['DATABASE_HOST'],
-  "username": process.env['DATABASE_USERNAME'],
-  "password": process.env['DATABASE_PASSWORD'],
-  "database": "expense_manager_software",
+  "port": 5000,
+  "host": process.env['POSTGRES_HOST'],
+  "username": process.env['POSTGRES_USER'],
+  "password": process.env['POSTGRES_PASSWORD'],
+  "database": process.env['POSTGRES_DB'],
   "entities": ["./src/entities/*.ts"],
   "migrations": ["./src/database/migrations/*.ts"],
   "cli": {

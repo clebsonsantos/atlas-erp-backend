@@ -6,8 +6,12 @@ COPY . .
 
 VOLUME [ "/app/uploads" ]
 
+RUN npm ci
+
+RUN npm run build
+
 EXPOSE 4000
 
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "start" ]
 
 # Obs: em versões mais atigas do docker compose é preciso atribuir o ` - ` ex: (docker-compose)

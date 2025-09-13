@@ -1,20 +1,21 @@
-import { ExpenseRepository } from '../../repositories';
+import { logger } from "@/utils/logger";
+import { ExpenseRepository } from "../../repositories";
 
 type Type = {
-  id: string
-}
+  id: string;
+};
 
+export class DeleteExpenseUseCase {
+  async execute({ id }: Type) {
+    logger.info(`Iniciando processo de exclusão da despesa ${id}`);
+    const expense = await ExpenseRepository().findOne({ id });
 
-export class DeleteExpenseUseCase  {
-
-  async execute({id}: Type){
-    const expense = await ExpenseRepository().findOne({id})
-
-    if(!expense){
+    if (!expense) {
+      logger.warn("Registro não encontrado.");
       return new Error("Registro não encontrado.");
     }
 
-    ExpenseRepository().delete({id})
-    
+    await ExpenseRepository().delete({ id });
+    logger.info(`Despesa "${expense.id}" deletada com sucesso.`);
   }
 }

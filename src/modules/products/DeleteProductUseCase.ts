@@ -1,28 +1,32 @@
-import { ProductRepository } from '../../repositories';
+import { logger } from "@/utils/logger";
+import { ProductRepository } from "../../repositories";
 
 type Type = {
-  id: string
-}
+  id: string;
+};
 
-
-export class DeleteProductUseCase  {
-
+export class DeleteProductUseCase {
   async execute({ id }: Type) {
-    const product = await ProductRepository().findOne({id})
-    let ErrorQuery: string
+    logger.info(`Iniciando processo de exclusão do produto ${id}`);
+    const product = await ProductRepository().findOne({ id });
+    let ErrorQuery: string;
 
-    if(!product){
+    if (!product) {
+      logger.warn("Produto não encontrado.");
       return new Error("Produto não encontrado.");
     }
 
-    await ProductRepository().delete({ id }).catch(error => {
-      ErrorQuery = error.message
-    })
+    await ProductRepository()
+      .delete({ id })
+      .catch((error) => {
+        ErrorQuery = error.message;
+      });
 
-    if(ErrorQuery && ErrorQuery.includes("violates foreign key constraint")){
-      return new Error("Não é possível deletar esse registro. Existem relacionamentos que dependem dele.")
+    if (ErrorQuery && ErrorQuery.includes("violates foreign key constraint")) {
+      const message = `Não é possível deletar o produto "${product.name}" pois o mesmo está vinculado a um ou mais registros.`;
+      logger.warn(message);
+      return new Error(message);
     }
-    return "OK"
-    
+    return "OK";
   }
 }

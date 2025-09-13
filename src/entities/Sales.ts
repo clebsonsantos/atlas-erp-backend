@@ -1,11 +1,17 @@
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, Generated } from "typeorm";
-import { BaseEntity } from './BaseEntity';
-import { Customers } from './Customers';
-import { ProductSales } from './ProductSales';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+} from "typeorm";
+import { BaseEntity } from "./BaseEntity";
+import { Customers } from "./Customers";
+import { ProductSales } from "./ProductSales";
 
 @Entity("sales")
 export class Sales extends BaseEntity {
-
   @Column()
   date: Date;
 
@@ -16,7 +22,7 @@ export class Sales extends BaseEntity {
   salesman: string;
 
   @ManyToOne(() => Customers)
-  @JoinColumn({name: "customer_id"})
+  @JoinColumn({ name: "customer_id" })
   customer: Customers;
 
   @Column()
@@ -29,6 +35,4 @@ export class Sales extends BaseEntity {
     inverseJoinColumns: [{ name: "products_sold_id" }],
   })
   products_sold: ProductSales[];
-
-
 }

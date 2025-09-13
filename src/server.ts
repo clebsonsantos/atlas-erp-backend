@@ -1,36 +1,36 @@
 import "reflect-metadata";
 import express, { NextFunction, Request, Response } from "express";
 import { routes } from "./routes";
-import cors from 'cors';
-import * as dotenv from 'dotenv'
+import cors from "cors";
+import * as dotenv from "dotenv";
 
-dotenv.config({ path: `${__dirname}/../../.env`});
+dotenv.config();
 
 import "./database";
-import "./utils/on-backups"
 import { AppError } from "./shared/errors/AppError";
 const app = express();
 import YAML from "yaml";
-import swaggerUi from 'swagger-ui-express';
-import * as fs from "fs"
-import * as path from "path"
+import swaggerUi from "swagger-ui-express";
+import * as fs from "fs";
+import * as path from "path";
 
 import "./main/config/module-alias";
+import { logger } from "./utils/logger";
 
-const pathFile = path.resolve("./open-api.yaml")
+const pathFile = path.resolve("./open-api.yaml");
 const file = fs.readFileSync(pathFile, "utf8");
-const swaggerDocument = YAML.parse(file)
+const swaggerDocument = YAML.parse(file);
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.use(cors())
-app.use('/uploads', express.static('uploads'))
+app.use(cors());
+app.use("/uploads", express.static("uploads"));
 
-app.options('*', cors());
+app.options("*", cors());
 
 app.use(express.json());
 
-const appVersion = "/v1"
+const appVersion = "/v1";
 app.use(appVersion, routes);
 
 app.use(
@@ -48,14 +48,17 @@ app.use(
   }
 );
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   const running = {
-    author: "Clebson Santos",
+    author: "Clebson Santos - https://github.com/clebsonsantos",
     system: "Altas - softmanager api",
     node_version: 16,
     port: PORT,
-    message: 'Server is running'
-  }
-  console.table([running])
+    message: "Server is running",
+  };
+  logger.info(`✅ Server started on port ${PORT}`);
+  logger.info(`Node version: ${running.node_version}`);
+  logger.info(`System: ${running.system}`);
+  logger.info(`Author: ${running.author}`);
 });

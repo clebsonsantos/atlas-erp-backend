@@ -1,7 +1,4 @@
-import {
-  Column,
-  Entity,
-} from "typeorm";
+import { Column, Entity } from "typeorm";
 import { BaseEntity } from "./BaseEntity";
 
 @Entity("customers")
@@ -30,9 +27,6 @@ export class Customers extends BaseEntity {
   @Column()
   address: string;
 
-
   @Column()
   zip_code: string;
-
-  
 }

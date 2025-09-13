@@ -1,9 +1,8 @@
 // ENTIDADE BASE AS DESPESAS
 import { v4 as uuid } from "uuid";
-import { Column, CreateDateColumn, PrimaryColumn} from "typeorm";
+import { Column, CreateDateColumn, PrimaryColumn } from "typeorm";
 
 export class BaseExpenses {
-
   @PrimaryColumn()
   id: string;
 
@@ -26,13 +25,11 @@ export class BaseExpenses {
   date: Date;
 
   @CreateDateColumn()
-  created_at: Date
-
+  created_at: Date;
 
   constructor() {
     if (!this.id) {
       this.id = uuid();
     }
   }
-
 }

@@ -1,9 +1,8 @@
-import { Column, Entity,  } from "typeorm";
+import { Column, Entity } from "typeorm";
 import { BaseEntity } from "./BaseEntity";
 
 @Entity("administrator")
 export class Administrator extends BaseEntity {
-
   @Column()
   razao: string;
 

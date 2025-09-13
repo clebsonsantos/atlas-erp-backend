@@ -1,11 +1,9 @@
-import { PermissionRepository } from '../../repositories/index';
-import { Permission } from '../../entities/Permission'
+import { PermissionRepository } from "../../repositories/index";
+import { Permission } from "../../entities/Permission";
 
-export class GetAllPermissionsUseCase  {
-
+export class GetAllPermissionsUseCase {
   async execute(): Promise<Permission[]> {
-   const permissions =  await PermissionRepository().find()
-   return permissions
-    
+    const permissions = await PermissionRepository().find();
+    return permissions;
   }
 }

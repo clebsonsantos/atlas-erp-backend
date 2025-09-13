@@ -1,6 +1,7 @@
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { UserRepository } from "../../repositories";
+import { logger } from "@/utils/logger";
 
 type UserRequest = {
   username: string;
@@ -9,17 +10,23 @@ type UserRequest = {
 
 export class SessionUseCase {
   async execute({ username, password }: UserRequest) {
+    logger.info(`Iniciando sessão para o usuário ${username}`);
     const repo = UserRepository();
 
-    const user = await repo.findOne({ username }, {relations: ['permissions', 'roles']});
+    const user = await repo.findOne(
+      { username },
+      { relations: ["permissions", "roles"] }
+    );
 
     if (!user) {
+      logger.warn(`Usuário ${username} não existe.`);
       return new Error("Usuário não existe.");
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
+      logger.warn(`Tentativa de login falhou para o usuário ${username}`);
       return new Error("Usuário ou senha incorretos.");
     }
 
@@ -27,14 +34,17 @@ export class SessionUseCase {
       subject: user.id,
     });
 
-    if(user.permissions.length == 0){
-      return new Error(`Você não possui nenhuma permissão para acessar o Atlas.\n\nSolicite a um usuário com permissões administrativas para lhe atribuir permissões.`)
+    if (user.permissions.length == 0) {
+      const message = `Usuário ${user.username} não possui nenhuma permissão atribuída.`;
+      logger.warn(message);
+      return new Error(message);
     }
 
-    return { 
-      token: token, 
+    logger.info(`Usuário ${username} autenticado com sucesso.`);
+    return {
+      token: token,
       user_id: user.id,
-      user_permissions: user.permissions, 
+      user_permissions: user.permissions,
       // user_roles: user.roles
     };
   }

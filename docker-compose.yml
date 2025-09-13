@@ -1,37 +1,48 @@
-version: '3.6'
-
 services:
-  pg-pro:
-    image: postgres:latest
+  database:
+    image: postgres:16
     restart: always
     ports:
       - 5000:5432
     # command: cat backup.sql | sudo docker exec -i 99d16ea99408 psql -U postgres -d expense_manager_software
     environment:
       POSTGRES_PASSWORD: docker
-      POSTGRES_DB: expense_manager_software
+      POSTGRES_USER: postgres
+      POSTGRES_DB: atlas
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     volumes:
       - ./pg-producao/data:/var/lib/postgresql/data:rw
+  # migration:
+  #   build: .
+  #   command: npm run typeorm migration:run
+  #   environment:
+  #   - POSTGRES_HOST=database
+  #   - POSTGRES_USER=postgres
+  #   - POSTGRES_PASSWORD=docker
+  #   - POSTGRES_DB=atlas
+  #   depends_on:
+  #     database:
+  #       condition: service_healthy
+  # server:
+  #   build: .
+  #   depends_on:
+  #     migration:
+  #       condition: service_completed_successfully
+  #     database:
+  #       condition: service_healthy
+  #   ports:
+  #     - 4000:4000
+  #   environment:
+  #     - POSTGRES_HOST=database
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=docker
+  #     - POSTGRES_DB=atlas
+  #     - USE_LOGO_COMPANY=false
 
-  server:
-    build: .
-    restart: always
-    depends_on:
-      - pg-pro
-    # command: npm run typeorm migration:run 
-    # comentar a linha de cima após executada, para evitar que fique gerando as migrations
-    ports:
-      - 4000:4000
-    environment:
-      - POSTGRES=pg-pro
-      - POSTGRES_NAME=postgres
-      - POSTGRES_PASSWORD=docker
-      - USE_LOGO_COMPANY=false
-    volumes:
-      - ./uploads:/app/uploads
-      - ./docker-ormconfig.js:/app/ormconfig.js
-      - .:/app
-  adminer: 
-    image: adminer
-    ports: 
-      - 5001:8080
+    # volumes:
+    #   - ./uploads:/app/uploads
+    #   - .:/app

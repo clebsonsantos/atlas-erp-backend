@@ -1,6 +1,13 @@
-import { Entity, Column, CreateDateColumn, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  CreateDateColumn,
+  PrimaryColumn,
+  ManyToOne,
+  JoinColumn,
+} from "typeorm";
 import { BaseEntity } from "./BaseEntity";
-import { CentersCost } from './CentersCost';
+import { CentersCost } from "./CentersCost";
 
 @Entity("products")
 export class Product extends BaseEntity {
@@ -17,6 +24,6 @@ export class Product extends BaseEntity {
   center_cost_id: string;
 
   @ManyToOne(() => CentersCost)
-  @JoinColumn({name: "center_cost_id"})
+  @JoinColumn({ name: "center_cost_id" })
   center_cost: CentersCost;
 }

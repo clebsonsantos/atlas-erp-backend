@@ -1,32 +1,31 @@
-import { CategoryRepository } from '../../repositories';
+import { logger } from "@/utils/logger";
+import { CategoryRepository } from "../../repositories";
 
 type Type = {
   id: string;
-}
+};
 
-
-export class DeleteCategoryUseCase  {
-
-  async execute({id}: Type): Promise<Error | any>{
+export class DeleteCategoryUseCase {
+  async execute({ id }: Type): Promise<Error | any> {
+    logger.info(`Iniciando processo de exclusão da categoria ${id}`);
     let ErrorQuery;
-    const category = await CategoryRepository().findOne({id})
+    const category = await CategoryRepository().findOne({ id });
 
-    if(!category){
+    if (!category) {
+      logger.warn("Categoria não existe.");
       return new Error("Categoria não existe!");
-
     }
-    const deleteRepository =  CategoryRepository()
+    const deleteRepository = CategoryRepository();
 
-    await deleteRepository.delete({id}).catch(error => {
-      ErrorQuery = error.message
-    })
-    if( ErrorQuery && ErrorQuery.includes("constraint")){
-      return new Error("Não é possível deletar esse registro pois existem relacionamentos que dependem dele.")
+    await deleteRepository.delete({ id }).catch((error) => {
+      ErrorQuery = error.message;
+    });
+    if (ErrorQuery && ErrorQuery.includes("constraint")) {
+      const message = `Não é possível deletar a categoria "${category.name}" pois a mesma está vinculada a um ou mais produtos.`;
+      logger.warn(message);
+      return new Error(message);
     }
-
-    return "OK"
-    
-
-    
+    logger.info(`Categoria "${category.name}" deletada com sucesso.`);
+    return "OK";
   }
 }

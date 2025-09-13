@@ -1,4 +1,5 @@
-import { AdministratorRepository } from '../../repositories';
+import { logger } from "@/utils/logger";
+import { AdministratorRepository } from "../../repositories";
 
 type AdministratorTypes = {
   id: string;
@@ -16,11 +17,9 @@ type AdministratorTypes = {
   telefone?: string;
   email?: string;
   url_image?: string;
-}
+};
 
-
-export class UpdateAdministratorUseCase  {
-
+export class UpdateAdministratorUseCase {
   async execute({
     id,
     razao,
@@ -35,33 +34,38 @@ export class UpdateAdministratorUseCase  {
     uf,
     telefone,
     email,
-    url_image
-   }: AdministratorTypes){
-    const administrator = await AdministratorRepository().findOne({id})
+    url_image,
+  }: AdministratorTypes) {
+    logger.info("Atualizando informações da empresa administradora");
+    const administrator = await AdministratorRepository().findOne({ id });
 
-    if(!administrator){
+    if (!administrator) {
+      logger.warn("Administrador não existe.");
       return new Error("Administrador não existe.");
     }
 
-    administrator.razao = razao ? razao : administrator.razao
-    administrator.fantasia = fantasia ? fantasia : administrator.fantasia
-    administrator.cpf_cnpj = cpf_cnpj ? cpf_cnpj : administrator.cpf_cnpj
-    administrator.insc_estadual = insc_estadual ? insc_estadual : administrator.insc_estadual
-    administrator.endereco = endereco ? endereco : administrator.endereco
-    administrator.bairro = bairro ? bairro : administrator.bairro
-    administrator.numero = numero ? numero : administrator.numero
-    administrator.complemento = complemento ? complemento : administrator.complemento
-    administrator.cidade = cidade ? cidade : administrator.cidade
-    administrator.uf = uf ? uf : administrator.uf
-    administrator.telefone = telefone ? telefone : administrator.telefone
-    administrator.email = email ? email : administrator.email
-    administrator.url_image = url_image ? url_image : administrator.url_image
+    administrator.razao = razao ? razao : administrator.razao;
+    administrator.fantasia = fantasia ? fantasia : administrator.fantasia;
+    administrator.cpf_cnpj = cpf_cnpj ? cpf_cnpj : administrator.cpf_cnpj;
+    administrator.insc_estadual = insc_estadual
+      ? insc_estadual
+      : administrator.insc_estadual;
+    administrator.endereco = endereco ? endereco : administrator.endereco;
+    administrator.bairro = bairro ? bairro : administrator.bairro;
+    administrator.numero = numero ? numero : administrator.numero;
+    administrator.complemento = complemento
+      ? complemento
+      : administrator.complemento;
+    administrator.cidade = cidade ? cidade : administrator.cidade;
+    administrator.uf = uf ? uf : administrator.uf;
+    administrator.telefone = telefone ? telefone : administrator.telefone;
+    administrator.email = email ? email : administrator.email;
+    administrator.url_image = url_image ? url_image : administrator.url_image;
 
-    AdministratorRepository().save(administrator)
-
-    return administrator
-
-
-    
+    AdministratorRepository().save(administrator);
+    logger.info(
+      "Informações da empresa administradora atualizadas com sucesso."
+    );
+    return administrator;
   }
 }

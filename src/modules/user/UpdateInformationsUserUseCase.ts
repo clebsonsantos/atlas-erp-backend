@@ -1,24 +1,32 @@
 import { hash } from "bcryptjs";
-import { User } from '../../entities/User';
-import { UserRepository } from '../../repositories';
+import { User } from "../../entities/User";
+import { UserRepository } from "../../repositories";
+import { logger } from "@/utils/logger";
 
 type UsersTypes = {
-  id: string
+  id: string;
   username: string;
   password: string;
   email: string;
   full_name: string;
-  phone: string
-}
+  phone: string;
+};
 
-export class UpdateInformationsUserUseCase  {
+export class UpdateInformationsUserUseCase {
+  async execute({
+    id,
+    username,
+    password,
+    email,
+    full_name,
+    phone,
+  }: UsersTypes): Promise<User | Error> {
+    logger.info(`Atualizando informações do usuário: ${id}`);
+    const usersRepository = UserRepository();
+    const user = await usersRepository.findOne({ id });
 
-  async execute({id, username, password, email, full_name, phone}: UsersTypes) :  Promise< User | Error> {
-
-    const usersRepository = UserRepository()
-    const user = await usersRepository.findOne({id})
-
-    if(!user){
+    if (!user) {
+      logger.warn("Usuário não encontrado.");
       return new Error("Usuário não encontrado.");
     }
 
@@ -28,7 +36,8 @@ export class UpdateInformationsUserUseCase  {
     user.phone = phone ? phone : user.phone;
     user.password = password ? await hash(password, 8) : user.password;
 
-    usersRepository.save(user)
-    return user
+    usersRepository.save(user);
+    logger.info(`Informações do usuário ${id} atualizadas com sucesso.`);
+    return user;
   }
 }

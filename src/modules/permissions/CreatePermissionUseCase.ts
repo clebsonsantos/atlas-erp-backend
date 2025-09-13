@@ -1,3 +1,4 @@
+import { logger } from "@/utils/logger";
 import { Permission } from "../../entities/Permission";
 import { PermissionRepository } from "../../repositories";
 
@@ -11,16 +12,18 @@ export class CreatePermissionUseCase {
     name,
     description,
   }: PermissionRequest): Promise<Permission | Error> {
+    logger.info(`Criando nova permissão: ${name}`);
     const repo = PermissionRepository();
 
     if (await repo.findOne({ name })) {
+      logger.warn("Permissão já existe!");
       return new Error("Permissão já existe!");
     }
 
     const permission = repo.create({ name, description });
 
     await repo.save(permission);
-
+    logger.info(`Permissão ${name} criada com sucesso.`);
     return permission;
   }
 }

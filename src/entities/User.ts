@@ -1,12 +1,4 @@
-import {
-  Column,
-  Entity,
-  getRepository,
-  JoinColumn,
-  JoinTable,
-  ManyToMany,
-  RelationId,
-} from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany } from "typeorm";
 import { BaseEntity } from "./BaseEntity";
 import { Permission } from "./Permission";
 import { Role } from "./Role";

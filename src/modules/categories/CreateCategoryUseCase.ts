@@ -1,24 +1,24 @@
-import { Category } from '../../entities/Category';
-import { CategoryRepository } from '../../repositories';
+import { logger } from "@/utils/logger";
+import { Category } from "../../entities/Category";
+import { CategoryRepository } from "../../repositories";
+import { log } from "winston";
 
 type CategoryType = {
-  name: string
-}
+  name: string;
+};
 
-
-export class CreateCategoryUseCase  {
-
-  async execute({name}: CategoryType): Promise< Category | Error>  {
-
+export class CreateCategoryUseCase {
+  async execute({ name }: CategoryType): Promise<Category | Error> {
+    logger.info("Criando nova categoria");
     const category = CategoryRepository().create({
-      name
-    })
-    if(await CategoryRepository().findOne({name})){
-      return new Error("Categoria já existe!")
+      name,
+    });
+    if (await CategoryRepository().findOne({ name })) {
+      logger.warn("Categoria já existe!");
+      return new Error("Categoria já existe!");
     }
-    await CategoryRepository().save(category)
-
-    return category
-    
+    await CategoryRepository().save(category);
+    logger.info("Categoria criada com sucesso.");
+    return category;
   }
 }

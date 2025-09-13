@@ -1,3 +1,4 @@
+import { logger } from "@/utils/logger";
 import { Role } from "../../entities/Role";
 import { PermissionRepository, RoleRepository } from "../../repositories";
 
@@ -11,11 +12,13 @@ export class CreateRolePermissionUseCase {
     roleId,
     permissions,
   }: RolePermissionRequest): Promise<Role | Error> {
+    logger.info(`Atribuindo permissões à função/cargo: ${roleId}`);
     const repo = RoleRepository();
 
     const role = await repo.findOne(roleId);
 
     if (!role) {
+      logger.warn("Função/cargo não encontrado.");
       return new Error("Função/cargo não existe!");
     }
 
@@ -26,7 +29,7 @@ export class CreateRolePermissionUseCase {
     role.permissions = permissionsExists;
 
     await repo.save(role);
-
+    logger.info(`Permissões atribuídas à função/cargo ${roleId} com sucesso.`);
     return role;
   }
 }

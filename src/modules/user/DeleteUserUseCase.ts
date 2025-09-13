@@ -1,27 +1,35 @@
-import { UserRepository } from '../../repositories';
+import { logger } from "@/utils/logger";
+import { UserRepository } from "../../repositories";
 
 type DeleteType = {
-  id: string
-}
+  id: string;
+};
 
-export class DeleteUserUseCase  {
-
-  async execute({id}: DeleteType){
-    const user = await UserRepository().findOne({id})
+export class DeleteUserUseCase {
+  async execute({ id }: DeleteType) {
+    logger.info(`Iniciando remoção do usuário ${id}`);
+    const user = await UserRepository().findOne({ id });
     let QueryFailedError;
-    if(!user){
+    if (!user) {
+      logger.warn("Usuário não encontrado.");
       return new Error("Usuário não encontrado.");
     }
 
-    await UserRepository().delete({id}).catch((err)=> {
-      QueryFailedError = err.message
-    })
+    await UserRepository()
+      .delete({ id })
+      .catch((err) => {
+        QueryFailedError = err.message;
+      });
 
-    if(QueryFailedError && QueryFailedError.includes("violates foreign key constraint")){
-      return new Error("Não é possível deletar esse registro.\nExistem relacionamentos que dependem dele.")
+    if (
+      QueryFailedError &&
+      QueryFailedError.includes("violates foreign key constraint")
+    ) {
+      const message = `Não é possível deletar esse registro.\nExistem relacionamentos que dependem dele.`;
+      logger.error(message);
+      return new Error(message);
     }
-    return "Usuário deletado com sucesso!"
-    
+    logger.info(`Usuário ${id} deletado com sucesso.`);
+    return "Usuário deletado com sucesso!";
   }
 }
-
