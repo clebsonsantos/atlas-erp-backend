@@ -1,24 +1,19 @@
-
 import { Request, Response } from "express";
-import { UpdateCenterCostUseCase } from '../../modules/centercost/UpdateCenterCostUseCase';
-
-
+import { UpdateCenterCostUseCase } from "../../modules/centercost/UpdateCenterCostUseCase";
 
 export class UpdateCenterCostController {
-
   async handle(request: Request, response: Response) {
-    const { name } = request.body
-    const { id } = request.params
+    const { name } = request.body;
+    const { id } = request.params;
 
-    const updateCenterCost = new UpdateCenterCostUseCase()
+    const updateCenterCost = new UpdateCenterCostUseCase();
 
-    const result = await updateCenterCost.execute({ id, name })
+    const result = await updateCenterCost.execute({ id, name });
 
-    if(result instanceof Error){
-      return response.status(400).json(result.message)
+    if (result instanceof Error) {
+      return response.status(400).json(result.message);
     }
 
-    return response.status(200).json(result)
-
+    return response.status(200).json(result);
   }
 }

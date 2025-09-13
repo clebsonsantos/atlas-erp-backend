@@ -34,10 +34,9 @@ export class CreateUsers1627508510952 implements MigrationInterface {
           {
             name: "created_at",
             type: "timestamp",
-            default: "now()", 
+            default: "now()",
             //TODO => CAMPOS ADICIONAIS [ PERMISSÕES, FUNÇÃO, EMAIL, NOVA SENHA]
             //TODO => REPENSAR O TODO ACIMA
-  
           },
         ],
       })

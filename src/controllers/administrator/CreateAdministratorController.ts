@@ -1,11 +1,7 @@
-
 import { Request, Response } from "express";
-import { CreateAdministratorUseCase } from '../../modules/administrator/CreateAdministratorUseCase';
-
-
+import { CreateAdministratorUseCase } from "../../modules/administrator/CreateAdministratorUseCase";
 
 export class CreateAdministratorController {
-
   async handle(request: Request, response: Response) {
     const {
       razao,
@@ -21,12 +17,11 @@ export class CreateAdministratorController {
       cep,
       telefone,
       email,
-      
     } = request.body;
-    const {path} = request.file
-    const url_image = path
+    const { path } = request.file;
+    const url_image = path;
 
-    const createAdminController = new CreateAdministratorUseCase()
+    const createAdminController = new CreateAdministratorUseCase();
 
     const result = await createAdminController.execute({
       razao,
@@ -42,14 +37,13 @@ export class CreateAdministratorController {
       cep,
       telefone,
       email,
-      url_image
-    })
+      url_image,
+    });
 
-    if(result instanceof Error){
-    return response.status(400).json(result.message)
-
+    if (result instanceof Error) {
+      return response.status(400).json(result.message);
     }
 
-    return response.status(200).json(result)
+    return response.status(200).json(result);
   }
 }

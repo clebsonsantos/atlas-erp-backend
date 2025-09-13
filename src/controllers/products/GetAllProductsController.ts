@@ -6,7 +6,7 @@ export class GetAllProductsController {
     const { id, name } = request.body;
     const getAllProductsService = new GetAllProductsUseCase();
 
-    const products = await getAllProductsService.execute({id, name});
+    const products = await getAllProductsService.execute({ id, name });
 
     return response.json(products);
   }

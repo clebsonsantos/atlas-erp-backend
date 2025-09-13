@@ -1,12 +1,9 @@
-
 import { Request, Response } from "express";
-import { UpdateAdministratorUseCase } from '../../modules/administrator/UpdateAdministratorUseCase';
-
+import { UpdateAdministratorUseCase } from "../../modules/administrator/UpdateAdministratorUseCase";
 
 export class UpdateAdministratorController {
-
   async handle(request: Request, response: Response) {
-    const { id } = request.params
+    const { id } = request.params;
     const {
       razao,
       fantasia,
@@ -20,13 +17,13 @@ export class UpdateAdministratorController {
       uf,
       cep,
       telefone,
-      email
+      email,
     } = request.body;
-    
-    const {path} = request.file
-    const url_image = path
 
-    const updateadmin = new UpdateAdministratorUseCase()
+    const { path } = request.file;
+    const url_image = path;
+
+    const updateadmin = new UpdateAdministratorUseCase();
 
     const result = await updateadmin.execute({
       id,
@@ -43,13 +40,13 @@ export class UpdateAdministratorController {
       cep,
       telefone,
       email,
-      url_image})
+      url_image,
+    });
 
-    if(result instanceof Error){
-      return response.status(400).json(result.message)
+    if (result instanceof Error) {
+      return response.status(400).json(result.message);
     }
 
-    return response.status(200).json(result)
+    return response.status(200).json(result);
   }
-
 }

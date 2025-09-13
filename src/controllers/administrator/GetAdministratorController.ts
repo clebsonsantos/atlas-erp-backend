@@ -1,17 +1,12 @@
-
 import { Request, Response } from "express";
-import { GetAdministratorUseCase } from '../../modules/administrator/GetAdministratorUseCase';
-
+import { GetAdministratorUseCase } from "../../modules/administrator/GetAdministratorUseCase";
 
 export class GetAdministratorController {
-
   async handle(request: Request, response: Response) {
+    const getAllAdmin = new GetAdministratorUseCase();
 
-    const getAllAdmin = new GetAdministratorUseCase()
+    const administrator = await getAllAdmin.execute();
 
-    const administrator = await getAllAdmin.execute()
-
-    response.status(200).json(administrator[0])
-
+    response.status(200).json(administrator[0]);
   }
 }

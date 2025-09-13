@@ -1,9 +1,8 @@
-import { GetAllPermissionsUseCase } from '../../modules/permissions/GetAllPermissionsUseCase';
+import { GetAllPermissionsUseCase } from "../../modules/permissions/GetAllPermissionsUseCase";
 
 import { Request, Response } from "express";
 
 export class GetAllPermissionsController {
-
   async handle(request: Request, response: Response) {
     const getAllPermissions = new GetAllPermissionsUseCase();
 

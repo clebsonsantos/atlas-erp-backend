@@ -7,10 +7,10 @@ export class GetAllUsersController {
 
     const users = await getAllUsersService.execute();
 
-    if(users instanceof Array){
-        users.forEach(item=> {
-          item.password = 'not displayed for security reasons'
-        })
+    if (users instanceof Array) {
+      users.forEach((item) => {
+        item.password = "not displayed for security reasons";
+      });
     }
 
     return response.json(users);
