@@ -1,5 +1,5 @@
 import { logger } from "@/utils/logger";
-import { Expenses } from "../../entities/Expenses";
+import { Expenses } from "../../infrastructure/persistence/entities/Expenses";
 import { ExpenseRepository } from "../../repositories";
 
 export class GetAllExpensesUseCase {

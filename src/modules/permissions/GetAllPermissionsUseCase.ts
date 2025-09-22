@@ -1,5 +1,5 @@
 import { PermissionRepository } from "../../repositories/index";
-import { Permission } from "../../entities/Permission";
+import { Permission } from "../../infrastructure/persistence/entities/Permission";
 
 export class GetAllPermissionsUseCase {
   async execute(): Promise<Permission[]> {

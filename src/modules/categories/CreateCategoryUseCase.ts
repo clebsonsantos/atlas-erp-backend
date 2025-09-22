@@ -1,5 +1,5 @@
 import { logger } from "@/utils/logger";
-import { Category } from "../../entities/Category";
+import { Category } from "../../infrastructure/persistence/entities/Category";
 import { CategoryRepository } from "../../repositories";
 import { log } from "winston";
 

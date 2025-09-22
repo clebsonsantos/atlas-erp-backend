@@ -1,5 +1,5 @@
 import { logger } from "@/utils/logger";
-import { Product } from "../../entities/Product";
+import { Product } from "../../infrastructure/persistence/entities/Product";
 import { ProductRepository } from "../../repositories";
 
 type IProductSearch = {

@@ -3,7 +3,7 @@ import {
   Size,
   TDocumentDefinitions,
 } from "pdfmake/interfaces";
-import { Administrator } from "../../entities/Administrator";
+import { Administrator } from "../../infrastructure/persistence/entities/Administrator";
 import { AdministratorRepository } from "../../repositories";
 import logoImage from "./LogoImage";
 import { Response } from "express";

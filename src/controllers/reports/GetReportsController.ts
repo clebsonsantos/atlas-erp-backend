@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { Category } from "../../entities/Category";
-import { CentersCost } from "../../entities/CentersCost";
-import { Customers } from "../../entities/Customers";
-import { Expenses } from "../../entities/Expenses";
-import { Product } from "../../entities/Product";
-import { Sales } from "../../entities/Sales";
-import { User } from "../../entities/User";
+import { Category } from "../../infrastructure/persistence/entities/Category";
+import { CentersCost } from "../../infrastructure/persistence/entities/CentersCost";
+import { Customers } from "../../infrastructure/persistence/entities/Customers";
+import { Expenses } from "../../infrastructure/persistence/entities/Expenses";
+import { Product } from "../../infrastructure/persistence/entities/Product";
+import { Sales } from "../../infrastructure/persistence/entities/Sales";
+import { User } from "../../infrastructure/persistence/entities/User";
 import { CategoriesCenterReports } from "../../modules/reports/CategoriesCenterReports";
 import { CustomersReports } from "../../modules/reports/CustomersReports";
 import { ExpensesReports } from "../../modules/reports/ExpensesReports";

@@ -1,5 +1,5 @@
 import { logger } from "@/utils/logger";
-import { Customers } from "../../entities/Customers";
+import { Customers } from "../../infrastructure/persistence/entities/Customers";
 import { CustomerRepository } from "../../repositories";
 
 type FindCustomer = {

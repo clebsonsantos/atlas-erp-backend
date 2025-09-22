@@ -1,7 +1,7 @@
 import { SalesRepository } from "./../../repositories/index";
 import { Request, Response } from "express";
 import { SalesOrderPrint } from "../../modules/reports/SalesOrderPrint";
-import { Sales } from "../../entities/Sales";
+import { Sales } from "../../infrastructure/persistence/entities/Sales";
 
 export class GetSalesOrderController {
   async handle(request: Request, response: Response) {

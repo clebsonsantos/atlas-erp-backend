@@ -1,7 +1,7 @@
-import { Sales } from "../../entities/Sales";
+import { Sales } from "../../infrastructure/persistence/entities/Sales";
 import { TableCell } from "pdfmake/interfaces";
 import { Response } from "express";
-import { Administrator } from "../../entities/Administrator";
+import { Administrator } from "../../infrastructure/persistence/entities/Administrator";
 import { AdministratorRepository, ProductRepository } from "../../repositories";
 import salesOrdes from "./layouts/salesOrder";
 import logoImage from "./LogoImage";

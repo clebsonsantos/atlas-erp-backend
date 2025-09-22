@@ -1,5 +1,5 @@
 import { logger } from "@/utils/logger";
-import { Permission } from "../../entities/Permission";
+import { Permission } from "../../infrastructure/persistence/entities/Permission";
 import { PermissionRepository } from "../../repositories";
 
 type PermissionRequest = {

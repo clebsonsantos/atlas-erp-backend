@@ -1,5 +1,5 @@
 import { logger } from "@/utils/logger";
-import { User } from "../../entities/User";
+import { User } from "../../infrastructure/persistence/entities/User";
 import { UserRepository } from "../../repositories";
 
 export class GetAllUsersUseCase {

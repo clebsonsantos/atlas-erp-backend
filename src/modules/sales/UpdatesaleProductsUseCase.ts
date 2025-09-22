@@ -1,5 +1,5 @@
 import { logger } from "@/utils/logger";
-import { Sales } from "../../entities/Sales";
+import { Sales } from "../../infrastructure/persistence/entities/Sales";
 import { ProductsSoldsRepository, SalesRepository } from "../../repositories";
 
 type IproductsSolds = {

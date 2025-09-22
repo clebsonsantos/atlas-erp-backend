@@ -4,11 +4,11 @@ import {
   UserRepository,
 } from "../../repositories/index";
 import { TableCell } from "pdfmake/interfaces";
-import { Sales } from "../../entities/Sales";
+import { Sales } from "../../infrastructure/persistence/entities/Sales";
 import { Response } from "express";
 import { DefaultsConfigReport } from "./DefaultsConfigReport";
 import formatCurrency from "../../utils/formatCurrency";
-import { Customers } from "../../entities/Customers";
+import { Customers } from "../../infrastructure/persistence/entities/Customers";
 
 export class SalesReports {
   async execute(

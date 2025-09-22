@@ -1,5 +1,5 @@
 import { logger } from "@/utils/logger";
-import { Administrator } from "../../entities/Administrator";
+import { Administrator } from "../../infrastructure/persistence/entities/Administrator";
 import { AdministratorRepository } from "../../repositories";
 
 export class GetAdministratorUseCase {

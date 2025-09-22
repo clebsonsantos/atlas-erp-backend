@@ -1,5 +1,5 @@
 import { logger } from "@/utils/logger";
-import { CentersCost } from "../../entities/CentersCost";
+import { CentersCost } from "../../infrastructure/persistence/entities/CentersCost";
 import { CenterCostRepository } from "../../repositories";
 
 export class GetAllCenterCostUseCase {

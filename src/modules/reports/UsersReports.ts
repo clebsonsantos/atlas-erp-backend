@@ -1,4 +1,4 @@
-import { User } from "../../entities/User";
+import { User } from "../../infrastructure/persistence/entities/User";
 import { TableCell } from "pdfmake/interfaces";
 import { Response } from "express";
 import { DefaultsConfigReport } from "./DefaultsConfigReport";

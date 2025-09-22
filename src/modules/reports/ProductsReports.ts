@@ -1,4 +1,4 @@
-import { Product } from "../../entities/Product";
+import { Product } from "../../infrastructure/persistence/entities/Product";
 import { TableCell } from "pdfmake/interfaces";
 import { Response } from "express";
 import { DefaultsConfigReport } from "./DefaultsConfigReport";

@@ -1,4 +1,4 @@
-import { Expenses } from "../../entities/Expenses";
+import { Expenses } from "../../infrastructure/persistence/entities/Expenses";
 import { Column, TableCell } from "pdfmake/interfaces";
 import { Response } from "express";
 import { DefaultsConfigReport } from "./DefaultsConfigReport";

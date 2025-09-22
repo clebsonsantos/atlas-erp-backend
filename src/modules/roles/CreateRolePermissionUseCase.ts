@@ -1,5 +1,5 @@
 import { logger } from "@/utils/logger";
-import { Role } from "../../entities/Role";
+import { Role } from "../../infrastructure/persistence/entities/Role";
 import { PermissionRepository, RoleRepository } from "../../repositories";
 
 type RolePermissionRequest = {

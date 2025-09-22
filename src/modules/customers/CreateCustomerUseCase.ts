@@ -1,5 +1,5 @@
 import { cnpj, cpf } from "cpf-cnpj-validator";
-import { Customers } from "../../entities/Customers";
+import { Customers } from "../../infrastructure/persistence/entities/Customers";
 import { CustomerRepository } from "../../repositories";
 import { logger } from "@/utils/logger";
 import { log } from "winston";

@@ -1054,3 +1054,12 @@
 [2025-09-13 15:37:27] [32minfo[39m: CONEXÃO EFETUADA COM BANCO DE DADOS
 [2025-09-13 15:37:27] [32minfo[39m: Database: atlas
 [2025-09-13 15:37:27] [32minfo[39m: Processo de inicialização finalizado
+[2025-09-22 11:44:22] [32minfo[39m: ✅ Server started on port 4000
+[2025-09-22 11:44:22] [32minfo[39m: Node version: 16
+[2025-09-22 11:44:22] [32minfo[39m: System: Altas - softmanager api
+[2025-09-22 11:44:22] [32minfo[39m: Author: Clebson Santos - https://github.com/clebsonsantos
+[2025-09-22 11:44:23] [32minfo[39m: CONEXÃO EFETUADA COM BANCO DE DADOS
+[2025-09-22 11:44:23] [32minfo[39m: Database: atlas
+[2025-09-22 11:44:23] [32minfo[39m: Criando nova permissão: admin
+[2025-09-22 11:44:23] [31merror[39m: ERRO AO CONECTAR COM BANCO DE DADOS No repository for "Permission" was found. Looks like this entity is not registered in current "default" connection?
+[2025-09-22 11:44:23] [32minfo[39m: Processo de inicialização finalizado

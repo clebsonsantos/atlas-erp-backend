@@ -1,5 +1,5 @@
 import { hash } from "bcryptjs";
-import { User } from "../../entities/User";
+import { User } from "../../infrastructure/persistence/entities/User";
 import { UserRepository } from "../../repositories";
 import { logger } from "@/utils/logger";
 
